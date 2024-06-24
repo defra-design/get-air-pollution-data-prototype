@@ -7,13 +7,31 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
 
-    <h1 class="govuk-heading-xl">
+
+    <h1 class="govuk-heading-l">
       {{ serviceName }}
     </h1>
 
-   
+    <table class="govuk-table">
+
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Version</th>
+          <th scope="col" class="govuk-table__header">Design history</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a class="govuk-link" href="version-2/start">Version 2</a></td>
+          <td class="govuk-table__cell"><a href="" class="govuk-link">Design history</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Version 1</th>
+          <td class="govuk-table__cell"><a href="" class="govuk-link">Design history</a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 

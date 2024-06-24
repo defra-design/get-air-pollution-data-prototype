@@ -1,0 +1,160 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-l">
+      Find monitoring sites near an address, place, postcode or local authority<!--  in the United Kingdom -->
+    </h1>
+
+    <div class="moj-search">
+
+      <form action="#" method="post">
+    
+        <div class="govuk-form-group" style="display: inline-block;">
+
+          <div id="search-hint" class="govuk-hint moj-search__hint ">
+            Enter an address, place, postcode or local authority within the United Kingdom
+          </div>
+    
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+    
+        </div>
+    
+        <button type="submit" class="govuk-button moj-search__button " style="display: inline-block;"  data-module="govuk-button">
+          Search
+        </button>
+    
+      </form>
+      
+    </div>
+    
+    <details class="govuk-details govuk-!-margin-top-3">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Help with nationality
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+      </div>
+    </details>
+
+  </div>
+</div>
+<!-- end of first row -->
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+    <nav class="moj-sub-navigation govuk-!-margin-top-3 govuk-!-margin-bottom-0" aria-label="Sub navigation">
+
+      <ul class="moj-sub-navigation__list">
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" aria-current="page" href="#1">Automatic Urban and Rural (171)</a>
+        </li>
+    
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="#2">Locally managed automatic (387)</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="#3">UK Urban NO2 (298)</a>
+        </li>
+    
+      </ul>
+    
+    </nav>
+    <table class="govuk-table govuk-!-margin-top-1">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-third">Monitoring station</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Pollutants</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Environment type</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Local authority</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" style="color: #1d70b8;">Southampton Centre</th>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2), PM2.5, PM10</td>
+          <td class="govuk-table__cell">Urban background</td>
+          <td class="govuk-table__cell">Southampton City Council<br>View all monitoring sites</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" style="color: #1d70b8">Southampton A33</th>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2), PM2.5, PM10</td>
+          <td class="govuk-table__cell">Urban traffic</td>
+          <td class="govuk-table__cell">£89.10 per week</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" style="color: #1d70b8">Southampton A33</th>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2), PM2.5, PM10</td>
+          <td class="govuk-table__cell">Urban traffic</td>
+          <td class="govuk-table__cell">£89.10 per week</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" style="color: #1d70b8">Southampton A33</th>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2), PM2.5, PM10</td>
+          <td class="govuk-table__cell">Urban traffic</td>
+          <td class="govuk-table__cell">£89.10 per week</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" style="color: #1d70b8">Southampton A33</th>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2), PM2.5, PM10</td>
+          <td class="govuk-table__cell">Urban traffic</td>
+          <td class="govuk-table__cell">£89.10 per week</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="govuk-pagination" aria-label="Pagination">
+     
+      <ul class="govuk-pagination__list">
+        
+        
+        <li class="govuk-pagination__item govuk-pagination__item--current">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">
+            1
+          </a>
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">
+            2
+          </a>
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">
+            3
+          </a>
+        </li>
+        <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+          &ctdot;
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 42">
+            42
+          </a>
+        </li>
+      </ul>
+      <div class="govuk-pagination__next">
+        <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+          <span class="govuk-pagination__link-title">
+            Next<span class="govuk-visually-hidden"> page</span>
+          </span>
+          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+            <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+          </svg>
+        </a>
+      </div>
+    </nav>
+
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

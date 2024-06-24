@@ -1,0 +1,510 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Find monitoring stations in the UK<!--  in the United Kingdom -->
+    </h1>
+
+    <div class="moj-search govuk-!-margin-bottom-4">
+
+      <form action="#" method="post">
+    
+        <div class="govuk-form-group" style="display: inline-block;">
+
+          <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
+            Search for a station, place, local authority or postcode in the UK
+          </div>
+          
+    
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search"  aria-describedby="search-hint">
+    
+        </div>
+    
+        <button type="submit" class="govuk-button moj-search__button "  data-module="govuk-button">
+          Search
+        </button>
+    
+      </form>
+      
+    </div>
+<!-- 
+    <a class="govuk-link govuk-!-margin-bottom-3" style="display: block;" href="">Clear search</a> -->
+    
+    <a class="govuk-body govuk-link " href="">Search by coordinates, easting and northing or grid references</a>
+
+    </div>
+    
+    </div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="moj-filter-layout govuk-!-margin-top-8">
+
+      <div class="moj-filter-layout__filter" style="max-width: 280px;">
+    
+        <div class="moj-filter">
+    
+          <div class="moj-filter__content">
+    
+            <div class="moj-filter__selected">
+    
+              <div class="moj-filter__selected-heading">
+    
+                <div class="moj-filter__heading-title">
+                  <h2 class="govuk-heading-m" style="margin-bottom: 2px; font-size: 21px;">Selected filters
+            
+                  </h2>
+                  <span style="font-weight: normal;"> 16 filters selected</span>
+                </div>
+    <!-- 
+                <div class="moj-filter__heading-action">
+                  <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+                </div> -->
+    
+              </div>
+    
+             
+         
+    
+            </div>
+    
+            <div class="moj-filter__options">
+    
+             <!--  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Apply filters
+              </button> -->
+              <div class="govuk-button-group">
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                  Apply filters
+                </button>
+                <a class="govuk-link" href="#">Clear filters</a>
+              </div>
+    
+              <!-- <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--m" for="keywords">
+                  Keywords
+                </label>
+    
+                <input class="govuk-input" id="keywords" name="keywords" type="text">
+    
+              </div> -->
+    
+              <div class="govuk-form-group">
+    
+                <fieldset class="govuk-fieldset">
+    
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" style="font-size: 19px;">
+    
+                    Pollutants
+    
+                  </legend>
+    
+
+                  
+                  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+    
+                    <div class="govuk-checkboxes__item"  >
+                      <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type">
+                        Nitrogen dioxide (NO2) <span style="font-weight: normal; display: block;">158 results</span>
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="type-2" name="type" type="checkbox" value="2" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-2">
+                        Ozone (O3)
+                        <span style="font-weight: normal; display: block;">74 results</span>
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="type-3" name="type" type="checkbox" value="3" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-3">
+                        PM10 
+                        <span style="font-weight: normal; display: block; font-size: 16px;">111 results</span>
+                      </label>
+    
+                    </div>
+
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="type-4" name="type" type="checkbox" value="3" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-4">
+                        PM2.5
+                        <span style="font-weight: normal; display: block; font-size: 16px;">100 results</span>
+                      </label>
+    
+                    </div>
+
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="type-5" name="type" type="checkbox" value="3" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-5">
+                        Sulphur dioxide (SO2)
+                        <span style="font-weight: normal; display: block; font-size: 16px;">28 results</span>
+                      </label>
+    
+                    </div>
+    
+                  </div>
+    
+                </fieldset>
+    
+              </div>
+    
+              <div class="govuk-form-group">
+    
+                <fieldset class="govuk-fieldset">
+    
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" style="font-size: 19px;">
+    
+                    Environment type
+    
+                  </legend>
+    
+                  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status">
+                        Rural background
+                        <span style="font-weight: normal; display: block; font-size: 16px;">23 results</span>
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-2">
+                        Suburban background
+                        <span style="font-weight: normal; display: block; font-size: 16px;">4 results</span>
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-3">
+                        Suburban industrial
+                        <span style="font-weight: normal; display: block; font-size: 16px;">2 results</span>
+                      </label>
+    
+                    </div>
+
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-4">
+                        Urban background
+                        <span style="font-weight: normal; display: block; font-size: 16px;">69 results</span>
+                      </label>
+    
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="5" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-5">
+                        Urban industrial
+                        <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span>
+                      </label>
+    
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="6" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-6">
+                        Urban traffic
+                        <span style="font-weight: normal; display: block; font-size: 16px;">70 results</span>
+                      </label>
+    
+                    </div>
+
+                    
+    
+                  </div>
+    
+                </fieldset>
+    
+              </div>
+
+              <div class="govuk-form-group">
+    
+                <fieldset class="govuk-fieldset">
+    
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" style="font-size: 19px;">
+    
+                    Country
+    
+                  </legend>
+    
+                  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+    
+              
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-2">
+                        England
+                        <span style="font-weight: normal; display: block; font-size: 16px;">128 results</span>
+                      </label>
+    
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-4">
+                        Scotland
+                        <span style="font-weight: normal; display: block; font-size: 16px;">23 results</span>
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;"  for="status-3">
+                        Wales
+                        <span style="font-weight: normal; display: block; font-size: 16px;">11 results</span>
+                      </label>
+    
+                    </div>
+
+                
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="5" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-5">
+                        Northern Ireland
+                        <span style="font-weight: normal; display: block; font-size: 16px;">8 results</span>
+                      </label>
+    
+                    </div>
+                   
+
+                    
+    
+                  </div>
+    
+                </fieldset>
+    
+              </div>
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+      </div>
+    
+      <div class="moj-filter-layout__content">
+    
+        <div class="moj-action-bar">
+<!--     
+          <div class="moj-action-bar__filter"></div> -->
+    
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+    
+              <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+                Continue with selected results
+              </button>
+    
+             <!--  <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+                Download all networks
+              </button> -->
+    
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="moj-scrollable-pane">
+          <nav class="moj-sub-navigation govuk-!-margin-bottom-0"  aria-label="Sub navigation" >
+            <ul class="moj-sub-navigation__list">
+              <li class="moj-sub-navigation__item" style="font-size: 16px;" >
+                <a class="moj-sub-navigation__link" aria-current="page" href="#1">Automatic Urban and Rural (170)</a>
+              </li>
+          
+              <li class="moj-sub-navigation__item" style="font-size: 16px;">
+                <a class="moj-sub-navigation__link" href="#2">Locally managed automatic (387)</a>
+              </li>
+            <!--   <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">UK Urban NO2 (298)</a>
+              </li> -->
+          
+            </ul>
+          </nav>
+          <table class="govuk-table">
+           
+            <thead class="govuk-table__head">
+            
+              <tr class="govuk-table__row" style="font-size: 16px;">
+    
+                <th scope="col" class="govuk-table__header" style="width: 39%;">Monitoring station</th>
+
+                <th scope="col" class="govuk-table__header" style="width: 21%;">Pollutants</th>
+    
+                <th scope="col" class="govuk-table__header" style="width: 24%;">Environment type</th>
+           
+
+                <th scope="col" class="govuk-table__header" style="width: 18%;">Years of data</th>
+    
+              </tr>
+            </thead>
+    
+            <tbody class="govuk-table__body" style="font-size: 16px;">
+    
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link .ms-table-sub-header">Southwark A2 Old Kent Road</a></strong>
+              <!--     <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 15:00 on 9 June</span>
+                </th>
+
+                <td class="govuk-table__cell">NO2, O3, PM10, PM2.5, SO2</td>
+
+                <td class="govuk-table__cell">
+                  Urban traffic
+                </td>
+
+                <td class="govuk-table__cell">2018 to 2022, 2024</td>
+  
+              
+              </tr>
+
+              <tbody class="govuk-table__body" style="font-size: 16px;">
+    
+                <tr class="govuk-table__row">
+      
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Southwark A2 Old Kent Road</a></strong>
+                <!--     <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 15:00 on 9 June</span>
+                  </th>
+  
+                  <td class="govuk-table__cell">NO2, O3, PM10, PM2.5, SO2</td>
+  
+                  <td class="govuk-table__cell">
+                    Urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell">2018 to 2022, 2024</td>
+    
+                
+                </tr>
+                <tbody class="govuk-table__body" style="font-size: 16px;">
+    
+                  <tr class="govuk-table__row">
+        
+                    <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Southwark A2 Old Kent Road</a></strong>
+                  <!--     <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                      <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 15:00 on 9 June</span>
+                    </th>
+    
+                    <td class="govuk-table__cell">NO2, O3, PM10, PM2.5, SO2</td>
+    
+                    <td class="govuk-table__cell">
+                      Urban traffic
+                    </td>
+    
+                    <td class="govuk-table__cell">2018 to 2022, 2024</td>
+      
+                  
+                  </tr>
+                  <tbody class="govuk-table__body" style="font-size: 16px;">
+    
+                    <tr class="govuk-table__row">
+          
+                      <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Southwark A2 Old Kent Road</a></strong>
+                    <!--     <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                        <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 15:00 on 9 June</span>
+                      </th>
+      
+                      <td class="govuk-table__cell">NO2, O3, PM10, PM2.5, SO2</td>
+      
+                      <td class="govuk-table__cell">
+                        Urban traffic
+                      </td>
+      
+                      <td class="govuk-table__cell">2018 to 2022, 2024</td>
+        
+                    
+                    </tr>
+                    <tbody class="govuk-table__body" style="font-size: 16px;">
+    
+                      <tr class="govuk-table__row">
+            
+                        <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Southwark A2 Old Kent Road</a></strong>
+                      <!--     <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                          <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 15:00 on 9 June</span>
+                        </th>
+        
+                        <td class="govuk-table__cell">NO2, O3, PM10, PM2.5, SO2</td>
+        
+                        <td class="govuk-table__cell">
+                          Suburban background
+                        </td>
+        
+                        <td class="govuk-table__cell">2018 to 2022, 2024</td>
+          
+                      
+                      </tr>
+
+           
+    
+            </tbody>
+          </table>
+    
+        </div>
+      </div>
+
+      
+      <nav class="govuk-pagination pagination-margin" aria-label="Pagination">
+     
+        <ul class="govuk-pagination__list">
+          
+          
+          <li class="govuk-pagination__item govuk-pagination__item--current">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">
+              1
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">
+              2
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">
+              3
+            </a>
+          </li>
+          <li class="govuk-pagination__item govuk-pagination__item--ellipses">
+            &ctdot;
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 42">
+              18
+            </a>
+          </li>
+        </ul>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+            <span class="govuk-pagination__link-title">
+              Next<span class="govuk-visually-hidden"> page</span>
+            </span>
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+          </a>
+        </div>
+      </nav>
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

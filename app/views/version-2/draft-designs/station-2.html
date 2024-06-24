@@ -1,0 +1,194 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Monitoring station" %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <div class="moj-page-header-actions">
+
+        <div class="moj-page-header-actions__title">
+            <p class="govuk-caption-l">Automatic Urban and Rural network</h1>
+          <h1 class="govuk-heading-xl">Birmingham Ladywood</h1>
+        </div>
+      
+        <div class="moj-page-header-actions__actions">
+      
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+              <button type="submit" class="govuk-button moj-button-menu__item govuk-button--primary moj-page-header-actions__action" style="top: 15px;" data-module="govuk-button">
+                Continue
+              </button>
+             <!--  <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary moj-page-header-actions__action" data-module="govuk-button">
+                Share collection
+              </button> -->
+      
+            </div>
+          </div>
+      
+        </div>
+      
+      </div>
+      
+   
+  </div>
+</div>
+
+<!-- end of header -->
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+        <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+            <ul class="moj-sub-navigation__list">
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" aria-current="page" href="#1">Overview</a>
+              </li>
+          
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="pollutants.html">Pollutants</a>
+              </li>
+
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="pollutants.html">Library</a>
+              </li>
+          
+          
+              
+            </ul>
+          
+          </nav>
+          <div class="defra-aq-description">
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Site description</h2>
+          <p class="govuk-body govuk-!-margin-bottom-3">Roadside monitoring station beside the A4540 (Watery Lane Middleway) which forms part of Birmingham's ring road. Located at the end of Keeley Street. The monitoring station is located approximately 6.5 metres from the kerb.
+
+          </p>
+        </div>
+
+          <h2 class="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-2">Features</h2>
+
+          <dl class="defra-aq-features__list">
+          <div class="defra-aq-features__item">
+            <dt class="defra-aq-features__key govuk-caption-m">Local authority</dt>
+            <dd class="defra-aq-features__value govuk-body">Birmingham City Council</dd>
+          </div>
+          <div class="defra-aq-features__item">
+            <dt class="defra-aq-features__key govuk-caption-m">Region</dt>
+            <dd class="defra-aq-features__value govuk-body">West Midlands</dd>
+          </div>
+          <div class="defra-aq-features__item">
+            <dt class="defra-aq-features__key govuk-caption-m">Easting/Northing</dt>
+            <dd class="defra-aq-features__value govuk-body"> 405650, 287050</dd>
+          </div>
+          </dl>
+         
+          <dl class="defra-aq-features__list">
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Altitude (metres)</dt>
+              <dd class="defra-aq-features__value govuk-body">134</dd>
+            </div>
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Last calibrated</dt>
+              <dd class="defra-aq-features__value govuk-body">December 2022</dd>
+            </div>
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Environment type</dt>
+              <dd class="defra-aq-features__value govuk-body">Urban background</dd>
+            </div>
+            </dl>
+
+          
+
+          <h2 class="govuk-heading-s govuk-!-margin-top-6">Latest hourly measurements</h2>
+          <table class="govuk-table govuk-!-margin-bottom-3">
+           
+            <thead class="govuk-table__head">
+            
+              <tr class="govuk-table__row" style="font-size: 16px;">
+    
+                <th scope="col" class="govuk-table__header" style="width: 25%;">Pollutant</th>
+
+                <th scope="col" class="govuk-table__header" style="width: 21%;">Years of data available</th>
+    
+                <th scope="col" class="govuk-table__header" style="width: 20%;">Latest</th>
+           
+
+                <th scope="col" class="govuk-table__header" style="width: 10%;">DAQI level</th>
+    
+              </tr>
+            </thead>
+    
+            <tbody class="govuk-table__body" style="font-size: 16px;">
+    
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header"><strong><a href="pollutants" class="govuk-link">Nitrogen dioxide (NO2)</a></strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell">2018 to 2024</td>
+
+                <td class="govuk-table__cell"><strong><div class="arrow-down"></div>8</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span> <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span></td>
+  
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--green">
+                    Low
+                  </strong>
+                </td>
+              </tr>
+
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header"><strong><a href="pollutants#pm2-5" class="govuk-link">PM2.5</a></strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell">2018 to 2024</td>
+
+                <td class="govuk-table__cell"><strong><div class="arrow-up"></div>8</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span> <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span></td>
+  
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--green">
+                    Low
+                  </strong>
+                </td>
+              </tr>
+
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header"><strong><a href="pollutants#pm10" class="govuk-link">PM10</a></strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell">2018 to 2024</td>
+
+                <td class="govuk-table__cell"><strong><div class="arrow-up"></div>54</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span> <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span></td>
+  
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--yellow">
+                    Moderate
+                  </strong>
+                </td>
+              </tr>
+
+
+
+              
+     
+           
+    
+            </tbody>
+          </table>
+    
+          <a class="govuk-body govuk-link" href="" style="display: block; margin-bottom: 10px;">View latest measurements in a graph</a>
+    </div>
+</div>
+
+{% endblock %}

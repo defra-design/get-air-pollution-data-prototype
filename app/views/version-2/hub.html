@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Get air pollution data - GOV.UK" %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Get air pollution data</h1>
+
+    <!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-6">
+      Find monitoring stations in the UK
+    </h2>
+ -->
+
+    <div class="moj-search govuk-!-margin-bottom-4">
+
+      <form action="#" method="post">
+    
+        <div class="govuk-form-group" style="display: inline-block;">
+
+          <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
+            Search for a station, place, local authority or postcode in the UK
+          </div>
+          
+    
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search"  aria-describedby="search-hint">
+    
+        </div>
+    
+        <button type="submit" class="govuk-button moj-search__button "  data-module="govuk-button">
+          Search
+        </button>
+    
+      </form>
+      
+    </div>
+    <a class="govuk-body govuk-link " href="find-a-location">Search by coordinates, easting and northing or grid reference</a>
+
+    <div class="govuk-divider"></div>
+  </div>
+    
+</div>
+
+    
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+   
+
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-6">
+      Search by pollutant
+    </h2>
+    <a href="" class="govuk-body govuk-link">Find air pollution data for specific pollutants</a>
+    <div class="govuk-divider"></div>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-6">
+      Check local air quality
+    </h2>
+    <p class="govuk-body"><a class="govuk-link" href="">Check local air quality</a> for information and guidance on air quality in your area.</p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+     <!--  <div class="x-govuk-related-navigation">
+        <nav class="x-govuk-related-navigation__nav-section" role="navigation" aria-labelledby="related-navigation-related-content">
+          <h2 class="x-govuk-related-navigation__main-heading" id="related-navigation-related-content">
+            Related content
+          </h2>
+          <ul class="x-govuk-related-navigation__link-list">
+            <li class="x-govuk-related-navigation__link">
+              <a class="govuk-link x-govuk-related-navigation__section-link x-govuk-related-navigation__section-link--other" href="/school-performance-tables">Find and compare schools in England</a>
+            </li>
+            <li class="x-govuk-related-navigation__link">
+              <a class="govuk-link x-govuk-related-navigation__section-link x-govuk-related-navigation__section-link--other" href="/types-of-school">Types of school</a>
+            </li>
+          </ul>
+          
+        </nav>
+      </div> -->
+      </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Monitoring station" %}
+
+{% block beforeContent %}
+<a href="station" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+
+
+          <h1 class="govuk-heading-xl">Latest pollutant levels: past 24 hours</h1>
+       
+          <a class="govuk-body govuk-link" href="" style="display: block; margin-bottom: 10px;">View daily mean over past week</a>
+          <a class="govuk-body govuk-link" href="" style="display: block; margin-bottom: 10px; ">View daily mean over past month</a>
+          <a class="govuk-body govuk-link" href="" style="display: block;">View daily mean over past year</a>
+   
+  </div>
+</div>
+
+<!-- end of header -->
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      
+        </div>
+      </div>
+          <div class="govuk-grid-row">
+          <div class="govuk-grid-column-three-quarters">
+            <h2 class="govuk-heading-m govuk-!-margin-top-6">Latest measurements</h2>
+         <p class="govuk-body">The data for Birmingham A4540 Roadside displayed in the graph is provisional hourly data.</p>
+              <div class="govuk-tabs govuk-!-margin-bottom-0 govuk-!-margin-top-3" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                  Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    <a class="govuk-tabs__tab" href="#nitrogen">
+                      Nitrogen dioxide
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#ozone">
+                      Ozone
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#pm2-5">
+                      PM2.5
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#pm10">
+                      PM10
+                    </a>
+                  </li>
+                  <!-- li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#sulphur">
+                      Sulphur dioxide
+                    </a>
+                  </li> -->
+                 
+                </ul>
+                <div class="govuk-tabs__panel" id="nitrogen">
+            
+                  {% include "/" + "version-2/includes/charts/nitrogen.html" %}
+                 
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="ozone">
+    
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm2-5">
+                  
+                  {% include "/" + "version-2/includes/charts/pm2-5.html" %}
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm10">
+                  
+                  {% include "/" + "version-2/includes/charts/pm10.html" %}
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="sulphur">
+                  
+ 
+
+                </div>
+                
+              </div>
+
+              <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-2">Download CSV (12KB)</button>
+
+  
+
+
+              <div class="govuk-divider"></div>
+
+              <h2 class="govuk-heading-m govuk-!-margin-top-6">Data capture and exceedences</h2>
+          
+          <table class="govuk-table govuk-!-margin-bottom-2">
+           
+            <thead class="govuk-table__head">
+            
+              <tr class="govuk-table__row">
+    
+                <th scope="col" class="govuk-table__header" style="width: 30%;">Pollutant</th>
+
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 20%; padding-right:0;">Data capture</th>
+    
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 25%; padding-right:0;">Latest</th>
+
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 25%;">Exceedences</th>
+    
+              </tr>
+            </thead>
+    
+            <tbody class="govuk-table__body" style="font-size: 19px;">
+    
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header pollutant-table-row"><strong>Nitrogen dioxide (NO2)</strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">100%</td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><strong><div class="arrow-down"></div>8</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span> <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span> --></td>
+  
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">0</td>
+               
+              </tr>
+
+
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header pollutant-table-row"><strong>Ozone (O3)</strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">100%</td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><strong><div class="arrow-up"></div>92</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span><!--  <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span> --></td>
+                
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">0</td>
+           
+              </tr>
+
+              <tr class="govuk-table__row">
+    
+                <th scope="row" class="govuk-table__header pollutant-table-row"><strong>PM2.5</strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">100%</td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><strong><div class="arrow-up"></div>8</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span><!--  <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span> --></td>
+  
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">0</td>
+              </tr>
+            
+              <tr class="govuk-table__row">
+            
+                <th scope="row" class="govuk-table__header pollutant-table-row"><strong>PM10</strong>
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">0.2 miles away</span> -->
+                  <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Last calibrated 9 June</span> -->
+                </th>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">100%</td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><strong><div class="arrow-up"></div>54</strong><span style="margin-left: 5px; display: inline-block;">µg/m3</span> <!-- <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 14px; color:#505a5f">Latest at 12:00 on 20 June</span> --></td>
+  
+                <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="arrow-up"></div><strong>1</strong></td>
+             
+              </tr>
+
+
+              
+     
+           
+    
+            </tbody>
+          </table>
+          <p style=" display: block; font-size: 16px; color:#505a5f">Latest measurement today at 12:00 on 26 June 2024
+
+          </p>
+
+          <div class="govuk-divider"></div>
+
+              <button class="govuk-button govuk-button--primary govuk-!-margin-bottom-6">Customise data download</button>
+
+            </div>
+    <!-- 
+              <div class="govuk-grid-column-one-quarter">
+                <h2 class="govuk-heading-m">Nearby stations</h2>
+                </div> -->
+          
+          </div>
+
+          <!-- end of side nav -->
+          
+          
+    </div>
+</div>
+
+{% endblock %}
