@@ -52,7 +52,7 @@
               Annual period
             </label>
             <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-              January to December
+             1 January to 31 December
             </div>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-6">
@@ -190,10 +190,10 @@
       
     </div>
 
-
-   <button type="submit" class="govuk-button" data-module="govuk-button">
-  Continue
-</button>
+    {{ govukButton({
+      text: "Continue",
+      href: "select-a-pollutant.html"
+    }) }}
       </div>
     </div>
 <!-- end of second row-->

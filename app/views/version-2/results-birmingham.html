@@ -28,7 +28,7 @@
           </div>
           
     
-          <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search" value="Birmingham" aria-describedby="search-hint">
     
         </div>
     
@@ -244,6 +244,85 @@
     
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" style="font-size: 19px;">
     
+                    Available from
+    
+                  </legend>
+    
+                  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status">
+                        2018
+               <!--          <span style="font-weight: normal; display: block; font-size: 16px;">6 results</span> -->
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-2">
+                       2019
+                       <!--  <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
+                      </label>
+    
+                    </div>
+    
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-3">
+                        2020
+                        <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
+                      </label>
+    
+                    </div>
+
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-4">
+                        2021
+                        <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
+                      </label>
+    
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="5" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-5">
+                       2022
+                        <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
+                      </label>
+    
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="6" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-6">
+                        2023
+                       <!--  <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
+                      </label>
+    
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="7" checked>
+                      <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-7">
+                        2024
+                        <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
+                      </label>
+    
+                    </div>
+                    
+    
+                  </div>
+    
+                </fieldset>
+    
+              </div>
+
+              <div class="govuk-form-group">
+    
+                <fieldset class="govuk-fieldset">
+    
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" style="font-size: 19px;">
+    
                     Country
     
                   </legend>
@@ -350,14 +429,14 @@
             
               <tr class="govuk-table__row" style="font-size: 16px;">
     
-                <th scope="col" class="govuk-table__header" style="width: 39%;">Monitoring station</th>
+                <th scope="col" class="govuk-table__header" style="width: 40%;">Monitoring station</th>
 
-                <th scope="col" class="govuk-table__header" style="width: 21%;">Pollutants</th>
+              
     
-                <th scope="col" class="govuk-table__header" style="width: 24%;">Environment type</th>
+                <th scope="col" class="govuk-table__header" style="width: 25%;">Environment type</th>
            
 
-                <th scope="col" class="govuk-table__header" style="width: 18%;">Years of data</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 35%;">Pollutants available from</th>
     
               </tr>
             </thead>
@@ -371,13 +450,13 @@
                   <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
                 </th>
 
-                <td class="govuk-table__cell">NO2, O3, PM10, PM2.5</td>
+               
 
                 <td class="govuk-table__cell">
                   Urban traffic
                 </td>
 
-                <td class="govuk-table__cell">2018 to 2024</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">(NO2, O3, PM10, PM2.5)<br>2018</td>
   
               
               </tr>
@@ -391,13 +470,15 @@
                     <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
                   </th>
   
-                  <td class="govuk-table__cell">NO2, O3, PM10, PM2.5, SO2</td>
+                 
   
                   <td class="govuk-table__cell">
                     Urban background
                   </td>
   
-                  <td class="govuk-table__cell">2018 to 2024</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">(PM10, PM2.5) 2018<br>(O3) 2019 <br>(NO2, S02) 2020
+                    
+                  </td>
     
                 
                 </tr>
@@ -410,13 +491,13 @@
                       <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
                     </th>
     
-                    <td class="govuk-table__cell">NO2, O3</td>
+                 
     
                     <td class="govuk-table__cell">
                       Urban background
                     </td>
     
-                    <td class="govuk-table__cell">2019 to 2024</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">(NO2) 2019<br> (O3) 2023</td>
       
                   
                   </tr>
@@ -429,13 +510,13 @@
                         <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
                       </th>
       
-                      <td class="govuk-table__cell">NO2</td>
+                  
       
                       <td class="govuk-table__cell">
                         Urban traffic
                       </td>
       
-                      <td class="govuk-table__cell">2018 to 2024</td>
+                      <td class="govuk-table__cell govuk-table__cell--numeric">(NO2) 2018</td>
         
                     
                     </tr>
