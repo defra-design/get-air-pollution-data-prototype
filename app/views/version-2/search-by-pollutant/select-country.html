@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="select-years.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Select countries
+          </h1>
+        </legend>
+        <div id="waste-hint" class="govuk-hint">
+    
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
+              England
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+              Scotland
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              Wales
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="farm" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="waste-4">
+             Northern Ireland
+            </label>
+          </div>
+         
+        </div>
+      </fieldset>
+    </div>
+
+    
+
+
+    {{ govukButton({
+      text: "Continue",
+      href: "results.html",
+      classes: "govuk-!-margin-top-3"
+    }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="select-a-data-format.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Check your answers before continuing</h1>
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Automatic Urban and Rural network
+            </h2>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Monitoring stations
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  24
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> age (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Pollutants
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  PM2.5
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Time period
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <p class="govuk-body">1 January 2022 to 31 December 2022</p>
+                  <p class="govuk-body">1 January 2023 to 31 December 2023</p>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Data format
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 Daily mean
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Average data capture
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  97.3%
+                </dd>
+              
+              </div>
+            </dl>
+          </div>
+        </div>
+
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Locally managed automatic network
+            </h2>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Monitoring stations
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  54
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> age (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Pollutants
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  PM2.5
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Time period
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <p class="govuk-body">1 January 2022 to 31 December 2022</p>
+                  <p class="govuk-body">1 January 2023 to 31 December 2023</p>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Data format
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 Daily mean
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Average data capture
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  93.7%
+                </dd>
+              
+              </div>
+            </dl>
+          </div>
+        </div>
+<!--        
+        <h2 class="govuk-heading-m">Download file</h2>
+        <p class="govuk-body">1 CSV file containing 126kb</p> -->
+        {{ govukButton({
+          text: "Download CSV (126kb)",
+          href: ""
+        }) }}
+      </div>
+    </div>
+  </main>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}

@@ -3,7 +3,7 @@
 {% set pageName="Get air pollution data - GOV.UK" %}
 
 {% block beforeContent %}
-<a href="hub.html" class="govuk-back-link">Back</a>
+<a href="select-country.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 
@@ -14,8 +14,10 @@
 
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-      Results for 'Birmingham'
+      Results
     </h1>
+
+    <p class="govuk-body">You can refine your search by location.</p>
 
     <div class="moj-search govuk-!-margin-bottom-4">
 
@@ -24,11 +26,11 @@
         <div class="govuk-form-group" style="display: inline-block;">
 
           <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
-            Search for a station, place, local authority or postcode in the UK
+            Search for a place, local authority or postcode in the UK
           </div>
           
     
-          <input class="govuk-input moj-search__input " id="search" name="search" type="search" value="Birmingham" aria-describedby="search-hint">
+          <input class="govuk-input moj-search__input " id="" name="search" type="search" aria-describedby="search-hint">
     
         </div>
     
@@ -45,7 +47,7 @@
 <!-- 
     <a class="govuk-link govuk-!-margin-bottom-3" style="display: block;" href="">Clear search</a> -->
     
-    <a class="govuk-body govuk-link " href="">Search by coordinates, easting and northing or grid references</a>
+    <!-- <a class="govuk-body govuk-link " href="">Search by coordinates, easting and northing or grid references</a> -->
 
     </div>
     
@@ -70,7 +72,7 @@
                   <h2 class="govuk-heading-m" style="margin-bottom: 2px; font-size: 21px;">Selected filters
             
                   </h2>
-                  <span style="font-weight: normal;"> 22 filters selected</span>
+                  <span style="font-weight: normal;"> 9 filters selected</span>
                 </div>
     <!-- 
                 <div class="moj-filter__heading-action">
@@ -120,27 +122,27 @@
                   <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
     
                     <div class="govuk-checkboxes__item"  >
-                      <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1" checked>
+                      <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type">
-                        Nitrogen dioxide (NO2) <span style="font-weight: normal; display: block;">4 results</span>
+                        Nitrogen dioxide (NO2) <span style="font-weight: normal; display: block;">0 results</span>
                       </label>
     
                     </div>
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="type-2" name="type" type="checkbox" value="2" checked>
+                      <input class="govuk-checkboxes__input" id="type-2" name="type" type="checkbox" value="2">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-2">
                         Ozone (O3)
-                        <span style="font-weight: normal; display: block;">3 results</span>
+                        <span style="font-weight: normal; display: block;">0 results</span>
                       </label>
     
                     </div>
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="type-3" name="type" type="checkbox" value="3" checked>
+                      <input class="govuk-checkboxes__input" id="type-3" name="type" type="checkbox" value="3">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-3">
                         PM10 
-                        <span style="font-weight: normal; display: block; font-size: 16px;">2 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
                       </label>
     
                     </div>
@@ -149,16 +151,16 @@
                       <input class="govuk-checkboxes__input" id="type-4" name="type" type="checkbox" value="3" checked>
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-4">
                         PM2.5
-                        <span style="font-weight: normal; display: block; font-size: 16px;">2 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">24 results</span>
                       </label>
     
                     </div>
 
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="type-5" name="type" type="checkbox" value="3" checked>
+                      <input class="govuk-checkboxes__input" id="type-5" name="type" type="checkbox" value="3">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="type-5">
                         Sulphur dioxide (SO2)
-                        <span style="font-weight: normal; display: block; font-size: 16px;">1 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
                       </label>
     
                     </div>
@@ -182,7 +184,7 @@
                   <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1" checked>
+                      <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status">
                         Rural background
                         <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
@@ -191,7 +193,7 @@
                     </div>
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
+                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-2">
                         Suburban background
                         <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
@@ -200,7 +202,7 @@
                     </div>
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
+                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-3">
                         Suburban industrial
                         <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
@@ -209,15 +211,15 @@
                     </div>
 
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" checked>
+                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-4">
                         Urban background
-                        <span style="font-weight: normal; display: block; font-size: 16px;">2 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
                       </label>
     
                     </div>
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="5" checked>
+                      <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="5">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-5">
                         Urban industrial
                         <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
@@ -228,7 +230,7 @@
                       <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="6" checked>
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-6">
                         Urban traffic
-                        <span style="font-weight: normal; display: block; font-size: 16px;">2 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">24 results</span>
                       </label>
     
                     </div>
@@ -254,7 +256,7 @@
                   <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1" checked>
+                      <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status">
                         2018
                <!--          <span style="font-weight: normal; display: block; font-size: 16px;">6 results</span> -->
@@ -263,7 +265,7 @@
                     </div>
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
+                      <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-2">
                        2019
                        <!--  <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
@@ -272,7 +274,7 @@
                     </div>
     
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
+                      <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-3">
                         2020
                         <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
@@ -281,7 +283,7 @@
                     </div>
 
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" checked>
+                      <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" >
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-4">
                         2021
                         <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
@@ -305,7 +307,7 @@
     
                     </div>
                     <div class="govuk-checkboxes__item">
-                      <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="7" checked>
+                      <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="7">
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-7">
                         2024
                         <!-- <span style="font-weight: normal; display: block; font-size: 16px;">7 results</span> -->
@@ -338,7 +340,7 @@
                       <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-2">
                         England
-                        <span style="font-weight: normal; display: block; font-size: 16px;">4 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">19 results</span>
                       </label>
     
                     </div>
@@ -346,7 +348,7 @@
                       <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4" checked>
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;" for="status-4">
                         Scotland
-                        <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">2 results</span>
                       </label>
     
                     </div>
@@ -355,7 +357,7 @@
                       <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
                       <label class="govuk-label govuk-checkboxes__label" style="font-size: 16px;"  for="status-3">
                         Wales
-                        <span style="font-weight: normal; display: block; font-size: 16px;">0 results</span>
+                        <span style="font-weight: normal; display: block; font-size: 16px;">3 results</span>
                       </label>
     
                     </div>
@@ -396,9 +398,17 @@
           <div class="moj-button-menu">
             <div class="moj-button-menu__wrapper">
     
-              <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+             <!--  <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
                 Customise data download
               </button>
+ -->
+     
+
+              {{ govukButton({
+              text: "Customise data download",
+              classes: "moj-button-menu__item govuk-button--secondary",
+              href: "check-answers-results.html"
+               }) }}
     
              <!--  <button type="submit" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
                 Download all networks
@@ -414,11 +424,11 @@
           <nav class="moj-sub-navigation govuk-!-margin-bottom-0"  aria-label="Sub navigation" >
             <ul class="moj-sub-navigation__list">
               <li class="moj-sub-navigation__item" style="font-size: 16px;" >
-                <a class="moj-sub-navigation__link" aria-current="page" href="#1">Automatic Urban and Rural (4)</a>
+                <a class="moj-sub-navigation__link" aria-current="page" href="#1">Automatic Urban and Rural (24)</a>
               </li>
           
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
-                <a class="moj-sub-navigation__link" href="#2">Locally managed automatic (1)</a>
+                <a class="moj-sub-navigation__link" href="#2">Locally managed automatic (54)</a>
               </li>
             <!--   <li class="moj-sub-navigation__item">
                 <a class="moj-sub-navigation__link" href="#3">UK Urban NO2 (298)</a>
@@ -449,7 +459,7 @@
               <tr class="govuk-table__row">
     
                 <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link .ms-table-sub-header">Birmingham A4540 Roadside</a></strong>
-                  <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.1 miles away east</span>
+       <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.1 miles away east</span> -->
                   <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
                 </th>
 
@@ -464,66 +474,133 @@
               
               </tr>
 
-              <tbody class="govuk-table__body" style="font-size: 16px;">
+              <tr class="govuk-table__row">
+        
+                <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Carlisle Morton A595</a></strong>
+       <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.3 miles away northwest</span> -->
+                  <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
+                </th>
+
+             
+
+                <td class="govuk-table__cell">
+                  Urban traffic
+                </td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM10, PM2.5<br>2021 to 2024</td>
+  
+              
+              </tr>
+
+              <tr class="govuk-table__row">
+        
+                <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Chatham Roadside</a></strong>
+       <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.3 miles away northwest</span> -->
+                  <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
+                </th>
+
+             
+
+                <td class="govuk-table__cell">
+                  Urban traffic
+                </td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM10, PM2.5<br>2018 to 2024</td>
+  
+              
+              </tr>
+
+              <tr class="govuk-table__row">
+        
+                <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Chesterfield Roadside</a></strong>
+       <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.3 miles away northwest</span> -->
+                  <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
+                </th>
+
+             
+
+                <td class="govuk-table__cell">
+                  Urban traffic
+                </td>
+
+                <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM10, PM2.5<br>2018 to 2024</td>
+  
+              
+              </tr>
+                <tr class="govuk-table__row">
+        
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Chepstow A48</a></strong>
+         <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.3 miles away northwest</span> -->
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
+                  </th>
+  
+               
+  
+                  <td class="govuk-table__cell">
+                    Urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM10, PM2.5<br>2018 to 2024</td>
     
+                
+                </tr>
                 <tr class="govuk-table__row">
       
-                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
-                    <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.2 miles away west</span>
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Christchurch Barrack Road</a></strong>
+         <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.2 miles away west</span> -->
                     <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
                   </th>
   
                  
   
                   <td class="govuk-table__cell">
-                    Urban background
+                    Urban traffic
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10, PM2.5 - 2018 to 2024<br>O3 - 2019 to 2024<br>NO2, S02 - 2020 to 2024
+                  <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM2.5<br>2018 to 2024
                     
                   </td>
     
                 
                 </tr>
-                <tbody class="govuk-table__body" style="font-size: 16px;">
+              
     
-                  <tr class="govuk-table__row">
-        
-                    <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
-                      <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.3 miles away northwest</span>
-                      <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
-                    </th>
+                <tr class="govuk-table__row">
     
+                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link .ms-table-sub-header">Glasgow High Street</a></strong>
+         <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.1 miles away east</span> -->
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
+                  </th>
+  
                  
+  
+                  <td class="govuk-table__cell">
+                    Urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM10, PM2.5<br>2018 to 2024</td>
     
-                    <td class="govuk-table__cell">
-                      Urban background
-                    </td>
+                
+                </tr>
+
+                <tr class="govuk-table__row">
     
-                    <td class="govuk-table__cell govuk-table__cell--numeric">NO2 - 2019 to 2024<br>O3 - 2023 to 2024</td>
-      
-                  
-                  </tr>
-                  <tbody class="govuk-table__body" style="font-size: 16px;">
+                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link .ms-table-sub-header">Greenock A8 Roadside</a></strong>
+         <!--            <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.1 miles away east</span> -->
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
+                  </th>
+  
+                 
+  
+                  <td class="govuk-table__cell">
+                    Urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">NO2, PM10, PM2.5<br>2018 to 2024</td>
     
-                    <tr class="govuk-table__row">
-          
-                      <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
-                        <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.5 miles away northwest</span>
-                        <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Latest at 12:00 on 26 June</span>
-                      </th>
-      
-                  
-      
-                      <td class="govuk-table__cell">
-                        Urban traffic
-                      </td>
-      
-                      <td class="govuk-table__cell govuk-table__cell--numeric">NO2 - 2018 to 2024</td>
-        
-                    
-                    </tr>
-                    <tbody class="govuk-table__body" style="font-size: 16px;">
+                
+                </tr>
+             
     
                    
            
@@ -533,7 +610,7 @@
     
         </div>
       </div>
-<!-- 
+
       
       <nav class="govuk-pagination pagination-margin" aria-label="Pagination">
      
@@ -555,14 +632,6 @@
               3
             </a>
           </li>
-          <li class="govuk-pagination__item govuk-pagination__item--ellipses">
-            &ctdot;
-          </li>
-          <li class="govuk-pagination__item">
-            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 42">
-              18
-            </a>
-          </li>
         </ul>
         <div class="govuk-pagination__next">
           <a class="govuk-link govuk-pagination__link" href="#" rel="next">
@@ -574,7 +643,7 @@
             </svg>
           </a>
         </div>
-      </nav> -->
+      </nav>
       </div>
     </div>
 <!-- end of second row-->
