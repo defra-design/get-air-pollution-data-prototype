@@ -1,0 +1,152 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="/version-3/results-b2-4qa.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+   
+    
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+               Select the stations you want to download
+              </h1>
+            </legend>
+      <!--       <div id="contact-hint" class="govuk-hint">
+              Select stations within a network if you don't want to download all stations.
+            </div> -->
+            <div class="govuk-checkboxes govuk-!-margin-top-3" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact">
+                <label class="govuk-label govuk-checkboxes__label" for="contact">
+                  Automatic Urban and Rural Network (AURN)
+                </label>
+                <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+                  The AURN is the UK's largest automatic monitoring network. It is the main network used for compliance reporting against the Ambient Air Quality Directive.
+                </div>
+              </div>
+              <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+                <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset">
+                
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                          Birmingham A4540 Roadside
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                          Birmingham Ladywood
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                          West Bromwich Kenrick Park
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                          Oldbury Birmingham Road
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                          Walsall Woodlands
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                          Coventry Allesley
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                          Coventry Binley Road
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2">
+                <label class="govuk-label govuk-checkboxes__label" for="contact-2">
+                  Locally-managed automatic monitoring network
+                </label>
+                <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+                  This network provides automatic monitoring data from across the UK. It is not part of the Department 
+                for Environment, Food and Rural Affairs' national monitoring strategy.<br><br> Most of the sites are operated by local authorities. The sites may also include monitoring data from other programmes, industry and airports. 
+                </div>
+              </div>
+              <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+                <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset">
+                
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                          HM Revenue and Customs (HMRC)
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                          Employment Tribunal
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                          Ministry of Defence
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT" checked>
+                        <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                          Department for Transport
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+             
+            </div>
+          </fieldset>
+        </div>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "select-a-time-period.html",
+        classes: "govuk-!-margin-top-3"
+      }) }}
+    </div>
+
+    
+
+
+
+    </div>
+     
+<!-- end of second row-->
+  
+
+{% endblock %}
