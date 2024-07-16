@@ -1,29 +1,33 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName="Home" %}
+{% set pageName="Check your answers" %}
 
 {% block beforeContent %}
-<a href="select-a-data-format.html" class="govuk-back-link">Back</a>
+<a href="select-file-structure.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds-from-desktop">
-        <h1 class="govuk-heading-l">Check your answers before downloading</h1>
-<!--         <h2 class="govuk-heading-m">Personal details</h2> -->
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Monitoring station
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Birmingham A4540 Roadside
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
-            </dd>
+
+        <div class="govuk-notification-banner" style="background-color: #D4351C; border-color: #D4351C" role="region" aria-labelledby="govuk-notification-banner-title"  data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header" style="background-color: #D4351C;">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title" >
+              Important
+            </h2>
           </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              10% of this file is missing data.
+              <a class="govuk-notification-banner__link" href="#">View missing data</a>.
+            </p>
+          </div>
+        </div>
+
+
+        <h1 class="govuk-heading-l">Check your answers before downloading</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Monitoring network
@@ -31,8 +35,23 @@
             <dd class="govuk-summary-list__value">
               Automatic Urban and Rural
             </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
+            </dd>
           
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Monitoring stations
+            </dt>
+            <dd class="govuk-summary-list__value">
+              25
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
+            </dd>
+          </div>
+         
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Pollutants
@@ -51,7 +70,7 @@
               Time period
             </dt>
             <dd class="govuk-summary-list__value">
-              1 January 2022 to 31 December 2022
+              1 January to 31 December 2023
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
@@ -71,22 +90,29 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-             Average data capture
+              File structure
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-body">94.5%</p>
-
+              <p class="govuk-body">Separate files for each pollutant</p>
             </dd>
-            
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+            </dd>
           </div>
+        
         </dl>
-<!--        
-        <h2 class="govuk-heading-m">Download file</h2>
-        <p class="govuk-body">1 CSV file containing 126kb</p> -->
+       
+        <h2 class="govuk-heading-m">Download description</h2>
+        <p class="govuk-body">The download will contain 3 separate sheets for each pollutant:</p>
+        <ul class="govuk-list--bullet govuk-body govuk-!-margin-bottom-6">
+          <li>nitrogen dioxide CSV (211kb)</li>
+          <li>PM10 CSV (532kb)</li>
+          <li>PM2.5 CSV (566kb)</li>
+        </ul>
         <form action="/form-handler" method="post" novalidate>
           <input type="hidden" name="answers-checked" value="true">
           <button type="submit" class="govuk-button" data-module="govuk-button">
-            Download CSV (56kb)
+            Download 3 CSVs
           </button>
         </form>
       </div>
