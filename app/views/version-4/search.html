@@ -1,0 +1,55 @@
+{% extends "layouts/v4.html" %}
+
+{% set pageName="Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="hub.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Find monitoring stations</h1>
+
+    <!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-6">
+      Find monitoring stations in the UK
+    </h2>
+ -->
+
+    <div class="moj-search govuk-!-margin-bottom-4">
+
+      <form action="#" method="post">
+    
+        <div class="govuk-form-group" style="display: inline-block;">
+
+          <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
+            Search for a place, local authority or postcode in the UK
+          </div>
+          
+    
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search"  aria-describedby="search-hint">
+    
+        </div>
+      <div class="defra-search__submit-container">
+        <button type="submit" class="defra-search__button"  data-module="govuk-button">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><rect x="0" y="0" width="50" height="50" style="fill:none;"></rect><path d="M12.316,14.791c-1.242,0.79 -2.716,1.248 -4.296,1.248c-4.426,0 -8.02,-3.593 -8.02,-8.019c0,-4.426 3.594,-8.02 8.02,-8.02c4.426,0 8.019,3.594 8.019,8.02c0,1.58 -0.458,3.054 -1.248,4.296l5.209,5.209l-2.475,2.475l-5.209,-5.209Zm-4.296,-12.771c3.311,0 6,2.688 6,6c0,3.311 -2.689,6 -6,6c-3.312,0 -6,-2.689 -6,-6c0,-3.312 2.688,-6 6,-6Z" style="fill:white;"></path></svg>
+          <span class="govuk-visually-hidden">Search</span>
+        </button>
+        </div>
+      </form>
+      
+    </div>
+  
+  </div>
+    
+</div>
+
+    
+
+      </div>
+</div>
+
+{% endblock %}

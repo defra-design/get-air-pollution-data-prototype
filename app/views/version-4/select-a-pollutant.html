@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="select-a-time-period.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Select pollutants
+          </h1>
+        </legend>
+        <div id="waste-hint" class="govuk-hint">
+          Select pollutants to download in the period 1 January 2023 to 31 December 2023.
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
+              Nitrogen dioxide (NO2)
+              <span style="display: block; margin-top: 5px;">Data capture: 95%</span>
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+              Ozone (O3)
+              <span style="display: block; margin-top: 5px;">Data capture: 97%</span>
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              PM10
+              <span style="display: block; margin-top: 5px;">Data capture: 92%</span>
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="farm">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-4">
+              PM2.5
+              <span style="display: block; margin-top: 5px;">Data capture: 93%</span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    
+
+
+    {{ govukButton({
+      text: "Continue",
+      href: "select-a-data-format.html",
+      classes: "govuk-!-margin-top-3"
+    }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

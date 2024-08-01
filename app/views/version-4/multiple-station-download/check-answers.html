@@ -1,0 +1,132 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Check your answers" %}
+
+{% block beforeContent %}
+<a href="select-file-structure.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <!--   <div class="govuk-notification-banner" style="background-color: #D4351C; border-color: #D4351C" role="region" aria-labelledby="govuk-notification-banner-title"  data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header" style="background-color: #D4351C;">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title" >
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              10% of this file is missing data.
+              <a class="govuk-notification-banner__link" href="#">View file</a>.
+            </p>
+          </div>
+        </div> -->
+
+
+        <h1 class="govuk-heading-l">Check your answers before downloading</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Monitoring network
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Automatic Urban and Rural
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
+            </dd>
+          
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Monitoring stations
+            </dt>
+            <dd class="govuk-summary-list__value">
+              25
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
+            </dd>
+          </div>
+         
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Pollutants
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Nitrogen dioxide</p>
+              <p class="govuk-body">PM10</p>
+              <p class="govuk-body">PM2.5</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Time period
+            </dt>
+            <dd class="govuk-summary-list__value">
+              1 January to 31 December 2023
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+            </dd>
+          </div>
+         
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Data format
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Daily mean</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              File structure
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Separate CSV files for each pollutant</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+            </dd>
+          </div>
+        
+        </dl>
+       
+        <h2 class="govuk-heading-m">Download description</h2>
+        <p class="govuk-body">Your download will contain a separate CSV file for each pollutant you selected:</p>
+        <ul class="govuk-list--bullet govuk-body govuk-!-margin-bottom-6">
+          <li>nitrogen dioxide (211kb)</li>
+          <li>PM10 (532kb)</li>
+          <li>PM2.5 (566kb)</li>
+        </ul>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            14% of the data is missing
+          </strong>
+        </div>
+        <form action="/form-handler" method="post" novalidate>
+          <input type="hidden" name="answers-checked" value="true">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Download CSV files
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}
