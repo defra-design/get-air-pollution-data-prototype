@@ -39,7 +39,7 @@
             </label>
           </div>
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="radius-4" name="radius" type="radio" value="northern-ireland">
+            <input class="govuk-radios__input" id="radius-4" name="radius" type="radio" value="northern-ireland" checked>
             <label class="govuk-label govuk-radios__label" for="radius-4">
               20 miles
             </label>
@@ -68,6 +68,12 @@
           </h1>
         </legend>
         <div class="govuk-checkboxes govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="pollutants-6" name="pollutants" type="checkbox" value="hmrc">
+            <label class="govuk-label govuk-checkboxes__label" for="pollutants-6">
+              Select all
+            </label>
+          </div>
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="pollutants" name="pollutants" type="checkbox" value="hmrc">
             <label class="govuk-label govuk-checkboxes__label" for="pollutants">
@@ -98,6 +104,7 @@
               Sulphur dioxide (SO2)
             </label>
           </div>
+          
         </div>
       </fieldset>
     </div>
@@ -110,6 +117,12 @@
           </h1>
         </legend>
         <div class="govuk-checkboxes govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="site-7" name="site" type="checkbox" value="hmrc">
+            <label class="govuk-label govuk-checkboxes__label" for="site-7">
+              Select all
+            </label>
+          </div>
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="site" name="site" type="checkbox" value="hmrc">
             <label class="govuk-label govuk-checkboxes__label" for="site">
@@ -158,6 +171,12 @@
           </h1>
         </legend>
         <div class="govuk-checkboxes govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="years-8" name="years" type="checkbox" value="hmrc">
+            <label class="govuk-label govuk-checkboxes__label" for="years-8">
+              Select all
+            </label>
+          </div>
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="years" name="years" type="checkbox" value="hmrc">
             <label class="govuk-label govuk-checkboxes__label" for="years">
@@ -208,7 +227,7 @@
     {{ govukButton({
       text: "Apply filters",
       classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3",
-      href: "results-b2-4qa.html"
+      href: "results-b2-4qa-filtered.html"
       }) }}
       </div>
     </div>

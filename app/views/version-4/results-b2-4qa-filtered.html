@@ -14,7 +14,7 @@
 
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-      Monitoring stations within 20 miles of 'B2 4QA'
+      Monitoring stations within 5 miles of 'B2 4QA'
     </h1>
     <div class="moj-search govuk-!-margin-bottom-4">
 
@@ -89,19 +89,7 @@
   </div>
 </details>
 
-    <div class="govuk-button-group">
-    {{ govukButton({
-  text: "Continue with selected monitoring stations",
-  classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-0",
-  href: "multiple-station-download/select-a-time-period.html"
-  }) }}
-
-  {{ govukButton({
-    text: "Filter monitoring stations",
-    classes: "govuk-button--secondary",
-    href: "filter.html"
-  }) }}
-</div>
+    
 
 
 </div>
@@ -109,15 +97,116 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+
+    <div class="moj-filter">
+
+      <div class="moj-filter__header" style="padding: 0;">
+    
+    
+        <div class="moj-filter__header-action">
+    
+        </div>
+    
+      </div>
+    
+      <div class="moj-filter__content">
+    
+        <div class="moj-filter__selected">
+    
+          <div class="moj-filter__selected-heading">
+    
+            <div class="moj-filter__heading-title">
+              <h2 class="govuk-heading-m">Selected filters</h2>
+            </div>
+    
+            <div class="moj-filter__heading-action">
+              <p><a class="govuk-link govuk-link--no-visited-state" href="results-b2-4qa.html">Clear filters</a></p>
+            </div>
+    
+          </div>
+
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Distance radius</h3>
+    
+          <ul class="moj-filter-tags">
+    
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 5 miles</a></li>
+    
+
+    
+          </ul>
+    
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Pollutants</h3>
+    
+          <ul class="moj-filter-tags">
+    
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Nitrogen dioxide</a></li>
+    
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> PM10</a></li>
+
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> PM2.5</a></li>
+    
+          </ul>
+    
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Site type</h3>
+    
+          <ul class="moj-filter-tags">
+    
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Rural background</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Suburban background</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Suburban industrial</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Urban background</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Urban industrial</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> Urban traffic</a></li>
+    
+          </ul>
+
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Years available</h3>
+    
+          <ul class="moj-filter-tags">
+    
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2018</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2019</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2020</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2021</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2022</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2023</a></li>
+            <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 2024</a></li>
+    
+          </ul>
+    
+        </div>
+    
+      </div>
+    
+        </div>
+    
+      </div>
+    
+    </div>
+    
+    
+    <div class="govuk-button-group">
+      {{ govukButton({
+    text: "Continue with selected monitoring stations",
+    classes: "govuk-!-margin-top-6 govuk-!-margin-bottom-0",
+    href: "filtered-download/select-a-time-period.html"
+    }) }}
+  
+    {{ govukButton({
+      text: "Filter monitoring stations",
+      classes: "govuk-button--secondary",
+      href: "filter.html"
+    }) }}
+  </div>
             <ul class="moj-sub-navigation__list">
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
-                <a class="moj-sub-navigation__link" aria-current="page" href="#1">All (13)</a>
+                <a class="moj-sub-navigation__link" aria-current="page" href="#1">All (5)</a>
               </li>
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
-                <a class="moj-sub-navigation__link" href="">Automatic Urban and Rural (10)</a>
+                <a class="moj-sub-navigation__link" href="">Automatic Urban and Rural (4)</a>
               </li>
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
-                <a class="moj-sub-navigation__link" href="#2">Locally-managed automatic monitoring (3)</a>
+                <a class="moj-sub-navigation__link" href="#2">Locally-managed automatic monitoring (1)</a>
               </li>
             <!--   <li class="moj-sub-navigation__item">
                 <a class="moj-sub-navigation__link" href="#3">UK Urban NO2 (298)</a>
@@ -284,7 +373,7 @@
                     
                   </td>
                 </tr>
-                <tr class="govuk-table__row">
+                <!-- <tr class="govuk-table__row">
                   <td class="govuk-table__cell">
                     <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
                       <input type="checkbox" class="govuk-checkboxes__input" id="mountain-puncak-jaya" value="puncak-jaya">
@@ -428,7 +517,7 @@
                   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
     
                 
-                </tr>
+                </tr> -->
               </tbody>
             </table>
             <!-- moj scroll -->

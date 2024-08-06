@@ -174,3 +174,15 @@
     
 }
 
+// Fix for filter tags from MOJ
+
+a.moj-filter__tag {
+    &::after{
+        background-image: url(../images/icon-tag-remove-cross.svg);
+    }
+&:hover {
+    &::after{
+    background-image: url(../images/icon-tag-remove-cross-white.svg);
+}
+}
+}
