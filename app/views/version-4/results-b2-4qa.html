@@ -48,50 +48,73 @@
     
     </div>
 
+
+
+
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-<div class="govuk-divider"></div>
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-divider"></div>
 <h2 class="govuk-heading-m">View or select monitoring stations to download</h2>
-<!-- <p class="govuk-body">Something</p> -->
+<!-- <p class="govuk-body">If you continue with selected monitoring stations, you can select the time period, <br>pollutants and data format before you download your results.
+</p> -->
+<p class="govuk-body">If you continue with selected monitoring stations, before downloading your results you can select the:</p>
+<ul class="govuk-list--bullet govuk-body">
+  <li>time period</li>
+  <li>pollutants</li>
+  <li>data format</li>
+</ul>
 
-    <div class="govuk-button-group">
-    {{ govukButton({
-  text: "Continue with selected monitoring stations",
-  classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3",
-  href: "multiple-station-download/select-a-time-period.html"
-  }) }}
-
-  {{ govukButton({
-    text: "Filter monitoring stations",
-    classes: "govuk-button--secondary"
-  }) }}
-</div>
-
-<details class="govuk-details govuk-!-margin-bottom-3">
+<details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-6">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
-    What networks are available?
+    What monitoring networks are available?
     </span>
   </summary>
   <div class="govuk-details__text">
     <strong>Automatic Urban and Rural network (AURN)</strong>
     <br>
-    The AURN the UK's largest automatic monitoring network. It is the main network used for compliance reporting against the Ambient Air Quality Directive.
+    The AURN is the largest air pollution monitoring network in the UK.
+    <br><br>
+    AURN monitoring sites provide high resolution, hourly pollution data for PM10, PM2.5, nitrogen dioxide, sulphur dioxide and ozone.
+    <br><br>
+    You can use data from the AURN to check compliance with the Ambient Air Quality Directive. This directive sets air quality standards for the UK.
     <br><br>
     <strong>Locally-managed automatic monitoring network</strong>
     <br>
-    This provides automatic monitoring data from across the UK. It is not part of the Department for Environment, Food and Rural Affairs' national monitoring strategy.
+    Most locally managed air pollution monitoring sites are run by local authorities.
     <br><br>
-Most of the sites are operated by local authorities. The sites may also include monitoring data from other programmes, industry and airports.
+    It provides air pollution data from across the UK, but the government do not use this data in their national monitoring.
+    <br><br>
+    This network may include data from other air quality monitoring programmes, industry and airports.
   </div>
 </details>
 
+    <div class="govuk-button-group">
+    {{ govukButton({
+  text: "Continue with selected monitoring stations",
+  classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-0",
+  href: "multiple-station-download/select-a-time-period.html"
+  }) }}
+
+  {{ govukButton({
+    text: "Filter monitoring stations",
+    classes: "govuk-button--secondary",
+    href: "filter.html"
+  }) }}
+</div>
+
+
+</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
             <ul class="moj-sub-navigation__list">
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
                 <a class="moj-sub-navigation__link" aria-current="page" href="#1">All (13)</a>
               </li>
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
-                <a class="moj-sub-navigation__link" href="results-b2-4qa-aurn.html">Automatic Urban and Rural (10)</a>
+                <a class="moj-sub-navigation__link" href="">Automatic Urban and Rural (10)</a>
               </li>
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
                 <a class="moj-sub-navigation__link" href="#2">Locally-managed automatic monitoring (3)</a>
@@ -107,7 +130,7 @@ Most of the sites are operated by local authorities. The sites may also include 
                 <tr class="govuk-table__row" style="font-size: 16px;">
                   <th class="govuk-table__header" scope="col" id="select-all"></th>
                   <th class="govuk-table__header" scope="col" style="vertical-align: middle;">Monitoring station</th>
-                  <th class="govuk-table__header" scope="col" style="vertical-align: middle;">Environment type</th>
+                  <th class="govuk-table__header" scope="col" style="vertical-align: middle;">Site type</th>
                   <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="vertical-align: middle;">Pollutants</th>
                   <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="vertical-align: middle;">Years available</th>
     
@@ -135,10 +158,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                   </th>
   
                   <td class="govuk-table__cell">
-                    Urban traffic
+                    urban traffic
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide,<br>PM10,<br>PM2.5,<br>ozone</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide, PM10, PM2.5, ozone</td>
   
                   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
                 
@@ -165,10 +188,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                  
   
                   <td class="govuk-table__cell">
-                    Urban background
+                    urban background
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10, PM2.5<br>Ozone<br>Nitrogen dioxide, sulphur dioxide
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10, PM2.5<br>ozone<br>nitrogen dioxide, sulphur dioxide
                     
                   </td>
 
@@ -196,10 +219,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                
   
                   <td class="govuk-table__cell">
-                    Urban background
+                    urban background
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide<br>Ozone</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>ozone</td>
 
                   <td class="govuk-table__cell govuk-table__cell--numeric">2019 to 2024<br>2023 to 2024</td>
                 </tr>
@@ -223,10 +246,10 @@ Most of the sites are operated by local authorities. The sites may also include 
               
   
                   <td class="govuk-table__cell">
-                    Urban traffic
+                    urban traffic
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
                 </tr>
                 <tr class="govuk-table__row">
@@ -250,10 +273,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                  
   
                   <td class="govuk-table__cell">
-                   Suburban industrial
+                   suburban industrial
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide,<br> PM10,<br> PM2.5,<br> ozone, <br>sulphur dioxide
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide, PM10, PM2.5,<br> ozone, sulphur dioxide
                     
                   </td>
 
@@ -281,10 +304,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                  
   
                   <td class="govuk-table__cell">
-                    N/A
+                    n/a
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10<br>Nitrogen dioxide
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10<br>nitrogen dioxide
                     
                   </td>
 
@@ -312,10 +335,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                  
   
                   <td class="govuk-table__cell">
-                    N/A
+                    n/a
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10<br>Nitrogen dioxide
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10<br>nitrogen dioxide
                     
                   </td>
 
@@ -343,10 +366,10 @@ Most of the sites are operated by local authorities. The sites may also include 
 
   
                   <td class="govuk-table__cell">
-                    Urban background
+                    urban background
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide, ozone</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide, ozone</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
     
                 
@@ -371,10 +394,10 @@ Most of the sites are operated by local authorities. The sites may also include 
                  
   
                   <td class="govuk-table__cell">
-                    Urban background
+                    urban background
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide, PM2.5, ozone<br>PM10</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide, PM2.5, ozone<br>PM10</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024<br>2019 to 2024</td>
                 
                 </tr>
@@ -401,7 +424,7 @@ Most of the sites are operated by local authorities. The sites may also include 
                     Urban traffic
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">Nitrogen dioxide<br>PM10</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>PM10</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
     
                 

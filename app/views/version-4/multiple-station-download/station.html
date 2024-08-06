@@ -4,7 +4,7 @@
 
 
 {% block beforeContent %}
-<a href="results-b2-4qa.html" id="station-birm" class="govuk-back-link">Back</a>
+<a href="stations-overview-1.html" id="station-birm" class="govuk-back-link">Back</a>
 <!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
 {% endblock %}
 
@@ -21,17 +21,26 @@
 </div>
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-three-quarters">
-           
-          <dl class="defra-aq-features__list govuk-!-margin-top-3" style="gap: 50px;">
-            <div class="defra-aq-features__item" style="width: 30%">
+              <details class="govuk-details govuk-!-margin-top-3">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                   Description of the surrounding area
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  The station is on a residential street with roadside trees, near a small car park and a traffic speed camera. Kingston Hill Local Park and Digbeth Branch Canal are within a short distance.
+                </div>
+              </details>
+          <dl class="defra-aq-features__list govuk-!-margin-top-3" style="box-shadow: none; padding-bottom: 0;">
+            <div class="defra-aq-features__item">
               <dt class="defra-aq-features__key govuk-caption-m">Local authority</dt>
               <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Birmingham City Council</dd>
             </div>
-            <div class="defra-aq-features__item" style="width: 40%">
+            <div class="defra-aq-features__item">
               <dt class="defra-aq-features__key govuk-caption-m">Site type</dt>
               <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Urban traffic</dd>
             </div>
-            <div class="defra-aq-features__item" style="width: 30%">
+            <div class="defra-aq-features__item">
               <dt class="defra-aq-features__key govuk-caption-m">Status</dt>
               <dd class="defra-aq-features__value govuk-body"><strong class="govuk-tag govuk-tag--green" style="margin-top: 5px;">
                 Active
@@ -42,59 +51,48 @@
 
    
 
+<!-- <div class="govuk-divider"></div> -->
 
-           
+      <!--     <div class="defra-aq-description" style="box-shadow: none; padding-bottom: 0;">
+                <h2 class="govuk-heading-s govuk-!-margin-top-5">Description</h2>
+                <p class="govuk-body">The station is on a residential street with roadside trees, near a small car park and a traffic speed camera. Kingston Hill Local Park and Digbeth Branch Canal are within a short distance.
+                </p>
+              </div> -->
+     
+          <!--     <div class="govuk-divider govuk-!-margin-bottom-2"></div> -->
           
-          <dl class="defra-aq-features__list" style="gap: 50px; box-shadow: none; padding-bottom: 0;">
-            
-            <div class="defra-aq-features__item" style="width: 30%">
-              <dt class="defra-aq-features__key govuk-caption-m">Surrounding area</dt>
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Residential</dd>
-            </div>
-            <div class="defra-aq-features__item" style="width: 40%">
-              <dt class="defra-aq-features__key govuk-caption-m">Sensitive receptors nearby</dt> 
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">The Bridge Church <br>(77 metres away)</dd>
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 3px;">Bordesley Village Primary School <br>(320 metres away)</dd>
-           <!--    
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 3px;">Residential</dd> -->
-            </div>
-            <div class="defra-aq-features__item" style="width: 30%">
-              <dt class="defra-aq-features__key govuk-caption-m">Longitude and latitude</dt>
-              <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0;">52.476145, -1.874978</dd>
-              <p class="govuk-body"> <a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" target="_blank" class="govuk-link" >View on a map <br>(opens in a new tab)</a> </p>
+          <dl class="defra-aq-features__list" style="gap: 80px;">
+            <div class="defra-aq-features__item" style="width: 50%;">
+              <dt class="defra-aq-features__key govuk-caption-m">Easting and northing</dt>
+              <dd class="defra-aq-features__value govuk-body"> 405650, 287050</dd>
+              <a href="#" class="govuk-link govuk-body">View on a map (opens in a new tab)</a> 
               
+            </div>
+            <div class="defra-aq-features__item" style="width: 50%;">
+             
+              <dt class="defra-aq-features__key govuk-caption-m">Surrounding area</dt>
+              <dd class="defra-aq-features__value govuk-body">Residential</dd>
             </div>
         
             </dl>
 
-            <details class="govuk-details govuk-!-margin-top-6">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                 Description of the surrounding area
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                The station is on a residential street with roadside trees, near a small car park and a traffic speed camera. Kingston Hill Local Park and Digbeth Branch Canal are within a short distance.
-              </div>
-            </details>
 
-            <div class="govuk-divider govuk-!-margin-bottom-3"></div>
-            <dl class="defra-aq-features__list" style="gap: 50px;">
-              <div class="defra-aq-features__item" style="width: 30%">
+            <dl class="defra-aq-features__list">
+              <div class="defra-aq-features__item">
+                <dt class="defra-aq-features__key govuk-caption-m">Distance from road</dt>
+                <dd class="defra-aq-features__value govuk-body">6.5 metres</dd>
+              </div>
+              <div class="defra-aq-features__item">
                 <dt class="defra-aq-features__key govuk-caption-m">Distance from kerb</dt>
                 <dd class="defra-aq-features__value govuk-body">6.5 metres</dd>
               </div>
-              <div class="defra-aq-features__item" style="width: 40%">
-                <dt class="defra-aq-features__key govuk-caption-m">Last calibrated</dt>
-                <dd class="defra-aq-features__value govuk-body">December 2023</dd>
-              </div>
-              <div class="defra-aq-features__item" style="width: 30%">
-                <dt class="defra-aq-features__key govuk-caption-m">Next calibrated</dt>
-                <dd class="defra-aq-features__value govuk-body">December 2024</dd>
+              <div class="defra-aq-features__item">
+                <dt class="defra-aq-features__key govuk-caption-m">Altitude</dt>
+                <dd class="defra-aq-features__value govuk-body">109 metres</dd>
               </div>
               </dl>
 
-              
+            
 
           <h2 class="govuk-heading-m govuk-!-margin-top-6">Pollutants overview in 2023</h2>
           <table class="govuk-table govuk-!-margin-bottom-5">
