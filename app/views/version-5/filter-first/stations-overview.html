@@ -1,0 +1,293 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="results-b2-4qa-filtered.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Review pollutant data capture</h1>
+    <p class="govuk-body">Review selected monitoring stations before continuing.</p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          What is low data capture?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+       <p class="govuk-body"> Any pollutant data under 75% is considered to be low.</p>
+       <!-- <p class="govuk-body"> However, due to existing data quality objectives for PM2.5, a data capture of 85% or above is required.</p> -->
+
+      </div>
+    </details>
+  </div>
+</div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <div class="govuk-tabs govuk-!-margin-bottom-0 govuk-!-margin-top-3" data-module="govuk-tabs">
+          <h2 class="govuk-tabs__title">
+            Contents
+          </h2>
+          <ul class="govuk-tabs__list">
+            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+              <a class="govuk-tabs__tab" href="#nitrogen">
+                2023
+              </a>
+            </li>
+            <li class="govuk-tabs__list-item">
+              <a class="govuk-tabs__tab" href="#pm10">
+                2024
+              </a>
+            </li>
+          
+          
+        
+           
+          </ul>
+          <div class="govuk-tabs__panel" id="nitrogen">
+      
+            <table class="govuk-table govuk-table--small-text-until-tablet govuk-!-margin-top-1">
+              <caption class="govuk-table__caption govuk-table__caption--m">Data capture between 1 January to 31 December 2023</caption>
+             
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header" style="width: 30%">Monitoring station</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 15%">Nitrogen dioxide</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 15%">PM10</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 15%">PM2.5</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 10%">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                  Birmingham Airport 2</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Locally-managed automatic monitoring</span>
+                    <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--red" >
+                      Low data capture
+                    </strong>
+                  </span>
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">53%
+                   
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">71%
+                  <!--   <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--red" >
+                      Below threshold
+                    </strong>
+                  </span> -->
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">92%</td>
+               
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">Birmingham A4540 Roadside</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                  <!-- <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">90%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">97%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">99%</td>
+                 
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                    Birmingham Ladywood</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                 <!--  <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">92%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">95%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">96%</td>
+                
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                    West Bromwich Kenrick Park</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                  <!-- <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">97%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+                 
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                    Oldbury Birmingham Road</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                 <!--  <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">96%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+               
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+        
+               
+            
+              </tbody>
+            </table>
+           
+          </div>
+         
+          <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm10">
+            
+            <table class="govuk-table govuk-table--small-text-until-tablet govuk-!-margin-top-1">
+              <caption class="govuk-table__caption govuk-table__caption--m">Data capture between 1 January to 15 August 2024</caption>
+             
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header" style="width: 30%">Monitoring station</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 15%">Nitrogen dioxide</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 15%">PM10</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 15%">PM2.5</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 10%">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                  Birmingham Airport 2</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Locally-managed automatic monitoring</span>
+                    <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--red" >
+                      Low data capture
+                    </strong>
+                  </span>
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">53%
+                   
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">71%
+                  <!--   <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--red" >
+                      Below threshold
+                    </strong>
+                  </span> -->
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">92%</td>
+               
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">Birmingham A4540 Roadside</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                  <!-- <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">90%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">97%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">99%</td>
+                 
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                    Birmingham Ladywood</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                 <!--  <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">92%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">95%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">96%</td>
+                
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                    West Bromwich Kenrick Park</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                  <!-- <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">97%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+                 
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link .ms-table-sub-header">
+                    Oldbury Birmingham Road</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; color:#505a5f">Automatic Urban and Rural</span>
+                 <!--  <span style="display: block; margin-top: 10px; font-size: 16px;">  <strong class="govuk-tag govuk-tag--green" >
+                      Above threshold
+                    </strong>
+                  </span> -->
+                  </th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">96%</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">n/a</td>
+               
+                    <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Remove</a>
+                    
+                  </td>
+                </tr>
+        
+               
+            
+              </tbody>
+            </table>
+
+          </div>
+        
+          
+        </div>
+    
+      </div>
+    </div>
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-!-margin-top-3",
+      href: "select-a-data-format.html"
+    }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="filters.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Choose a location
+          </h1>
+        </legend>
+        <div id="contact-hint" class="govuk-hint">
+          <!-- Select one option. -->
+        </div>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+            <label class="govuk-label govuk-radios__label" for="contact">
+              Town or city
+            </label>
+            <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Northern Ireland locations cannot be searched by town or city.
+            </div> -->
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+            <div class="govuk-form-group">
+             <!--  <label class="govuk-label" for="contact-by-email">
+                Enter
+              </label> -->
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contactByEmail" type="email" spellcheck="false" autocomplete="email">
+            </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+            <label class="govuk-label govuk-radios__label" for="contact-2">
+              Postcode
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+            <div id="signIn-item-hint" class="govuk-hint">
+              For example,  WA4 1AB
+            </div>
+            <div class="govuk-form-group">
+              
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-phone" name="contactByPhone" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-4" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-4">
+            <label class="govuk-label govuk-radios__label" for="contact-4">
+              Grid reference
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-4">
+            <div id="signIn-item-hint" class="govuk-hint">
+              For example, SJ8632197947 (10 or 12 digits)
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-text">
+              
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-5" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-5">
+            <label class="govuk-label govuk-radios__label" for="contact-5">
+              Easting and northing
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-5">
+            <div id="signIn-item-hint" class="govuk-hint">
+              Eastings and northings should only include numbers. For example: 123456
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-text">
+                Easting
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-text">
+                Northing
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
+            <label class="govuk-label govuk-radios__label" for="contact-3">
+              Coordinates
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+            <div id="signIn-item-hint" class="govuk-hint">
+              Longitude and latitude should only include numbers. For example: 123456
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-text">
+                Longitude
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-text">
+                Latitude
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-6" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-6" >
+            <label class="govuk-label govuk-radios__label" for="contact-6">
+              Country
+            </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-6">
+          <!--     <div id="signIn-item-hint" class="govuk-hint">
+                Select all countries if you want to search in the UK.
+              </div> -->
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                    England
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                    Scotland
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                    Wales
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                    Northern Ireland
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+   
+        
+          <div class="govuk-radios__divider">or</div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-7" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-7" >
+            <label class="govuk-label govuk-radios__label" for="contact-7">
+              The UK
+            </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-7">
+          
+              </div>
+            </div>
+            
+          </div> 
+        
+        </div>
+      </fieldset>
+    </div>
+
+    {{ govukButton({
+      text: "Add location",
+      href: "filters.html"
+    }) }}
+   
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}
