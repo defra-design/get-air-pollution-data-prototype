@@ -1,0 +1,142 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="/version-5/hub.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-three-quarters-from-desktop">
+        <h1 class="govuk-heading-l">Find monitoring stations by filtering</h1>
+        <p class="govuk-body">Filter monitoring stations in the UK by monitoring network, pollutant, site type, years available, location and distance radius.</p>
+        <details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-6">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+            What monitoring networks are available?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <strong>Automatic Urban and Rural network (AURN)</strong>
+            <br>
+            The AURN is the largest air pollution monitoring network in the UK.
+            <br><br>
+            AURN monitoring sites provide high resolution, hourly pollution data for nitrogen dioxide, PM10, PM2.5, ozone and sulphur dioxide.
+            <br><br>
+            You can use data from the AURN to check compliance with the Ambient Air Quality Directive. This directive sets air quality standards for the UK.
+            <br><br>
+            <strong>Locally-managed automatic monitoring network</strong>
+            <br>
+            Most locally managed air pollution monitoring sites are run by local authorities.
+            <br><br>
+            It provides air pollution data from across the UK, but the government do not use this data in their national monitoring.
+            <br><br>
+            This network may include data from other air quality monitoring programmes, industry and airports.
+          </div>
+        </details>
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Selected filters
+            </h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Clear all filters<span class="govuk-visually-hidden"> of University of Gloucestershire (University of Gloucestershire)</span></a>
+              </li>
+              <!-- <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Withdraw<span class="govuk-visually-hidden"> from University of Gloucestershire (University of Gloucestershire)</span></a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Monitoring networks
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Automatic Urban and Rural<br>
+                  Locally-managed automatic
+                  
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-a-network.html">Add<span class="govuk-visually-hidden"> monitoring networks</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Pollutants
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  None selected
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-a-pollutant.html">Add<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Site types
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  None selected
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-a-site-type.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Years available
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  None selected
+                  <!-- 2018, 2019, 2020, 2021, 2022, 2023, 2024 -->
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-years.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Location
+                </dt>
+                <dd class="govuk-summary-list__value">
+                
+                 None selected
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="find-a-location.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <!-- <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Distance radius
+                </dt>
+                <dd class="govuk-summary-list__value">
+                
+                 None selected
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div> -->
+            </dl>
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Continue with selected filters",
+          href: "results-b2-4qa-filtered.html"
+        }) }}
+</div>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}
