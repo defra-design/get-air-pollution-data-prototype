@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="results-b2-4qa.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Select distance radius</h1>
+   
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius" name="radius" type="radio" value="england">
+            <label class="govuk-label govuk-radios__label" for="radius">
+              1 mile
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-2" name="radius" type="radio" value="scotland">
+            <label class="govuk-label govuk-radios__label" for="radius-2">
+              5 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-3" name="radius" type="radio" value="wales">
+            <label class="govuk-label govuk-radios__label" for="radius-3">
+              10 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-4" name="radius" type="radio" value="northern-ireland">
+            <label class="govuk-label govuk-radios__label" for="radius-4">
+              20 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-5" name="radius" type="radio" value="northern-ireland">
+            <label class="govuk-label govuk-radios__label" for="radius-5">
+              30 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-6" name="radius" type="radio" value="northern-ireland">
+            <label class="govuk-label govuk-radios__label" for="radius-6">
+              50 miles
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+
+
+    {{ govukButton({
+      text: "Add location and distance",
+      classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3",
+      href: "filters.html"
+      }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}
