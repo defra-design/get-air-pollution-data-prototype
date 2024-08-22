@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="select-distance.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Do you want to filter before getting monitoring station results</h1>
+   
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius" name="radius" type="radio" value="england">
+            <label class="govuk-label govuk-radios__label" for="radius">
+              Yes, I want to filter before I get my results.
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-2" name="radius" type="radio" value="scotland">
+            <label class="govuk-label govuk-radios__label" for="radius-2">
+              No, I don't want to filter.
+            </label>
+          </div>
+         
+        </div>
+      </fieldset>
+    </div>
+
+
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3",
+      href: "/version-5/filter-first/filters-completed.html"
+      }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}
