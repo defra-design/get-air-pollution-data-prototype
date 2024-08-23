@@ -18,30 +18,7 @@
             Select monitoring networks
           </h1>
         </legend>
-        <details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-2">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-            What monitoring networks are available?
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <strong>Automatic Urban and Rural network (AURN)</strong>
-            <br>
-            The AURN is the largest air pollution monitoring network in the UK.
-            <br><br>
-            AURN monitoring sites provide high resolution, hourly pollution data for nitrogen dioxide, PM10, PM2.5, ozone and sulphur dioxide.
-            <br><br>
-            You can use data from the AURN to check compliance with the Ambient Air Quality Directive. This directive sets air quality standards for the UK.
-            <br><br>
-            <strong>Locally-managed automatic monitoring network</strong>
-            <br>
-            Most locally managed air pollution monitoring sites are run by local authorities.
-            <br><br>
-            It provides air pollution data from across the UK, but the government do not use this data in their national monitoring.
-            <br><br>
-            This network may include data from other air quality monitoring programmes, industry and airports.
-          </div>
-        </details>
+        
         <div id="waste-hint" class="govuk-hint">
 
         </div>
@@ -57,12 +34,18 @@
             <label class="govuk-label govuk-checkboxes__label" for="waste-2">
               Automatic Urban and Rural Network (AURN)
             </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              The AURN provides the highest quality air pollution data in the UK. You can use AURN data to check compliance with UK air quality standards.
+            </div>
           </div>
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
             <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              Locally-managed automatic monitoring network
+              Locally managed automatic monitoring network
             </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Most locally managed automatic monitoring stations are run by local authorities. These monitoring stations provide air pollution data from across the UK, but the data is not used to check compliance with UK air quality standards.
+            </div>
           </div>
         </div>
       </fieldset>

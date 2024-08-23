@@ -3,16 +3,16 @@
 {% set pageName="Home" %}
 
 {% block beforeContent %}
-<a href="/version-5/filter-question.html" class="govuk-back-link">Back</a>
+<a href="/version-5/hub.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-three-quarters-from-desktop">
-        <h1 class="govuk-heading-l">Select filters</h1>
-        <p class="govuk-body"></p>
-       <!--  <details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-6">
+        <h1 class="govuk-heading-l">Find monitoring stations by filtering</h1>
+        <p class="govuk-body">Filter monitoring stations in the UK by monitoring network, pollutant, site type, years available, location and distance radius.</p>
+        <details class="govuk-details govuk-!-margin-bottom-6 govuk-!-margin-top-6">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
             What monitoring networks are available?
@@ -35,7 +35,7 @@
             <br><br>
             This network may include data from other air quality monitoring programmes, industry and airports.
           </div>
-        </details> -->
+        </details>
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
             <h2 class="govuk-summary-card__title">
@@ -43,7 +43,7 @@
             </h2>
             <ul class="govuk-summary-card__actions">
               <li class="govuk-summary-card__action">
-                <a class="govuk-link" href="#">Clear filters<span class="govuk-visually-hidden"> of University of Gloucestershire (University of Gloucestershire)</span></a>
+                <a class="govuk-link" href="#">Clear all filters<span class="govuk-visually-hidden"> of University of Gloucestershire (University of Gloucestershire)</span></a>
               </li>
               <!-- <li class="govuk-summary-card__action">
                 <a class="govuk-link" href="#">Withdraw<span class="govuk-visually-hidden"> from University of Gloucestershire (University of Gloucestershire)</span></a>
@@ -57,12 +57,12 @@
                   Monitoring networks
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  <!-- Automatic Urban and Rural<br>
-                  Locally-managed automatic -->
-                  None selected
+                  Automatic Urban and Rural<br>
+                  Locally-managed automatic 
+                  
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="select-a-network.html">Add<span class="govuk-visually-hidden"> monitoring networks</span></a>
+                  <a class="govuk-link" href="select-a-network.html">Change<span class="govuk-visually-hidden"> monitoring networks</span></a>
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -70,10 +70,14 @@
                   Pollutants
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  None selected
+                  Nitrogen dioxide (NO2)<br>
+                  PM10<br>
+                  PM2.5<br>
+                  <!-- Ozone (O3)<br>
+                  Sulphur dioxide -->
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="select-a-pollutant.html">Add<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                  <a class="govuk-link" href="select-a-pollutant.html">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -81,23 +85,30 @@
                   Site types
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  None selected
+                  Rural background<br>
+                  Suburban background<br>
+                  Suburban industrial<br>
+                  Urban background<br>
+                  Urban industrial<br>
+                  Urban traffic
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="select-a-site-type.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                  <a class="govuk-link" href="select-a-site-type.html">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Years
+                  Years available
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  None selected
+                  
+                  2023<br>
+                  2024
                   <!-- 2018, 2019, 2020, 2021, 2022, 2023, 2024 -->
 
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="select-years.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                  <a class="govuk-link" href="select-years.html">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
                 </dd>
               </div>
               <div class="govuk-summary-list__row">

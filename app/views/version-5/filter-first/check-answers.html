@@ -1,0 +1,111 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Check your answers" %}
+
+{% block beforeContent %}
+<a href="select-file-structure.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+
+
+        <h1 class="govuk-heading-l">Check your answers before downloading</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Monitoring network
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Automatic Urban and Rural
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
+            </dd>
+          
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Monitoring stations
+            </dt>
+            <dd class="govuk-summary-list__value">
+              4
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">monitoring station</span></a>
+            </dd>
+          </div>
+         
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Pollutants
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Nitrogen dioxide</p>
+              <p class="govuk-body">PM10</p>
+              <p class="govuk-body">PM2.5</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Time period
+            </dt>
+            <dd class="govuk-summary-list__value">
+              1 January to 31 December 2023<br>
+              1 January to 2 September 2024
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+            </dd>
+          </div>
+         
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Data format
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Daily average</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              File structure
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">One file for all pollutants</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> contact details</span></a>
+            </dd>
+          </div>
+        </dl>
+       
+        <h2 class="govuk-heading-m">Download description</h2>
+        <p class="govuk-body">Your download will contain a separate CSV file for each year you selected:</p>
+        <ul class="govuk-list--bullet govuk-body govuk-!-margin-bottom-6">
+
+          <li>2023 (532kb)</li>
+          <li>2024 (372kb)</li>
+        </ul>
+        <form action="/form-handler" method="post" novalidate>
+          <input type="hidden" name="answers-checked" value="true">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Download CSV files
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}
