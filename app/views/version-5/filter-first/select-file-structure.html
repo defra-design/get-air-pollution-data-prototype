@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <div class="govuk-form-group">
+    <div class="govuk-form-group govuk-!-margin-bottom-0">
       <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
@@ -34,22 +34,26 @@
               Separate files for each pollutant you selected
             </label>
           </div>
-          <!-- <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-4" name="contact" type="radio" value="text" >
-            <label class="govuk-label govuk-radios__label" for="contact-4">
-              Annual mean
-            </label>
-          </div> -->
-       
-          
-        
-        
-         
         </div>
       </fieldset>
-      
     </div>
-
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <div id="waste-hint" class="govuk-hint">
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="carcasses" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+              Include metadata
+            </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Include this metadata: station name, monitoring network, coordinates, site type, local authority, region, instrument type, data capture total
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
     {{ govukButton({
       text: "Continue",
       href: "check-answers.html"
