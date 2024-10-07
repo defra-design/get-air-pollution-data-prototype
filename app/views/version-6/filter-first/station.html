@@ -1,10 +1,10 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/v6.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
 
 
 {% block beforeContent %}
-<a href="results-b2-4qa-filtered.html" id="station-birm" class="govuk-back-link">Back</a>
+<a href="results-b2-4qa-filtered.html" class="govuk-back-link">Back</a>
 <!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
 {% endblock %}
 
@@ -52,7 +52,11 @@
             <div class="defra-aq-features__item" style="width: 30%">
         
               <dt class="defra-aq-features__key govuk-caption-m">Site type</dt>
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Urban traffic</dd>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">
+                <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about urban traffic" data-toggletip-content="This monitoring site is in a city or town close to roads, motorways or highways.">
+                  Urban traffic
+                  </div>
+                </dd>
              
             </div>
             </dl>
@@ -69,14 +73,18 @@
               <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Residential</dd>
             </div>
             <div class="defra-aq-features__item" style="width: 40%">
-              <dt class="defra-aq-features__key govuk-caption-m">Sensitive receptors nearby</dt> 
+              <dt class="defra-aq-features__key govuk-caption-m"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about sensitive receptors" data-toggletip-content="Sensitive receptors refer to people or locations that are more vulnerable to negative health effects from exposure to pollutants or other harmful substances">
+                Sensitive receptors nearby
+                </div></dt> 
               <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">The Bridge Church <br>(77 metres away)</dd>
               <dd class="defra-aq-features__value govuk-body" style="margin-top: 3px;">Bordesley Village Primary School <br>(320 metres away)</dd>
            <!--    
               <dd class="defra-aq-features__value govuk-body" style="margin-top: 3px;">Residential</dd> -->
             </div>
             <div class="defra-aq-features__item" style="width: 30%">
-              <dt class="defra-aq-features__key govuk-caption-m">Other features</dt>
+              <dt class="defra-aq-features__key govuk-caption-m"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about other features" data-toggletip-content="Other features include any feature near the site that could impact air pollution.">
+                Other features
+                </div></dt>
               <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0;">Traffic speed camera (2 metres away)</dd>
               <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0;">Fuel station <br>(20 metres away)</dd>
               
