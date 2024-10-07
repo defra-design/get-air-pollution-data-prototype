@@ -1,0 +1,58 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="select-distance.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Do you want to add more filters?
+    </h1>
+    <p class="govuk-body">You can add the following filters:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>monitoring network</li>
+          <li>pollutant</li>
+          <li>site type</li>
+          <li>year</li>
+         
+        </ul> 
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius" name="radius" type="radio" value="filternow">
+            <label class="govuk-label govuk-radios__label" for="radius">
+              Yes, I want to filter my results now
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="radius-2" name="radius" type="radio" value="filterlater">
+            <label class="govuk-label govuk-radios__label" for="radius-2">
+              No, I do not want to filter my results now
+            </label>
+          </div>
+         
+        </div>
+      </fieldset>
+    </div>
+
+
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3",
+      href: "/version-6/filter-first/filters-completed.html"
+      }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

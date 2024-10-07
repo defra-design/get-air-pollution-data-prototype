@@ -1,0 +1,121 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="/version-5/filter-question.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-three-quarters-from-desktop">
+        <h1 class="govuk-heading-l">Select filters</h1>
+       
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Selected filters
+            </h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Clear all filters<span class="govuk-visually-hidden"> of University of Gloucestershire (University of Gloucestershire)</span></a>
+              </li>
+              <!-- <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Withdraw<span class="govuk-visually-hidden"> from University of Gloucestershire (University of Gloucestershire)</span></a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Location
+                </dt>
+                <dd class="govuk-summary-list__value">
+                
+                 B2 4QA
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Distance radius
+                </dt>
+                <dd class="govuk-summary-list__value">
+                
+                 5 miles
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Monitoring networks
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Automatic Urban and Rural<br>
+                  Locally managed automatic
+                  
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-a-network.html">Change<span class="govuk-visually-hidden"> monitoring networks</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Pollutants
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 Nitrogen dioxide (NO2)<br>
+                 PM10<br>
+                 PM2.5
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-a-pollutant.html">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Site types
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  None selected
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-a-site-type.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Years
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  None selected
+                  <!-- 2018, 2019, 2020, 2021, 2022, 2023, 2024 -->
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="select-years.html">Add<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+             
+            </dl>
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Continue with selected filters",
+          href: "results-b2-4qa-filtered.html"
+        }) }}
+</div>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Version 1 design history" %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Sprint 1: initial prototype</h1>
+    <h2 class="govuk-heading-l">Ideation</h2>
+    <p class="govuk-body">We held a two-part ideation session for user needs in compliance. The result was a set of features that would have the most impact and that were technically feasible.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Searching for monitoring stations by location</li>
+      <li>Searching for monitoring stations by local authority</li>
+      <li>Searching for monitoring stations across multiple networks at once</li>
+        <li>Specific search options such as ‘eastings and northings’</li>
+          <li>Identify each monitoring station within a location or local authority</li>
+            <li>To be able to search within ‘x’ miles of a location</li>
+              <li>Searching and filtering by pollutant</li>
+                <li>Filtering by different formats (undefined)</li>
+                  <li>Visual representations of measured data with selectable time frames</li>
+                    <li>Warnings or alerts for missing data or data anomalies</li>
+                      <li>Adding a local authority boundary layer to the interactive map</li>
+                        <li>Data standardisation in structure and format</li>
+                          <li>Consistent categorisations across all monitoring sites</li>
+                            <li>Consistent naming conventions </li>
+
+    </ul> 
+    <h3 class="govuk-heading-m">Design hypothesis</h3>
+    <p class="govuk-body">We’ve seen users using the map on UK AIR to find monitoring stations.
+      <br><br>
+      We think this is because there’s no easy way to search for a location or filter monitoring stations without using a map. The data selector that could do this task is unintuitive and frustrating to use.
+      <br><br>
+      If we design an easy and simple way for users to find monitoring stations by location, users will find the data they need more efficiently, without relying on vision or digital skills.
+      </p>
+
+  
+    <h3 class="govuk-heading-m">The focus</h3>
+
+    <p class="govuk-body">We could not tackle all these user needs in one prototype. We decided to focus on the following core user needs for finding and identifying the right location and monitoring station data to download:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>to search by location, to find a specific monitoring station or the station coverage for an area or local authority</li>
+      <li>to search for stations by a specific pollutant within a larger area</li>
+      <li>to filter by pollutant</li>
+      <li>to view pollutant coverage for a single monitoring station</li>
+    </ul> 
+
+    <p class="govuk-body">Testing this prototype with users was not about usability. It was about exploring the presentation and format of information we know users need. We wanted to find out:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>if the journey had the right steps</li>
+      <li>if users needed any other information or control of segmentation of data</li>
+      <li>what else we needed to consider to solve user needs for choosing and getting monitoring station data</li>
+    </ul> 
+
+
+
+
+    <h2 class="govuk-heading-l">The prototype</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>monitoring network</li>
+      <li>pollutant</li>
+      <li>site type</li>
+      <li>location</li>
+      <li>local authority</li>
+      <li>year</li>
+    </ul> 
+
+    <div class="govuk-inset-text">
+      For local air quality information you can <a href="" class="govuk-link">check local air quality</a>.
+    </div>
+
+    
+
+   
+
+    <a href="hub.html" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-3" data-module="govuk-button">
+      Start now
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
+
+<h2 class="govuk-heading-l govuk-!-margin-top-3">Before you start</h2>
+
+
+
+
+
+
+<!-- <h2 class="govuk-heading-m govuk-!-margin-top-3">Monitoring networks</h2> -->
+<p class="govuk-body">This service uses data from the:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Automatic Urban and Rural network (AURN)</li>
+  <li>locally managed automatic monitoring network </li>
+</ul> 
+
+<p class="govuk-body">The AURN provides the highest quality air pollution data in the UK. You can use AURN data to check compliance with the UK Air Quality Standards Regulations 2010.
+
+</p>
+<p class="govuk-body">Most locally managed automatic monitoring stations are run by local authorities. You should not use data from this network to check compliance with the UK Air Quality Standards Regulations 2010.
+
+</p>
+
+<p class="govuk-body">This service does not:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>check local air quality</li>
+  <li>do air pollution assessments</li>
+</ul> 
+
+    </div>
+    
+</div>
+
+{% endblock %}
