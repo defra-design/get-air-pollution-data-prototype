@@ -20,50 +20,7 @@
 <!--     <p class="govuk-body"><a href="" class="govuk-link">Change location and distance</a></p> -->
     <!-- <div class="govuk-divider govuk-!-margin-top-7"></div> -->
 
-
-<div class="moj-filter">
-
-  <div class="moj-filter__header" style="padding: 0;">
-
-
-    <div class="moj-filter__header-action">
-
-    </div>
-
-  </div>
-
-<!--   <div class="moj-filter__content">
-
-    <div class="moj-filter__selected">
-
-      <div class="moj-filter__selected-heading">
-
-        <div class="moj-filter__heading-title">
-          <h2 class="govuk-heading-m">Selected filters</h2>
-        </div>
-
-        <div class="moj-filter__heading-action">
-          <p><a class="govuk-link govuk-link--no-visited-state" href="results-b2-4qa.html">Clear filters</a></p>
-        </div>
-
-      </div>
-
-      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Distance radius</h3>
-
-      <ul class="moj-filter-tags">
-
-        <li><a class="moj-filter__tag" href=""><span class="govuk-visually-hidden">Remove this filter</span> 5 miles</a></li>
-
-
-
-      </ul>
-
-
-    </div>
-
-  </div> -->
-
-    </div>
+   <!--  <p class="govuk-body "><a class="govuk-link" href="#">Show all monitoring stations</a></p> -->
 
 
 </div>
@@ -76,39 +33,18 @@
       </div>
     
     </div>
-    <!-- <details class="govuk-details govuk-!-margin-bottom-3 govuk-!-margin-top-6">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-        What monitoring networks are available?
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        <strong>Automatic Urban and Rural network (AURN)</strong>
-        <br>
-        The AURN is the largest air pollution monitoring network in the UK.
-        <br><br>
-        AURN monitoring sites provide high resolution, hourly pollution data for nitrogen dioxide, PM10, PM2.5, ozone and sulphur dioxide.
-        <br><br>
-        You can use data from the AURN to check compliance with the Ambient Air Quality Directive. This directive sets air quality standards for the UK.
-        <br><br>
-        <strong>Locally-managed automatic monitoring network</strong>
-        <br>
-        Most locally managed air pollution monitoring sites are run by local authorities.
-        <br><br>
-        It provides air pollution data from across the UK, but the government do not use this data in their national monitoring.
-        <br><br>
-        This network may include data from other air quality monitoring programmes, industry and airports.
-      </div>
-    </details> -->
+ 
     
 
+    
 
-  
     {{ govukButton({
       text: "Filter monitoring stations",
       classes: "govuk-button--secondary",
       href: ""
     }) }}
+
+
 
  
             <ul class="moj-sub-navigation__list">
@@ -330,14 +266,15 @@
             </div>
           </nav>
        
-
+<div class="govuk-button-group">
           {{ govukButton({
             text: "Continue with selected monitoring stations",
             classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
             href: "stations-overview.html"
             }) }}
     
-            <p class="govuk-body govuk-!-margin-top-6"><a href="" class="govuk-link">Show list of all stations</a></p>
+           <a class="govuk-link" href="#">Show all monitoring stations</a>
+          </div>
  
 
       
