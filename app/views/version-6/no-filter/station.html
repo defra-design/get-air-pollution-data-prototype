@@ -1,0 +1,214 @@
+{% extends "layouts/v6.html" %}
+
+{% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="results-b2-4qa-filtered.html" class="govuk-back-link">Back</a>
+<!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+   <!--          <p class="govuk-caption-l">Automatic Urban and Rural network</p> -->
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">Birmingham A4540 Roadside</h1>   
+          <strong class="govuk-tag govuk-tag--green" style="margin-top: 0px; padding: 6px 12px 6px 12px;">
+            Active
+          </strong>
+          <p class="govuk-body govuk-!-margin-top-3" style="margin-left: 5px; display: inline-block; color: #505a5f;">Latest at 12:00pm (midday) on 2 September 2024</p>
+
+         
+</div>
+</div>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-three-quarters">
+
+              <a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                <span class="aq-button-secondary__icon">
+                  <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="aq-button-secondary__text">
+                  View location on Google Maps</span>
+                  <span class="govuk-visually-hidden">
+                  (Visual only)
+                </span>
+              </a>
+            <!--   <div class="govuk-divider"></div> -->
+          <dl class="defra-aq-features__list govuk-!-margin-top-3" style="gap: 50px;">
+            <div class="defra-aq-features__item" style="width: 30%">
+              <dt class="defra-aq-features__key govuk-caption-m">Monitoring network</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Automatic Urban and Rural</dd>
+            </div>
+            <div class="defra-aq-features__item" style="width: 40%">
+              <dt class="defra-aq-features__key govuk-caption-m">Local authority</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Birmingham City Council</dd>
+            </div>
+            <div class="defra-aq-features__item" style="width: 30%">
+        
+              <dt class="defra-aq-features__key govuk-caption-m">Site type</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">
+                <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about urban traffic" data-toggletip-content="This monitoring site is in a city or town close to roads, motorways or highways.">
+                  Urban traffic
+                  </div>
+                </dd>
+             
+            </div>
+            </dl>
+
+   
+
+
+           
+          
+          <dl class="defra-aq-features__list" style="gap: 50px; box-shadow: none; padding-bottom: 0;">
+            
+            <div class="defra-aq-features__item" style="width: 30%">
+              <dt class="defra-aq-features__key govuk-caption-m">Surrounding area</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Residential</dd>
+            </div>
+            <div class="defra-aq-features__item" style="width: 40%">
+              <dt class="defra-aq-features__key govuk-caption-m">
+                <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about sensitive receptors" data-toggletip-content="Sensitive receptors are places where there may be people who are vulnerable to air pollution.">
+                Sensitive receptors nearby
+                </div></dt> 
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">The Bridge Church <br>(77 metres away)</dd>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 3px;">Bordesley Village Primary School <br>(320 metres away)</dd>
+           <!--    
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 3px;">Residential</dd> -->
+            </div>
+            <div class="defra-aq-features__item" style="width: 30%">
+              <dt class="defra-aq-features__key govuk-caption-m"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about other features" data-toggletip-content="Features near the site that could affect air pollution.">
+                Other features
+                </div></dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0;">Traffic speed camera (2 metres away)</dd>
+              <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0;">Fuel station <br>(20 metres away)</dd>
+              
+              
+            </div>
+        
+            </dl>
+
+
+ 
+
+            <div class="govuk-divider govuk-!-margin-bottom-3"></div>
+            <dl class="defra-aq-features__list" style="gap: 50px;">
+              <div class="defra-aq-features__item" style="width: 30%">
+                <dt class="defra-aq-features__key govuk-caption-m">Distance from kerb</dt>
+                <dd class="defra-aq-features__value govuk-body">6.5 metres</dd>
+             
+            
+              </div>
+              <div class="defra-aq-features__item" style="width: 40%">
+                <dt class="defra-aq-features__key govuk-caption-m">Coordinates</dt>
+                <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0;">52.476145, -1.874978</dd>
+              
+              </div>
+              <div class="defra-aq-features__item" style="width: 30%">
+         
+                <dt class="defra-aq-features__key govuk-caption-m">Last calibrated</dt>
+                <dd class="defra-aq-features__value govuk-body">July 2024</dd>
+                <dt class="defra-aq-features__key govuk-caption-m govuk-!-margin-top-3">Next calibrated</dt>
+                <dd class="defra-aq-features__value govuk-body">December 2024</dd>
+              </div>
+              </dl>
+
+            
+              
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-9 govuk-!-margin-bottom-2">Air pollution levels in 2023</h2>
+          <p class="govuk-body govuk-!-margin-bottom-6">1 January to 31 December</p>
+         
+          
+
+            <h2 class="govuk-heading-m govuk-!-margin-top-6">UK annual air quality standards</h2>
+    <!--         <p class="govuk-body">Annual thresholds</p> -->
+    
+
+
+            <div class="grid-container govuk-!-margin-bottom-3">
+              <dl class="grid-item">
+                  <dt class="title"><a href="nitrogen" class="govuk-link">Nitrogen dioxide</a></dt>
+                  <dd class="description">Annual average</dd>
+                  <dt class="number">30<span style="margin-left: 5px; display: inline-block; font-size: 19px;">µg/m3</span></dt>
+                  <dd class="description"> 
+                    <strong class="govuk-tag govuk-tag--green">
+                    Below threshold
+                  </strong>
+                </dd>
+                  <dd class="description">No more than 40µg/m3 on average in a calendar year</dd>
+                  <dd class="description">Data capture: 99%
+                  </dd>
+              </dl>
+              <dl class="grid-item">
+                <dt class="title"><a href="pm10.html" class="govuk-link">PM10</a></dt>
+                <dd class="description">Annual average</dd>
+                <dt class="number">15<span style="margin-left: 5px; display: inline-block; font-size: 19px;">µg/m3</span></dt>
+                <dd class="description"> 
+                  <strong class="govuk-tag govuk-tag--green">
+                  Below threshold
+                </strong>
+              </dd>
+                <dd class="description">No more than 40 μg/㎥ on average in a calendar year
+                </dd>
+                <dd class="description">Data capture: 100%
+                </dd>
+            </dl>
+              <dl class="grid-item">
+                  <dt class="title"><a href="pm2_5.html" class="govuk-link">PM2.5</a></dt>
+                  <dd class="description">Annual average</dd>
+                  <dt class="number">8<span style="margin-left: 5px; display: inline-block; font-size: 19px;">µg/m3</span></dt>
+                  <dd class="description"> 
+                    <strong class="govuk-tag govuk-tag--green">
+                    Below threshold
+                  </strong>
+                </dd>
+                  <dd class="description">No more than 20 μg/㎥ on average in a calendar year
+                  </dd>
+                  <dd class="description">Data capture: 96%
+                  </dd>
+              </dl>
+              <dl class="grid-item">
+                <dt class="title"><a href="ozone.html" class="govuk-link">Ozone</a></dt>
+                <dd class="description">Days above 120µg/m3</dd>
+                <dt class="number">0</dt>
+                <dd class="description"> 
+                  <strong class="govuk-tag govuk-tag--green">
+                  Below threshold
+                </strong>
+              </dd>
+                <dd class="description">No more than 25 days above 120 μg/㎥ in a calendar year</dd>
+                <dd class="description">Data capture: 97%
+                </dd>
+            </dl>
+          </div>
+           
+          <div class="govuk-inset-text">
+            All pollutant data is available from 2018 to 2024.
+          </div> 
+
+          <a class="govuk-body govuk-link govuk-!-margin-top-3" href="overview.html">View more information about air pollution levels</a>
+
+          
+         
+       
+    
+        <div class="govuk-divider"></div>
+
+      
+
+        {{ govukButton({
+          text: "Download data for this station",
+          href: ""
+        }) }}
+    </div>
+    
+</div>
+
+{% endblock %}
