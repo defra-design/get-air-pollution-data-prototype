@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/v6.html" %}
 
 {% set pageName="Home" %}
 
@@ -47,8 +47,8 @@
 
     {{ govukButton({
       text: "Continue",
-      classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3",
-      href: "/version-6/filter-first/filters-completed.html"
+      id: "filterSubmit",
+      classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-3"
       }) }}
       </div>
     </div>
