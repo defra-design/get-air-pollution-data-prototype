@@ -3,7 +3,7 @@
 {% set pageName="Get air pollution data - GOV.UK" %}
 
 {% block beforeContent %}
-<a href="/version-6/choose-location.html" class="govuk-back-link">Change location</a>
+<a href="/version-6/choose-location.html" class="govuk-back-link">Change location and distance</a>
 {% endblock %}
 
 
@@ -12,7 +12,7 @@
   <div class="govuk-grid-column-two-thirds">
 
 
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-9">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">
       Monitoring stations within 20 miles of B2 4QA
     </h1>
 <!-- 
@@ -38,10 +38,11 @@
       <div class="moj-filter__selected-heading">
 
         <div class="moj-filter__heading-title">
-          <h2 class="govuk-heading-m">Selected filters</h2>
+          <h2 class="govuk-heading-m">Filters</h2>
         </div>
 
         <div class="moj-filter__heading-action">
+          
           <p><a class="govuk-link govuk-link--no-visited-state" href="results-b2-4qa.html">Clear filters</a></p>
         </div>
 
@@ -120,11 +121,17 @@
 
     
 
-    {{ govukButton({
-      text: "Filter monitoring stations",
-      classes: "govuk-button--secondary govuk-!-margin-top-6",
-      href: ""
-    }) }}
+    
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Change filters",
+        classes: "govuk-button--secondary govuk-!-margin-top-6",
+        href: ""
+      }) }}
+
+       <a class="govuk-link" href="#">Show all monitoring stations</a>
+      </div>
 
 
 
@@ -348,15 +355,14 @@
             </div>
           </nav>
        
-<div class="govuk-button-group">
+
           {{ govukButton({
             text: "Continue with selected monitoring stations",
             classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
             href: "stations-overview.html"
             }) }}
     
-           <a class="govuk-link" href="#">Show all monitoring stations</a>
-          </div>
+     
  
 
       

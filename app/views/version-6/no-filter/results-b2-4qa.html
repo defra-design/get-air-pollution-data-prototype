@@ -3,7 +3,7 @@
 {% set pageName="Get air pollution data - GOV.UK" %}
 
 {% block beforeContent %}
-<a href="/version-6/choose-location.html" class="govuk-back-link">Change location</a>
+<a href="/version-6/choose-location.html" class="govuk-back-link">Change location and distance</a>
 {% endblock %}
 
 
@@ -16,13 +16,10 @@
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
       Monitoring stations within 20 miles of B2 4QA
     </h1>
-
 <!--     <p class="govuk-body"><a href="" class="govuk-link">Change location and distance</a></p> -->
     <!-- <div class="govuk-divider govuk-!-margin-top-7"></div> -->
 
    <!--  <p class="govuk-body "><a class="govuk-link" href="#">Show all monitoring stations</a></p> -->
-
-
 </div>
 </div>
 
@@ -38,11 +35,16 @@
 
     
 
-    {{ govukButton({
-      text: "Filter monitoring stations",
-      classes: "govuk-button--secondary",
-      href: ""
-    }) }}
+  
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Filter monitoring stations",
+        classes: "govuk-button--secondary govuk-!-margin-top-6",
+        href: ""
+      }) }}
+
+       <a class="govuk-link" href="#">Show all monitoring stations</a>
+      </div>
 
 
 
@@ -266,15 +268,13 @@
             </div>
           </nav>
        
-<div class="govuk-button-group">
           {{ govukButton({
             text: "Continue with selected monitoring stations",
             classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
             href: "select-a-time-period.html"
             }) }}
     
-           <a class="govuk-link" href="#">Show all monitoring stations</a>
-          </div>
+         
  
 
       
