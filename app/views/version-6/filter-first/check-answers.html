@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/v6.html" %}
 
 {% set pageName="Check your answers" %}
 
@@ -13,7 +13,7 @@
 
 
         <h1 class="govuk-heading-l">Check your answers before downloading</h1>
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-3">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Monitoring network
@@ -57,7 +57,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               1 January to 31 December 2023<br>
-              1 January to 2 September 2024
+              1 January to 5 November 2024
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
@@ -88,6 +88,9 @@
             </dd>
           </div>
         </dl>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-7">Data is verified up until 1 July  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+          2024
+           </div></h3>
        
         <h2 class="govuk-heading-m">Download description</h2>
         <p class="govuk-body">Your download will contain a separate CSV file for each year you selected:</p>
@@ -96,6 +99,7 @@
           <li>2023 (532kb)</li>
           <li>2024 (372kb)</li>
         </ul>
+    
         <form action="/form-handler" method="post" novalidate>
           <input type="hidden" name="answers-checked" value="true">
           <button type="submit" class="govuk-button" data-module="govuk-button">

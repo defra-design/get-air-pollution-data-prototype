@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/v6.html" %}
 
 {% set pageName="Home" %}
 
@@ -46,9 +46,11 @@
            
           </ul>
           <div class="govuk-tabs__panel" id="nitrogen">
-      
+        
             <table class="govuk-table govuk-table--small-text-until-tablet govuk-!-margin-top-1">
               <caption class="govuk-table__caption govuk-table__caption--m">Data capture between 1 January to 31 December 2023</caption>
+
+              
              
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
@@ -276,6 +278,10 @@
     
       </div>
     </div>
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-3">Data is verified up until 1 July  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+      2024
+       </div></h3>
 
     {{ govukButton({
       text: "Continue",
