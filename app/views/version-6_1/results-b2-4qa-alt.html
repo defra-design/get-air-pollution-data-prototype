@@ -39,7 +39,7 @@
           </div>
     
       </form>
-      <p class="govuk-body govuk-!-margin-top-3">5 results within the Automatic Urban and Rural network</p>
+
     </div>
 </div>
 </div>
@@ -48,25 +48,21 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-  
-
-    {{ govukButton({
-      text: "Continue with selected monitoring stations",
-      classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-3",
-      href: "select-a-time-period.html"
-      }) }}
-
-      
             <ul class="moj-sub-navigation__list">
               <li class="moj-sub-navigation__item" style="font-size: 16px;">
-                <a class="moj-sub-navigation__link"><!-- Automatic Urban and Rural (8) --></a>
+                <a class="moj-sub-navigation__link" aria-current="page" href="#1">All (13)</a>
               </li>
-              
+              <li class="moj-sub-navigation__item" style="font-size: 16px;">
+                <a class="moj-sub-navigation__link" href="">Automatic Urban and Rural (8)</a>
+              </li>
+              <li class="moj-sub-navigation__item" style="font-size: 16px;">
+                <a class="moj-sub-navigation__link" href="#2">Locally managed automatic monitoring (5)</a>
+              </li>
+            <!--   <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">UK Urban NO2 (298)</a>
+              </li> -->
           
             </ul>
-
-           
-
             <div class="moj-scrollable-pane">
             <table class="govuk-table" data-module="moj-multi-select" data-multi-select-checkbox="#select-all">
               <thead class="govuk-table__head">
@@ -90,9 +86,9 @@
                     </div>
                   </td>
                   <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link .ms-table-sub-header">Birmingham A4540 Roadside</a></strong>
-                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">1.1 miles away east</span>
+                    <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.1 miles away east</span>
                    
-                    
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Automatic Urban and Rural</span>
               
                     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
                       Active
@@ -121,8 +117,8 @@
                   </td>
                   </td>
                   <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link">Birmingham Ladywood</a></strong>
-                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">1.2 miles away west</span>
-        
+                    <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">1.2 miles away west</span>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Automatic Urban and Rural</span>
                     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
                       Active
                     </strong>
@@ -152,8 +148,8 @@
                     </div>
                   </td>
                   <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
-                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">2.3 miles away north-west</span>
-           
+                    <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.3 miles away north-west</span>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Automatic Urban and Rural</span>
                     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
                       Active
                     </strong>
@@ -179,8 +175,8 @@
                     </div>
                   </td>
                   <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
-                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">2.5 miles away north-west</span>
-              
+                    <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">2.5 miles away north-west</span>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Automatic Urban and Rural</span>
                     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
                       Active
                     </strong>
@@ -206,8 +202,8 @@
                   </td>
                 
                   <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Airport 2</a></strong>
-                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">3.2 miles away east</span>
-     
+                    <span style="font-weight: normal; display: block; margin-top: 2px; font-size: 16px;">3.2 miles away east</span>
+                    <span style="font-weight: normal; display: block; margin-top: 4px; font-size: 16px; color:#505a5f">Locally managed automatic monitoring</span>
                     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
                       Active
                     </strong>
@@ -237,11 +233,51 @@
           </div>
 
 
-         
+          <nav class="govuk-pagination pagination-margin" aria-label="Pagination">
+     
+            <ul class="govuk-pagination__list">
+              
+              
+              <li class="govuk-pagination__item govuk-pagination__item--current">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 6">
+                  1
+                </a>
+              </li>
+              <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 7" aria-current="page">
+                  2
+                </a>
+              </li>
+              <li class="govuk-pagination__item">
+                <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 8">
+                  3
+                </a>
+              </li>
+              
+            </ul>
+            <div class="govuk-pagination__next">
+              <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                <span class="govuk-pagination__link-title">
+                  Next<span class="govuk-visually-hidden"> page</span>
+                </span>
+                <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                  <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg>
+              </a>
+            </div>
+          </nav>
        
       
-
-
+      
+            <div class="govuk-button-group">
+              {{ govukButton({
+                text: "Continue with selected monitoring stations",
+                classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
+                href: "select-a-time-period.html"
+                }) }}
+        
+               <a class="govuk-link" href="#">Show all monitoring stations</a>
+              </div>
          
  
 
