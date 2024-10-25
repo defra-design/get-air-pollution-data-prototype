@@ -1,0 +1,126 @@
+{% extends "layouts/v6.html" %}
+
+{% set pageName="Check your answers" %}
+
+{% block beforeContent %}
+<a href="stations-overview.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+
+
+        <h1 class="govuk-heading-l">Download files for 4 stations</h1>
+        
+       <!--  <h3 class="govuk-heading-s govuk-!-margin-bottom-7">Data is verified until 1 July  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+          2024
+           </div></h3> -->
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Hourly data</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">File</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Size</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Download CSV</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">All pollutants</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">532kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download all pollutants</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Nitrogen dioxide</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">372kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download nitrogen dioxide</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">PM10</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">372kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download PM10</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">PM2.5</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">372kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download PM2.5</a></td>
+            </tr>
+         
+          </tbody>
+        </table>
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Daily average data</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">File</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Size</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Download</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">All pollutants</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">532kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download all pollutants</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Nitrogen dioxide</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">372kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download nitrogen dioxide</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">PM10</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">372kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download PM10</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">PM2.5</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">372kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download PM2.5</a></td>
+            </tr>
+         
+          </tbody>
+        </table>
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Annual average data</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">File</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Size</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Download</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">All pollutants</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">532kb</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href="" class="govuk-link">Download all pollutants</a></td>
+            </tr>
+          
+         
+          </tbody>
+        </table>
+
+       <h2 class="govuk-heading-m govuk-!-margin-top-9">Download more data</h2>
+        <p class="govuk-body"><a href="" class="govuk-link">Find more air pollution data</a></p>
+
+       
+       <!--  <form action="/form-handler" method="post" novalidate>
+          <input type="hidden" name="answers-checked" value="true">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Download CSV files
+          </button>
+        </form> -->
+      </div>
+    </div>
+  </main>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}
