@@ -14,7 +14,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Air pollution levels in 2023: nitrogen dioxide</h1>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Air pollution levels in 2023: ozone</h1>
     <p class="govuk-body govuk-!-margin-bottom-6">1 January to 31 December at Birmingham A4540 Roadside
     </p>
 
@@ -64,18 +64,19 @@
         <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
           <a class="gem-c-contents-list__link govuk-link" href="overview.html">Overview</a>
         </li>
-         <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active" aria-current="true">
-          <strong>Nitrogen dioxide</strong>
-         </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+          <a class="gem-c-contents-list__link govuk-link" href="nitrogen.html">Nitrogen dioxide</a>
+        </li>
            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
              <a class="gem-c-contents-list__link govuk-link" href="pm10.html">PM10</a>
            </li>
            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
             <a class="gem-c-contents-list__link govuk-link" href="pm2_5.html">PM2.5</a>
           </li>
-          <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-            <a class="gem-c-contents-list__link govuk-link" href="ozone.html">Ozone</a>
-          </li>
+          
+          <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active" aria-current="true">
+            <strong>Ozone</strong>
+           </li>
           
        </ol>
      </nav>
@@ -90,26 +91,26 @@
         <dt class="defra-aq-features-pollutants__key govuk-caption-m">
           Annual average
            </dt>
-        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information annual average thresholds" data-toggletip-content="The UK threshold for nitrogen dioxide is 40 micrograms per cubic metre (µg/m3). This means that average nitrogen dioxide levels at any site must not exceed 40 µg/m3 in a calendar year.">
-          30 µg/m3
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information annual average thresholds" data-toggletip-content="There is not an annual average limit for Ozone.">
+          66 µg/m3
            </div></dd>
-        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
+       <!--  <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
           <strong class="govuk-tag govuk-tag--green">
-            Below threshold
+            Below limit
           </strong>
-        </dd>
+        </dd> -->
    
       </div>
       <div class="defra-aq-features-pollutants__item" style="width: 30%">
         <dt class="defra-aq-features-pollutants__key govuk-caption-m">
           Daily exceedances
            </dt>
-        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 18 daily exceedances over 200 micrograms per cubic metre (µg/m3) for nitrogen dioxide in a calendar year.">
-          0
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 25 daily exceedances over 120 micrograms per cubic metre (µg/m3) for ozone in a calendar year, averaged over 3 years.">
+          5
            </div></dd>
         <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
           <strong class="govuk-tag govuk-tag--green">
-            Below threshold
+            Below limit
           </strong>
         </dd>
       <!--   <dd class="defra-aq-features__value govuk-body" style="margin-top: 10px;">No more than 40 μg/m3 on average in a calendar year</dd>
@@ -117,30 +118,30 @@
       </div>
       <div class="defra-aq-features-pollutants__item" style="width: 20%">
         <dt class="defra-aq-features-pollutants__key govuk-caption-m">Data capture</dt>
-        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;">99%</dd>
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;">97%</dd>
       </div>
       <div class="defra-aq-features-pollutants__item" style="width: 20%">
   
         <dt class="defra-aq-features-pollutants__key govuk-caption-m">Instrument type</dt>
         <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;">
          
-           BAM 1020
+          BAM 1020
             
           </dd>
        
       </div>
       </dl>
 
-  <h2 class="govuk-heading-m govuk-!-margin-top-6">Daily average</h2>
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Daily 8 hour average</h2>
         <div class="graph-container">
-          <div id="chart-container"></div>
+          <div id="ozone-container"></div>
         </div>
           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
             <span class="aq-button-secondary__icon">
               <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
             </span>
             <span class="aq-button-secondary__text">
-              Download daily average data CSV (126KB)</span>
+              Download daily 8 hour average data CSV (126KB)</span>
               <span class="govuk-visually-hidden">
               (Visual only)
             </span>
@@ -159,7 +160,7 @@
 
       <nav class="govuk-pagination govuk-pagination--block govuk-!-margin-top-6" aria-label="Pagination">
         <div class="govuk-pagination__prev">
-          <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+          <a class="govuk-link govuk-pagination__link" href="pm2_5.html" rel="prev">
             <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
               <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
             </svg>
@@ -167,27 +168,16 @@
               Previous<span class="govuk-visually-hidden"> page</span>
             </span>
             <span class="govuk-visually-hidden">:</span>
-            <span class="govuk-pagination__link-label">Overview</span>
+            <span class="govuk-pagination__link-label">PM2.5</span>
           </a>
         </div>
-        <div class="govuk-pagination__next">
-          <a class="govuk-link govuk-pagination__link" href="pm10.html" rel="next">
-            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
-              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
-            </svg>
-            <span class="govuk-pagination__link-title">
-              Next<span class="govuk-visually-hidden"> page</span>
-            </span>
-            <span class="govuk-visually-hidden">:</span>
-            <span class="govuk-pagination__link-label">PM10</span>
-          </a>
-        </div>
+       
       </nav>
-      <div class="govuk-divider"></div>
+      <!-- <div class="govuk-divider"></div>
       {{ govukButton({
-        text: "Download data for this station",
+        text: "Download customised data for this station",
         href: ""
-      }) }}
+      }) }} -->
    </div>
  </div>
 

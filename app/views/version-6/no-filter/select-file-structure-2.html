@@ -3,7 +3,7 @@
 {% set pageName="Home" %}
 
 {% block beforeContent %}
-<a href="select-a-data-format.html" class="govuk-back-link">Back</a>
+<a href="select-file-structure.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
       <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-           Select the organisation of your download
+           Select the structure of your CSV file
           </h1>
         </legend>
         <div id="contact-hint" class="govuk-hint">
@@ -25,14 +25,21 @@
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="text" >
             <label class="govuk-label govuk-radios__label" for="contact-2">
-              One file for all the pollutants you selected
+              Wide
             </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Content describing a wide file structure
+              <br>Standard (as on UK AIR)
+            </div>
           </div>
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" >
             <label class="govuk-label govuk-radios__label" for="contact-3">
-              Separate files for each pollutant you selected
+              Long
             </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Content describing a long file structure
+            </div>
           </div>
         </div>
       </fieldset>
@@ -56,7 +63,7 @@
     </div> -->
     {{ govukButton({
       text: "Continue",
-      href: "select-file-structure-2.html"
+      href: "select-metadata.html"
     }) }}
       </div>
     </div>
