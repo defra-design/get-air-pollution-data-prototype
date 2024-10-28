@@ -1,0 +1,139 @@
+{% extends "layouts/v6.html" %}
+
+{% set pageName="Check your answers" %}
+
+{% block beforeContent %}
+<a href="select-a-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full-from-desktop">
+
+
+        <h1 class="govuk-heading-l">Download files</h1>
+        <p class="govuk-body">1 January to 31 December 2023 at Birmingham A4540 Roadside </p>
+        
+       <!--  <h3 class="govuk-heading-s govuk-!-margin-bottom-7">Data is verified until 1 July  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+          2024
+           </div></h3> -->
+           <h2 class="govuk-heading-m govuk-!-margin-bottom-1">All pollutants</h2>
+          
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download annual average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+
+           <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-1">Nitrogen dioxide</h2>
+           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+
+           <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-1">PM10</h2>
+           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+
+           <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-1">PM2.5</h2>
+           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+
+  
+
+       <h2 class="govuk-heading-m govuk-!-margin-top-9">Download more data</h2>
+        <p class="govuk-body"><a href="" class="govuk-link">Find more air pollution data</a></p>
+
+       
+       <!--  <form action="/form-handler" method="post" novalidate>
+          <input type="hidden" name="answers-checked" value="true">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Download CSV files
+          </button>
+        </form> -->
+      </div>
+    </div>
+  </main>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}

@@ -4,13 +4,13 @@
 
 
 {% block beforeContent %}
-<!-- <a href="hub.html" class="govuk-back-link">Back</a> -->
+<a href="hub.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-three-quarters">
+  <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Find monitoring stations by location</h1>
 
@@ -21,30 +21,48 @@
 
   
 
-    <div class="moj-search govuk-!-margin-bottom-4">
+   <div class="govuk-form-group">
+    <label class="govuk-label" for="address-line-1">
+      Search by town or postcode
+    </label>
+    <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+  </div>
 
-      <form action="#" method="post">
-    
-        <div class="govuk-form-group" style="display: inline-block;">
-
-          <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
-            Search by station name, place, local authority, postcode or grid reference
+    <div class="govuk-form-group govuk-!-margin-top-3">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <legend class="govuk-fieldset__legend">
+            Approximate search area
+          </legend>
+        </legend>
+        <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month" checked>
+            <label class="govuk-label govuk-radios__label" for="changedName">
+              5 miles
+            </label>
           </div>
-          
- 
-          <input class="govuk-input moj-search__input " id="search" name="search" type="search"  aria-describedby="search-hint">
-    
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName-2" name="changedName" type="radio" value="year">
+            <label class="govuk-label govuk-radios__label" for="changedName-2">
+              25 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName-2" name="changedName" type="radio" value="year">
+            <label class="govuk-label govuk-radios__label" for="changedName-2">
+              50 miles
+            </label>
+          </div>
         </div>
-      <div class="defra-search__submit-container">
-        <button type="submit" class="defra-search__button"  data-module="govuk-button">
-          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><rect x="0" y="0" width="50" height="50" style="fill:none;"></rect><path d="M12.316,14.791c-1.242,0.79 -2.716,1.248 -4.296,1.248c-4.426,0 -8.02,-3.593 -8.02,-8.019c0,-4.426 3.594,-8.02 8.02,-8.02c4.426,0 8.019,3.594 8.019,8.02c0,1.58 -0.458,3.054 -1.248,4.296l5.209,5.209l-2.475,2.475l-5.209,-5.209Zm-4.296,-12.771c3.311,0 6,2.688 6,6c0,3.311 -2.689,6 -6,6c-3.312,0 -6,-2.689 -6,-6c0,-3.312 2.688,-6 6,-6Z" style="fill:white;"></path></svg>
-          <span class="govuk-visually-hidden">Search</span>
-        </button>
-        </div>
-      </form>
-      
+      </fieldset>
+     
     </div>
-  
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
+      href: "results-b2-4qa.html"
+      }) }}
   </div>
     
 </div>

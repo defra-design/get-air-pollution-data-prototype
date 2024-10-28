@@ -1,0 +1,67 @@
+{% extends "layouts/v6.html" %}
+
+{% set pageName="Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="../hub.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Find local authorities</h1>
+
+    <!-- <div class="govuk-inset-text">
+      Available monitoring stations are from the Automatic Urban and Rural network.
+     </div> -->
+   <!--  <p class="govuk-body">View and download air pollution data from one or more monitoring stations.</p> -->
+
+   <label class="govuk-label">
+    Enter a local authority
+  </label>
+   <div id="autocomplete-container" class="govuk-body"></div>
+
+   <div class="govuk-form-group govuk-!-margin-top-6">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <legend class="govuk-fieldset__legend">
+          Select monitoring network
+        </legend>
+      </legend>
+      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc" checked>
+          <label class="govuk-label govuk-checkboxes__label" for="organisation">
+            Automatic Urban and Rural network
+          </label>
+        </div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+          <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+            Locally managed automatic monitoring network
+          </label>
+        </div>
+      </div>
+    </fieldset>
+   
+  </div>
+
+ 
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
+      href: "select-a-time-period.html"
+      }) }}
+  </div>
+    
+</div>
+
+    
+
+      </div>
+</div>
+
+{% endblock %}

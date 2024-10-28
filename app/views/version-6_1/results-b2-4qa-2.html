@@ -1,0 +1,227 @@
+{% extends "layouts/v6.html" %}
+
+{% set pageName="Get air pollution data - GOV.UK" %}
+
+{% block beforeContent %}
+<a href="search.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Monitoring stations within 50 miles of B2 4QA
+    </h1>
+    <div class="moj-search govuk-!-margin-bottom-8">
+
+      <form action="#" method="post">
+    
+        <div class="govuk-form-group" style="display: inline-block;">
+
+          <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
+            Search by station name, place, local authority, postcode or grid reference
+          </div>
+          
+    
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search" value="B2 4QA" aria-describedby="search-hint">
+    
+        </div>
+    
+        <div class="defra-search__submit-container">
+          <button type="submit" class="defra-search__button"  data-module="govuk-button">
+            <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><rect x="0" y="0" width="50" height="50" style="fill:none;"></rect><path d="M12.316,14.791c-1.242,0.79 -2.716,1.248 -4.296,1.248c-4.426,0 -8.02,-3.593 -8.02,-8.019c0,-4.426 3.594,-8.02 8.02,-8.02c4.426,0 8.019,3.594 8.019,8.02c0,1.58 -0.458,3.054 -1.248,4.296l5.209,5.209l-2.475,2.475l-5.209,-5.209Zm-4.296,-12.771c3.311,0 6,2.688 6,6c0,3.311 -2.689,6 -6,6c-3.312,0 -6,-2.689 -6,-6c0,-3.312 2.688,-6 6,-6Z" style="fill:white;"></path></svg>
+            <span class="govuk-visually-hidden">Search</span>
+          </button>
+          </div>
+    
+      </form>
+      <p class="govuk-body govuk-!-margin-top-3">4 results within the Automatic Urban and Rural network</p>
+    </div>
+</div>
+</div>
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+  
+
+    {{ govukButton({
+      text: "Continue with selected monitoring stations",
+      classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-3",
+      href: "select-a-time-period.html"
+      }) }}
+
+      
+            <ul class="moj-sub-navigation__list">
+              <li class="moj-sub-navigation__item" style="font-size: 16px;">
+                <a class="moj-sub-navigation__link"><!-- Automatic Urban and Rural (8) --></a>
+              </li>
+              
+          
+            </ul>
+
+           
+
+            <div class="moj-scrollable-pane">
+            <table class="govuk-table" data-module="moj-multi-select" data-multi-select-checkbox="#select-all">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row" style="font-size: 16px;">
+                  <th class="govuk-table__header" scope="col" id="select-all"></th>
+                  <th class="govuk-table__header" scope="col" style="vertical-align: middle;">Monitoring station</th>
+                  <th class="govuk-table__header" scope="col" style="vertical-align: middle;">Site type</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="vertical-align: middle;">Pollutants</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="vertical-align: middle;">Years available</th>
+    
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body"  style="font-size: 16px;">
+                <tr class="govuk-table__row govuk-table__row--selected">
+                  <td class="govuk-table__cell">
+                    <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+                      <input type="checkbox" class="govuk-checkboxes__input" id="mountain-aconcagua">
+                      <label class="govuk-label govuk-checkboxes__label" for="mountain-aconcagua">
+                        <span class="govuk-visually-hidden">Select Aconcagua</span>
+                      </label>
+                    </div>
+                  </td>
+                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link .ms-table-sub-header">Birmingham A4540 Roadside</a></strong>
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">1.1 miles away east</span>
+                   
+                    
+              
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+            
+                  </th>
+  
+                  <td class="govuk-table__cell">
+                    urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide, PM10, PM2.5, ozone</td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
+                
+       
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+                      <input type="checkbox" class="govuk-checkboxes__input" id="mountain-denali" value="denali">
+                      <label class="govuk-label govuk-checkboxes__label" for="mountain-denali">
+                        <span class="govuk-visually-hidden">Select Denali</span>
+                      </label>
+                    </div>
+                  </td>
+                  </td>
+                  <th scope="row" class="govuk-table__header"><strong><a href="" class="govuk-link">Birmingham Ladywood</a></strong>
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">1.2 miles away west</span>
+        
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+                  </th>
+  
+                 
+  
+                  <td class="govuk-table__cell">
+                    urban background
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM10, PM2.5<br>ozone<br>nitrogen dioxide, sulphur dioxide
+                    
+                  </td>
+
+                  <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024<br>2019 to 2024<br>2020 to 2024
+                    
+                  </td>
+                </tr>
+               
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+                      <input type="checkbox" class="govuk-checkboxes__input" id="mountain-elbrus" value="elbrus">
+                      <label class="govuk-label govuk-checkboxes__label" for="mountain-elbrus">
+                        <span class="govuk-visually-hidden">Select Elbrus</span>
+                      </label>
+                    </div>
+                  </td>
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">2.3 miles away north-west</span>
+           
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+                  </th>
+  
+               
+  
+                  <td class="govuk-table__cell">
+                    urban background
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>ozone</td>
+
+                  <td class="govuk-table__cell govuk-table__cell--numeric">2019 to 2024<br>2023 to 2024</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+                      <input type="checkbox" class="govuk-checkboxes__input" id="mountain-everest" value="everest">
+                      <label class="govuk-label govuk-checkboxes__label" for="mountain-everest">
+                        <span class="govuk-visually-hidden">Select Everest</span>
+                      </label>
+                    </div>
+                  </td>
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">2.5 miles away north-west</span>
+              
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+                  </th>
+  
+              
+  
+                  <td class="govuk-table__cell">
+                    urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td>
+                </tr>
+                
+                
+              </tbody>
+            </table>
+            <!-- moj scroll -->
+            
+      
+     
+          </div>
+
+
+         
+       
+      
+
+
+         
+ 
+
+      
+      
+     
+  
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

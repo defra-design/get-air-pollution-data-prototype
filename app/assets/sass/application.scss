@@ -32,7 +32,9 @@
     @import "version-6/other/fixes";
 
     // Settings
-    @import "version-6/settings.scss";
+    @import "version-6/settings";
+
+    @import "version-6/components/autocomplete";
 
   }
 

@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="results-b2-4qa.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Select monitoring stations within 50 miles of B2 4QA
+          </h1>
+        </legend>
+
+       <!--  <div class="govuk-inset-text" style="border-left: 10px solid #00703c; background-color:#cce2d8;">
+          All data available for selected time period
+        </div> -->
+        <div id="waste-hint" class="govuk-hint">
+      
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-5" name="waste" type="checkbox" value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-5">
+              Select all
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
+              Birmingham A4540 Roadside
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">1.1 miles away east</span>
+              
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+            </label>
+          </div>
+        
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              Birmingham Ladywood
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">1.2 miles away west</span>
+            
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="farm">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-4">
+              West Bromwich Kenrick Park
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">2.3 miles away north-west</span>
+                 
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+              Oldbury Birmingham Road
+                    <span style="font-weight: normal; display: block; margin: 5px 0 5px 0; font-size: 16px;">2.5 miles away north-west</span>
+              
+                    <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
+                      Active
+                    </strong>
+            </label>
+          </div>
+          
+        </div>
+      </fieldset>
+    </div>
+
+    
+
+
+    {{ govukButton({
+      text: "Continue",
+      href: "select-a-time-period.html",
+      classes: "govuk-!-margin-top-3"
+    }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}
