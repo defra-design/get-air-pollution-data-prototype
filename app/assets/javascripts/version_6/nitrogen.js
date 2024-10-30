@@ -289,8 +289,8 @@ tooltip.html(`<strong style="font-size:22px;">${d.population === 0 ? 'No data' :
 // As you add more content to page, you need to adjust the pixels here to make sure the tooltip is in the right place.
   // Adjust tooltip position based on window width
    if (window.innerWidth >= 1800) {
-    tooltip.style("left", `${xCoord - (tooltipWidth - 670)}px`)
-           .style("top", `${yCoord + 720}px`);
+    tooltip.style("left", `${xCoord - (tooltipWidth - 620)}px`)
+           .style("top", `${yCoord + 1640}px`);
   } else if (window.innerWidth >= 1400){
     tooltip.style("left", `${xCoord - (tooltipWidth - 400)}px`)
            .style("top", `${yCoord + 460}px`);
