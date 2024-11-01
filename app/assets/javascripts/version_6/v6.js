@@ -31,3 +31,12 @@ document.addEventListener("DOMContentLoaded", function() {
 $(document).ready(function() {
   $(window).scrollTop(0); // Scroll to the top of the page
 });
+
+// Add a click event listener to the nitrogen button
+/* $(document).ready(function() {
+  $("#nitrogen").click(function() {
+      $("#chart-container").css("display", "block");
+      console.log('something');
+  });
+});
+ */

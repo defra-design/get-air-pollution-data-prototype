@@ -46,7 +46,7 @@ const svg = d3.select("#pm10-container")
 
 
 // Load and process the data
-d3.csv("/public/javascripts/chart-data/pm10.csv").then(function (data) {
+d3.csv("/public/javascripts/chart-data/pm10-exceeded.csv").then(function (data) {
   // Parse the date and convert the population to a number
   const parseDate = d3.timeParse("%d-%m-%Y");
   data.forEach(d => {
@@ -145,20 +145,6 @@ svg.append("line")
   .attr("stroke-width", 3) // Thin line
   .attr("opacity", 1); // Adjust the opacity as needed
 
-// Create a group element to hold the text label and background
-const labelGroup = svg.append("g")
-  .attr("class", "exceedance-label")
-  .style("display", "block"); // Initially display the label
-
-// Add a foreignObject to act as the container for HTML content
-labelGroup.append("foreignObject")
-  .attr("x", width / 2 - 140) // Center the container horizontally
-  .attr("y", y(50000) - 65) // Position it slightly above the line
-  .attr("width", 260) // Width of the container
-  .attr("height", 80) // Height of the container
-  .append("xhtml:div") // Append a div inside the foreignObject
-  .attr("class", "exceedance-label-container") // Apply CSS class for styling
-  .html("Exceedance over 50 µg/m3"); // Set the text inside the div
 
 
     // Set up the area generator
@@ -197,6 +183,20 @@ const verticalLine = svg.append("line")
 .attr("stroke", "#000000")
 .attr("stroke-width", 0.5); // Start with the line hidden
 
+// Create a group element to hold the text label and background
+const labelGroup = svg.append("g")
+  .attr("class", "exceedance-label")
+  .style("display", "block"); // Initially display the label
+
+// Add a foreignObject to act as the container for HTML content
+labelGroup.append("foreignObject")
+  .attr("x", width / 2 - 140) // Center the container horizontally
+  .attr("y", y(50000) - 65) // Position it slightly above the line
+  .attr("width", 260) // Width of the container
+  .attr("height", 80) // Height of the container
+  .append("xhtml:div") // Append a div inside the foreignObject
+  .attr("class", "exceedance-label-container") // Apply CSS class for styling
+  .html("Exceedance over 50 µg/m3"); // Set the text inside the div
 
 
 // create tooltip
@@ -289,7 +289,7 @@ tooltip.html(`<strong style="font-size:22px;">${d.population === 0 ? 'No data' :
 // As you add more content to page, you need to adjust the pixels here to make sure the tooltip is in the right place.
   // Adjust tooltip position based on window width
    if (window.innerWidth >= 1800) {
-    tooltip.style("left", `${xCoord - (tooltipWidth - 670)}px`)
+    tooltip.style("left", `${xCoord - (tooltipWidth - 600)}px`)
            .style("top", `${yCoord + 720}px`);
   } else if (window.innerWidth >= 1400){
     tooltip.style("left", `${xCoord - (tooltipWidth - 400)}px`)
