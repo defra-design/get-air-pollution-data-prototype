@@ -293,23 +293,19 @@ tooltip.html(`<strong style="font-size:22px;">${d.population === 0 ? 'No data' :
            .style("top", `${yCoord + 540}px`);
   } else if (window.innerWidth >= 1400){
     tooltip.style("left", `${xCoord - (tooltipWidth - 400)}px`)
-           .style("top", `${yCoord + 460}px`);
+           .style("top", `${yCoord + 560}px`);
   } 
   else if (window.innerWidth >= 1200){
     tooltip.style("left", `${xCoord - (tooltipWidth - 300)}px`)
-           .style("top", `${yCoord + 360}px`);
+           .style("top", `${yCoord + 560}px`);
   } 
   else if (window.innerWidth >= 900){
     tooltip.style("left", `${xCoord - (tooltipWidth - 200)}px`)
-           .style("top", `${yCoord + 360}px`);
-  }
-   else if (window.innerWidth >= 900){
-    tooltip.style("left", `${xCoord - (tooltipWidth - 120)}px`)
-           .style("top", `${yCoord + 60}px`);
+           .style("top", `${yCoord + 560}px`);
   }
   else if (window.innerWidth >= 200){
     tooltip.style("left", `${xCoord - (tooltipWidth - 120)}px`)
-           .style("top", `${yCoord + 60}px`);
+           .style("top", `${yCoord + 600}px`);
   }
   
 });
