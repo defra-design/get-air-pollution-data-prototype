@@ -8,6 +8,16 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% set version = "version-6" %}
 {% set bodyClasses = "version-6" %}
 
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/version-6_1/hub.html",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+
 
 {% block scripts %}
   {{ super() }}
