@@ -61,4 +61,24 @@
 
 }
 
+.version-7 {
+
+  // Components
+  @import "version-7/components/aq-buttons";
+  @import "version-7/components/aq-charts";
+  @import "version-7/components/aq-features";
+  @import "version-7/components/aq-levels-list";
+  @import "version-7/components/status";
+
+  
+  // Other
+  @import "version-7/other/fixes";
+
+  // Settings
+  @import "version-7/settings";
+
+  @import "version-7/components/autocomplete";
+
+}
+
   
