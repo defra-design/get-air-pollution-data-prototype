@@ -14,16 +14,20 @@
     <div class="govuk-divider"></div>
 
 
-  
+   <!--  <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+      Find monitoring stations
+    </h2> -->
     
-    <div class="moj-search govuk-!-margin-bottom-3">
+    <p class="govuk-body">View and download air pollution data from monitoring stations.</p>
+    
+  <!--   <div class="moj-search govuk-!-margin-bottom-3">
 
       <form action="#" method="post">
     
         <div class="govuk-form-group" style="display: inline-block;">
 
           <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
-            Search by town, postcode or local authority
+            Search by station, town, postcode or local authority
           </div>
           
     
@@ -40,8 +44,31 @@
     
       </form>
 
+    </div> -->
+    <div class="moj-search govuk-!-margin-bottom-3">
+
+      <form action="#" method="post">
+    
+        <div class="govuk-form-group">
+       
+    
+          <div id="search-hint" class="govuk-body govuk-!-margin-bottom-2">
+            Search by town, postcode or local authority
+          </div>
+    
+          <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+    
+        </div>
+    
+        <button type="submit" class="govuk-button moj-search__button " data-module="govuk-button">
+          Search
+        </button>
+    
+      </form>
     </div>
-    <a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
+    
+  
+    <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
       <span class="aq-button-secondary__icon">
         <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
         </svg>
@@ -52,18 +79,19 @@
         (Visual only)
       </span>
     </a>
- 
-   
+ <!-- 
+    <div class="govuk-divider"></div>
 
-   <!--  <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
       Create a custom search query for data
     </h2>
 
     
     <p class="govuk-body">Download air pollution data for any network, pollutant and country available.</p>
     
-    <a href="/version-6_1/la/search.html" class="govuk-body govuk-link">Create a custom search query</a>
-   -->
+    <a href="/version-6_1/la/search.html" class="govuk-body govuk-link">Create a custom search query</a> -->
+  
     
 
 

@@ -1,4 +1,4 @@
-{% extends "layouts/mvp.html" %}
+{% extends "layouts/v6.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
 
@@ -299,49 +299,48 @@
 
          
         
-        <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-6">Download data for 2023</h2>
+        <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-3">View and download data for 2023</h2>
 
            <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-           <h2 class="govuk-heading-m">Nitrogen dioxide</h2>
-           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-            </span>
-            <span class="aq-button-secondary__text">
-              Download hourly data CSV (626KB)</span>
-              <span class="govuk-visually-hidden">
-              (Visual only)
-            </span>
-          </a>
-          <br>
-          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-            </span>
-            <span class="aq-button-secondary__text">
-              Download daily average data CSV (326KB)</span>
-              <span class="govuk-visually-hidden">
-              (Visual only)
-            </span>
-          </a>
-          <br>
-          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-            </span>
-            <span class="aq-button-secondary__text">
-              Download annual average data CSV (126KB)</span>
-              <span class="govuk-visually-hidden">
-              (Visual only)
-            </span>
-          </a>
+              <div class="govuk-tabs govuk-!-margin-bottom-0 govuk-!-margin-top-5" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                  Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    <a class="govuk-tabs__tab" href="#allpollutants">
+                      All pollutants
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item ">
+                    <a class="govuk-tabs__tab" href="#nitrogen">
+                      Nitrogen dioxide
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#pm10">
+                      PM10
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#pm2-5">
+                      PM2.5
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#ozone">
+                      Ozone
+                    </a>
+                  </li>
+                
                  
-               
+                  
                  
-                  <h2 class="govuk-heading-m govuk-!-margin-top-4">PM10</h2>
-           
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                </ul>
+                <div class="govuk-tabs__panel" id="allpollutants">
+                  <h2 class="govuk-heading-m govuk-!-margin-bottom-1">All pollutants</h2>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -352,7 +351,7 @@
                     </span>
                   </a>
                   <br>
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -363,7 +362,87 @@
                     </span>
                   </a>
                   <br>
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download annual average data CSV (126KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+                <!-- </div> -->
+                 
+                </div>
+
+
+                <div class="govuk-tabs__panel" id="nitrogen">
+           
+                
+           <h2 class="govuk-heading-m">Nitrogen dioxide</h2>
+           <p class="govuk-body"><a href="nitrogen-graph.html" class="govuk-link">View a graph of nitrogen dioxide</a></p>
+           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <br>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <br>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download annual average data CSV (126KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+                 
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm10">
+                 
+                  <h2 class="govuk-heading-m">PM10</h2>
+                  <p class="govuk-body"><a href="pm10-graph.html" class="govuk-link">View a graph of PM10</a></p>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download hourly data CSV (626KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+                  <br>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download daily average data CSV (326KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+                  <br>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -374,12 +453,17 @@
                     </span>
                   </a>
 
+                </div>
                 
-              
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm2-5">
                
-                  <h2 class="govuk-heading-m govuk-!-margin-top-4">PM2.5</h2>
-              
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <h2 class="govuk-heading-m">PM2.5</h2>
+                  <p class="govuk-body"><a href="pm2_5-graph.html" class="govuk-link">View a graph of PM2.5</a></p>
+                  <!-- <div class="graph-container">
+                    <div id="pm2_5-container">
+                    </div>
+                  </div> -->
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                    <span class="aq-button-secondary__icon">
                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                    </span>
@@ -390,7 +474,7 @@
                    </span>
                  </a>
                  <br>
-                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                    <span class="aq-button-secondary__icon">
                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                    </span>
@@ -401,7 +485,7 @@
                    </span>
                  </a>
                  <br>
-                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                   <span class="aq-button-secondary__icon">
                     <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                   </span>
@@ -412,11 +496,13 @@
                   </span>
                 </a>
 
-              
+                </div>
+               
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="ozone">
     
-                  <h2 class="govuk-heading-m govuk-!-margin-top-4">Ozone</h2>
-                
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <h2 class="govuk-heading-m">Ozone</h2>
+                  <p class="govuk-body"><a href="ozone-graph.html" class="govuk-link">View a graph of ozone</a></p>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -427,7 +513,7 @@
                     </span>
                   </a>
                   <br>
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -438,7 +524,7 @@
                     </span>
                   </a>
                   <br>
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>

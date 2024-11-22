@@ -1,4 +1,4 @@
-{% extends "layouts/v7.html" %}
+{% extends "layouts/v6.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
 
@@ -50,18 +50,6 @@
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link" href="">2024</a>
         </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="">Last month</a>
-        </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="">Last week</a>
-        </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="">Last 24 hours</a>
-        </li>
       </ul>
     
     </nav>
@@ -93,17 +81,17 @@
 <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Data for this year has been  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
   verified
    </div></h3>
-   <dl class="defra-aq-features-pollutants__list govuk-!-margin-top-0" style="gap: 0px;">
+ <!--   <dl class="defra-aq-features-pollutants__list govuk-!-margin-top-0" style="gap: 0px;">
     <div class="defra-aq-features-pollutants__item" style="width: 30%">
       <dt class="defra-aq-features-pollutants__key govuk-caption-m">
         Annual average
          </dt>
       <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information annual average thresholds" data-toggletip-content="The UK limit for nitrogen dioxide is 40 micrograms per cubic metre (µg/m3). This means that average nitrogen dioxide levels at any site must not exceed 40 µg/m3 in a calendar year.">
-        42 µg/m3
+        30 µg/m3
          </div></dd>
       <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
-        <strong class="govuk-tag govuk-tag--red">
-          Above limit
+        <strong class="govuk-tag govuk-tag--green">
+          Below limit
         </strong>
       </dd>
  
@@ -115,11 +103,11 @@
       <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 18 daily exceedances over 200 micrograms per cubic metre (µg/m3) for nitrogen dioxide in a calendar year.">
         0
          </div></dd>
-      <!-- <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
+      <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
         <strong class="govuk-tag govuk-tag--green">
           Below limit
         </strong>
-      </dd> -->
+      </dd>
   
     </div>
     <div class="defra-aq-features-pollutants__item" style="width: 20%">
@@ -137,7 +125,7 @@
      
     </div>
     </dl>
-
+ -->
    
   <h2 class="govuk-heading-m govuk-!-margin-top-6">Daily average</h2>
         <div class="graph-container">
@@ -147,7 +135,7 @@
 <h2 class="govuk-heading-m govuk-!-margin-top-3 govuk-margin-bottom-1">Download nitrogen dioxide in 2023</h2>
           
          
-          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon   govuk-!-margin-bottom-1">
             <span class="aq-button-secondary__icon">
               <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
             </span>
@@ -158,7 +146,7 @@
             </span>
           </a>
           <br>
-          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon  govuk-!-margin-top-1 govuk-!-margin-bottom-1">
             <span class="aq-button-secondary__icon">
               <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
             </span>
@@ -169,7 +157,7 @@
             </span>
           </a>
           <br>
-          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-1 govuk-!-margin-bottom-1">
             <span class="aq-button-secondary__icon">
               <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
             </span>
