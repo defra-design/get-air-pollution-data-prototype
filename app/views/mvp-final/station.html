@@ -1,10 +1,10 @@
-{% extends "layouts/v7.html" %}
+{% extends "layouts/mvp.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
 
 
 {% block beforeContent %}
-<a href="../results-b2-4qa.html" class="govuk-back-link">Back</a>
+<a href="results-b2-4qa.html" class="govuk-back-link">Back</a>
 <!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
 {% endblock %}
 
@@ -20,40 +20,39 @@
           <strong class="govuk-tag govuk-tag--green" style="margin-top: 0px; padding: 6px 12px 6px 12px;">
             Active
           </strong>
-          <p class="govuk-body govuk-!-margin-top-3" id="status" style="margin-left: 5px; display: inline-block; color: #505a5f;"></p>
+          <p class="govuk-body govuk-!-margin-top-3" style="margin-left: 5px; display: inline-block; color: #505a5f;">Latest at 11:00am on 25 November 2024</p>
 </div>
 </div>
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-              <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+              <a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                 <span class="aq-button-secondary__icon">
                   <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
                   </svg>
                 </span>
-                <span class="aq-button-secondary__text" style="color: #1d70b8;">
-                  View map of nearby monitoring stations</span>
+                <span class="aq-button-secondary__text">
+                  View location on Google Maps</span>
                   <span class="govuk-visually-hidden">
                   (Visual only)
                 </span>
               </a>
             
             <!--   <div class="govuk-divider"></div> -->
-          <dl class="defra-aq-features__list govuk-!-margin-top-3" style="gap: 40px; padding-bottom: 0px;">
+          <dl class="defra-aq-features__list govuk-!-margin-top-3" style="gap: 40px;">
             <div class="defra-aq-features__item" style="width: 35%">
-              <dt class="defra-aq-features__key govuk-caption-m">Monitoring network</dt>
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Automatic Urban and Rural</dd>
+              <dt class="defra-aq-features__key govuk-caption-m" style="font-size: 19px;">Monitoring network</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px; font-size: 22px;">Automatic Urban and Rural</dd>
             </div>
             <div class="defra-aq-features__item" style="width: 40%">
-              <dt class="defra-aq-features__key govuk-caption-m">Local authority</dt>
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Birmingham City Council</dd>
+              <dt class="defra-aq-features__key govuk-caption-m" style="font-size: 19px;">Local authority</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px; font-size: 22px;">Birmingham City Council</dd>
             </div>
             <div class="defra-aq-features__item" style="width: 25%">
-              <dt class="defra-aq-features__key govuk-caption-m">Site type</dt>
-              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">
+              <dt class="defra-aq-features__key govuk-caption-m" style="font-size: 19px;">Site type</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px; font-size: 22px;">
                 <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about urban traffic" data-toggletip-content="This monitoring site is in a city or town close to roads, motorways or highways.">
                   Urban traffic
                   </div>
-                  <p class="govuk-body govuk-!-margin-top-1"><a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" class="govuk-link" target="_blank">View on google maps (opens in a new tab)</a></p>
                 </dd>
              
             </div>
@@ -64,13 +63,43 @@
 
            
           
-      
+         <!--  <dl class="defra-aq-features__list" style="gap: 40px;">
+            
+            <div class="defra-aq-features__item" style="width: 35%">
+              <dt class="defra-aq-features__key govuk-caption-m" style="font-size: 19px;">Surrounding area</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px; font-size: 22px;">Residential
+               </dd>
+            </div>
+            <div class="defra-aq-features__item" style="width: 40%">
+              <dt class="defra-aq-features__key govuk-caption-m" style="font-size: 19px;">
+                <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about sensitive receptors" data-toggletip-content="Sensitive receptors are places where there may be people who are vulnerable to air pollution.">
+                Sensitive receptors nearby
+                </div></dt> 
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px; font-size: 22px;">The Bridge Church <br>(77 metres away)</dd>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px; font-size: 22px;">Bordesley Village Primary School <br>(320 metres away)</dd>
+       
+            </div>
+            <div class="defra-aq-features__item" style="width: 25%">
+              <dt class="defra-aq-features__key govuk-caption-m" style="font-size: 19px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about other features" data-toggletip-content="Features near the site that could affect air pollution.">
+                Other features
+                </div></dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0; font-size: 22px;">Traffic speed camera <br>(2 metres away)</dd>
+              <dd class="defra-aq-features__value govuk-body" style="margin: 5px 0 5px 0; font-size: 22px;">Fuel station <br>(20 metres away)</dd>
+              
+              
+            </div>
+        
+            </dl>
+          
+ -->
+ 
+
 
             
              
 
-          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2" id="p-header">Air pollution levels: past week</h2>
-          <p class="govuk-body govuk-!-margin-bottom-3">23 November to 29 November</p>
+          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution levels in 2023</h2>
+          <p class="govuk-body govuk-!-margin-bottom-3">1 January to 31 December</p>
           <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
 
             <ul class="moj-sub-navigation__list">
@@ -95,23 +124,11 @@
               </li>
       
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="../2023/station.html" >2023</a>
+                <a class="moj-sub-navigation__link" aria-current="page" href="#5">2023</a>
               </li>
       
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="../2024/station.html">2024</a>
-              </li>
-
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="../past-month/station.html">Past month</a>
-              </li>
-
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="" aria-current="page">Past week</a>
-              </li>
-
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="../24hours/station.html">Last 24 hours</a>
+                <a class="moj-sub-navigation__link" href="">2024</a>
               </li>
             </ul>
           
@@ -124,7 +141,7 @@
           <!--   <h2 class="govuk-heading-m govuk-!-margin-top-6">UK annual air quality limits</h2>
             <p class="govuk">Limit values are legally binding levels of pollution that must not be exceeded.</p> -->
 
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Data is not <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Data for this year has been  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
               verified
                </div></h3>
                
@@ -136,11 +153,11 @@
                     <th scope="col" class="govuk-table__header" style="width: 25%;">Pollutant</th>
             
              
-                    <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 30%; padding-right: 0px;">Average</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 30%; padding-right: 0px;">Annual average</th>
             
                     
             
-                    <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 40%;">Daily or hourly exceedances</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 40%;">Daily exceedances</th>
             
                   </tr>
                 </thead>
@@ -163,13 +180,13 @@
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information annual average thresholds" data-toggletip-content="The UK limit for nitrogen dioxide is 40 micrograms per cubic metre (µg/m3). This means that average nitrogen dioxide levels at any site must not exceed 40 µg/m3 in a calendar year.">
                       42 µg/m3
                        </div>
-                      <!-- <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--red">
+                      <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--red">
                         Above limit
-                      </strong></span> -->
+                      </strong></span>
                     </td>
                  
             
-                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about hourly exceedances" data-toggletip-content="There must not be more than 18 hourly exceedances over 200 micrograms per cubic metre (µg/m3) for nitrogen dioxide in a calendar year.">
+                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 18 daily exceedances over 200 micrograms per cubic metre (µg/m3) for nitrogen dioxide in a calendar year.">
                       0
                        </div>
                       <!-- <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--green">
@@ -203,9 +220,9 @@
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 35 daily exceedances over 50 micrograms per cubic metre (µg/m3) for nitrogen dioxide in a calendar year.">
                       40
                        </div>
-                     <!--  <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--red">
+                      <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--red">
                         Above limit
-                      </strong></span> -->
+                      </strong></span>
                      
                     </td>
                  
@@ -232,8 +249,8 @@
                     </td>
             
             
-                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><!-- <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There are no daily exceedance thresholds for PM2.5."> -->
-                      No exceedance limit<!-- </div> -->
+                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There are no daily exceedance thresholds for PM2.5.">
+                      N/A</div>
                      
                     </td>
                   </tr>
@@ -245,9 +262,7 @@
             
                     <th scope="row" class="govuk-table__header pollutant-table-row"><strong>Ozone</strong>
             
-                      <span style="font-weight: normal; display: block; margin-top: 4px; ">Data capture: <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about low data capture" data-toggletip-content="Data capture under 75% is considered to be low.">
-                        71%
-                         </div></span>
+                      <span style="font-weight: normal; display: block; margin-top: 4px; ">Data capture: 71%</span>
                       <span style="font-weight: normal; display: block; margin: 12px 0 12px 0; "><strong class="govuk-tag govuk-tag--red">
                         Low data capture
                       </strong></span>
@@ -256,9 +271,9 @@
                     </th>
             
             
-                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row">
-                      n/a
-                       </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information annual average thresholds" data-toggletip-content="There is not an annual average limit for Ozone.">
+                      66 µg/m3
+                       </div></td>
                     
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 25 daily exceedances over 120 micrograms per cubic metre (µg/m3) for ozone in a calendar year, averaged over 3 years.">
                       5
@@ -279,97 +294,53 @@
             
                 </tbody>
               </table>
-
-              <p class="govuk-body"><a href="/version-7/past-week/nitrogen-graph.html" class="govuk-link">View a graph of pollution levels</a></p>
           
 
 
          
         
-        <h2 class="govuk-heading-l govuk-!-margin-top-3 govuk-!-margin-bottom-3">Download data for the past week</h2>
-
-        <nav aria-label="Pages with more detail on this service" class="gem-c-contents-list  govuk-!-margin-bottom-6" role="navigation">
-         
-          <ol class="gem-c-contents-list__list">
-            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-              <a class="gem-c-contents-list__link govuk-link" href="#all-p">All pollutants</a>
-             </li>
-            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-              <a class="gem-c-contents-list__link govuk-link" href="#no2">Nitrogen dioxide</a>
-            </li>
-              <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-                <a class="gem-c-contents-list__link govuk-link" href="#pm10">PM10</a>
-              </li>
-              <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-               <a class="gem-c-contents-list__link govuk-link" href="#pm2_5">PM2.5</a>
-             </li>
-             <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-               <a class="gem-c-contents-list__link govuk-link" href="#ozone">Ozone</a>
-             </li>
-             
-          </ol>
-        </nav>
-
-        <p class="govuk-body">You can also <a href="" class="govuk-link">select your own time periods</a> to download.</p>
+        <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-3">View and download data for 2023</h2>
 
            <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-              <h2 class="govuk-heading-m" id="all-p">All pollutants</h2>
-              <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
-                <span class="aq-button-secondary__icon">
-                  <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-                </span>
-                <span class="aq-button-secondary__text">
-                  Download hourly data CSV (626KB)</span>
-                  <span class="govuk-visually-hidden">
-                  (Visual only)
-                </span>
-              </a>
-              <br>
-              <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-                <span class="aq-button-secondary__icon">
-                  <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-                </span>
-                <span class="aq-button-secondary__text">
-                  Download daily average data CSV (326KB)</span>
-                  <span class="govuk-visually-hidden">
-                  (Visual only)
-                </span>
-              </a>
-           
-
-
-
-           <h2 class="govuk-heading-m govuk-!-margin-top-4" id="no2">Nitrogen dioxide</h2>
-           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-            </span>
-            <span class="aq-button-secondary__text">
-              Download hourly data CSV (626KB)</span>
-              <span class="govuk-visually-hidden">
-              (Visual only)
-            </span>
-          </a>
-          <br>
-          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-            </span>
-            <span class="aq-button-secondary__text">
-              Download daily average data CSV (326KB)</span>
-              <span class="govuk-visually-hidden">
-              (Visual only)
-            </span>
-          </a>
-          
-
+              <div class="govuk-tabs govuk-!-margin-bottom-0 govuk-!-margin-top-5" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                  Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    <a class="govuk-tabs__tab" href="#allpollutants">
+                      All pollutants
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item ">
+                    <a class="govuk-tabs__tab" href="#nitrogen">
+                      Nitrogen dioxide
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#pm10">
+                      PM10
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#pm2-5">
+                      PM2.5
+                    </a>
+                  </li>
+                  <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#ozone">
+                      Ozone
+                    </a>
+                  </li>
+                
                  
-               
+                  
                  
-                  <h2 class="govuk-heading-m govuk-!-margin-top-4" id="pm10">PM10</h2>
-           
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                </ul>
+                <div class="govuk-tabs__panel" id="allpollutants">
+                  <h2 class="govuk-heading-m govuk-!-margin-bottom-1">All pollutants</h2>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -380,7 +351,7 @@
                     </span>
                   </a>
                   <br>
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -390,14 +361,109 @@
                       (Visual only)
                     </span>
                   </a>
-               
+                  <br>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download annual average data CSV (126KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+                <!-- </div> -->
+                 
+                </div>
 
+
+                <div class="govuk-tabs__panel" id="nitrogen">
+           
                 
-              
+           <h2 class="govuk-heading-m">Nitrogen dioxide</h2>
+           <p class="govuk-body"><a href="nitrogen-graph.html" class="govuk-link">View a graph of nitrogen dioxide</a></p>
+           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <br>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <br>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download annual average data CSV (126KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+                 
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm10">
+                 
+                  <h2 class="govuk-heading-m">PM10</h2>
+                  <p class="govuk-body"><a href="pm10-graph.html" class="govuk-link">View a graph of PM10</a></p>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download hourly data CSV (626KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+                  <br>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download daily average data CSV (326KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+                  <br>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download annual average data CSV (126KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
+
+                </div>
+                
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="pm2-5">
                
-                  <h2 class="govuk-heading-m govuk-!-margin-top-4" id="pm2_5">PM2.5</h2>
-              
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <h2 class="govuk-heading-m">PM2.5</h2>
+                  <p class="govuk-body"><a href="pm2_5-graph.html" class="govuk-link">View a graph of PM2.5</a></p>
+                  <!-- <div class="graph-container">
+                    <div id="pm2_5-container">
+                    </div>
+                  </div> -->
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                    <span class="aq-button-secondary__icon">
                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                    </span>
@@ -408,7 +474,7 @@
                    </span>
                  </a>
                  <br>
-                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                    <span class="aq-button-secondary__icon">
                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                    </span>
@@ -418,13 +484,25 @@
                      (Visual only)
                    </span>
                  </a>
-          
+                 <br>
+                 <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                  <span class="aq-button-secondary__icon">
+                    <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                  </span>
+                  <span class="aq-button-secondary__text">
+                    Download annual average data CSV (126KB)</span>
+                    <span class="govuk-visually-hidden">
+                    (Visual only)
+                  </span>
+                </a>
 
-              
+                </div>
+               
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="ozone">
     
-                  <h2 class="govuk-heading-m govuk-!-margin-top-4" id="ozone">Ozone</h2>
-                
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <h2 class="govuk-heading-m">Ozone</h2>
+                  <p class="govuk-body"><a href="ozone-graph.html" class="govuk-link">View a graph of ozone</a></p>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -435,7 +513,7 @@
                     </span>
                   </a>
                   <br>
-                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
                     <span class="aq-button-secondary__icon">
                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
                     </span>
@@ -445,7 +523,17 @@
                       (Visual only)
                     </span>
                   </a>
-              
+                  <br>
+                  <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-1">
+                    <span class="aq-button-secondary__icon">
+                      <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                    </span>
+                    <span class="aq-button-secondary__text">
+                      Download annual average data CSV (126KB)</span>
+                      <span class="govuk-visually-hidden">
+                      (Visual only)
+                    </span>
+                  </a>
                   
                   
                 </div>

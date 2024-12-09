@@ -1,0 +1,192 @@
+{% extends "layouts/mvp.html" %}
+
+{% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="station.html" class="govuk-back-link">Back</a>
+<!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Ozone in 2023</h1>
+    <p class="govuk-body govuk-!-margin-bottom-6">1 January to 31 December at Birmingham A4540 Roadside
+    </p>
+
+ 
+
+    <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+      <ul class="moj-sub-navigation__list">
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link"  href="#1">2018</a>
+        </li>
+    
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="#2">2019</a>
+        </li>
+    
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="#3">2020</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="#3">2021</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="">2022</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" aria-current="page" href="#5">2023</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="">2024</a>
+        </li>
+      </ul>
+    
+    </nav>
+
+    
+
+    <nav aria-label="Pages with more detail on this service" class="gem-c-contents-list  govuk-!-margin-bottom-3" role="navigation">
+       <h2 class="gem-c-contents-list__title">
+         Contents
+     </h2>
+       <ol class="gem-c-contents-list__list">
+   
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+          <a class="gem-c-contents-list__link govuk-link" href="nitrogen-graph.html">Nitrogen dioxide</a>
+        </li>
+           <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+             <a class="gem-c-contents-list__link govuk-link" href="pm10-graph.html">PM10</a>
+           </li>
+           <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+            <a class="gem-c-contents-list__link govuk-link" href="pm2_5-graph.html">PM2.5</a>
+          </li>
+          
+          <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active" aria-current="true">
+            <strong>Ozone</strong>
+           </li>
+          
+       </ol>
+     </nav>
+
+<div class="govuk-divider"></div>
+<h3 class="govuk-heading-s govuk-!-margin-bottom-0">Data for this year has been  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+  verified
+   </div></h3>
+
+   <!--   <dl class="defra-aq-features-pollutants__list govuk-!-margin-top-0" style="gap: 0px;">
+      <div class="defra-aq-features-pollutants__item" style="width: 30%">
+        <dt class="defra-aq-features-pollutants__key govuk-caption-m">
+          Annual average
+           </dt>
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information annual average thresholds" data-toggletip-content="There is not an annual average limit for Ozone.">
+          66 µg/m3
+           </div></dd>
+      
+   
+      </div>
+      <div class="defra-aq-features-pollutants__item" style="width: 30%">
+        <dt class="defra-aq-features-pollutants__key govuk-caption-m">
+          Daily exceedances
+           </dt>
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 25 daily exceedances over 120 micrograms per cubic metre (µg/m3) for ozone in a calendar year, averaged over 3 years.">
+          5
+           </div></dd>
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
+          <strong class="govuk-tag govuk-tag--green">
+            Below limit
+          </strong>
+        </dd>
+      
+      </div>
+      <div class="defra-aq-features-pollutants__item" style="width: 20%">
+        <dt class="defra-aq-features-pollutants__key govuk-caption-m">Data capture</dt>
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;">97%</dd>
+      </div>
+      <div class="defra-aq-features-pollutants__item" style="width: 20%">
+  
+        <dt class="defra-aq-features-pollutants__key govuk-caption-m">Instrument type</dt>
+        <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;">
+         
+          BAM 1020
+            
+          </dd>
+       
+      </div>
+      </dl> -->
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Daily 8 hour average</h2>
+        <div class="graph-container">
+          <div id="ozone-container"></div>
+        </div>
+        <h2 class="govuk-heading-m govuk-!-margin-top-3 govuk-margin-bottom-1">Download Ozone in 2023</h2>
+          
+          
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon   govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download hourly data CSV (626KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <br>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-1 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download daily 8 hour average data CSV (326KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+          <br>
+          <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-1 govuk-!-margin-bottom-1">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+            </span>
+            <span class="aq-button-secondary__text">
+              Download annual average data CSV (126KB)</span>
+              <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
+       
+
+      <nav class="govuk-pagination govuk-pagination--block govuk-!-margin-top-6" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="pm2_5-graph.html" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">
+              Previous<span class="govuk-visually-hidden"> page</span>
+            </span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">PM2.5</span>
+          </a>
+        </div>
+       
+      </nav>
+      <!-- <div class="govuk-divider"></div>
+      {{ govukButton({
+        text: "Download customised data for this station",
+        href: ""
+      }) }} -->
+   </div>
+ </div>
+
+{% endblock %}
