@@ -1,6 +1,6 @@
 {% extends "layouts/mvp-final.html" %}
 
-{% set pageName="Find monitoring stations by location
+{% set pageName="Error - Find monitoring stations by location
 - Get air pollution data - GOV.UK" %}
 
 
@@ -18,17 +18,29 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#full-name-input">Enter a town or postcode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Find monitoring stations by location</h1>
-
-   <p class="govuk-body govuk-hint">You can only search by postcode for locations in Northern Ireland.</p>
-
-   <div class="govuk-form-group">
-    <label class="govuk-label" for="address-line-1">
-      Enter a town or postcode
-    </label>
-    <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
-  </div>
+    <p class="govuk-body govuk-hint">You can only search by postcode for locations in Northern Ireland.</p>
+    <div class="govuk-form-group govuk-form-group--error">
+      
+      <p id="full-name-input-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter a town or postcode
+      </p>
+      <input class="govuk-input govuk-input--error" id="full-name-input" name="name" type="text" aria-describedby="full-name-input-error" autocomplete="name">
+    </div>
 
     <div class="govuk-form-group govuk-!-margin-top-3">
       <fieldset class="govuk-fieldset">

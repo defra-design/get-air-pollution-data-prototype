@@ -1,0 +1,99 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Locations matching LONDON - Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l govuk-!-margin-top-6">Locations matching 'london'</h1>
+        <p>More than one match was found for your location. Choose the correct location from the following options: </p>
+        <ul class="govuk-list govuk-!-margin-bottom-2 odd-page">
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">City of London</span>, 
+              City and County of the City of London
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">London City Airport</span>, 
+              Newham
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">London Heathrow Airport</span>, 
+              Hillingdon
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">London</span>, 
+              City of Westminster
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">London Apprentice</span>, 
+              Cornwall
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">Little London</span>, 
+              Buckinghamshire
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">Little London</span>, 
+              Leeds
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">Little London</span>, 
+              Wiltshire
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">Little London</span>, 
+              Walsall
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">London Fields</span>, 
+              Dudley
+            </a>
+          </li>
+          <li>
+            <a href="" class="govuk-link">
+            <span class="govuk-!-font-weight-bold">City of London</span>, 
+              City and County of the City of London
+            </a>
+          </li>
+      </ul>
+        <p class="govuk-body govuk-!-margin-top-6">Alternatively, <a href="search.html">try searching again</a></p>
+      </div>
+    </div>
+
+    
+
+      </div>
+</div>
+
+{% endblock %}
