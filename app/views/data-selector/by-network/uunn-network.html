@@ -1,0 +1,79 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="UK Urban NO2 Network - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="find-networks.html" class="govuk-back-link">Back</a>
+<!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+   <!--          <p class="govuk-caption-l">Automatic Urban and Rural network</p> -->
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">UK Urban NO2 Network</h1>   
+         
+
+              <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+                <span class="aq-button-secondary__icon">
+                  <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="aq-button-secondary__text" style="color: #1d70b8;">
+                  View map of monitoring stations in this network</span>
+                  <span class="govuk-visually-hidden">
+                  (Visual only)
+                </span>
+              </a>
+            <p class="govuk-body" style="width: 90%;">The UUNN measures concentrations of NO2 at urban traffic sites. UUNN data assesses compliance with the annual mean NO2 limit value in the Air Quality Standards Regulations (2010).</p>
+
+     <p class="govuk-body"><a href="" class="govuk-link">View more information and guidance on this network</a></p>
+              <div class="govuk-divider"></div>
+          <dl class="defra-aq-features__list govuk-!-margin-top-3" style="gap: 40px;">
+            <div class="defra-aq-features__item" style="width: 35%">
+              <dt class="defra-aq-features__key govuk-caption-m">Managed by</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">Environment Agency</dd>
+            </div>
+            <div class="defra-aq-features__item" style="width: 40%">
+              <dt class="defra-aq-features__key govuk-caption-m">Number of monitoring stations</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">298</dd>
+            </div>
+            <div class="defra-aq-features__item" style="width: 25%">
+              <dt class="defra-aq-features__key govuk-caption-m">Start date</dt>
+              <dd class="defra-aq-features__value govuk-body" style="margin-top: 5px;">
+               
+                 January 2020
+             
+                </dd>
+             
+            </div>
+            </dl>
+
+   
+            <p class="govuk-body"><a href="create-dataset.html" class="govuk-link">Create a custom dataset for this network</a></p>
+            <p class="govuk-body"><a href="" class="govuk-link">Download metadata for monitoring stations on this network</a></p>
+
+           
+          
+      
+
+            
+             
+
+        
+
+        
+
+         
+          </div>
+          </div>
+    </div>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% set version = "version-7" %}
+{% set bodyClasses = "version-7" %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/version-7/search.html",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+
+
+{% block scripts %}
+  {{ super() }}
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+  <script src="/public/javascripts/bundles/autocomplete.bundle.js"></script>
+  <script src="/public/javascripts/version_7/v7.js"></script>
+
+  <!-- Components -->
+  <script src="/public/javascripts/version_7/components/toggletip.js"></script>
+  <script src="/public/javascripts/version_7/components/status.js"></script>
+
+  <!-- Routes -->
+  <script src="/public/javascripts/version_7/routes.js"></script>
+  
+
+    
+
+  
+
+{% endblock %}

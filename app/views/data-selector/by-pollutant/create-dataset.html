@@ -1,0 +1,265 @@
+{% extends "layouts/data-selector.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="../index.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Create a custom dataset
+    </h1>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h2 class="govuk-heading-m">
+            Select a pollutant
+          </h2>
+        </legend>
+        <div id="contact-hint" class="govuk-hint">
+          Select one option
+        </div>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" >
+            <label class="govuk-label govuk-radios__label" for="contact">
+              PM2.5
+            </label>
+          </div>
+       
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" >
+            <label class="govuk-label govuk-radios__label" for="contact-2">
+              PM10
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-4" name="contact" type="radio" value="phone" >
+            <label class="govuk-label govuk-radios__label" for="contact-4">
+              Nitrogen dioxide
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-5" name="contact" type="radio" value="phone" >
+            <label class="govuk-label govuk-radios__label" for="contact-5">
+              Ozone
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-6" name="contact" type="radio" value="phone" >
+            <label class="govuk-label govuk-radios__label" for="contact-6">
+              Sulphur dioxide
+            </label>
+          </div>
+         
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
+            <label class="govuk-label govuk-radios__label" for="contact-3">
+             Choose another pollutant
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="contact-by-email">
+                Enter a pollutant
+              </label>
+              <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contactByEmail" type="email" spellcheck="false" autocomplete="email">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h2 class="govuk-heading-m">
+            Select search area
+          </h2>
+        </legend>
+        <div id="contact-hint" class="govuk-hint">
+          Select one option
+        </div>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="location" name="location" type="radio" value="email" >
+            <label class="govuk-label govuk-radios__label" for="location">
+              United Kingdom
+            </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              England, Scotland, Wales and Northern Ireland
+            </div>
+          </div>
+       
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="location-2" name="location" type="radio" value="text" data-aria-controls="conditional-location-2">
+            <label class="govuk-label govuk-radios__label" for="location-2">
+             Country
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+            <div class="govuk-form-group">
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                    England
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                    Scotland
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                    Wales
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT">
+                  <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                    Northern Ireland
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="location-3" name="location" type="radio" value="text" data-aria-controls="conditional-location-3">
+            <label class="govuk-label govuk-radios__label" for="location-3">
+             Region
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-3">
+            <div class="govuk-form-group">
+            
+              <label class="govuk-label" for="contact-by-email">
+                Enter a region
+              </label>
+              <input class="govuk-input govuk-!-width-full" id="contact-by-email" name="contactByEmail" type="email" spellcheck="false" autocomplete="email">
+            </div>
+          </div>
+         
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="location-4" name="location" type="radio" value="text" data-aria-controls="conditional-location-4">
+            <label class="govuk-label govuk-radios__label" for="location-4">
+             Local authority
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
+            <div class="govuk-form-group">
+              <div id="signIn-item-hint" class="govuk-hint">
+                Enter a local authority
+              </div>
+              <div id="autocomplete-container" class="govuk-body"></div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    
+    <h2 class="govuk-heading-m">
+      Select time period
+    </h2>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h3 class="govuk-heading-s">
+            Start date
+          </h3>
+        </legend>
+        <div id="dob-hint" class="govuk-hint">
+          For example, 31 3 1980
+        </div>
+        <div class="govuk-date-input" id="dob">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-day">
+                Day
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" inputmode="numeric">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-month">
+                Month
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-year">
+                Year
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h3 class="govuk-heading-s">
+            End date
+          </h3>
+        </legend>
+        <div id="dob-hint" class="govuk-hint">
+          For example, 31 3 1980
+        </div>
+        <div class="govuk-date-input" id="dob">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-day">
+                Day
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" inputmode="numeric">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-month">
+                Month
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-year">
+                Year
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    {{ govukButton({
+      text: "Get data",
+      href: "download.html"
+    }) }}
+   
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}
