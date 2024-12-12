@@ -3,7 +3,9 @@ const path = require('path');
 
 module.exports = {
   entry: {
-   autocomplete :   './app/assets/javascripts/version_6/components/accessible-autocomplete.js'
+   autocomplete :   './app/assets/javascripts/version_6/components/accessible-autocomplete.js',
+   autocomplete_v7 :   './app/assets/javascripts/version_7/components/accessible-autocomplete.js',
+   autocomplete_p :   './app/assets/javascripts/dataselector/components/accessible-autocomplete-p.js'
    },
     // Adjust if your entry file has a different path
   output: {

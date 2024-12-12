@@ -61,6 +61,26 @@
 
 }
 
+.data-selector {
+
+  // Components
+  @import "data-selector/components/aq-buttons";
+  @import "data-selector/components/aq-charts";
+  @import "data-selector/components/aq-features";
+  @import "data-selector/components/aq-levels-list";
+  @import "data-selector/components/status";
+
+  
+  // Other
+  @import "data-selector/other/fixes";
+
+  // Settings
+  @import "data-selector/settings";
+
+  @import "data-selector/components/autocomplete";
+
+}
+
 .version-7 {
 
   // Components

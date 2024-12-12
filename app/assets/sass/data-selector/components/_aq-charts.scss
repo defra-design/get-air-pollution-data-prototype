@@ -1,0 +1,158 @@
+
+// New chart for beta
+
+rect {
+    position: relative;
+    pointer-events: all;
+    fill-opacity: 0;
+    stroke-opacity: 0;
+    z-index: 1;
+  }
+
+  .graph-tooltip {
+    position: absolute;
+    padding: 15px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    display: none;
+    pointer-events: none; /* This prevents the tooltip from blocking mouse events */
+}
+
+.graph-container {
+    margin-top: 0px;
+}
+
+// Nitrogen dioxide graphs
+#chart-container {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#chart-container-2024 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#chart-container-24 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#chart-container-week {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#chart-container-month {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+// PM10 graphs
+#pm10-container {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm10-container-2024 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm10-container-month {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm10-container-week {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm10-container-24 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+// PM2.5 graphs
+#pm2_5-container {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm2_5-container-2024 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm2_5-container-month {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm2_5-container-week {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#pm2_5-container-24 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+// Ozone graphs
+#ozone-container {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#ozone-container-2024 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#ozone-container-month {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#ozone-container-week {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+#ozone-container-24 {
+    max-width: 1080px;  /* Set the maximum width to 1080px */
+    width: 100%;         /* Make it responsive */
+    margin: 0 auto;     /* Center the container */
+}
+
+.exceedance-label-container {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 10px; /* Add padding for text spacing */
+    display: block;
+    @include govuk-font($size: 19);
+  }  
+  
