@@ -3,7 +3,7 @@
 {% set pageName="Home" %}
 
 {% block beforeContent %}
-<a href="../index.html" class="govuk-back-link">Back</a>
+<a href="aurn-network.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -15,19 +15,20 @@
       Create a custom dataset
     </h1>
 
-    <div class="govuk-form-group">
+    <p class="govuk-body"><strong>Selected network:</strong> Automatic Urban and Rural Network (AURN)</p>
+    <p class="govuk-body"><a href="aurn-network.html" class="govuk-link">Change network</a></p>
+
+    <div class="govuk-form-group govuk-!-margin-top-6">
       <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h2 class="govuk-heading-m">
             Select a pollutant
           </h2>
         </legend>
-        <div id="contact-hint" class="govuk-hint">
-          Select one option
-        </div>
+     
         <div class="govuk-radios" data-module="govuk-radios">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="PM2.5" {{ checked('contact','PM2.5') }}>
+            <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="PM2.5">
             <label class="govuk-label govuk-radios__label" for="contact">
               PM2.5
             </label>
@@ -60,22 +61,15 @@
               Sulphur dioxide
             </label>
           </div>
-         
+
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
-            <label class="govuk-label govuk-radios__label" for="contact-3">
-             Choose another pollutant
+            <input class="govuk-radios__input" id="contact-7" name="contact" type="radio" value="phone" >
+            <label class="govuk-label govuk-radios__label" for="contact-7">
+              Carbon monoxide
             </label>
           </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
-            <div class="govuk-form-group">
-              <div id="signIn-item-hint" class="govuk-hint">
-                Enter a pollutant
-              </div>
-              <div id="autocomplete-container-p" class="govuk-body"></div>
-            </div>
-          </div>
-        </div>
+
+       
       </fieldset>
     </div>
 
@@ -399,7 +393,7 @@
 
     {{ govukButton({
       text: "Get data",
-      href: "download?contact.html"
+      href: "download-aurn.html"
     }) }}
    
       </div>
