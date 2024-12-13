@@ -2,6 +2,13 @@
 
 {% set pageName="Get air pollution data - GOV.UK" %}
 
+{% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Get air pollution data - GOV.UK">
+  <meta name="description" content="Find air quality monitoring stations and download air pollution data from the Automatic Urban and Rural network (AURN).">
+  <meta name="og:description" content="Find air quality monitoring stations and download air pollution data from the Automatic Urban and Rural Network (AURN).">
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
