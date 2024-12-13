@@ -27,42 +27,42 @@
         </div>
         <div class="govuk-radios" data-module="govuk-radios">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="PM2.5" {{ checked('contact','PM2.5') }}>
+            <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="pm2_5">
             <label class="govuk-label govuk-radios__label" for="contact">
               PM2.5
             </label>
           </div>
        
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" >
+            <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="pm10" >
             <label class="govuk-label govuk-radios__label" for="contact-2">
               PM10
             </label>
           </div>
 
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-4" name="contact" type="radio" value="phone" >
+            <input class="govuk-radios__input" id="contact-4" name="contact" type="radio" value="no2" >
             <label class="govuk-label govuk-radios__label" for="contact-4">
               Nitrogen dioxide
             </label>
           </div>
 
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-5" name="contact" type="radio" value="phone" >
+            <input class="govuk-radios__input" id="contact-5" name="contact" type="radio" value="ozone" >
             <label class="govuk-label govuk-radios__label" for="contact-5">
               Ozone
             </label>
           </div>
 
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-6" name="contact" type="radio" value="phone" >
+            <input class="govuk-radios__input" id="contact-6" name="contact" type="radio" value="so2" >
             <label class="govuk-label govuk-radios__label" for="contact-6">
               Sulphur dioxide
             </label>
           </div>
          
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
+            <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="other-p" data-aria-controls="conditional-contact-3">
             <label class="govuk-label govuk-radios__label" for="contact-3">
              Choose another pollutant
             </label>
@@ -317,84 +317,161 @@
     </div>
 
     
-    <h2 class="govuk-heading-m">
-      Select time period
-    </h2>
+ 
     <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+      <fieldset class="govuk-fieldset" aria-describedby="time-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h3 class="govuk-heading-s">
-            Start date
-          </h3>
+          <h2 class="govuk-heading-m">
+            Select time period
+          </h2>
+          <p class="govuk-body"><span id="start-year"></span></p>
         </legend>
-        <div id="dob-hint" class="govuk-hint">
-          For example, 31 3 1980
-        </div>
-        <div class="govuk-date-input" id="dob">
-          <div class="govuk-date-input__item">
+       
+        <div class="govuk-radios govuk-!-margin-top-0" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-1" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-1">
+              Past 30 days
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-2" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-2">
+              Year to date
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-3" name="time" type="radio" value="text" data-aria-controls="conditional-time-3" >
+            <label class="govuk-label govuk-radios__label" for="time-3">
+              Choose previous year
+            </label>
+            <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             1 January to 31 December
+            </div> -->
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-time-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="time-by-text">
+                  
+                </label>
+                <div id="signIn-item-hint" class="govuk-hint">
+                  
+                </div>
+                <div class="govuk-date-input" id="passport-issued">
+                  
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        Start year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                  </div>
+              </div>
+            </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="time-by-text">
+                  
+                </label>
+               
+                <div class="govuk-date-input" id="passport-issued">
+                 
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        End year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                  </div>
+              </div>
+            </div>
+             
+            </div>
+          
+        
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-7" name="time" type="radio" value="text" data-aria-controls="conditional-time-7">
+            <label class="govuk-label govuk-radios__label" for="time-7">
+              Customise date selection
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-time-7">
+            <div id="signIn-item-hint" class="govuk-hint">
+              <!-- Longitude and latitude should only include numbers. For example: 123456 -->
+            </div>
             <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="dob-day">
-                Day
+              <label class="govuk-label" for="time-by-text">
+                Start date
               </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" inputmode="numeric">
+              <div id="signIn-item-hint" class="govuk-hint">
+                For example, 27 3 2018
+              </div>
+              <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="govuk-date-input__item">
             <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="dob-month">
-                Month
+              <label class="govuk-label" for="time-by-text">
+                End date
               </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric">
+              <div id="signIn-item-hint" class="govuk-hint">
+                For example, 27 3 2019
+              </div>
+              <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="dob-year">
-                Year
-              </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric">
-            </div>
-          </div>
+         
         </div>
       </fieldset>
-    </div>
-    <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h3 class="govuk-heading-s">
-            End date
-          </h3>
-        </legend>
-        <div id="dob-hint" class="govuk-hint">
-          For example, 31 3 1980
-        </div>
-        <div class="govuk-date-input" id="dob">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="dob-day">
-                Day
-              </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" inputmode="numeric">
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="dob-month">
-                Month
-              </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric">
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="dob-year">
-                Year
-              </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric">
-            </div>
-          </div>
-        </div>
-      </fieldset>
+      
     </div>
 
     {{ govukButton({

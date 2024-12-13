@@ -6,37 +6,27 @@
 window.GOVUKPrototypeKit.documentReady(() => {
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Select the form element
-  const form = document.querySelector('form');
-  const searchInput = document.getElementById('search');
+// Update hint text with year of availability for specific pollutants
+const hintTextMap = {
+  pm2_5: "Data available for PM2.5 from 1 January 1976",
+  pm10: "Data available for PM10 from 1 January 1976",
+  no2: "Data available for nitrogen dioxide from 1 July 1972",
+  ozone: "Data available for ozone from 1 January 1985",
+  so2: "Data available for sulphur dioxide from 1 January 1980",
+  "other-p": "Data available from 1984",
+};
 
-  form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from submitting the default way
-      const query = searchInput.value.trim().toLowerCase(); // Get the input value and convert to lower case
+// Function to update hint text
+const updateHintText = () => {
+  const selectedRadio = document.querySelector('input[name="contact"]:checked');
+  const hintTextElement = document.getElementById("start-year");
 
-      if (query === 'b24qa' || 'b2 4qa' || 'b2') {
-        // Redirect to the specified page if the query matches 'birmingham'
-        window.location.href = '/version-6_1/results-b2-4qa.html';
-    }
+  if (selectedRadio && hintTextMap[selectedRadio.value]) {
+    hintTextElement.textContent = hintTextMap[selectedRadio.value];
+  }
+};
 
-      else {
-        // Otherwise, submit the form normally or handle other search logic here
-        form.submit();
-    }
-  });
+// Attach event listeners to all radio buttons
+document.querySelectorAll('input[name="contact"]').forEach((radio) => {
+  radio.addEventListener("change", updateHintText);
 });
-
-// for deeplink from pollutant table to specific pollutant when there is an exceedence
-$(document).ready(function() {
-  $(window).scrollTop(0); // Scroll to the top of the page
-});
-
-// Add a click event listener to the nitrogen button
-/* $(document).ready(function() {
-  $("#nitrogen").click(function() {
-      $("#chart-container").css("display", "block");
-      console.log('something');
-  });
-});
- */
