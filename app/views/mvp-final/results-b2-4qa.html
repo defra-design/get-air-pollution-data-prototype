@@ -1,7 +1,23 @@
 {% extends "layouts/mvp.html" %}
 
-{% set pageName="Get air pollution data - GOV.UK" %}
+{% set pageName="Monitoring stations within 5 miles of B2 4QA
+- Get air pollution data - GOV.UK" %}
+
+<!-- {% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Monitoring stations within 5 miles of B2 4QA - Get air pollution data - GOV.UK">
+  <meta name="description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+  <meta name="og:description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+{% endblock %}
+ -->
+
 {% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
 <a href="search.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
@@ -10,40 +26,22 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
       Monitoring stations within 5 miles of B2 4QA
     </h1>
     <p class="govuk-body govuk-!-margin-top-3"><a href="search.html" class="govuk-link">Change search area</a></p>
-    <div class="moj-search govuk-!-margin-bottom-1">
-
- 
- 
-     
-    </div>
-
-
 </div>
 </div>
 
 
-
-
-
-   
-
-
-
-          <!--   <div class="moj-scrollable-pane"> -->
             <table class="govuk-table">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
        
-                  <th class="govuk-table__header" scope="col" style="width: 45%;">Monitoring station</th>
+                <th class="govuk-table__header" scope="col" style="width: 50%;">Monitoring station</th>
                  
-                  <th class="govuk-table__header" scope="col" style="width: 25%;">Site type</th>
-                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="width: 25%;">Pollutants</th>
+                  <th class="govuk-table__header" scope="col" style="width: 35%;">Site type</th>
+                  <th class="govuk-table__header" scope="col" style="width: 15%;">Pollutants</th>
           
                 
     
@@ -53,33 +51,17 @@
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link">Birmingham A4540 Roadside</a></strong>
                     <span style="font-weight: normal; display: block; margin-top: 2px;">1.1 miles away</span>
-              
-               <!--      <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
-                      Active
-                    </strong> -->
-            
                   </th>
-                
-  
                   <td class="govuk-table__cell">
                     urban traffic
                   </td>
-  
-                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br> PM10<br> PM2.5<br> ozone</td>
-
-                 
-  
-                <!--   <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td> -->
-                
-       
+                  <td class="govuk-table__cell ">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone</td>
                 </tr>
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
                     <span style="font-weight: normal; display: block; margin-top: 2px;">1.2 miles away</span>
             
-                <!--     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
-                      Active
-                    </strong> -->
+            
                   </th>
   
               
@@ -88,7 +70,7 @@
                     urban background
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br> PM10<br> PM2.5<br> ozone<br> sulphur dioxide
+                  <td class="govuk-table__cell ">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide
                     
                   </td>
                   
@@ -98,9 +80,7 @@
                   <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
                     <span style="font-weight: normal; display: block; margin-top: 2px;">2.3 miles away</span>
                  
-                <!--     <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
-                      Active
-                    </strong> -->
+                
                   </th>
   
                  
@@ -109,9 +89,8 @@
                     urban background
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>ozone</td>
-<!-- 
-                  <td class="govuk-table__cell govuk-table__cell--numeric">2019 to 2024<br>2023 to 2024</td> -->
+                  <td class="govuk-table__cell ">nitrogen dioxide<br>ozone</td>
+
                   
                 </tr>
 
@@ -121,9 +100,7 @@
                   <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
                     <span style="font-weight: normal; display: block; margin-top: 2px;">2.5 miles away</span>
               
-                  <!--   <strong class="govuk-tag govuk-tag--green" style="margin: 5px 0 5px 0; font-size: 16px;">
-                      Active
-                    </strong> -->
+              
                   </th>
   
                   
@@ -132,20 +109,15 @@
                     urban traffic
                   </td>
   
-                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide</td>
+                  <td class="govuk-table__cell ">nitrogen dioxide</td>
                  
-          <!--         <td class="govuk-table__cell govuk-table__cell--numeric">2018 to 2024</td> -->
+     
                 </tr>
                
                 
               </tbody>
             </table>
-            <!-- moj scroll -->
-            
-      
-     
-         <!--  </div> -->
-   
+          
 
       
       
@@ -153,7 +125,7 @@
   
       </div>
     </div>
-<!-- end of second row-->
+
   
 
 {% endblock %}
