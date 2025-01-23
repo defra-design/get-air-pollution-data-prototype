@@ -1,9 +1,15 @@
-{% extends "layouts/mvp.html" %}
+{% extends "layouts/mvp-final.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - Get air pollution data - GOV.UK" %}
 
 
 {% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
 <a href="results-b2-4qa.html" class="govuk-back-link">Back</a>
 
 {% endblock %}
