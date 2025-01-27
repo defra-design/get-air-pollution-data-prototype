@@ -1,0 +1,135 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-three-quarters-from-desktop">
+        <h1 class="govuk-heading-l">Create a custom dataset</h1>
+        <p class="govuk-body"></p>
+      
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Dataset 1
+            </h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Clear selections<span class="govuk-visually-hidden"> of University of Gloucestershire (University of Gloucestershire)</span></a>
+              </li>
+              <!-- <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Withdraw<span class="govuk-visually-hidden"> from University of Gloucestershire (University of Gloucestershire)</span></a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Time period
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 1 January to 31 December 2024
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Pollutants
+                </dt>
+                <dd class="govuk-summary-list__value">
+            
+                 PM2.5, PM10 and nitrogen dioxide
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Location
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  United Kingdom
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Monitoring network
+                </dt>
+                <dd class="govuk-summary-list__value">
+                
+                 Any
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Site types
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 
+                  Any
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> monitoring networks</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Data capture
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  75% and above
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> nationality (Lead tenant)</span></a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Time resolution
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Hourly, daily average and annual average
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a>
+                </dd>
+              </div>
+           
+              
+            </dl>
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Get data",
+          href: ""
+        }) }}
+        {{ govukButton({
+          text: "Add another dataset",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+</div>
+</div>
+<!-- end of second row-->
+  
+
+{% endblock %}
