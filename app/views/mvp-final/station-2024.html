@@ -64,8 +64,8 @@
             
              
 
-          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution levels in 2025</h2>
-          <p class="govuk-body govuk-!-margin-bottom-3">1 January to 18 February</p>
+          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution levels in 2024</h2>
+          <p class="govuk-body govuk-!-margin-bottom-3">1 January to 31 December</p>
           <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
 
             <ul class="moj-sub-navigation__list">
@@ -90,14 +90,14 @@
               </li>
       
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="#5">2023</a>
+                <a class="moj-sub-navigation__link"  href="">2023</a>
               </li>
       
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="station-2024.html">2024</a>
+                <a class="moj-sub-navigation__link" aria-current="page" href="">2024</a>
               </li>
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" aria-current="page" href="">2025</a>
+                <a class="moj-sub-navigation__link" href="station.html">2025</a>
               </li>
             </ul>
           
@@ -107,7 +107,7 @@
          
           
 
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Data for this year has not been  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Data for this year has been  <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content="Data is verified when it has been checked for anomalies.">
               verified
                </div></h3>
                
@@ -119,7 +119,7 @@
                     <th scope="col" class="govuk-table__header" style="width: 25%;">Pollutant</th>
             
              
-                    <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 30%; padding-right: 0px;">Average</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 30%; padding-right: 0px;">Annual average</th>
             
                     
             
@@ -165,15 +165,17 @@
                     </th>
             
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual mean limit value for PM10" data-toggletip-content="The UK annual mean limit value for PM10 is 40 micrograms per cubic metre (µg/m3). Average PM10 levels at any site must not exceed 40µg/m3 in a calendar year.">
-                      14 µg/m3
+                      24 µg/m3
                        </div>
                      
                     </td>
             
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances for PM10" data-toggletip-content="There must not be more than 35 daily exceedances over 50 micrograms per cubic metre (µg/m3) for PM10 in a calendar year.">
-                      1
+                      40
                        </div>
-                     
+                      <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--red">
+                        Above limit
+                      </strong></span>
                      
                     </td>
                  
@@ -192,9 +194,11 @@
             
              
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual mean limit value for nitrogen dioxide" data-toggletip-content="The UK annual mean limit value for nitrogen dioxide is 40 micrograms per cubic metre (µg/m3). Average nitrogen dioxide levels at any site must not exceed 40µg/m3 in a calendar year.">
-                      52 µg/m3
+                      42 µg/m3
                        </div>
-                      
+                      <span style="font-weight: normal; display: block; margin-top: 12px; "><strong class="govuk-tag govuk-tag--red">
+                        Above limit
+                      </strong></span>
                     </td>
                  
             
@@ -214,18 +218,22 @@
             
                     <th scope="row" class="govuk-table__header pollutant-table-row"><strong>Ozone</strong>
             
-                      <span style="font-weight: normal; display: block; margin-top: 4px; ">Data capture: 100%</span>
-                      
+                      <span style="font-weight: normal; display: block; margin-top: 4px; ">Data capture: <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about low data capture for ozone" data-toggletip-content="For ozone data capture under 75% is low.">
+                        71%
+                         </div></span>
+                      <span style="font-weight: normal; display: block; margin: 12px 0 12px 0; "><strong class="govuk-tag govuk-tag--red">
+                        Low data capture
+                      </strong></span>
               
                     </th>
             
             
-                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual mean limit value for ozone" data-toggletip-content="There is no annual mean limit value for ozone.">
-                      32 µg/m3
+                    <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual mean limit value for ozone" data-toggletip-content="We calculate the annual average for a pollutant when there is at least 75% data capture.">
+                      n/a
                        </div></td>
                     
                     <td class="govuk-table__cell govuk-table__cell--numeric pollutant-table-row"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 25 daily exceedances over 120 micrograms per cubic metre (µg/m3) for ozone in a calendar year, averaged over 3 years.">
-                      2
+                      5
                        </div>
             
             
@@ -244,7 +252,7 @@
           
 
 
-              <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-3">Download data for 2025</h2>
+              <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-3">Download data for 2024</h2>
  
               <nav aria-label="Pages with more detail on this service" class="gem-c-contents-list  govuk-!-margin-bottom-6" role="navigation">
                
