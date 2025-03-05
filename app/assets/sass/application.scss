@@ -43,6 +43,9 @@
 
 .mvp {
 
+  // Tools
+  @import "mvp/tools/mixins";
+
   // Components
   @import "mvp/components/aq-buttons";
   @import "mvp/components/aq-charts";
@@ -50,8 +53,8 @@
   @import "mvp/components/aq-levels-list";
   @import "mvp/components/status";
   @import "mvp/components/sub-navigation";
+  @import "mvp/components/aq-levels-table";
 
-  
   // Other
   @import "mvp/other/fixes";
 
