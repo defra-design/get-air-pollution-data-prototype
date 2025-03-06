@@ -1,0 +1,162 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Monitoring stations within 5 miles of B2 4QA
+- Get air pollution data - GOV.UK" %}
+
+<!-- {% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Monitoring stations within 5 miles of B2 4QA - Get air pollution data - GOV.UK">
+  <meta name="description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+  <meta name="og:description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+{% endblock %}
+ -->
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="search.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Monitoring stations within 5 miles of B2 4QA
+    </h1>
+    <p class="govuk-body govuk-!-margin-top-3"><a href="search.html" class="govuk-link">Change search area</a></p>
+</div>
+</div>
+
+
+<table class="defra-aq-levels-table govuk-!-margin-bottom-2">
+  
+  
+  <thead class="defra-aq-levels-table__head">
+    <tr class="defra-aq-levels-table__row">
+    
+      <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">Monitoring station</th>
+    
+      <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">Pollutants</th>
+    
+     
+      <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">Site type</th>
+    
+    </tr>
+  </thead>
+  
+  <tbody class="defra-aq-levels-table__body">
+        <tr class="defra-aq-levels-table__row">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant"><a href="" class="govuk-link">Birmingnham A4540 Roadside</a><span class="defra-aq-levels-table__cell--data">1.1 miles away</span></td>
+       
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">PM2.5, PM10, nitrogen dioxide, ozone and sulphur dioxide</td>
+          
+        
+          
+         
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">Urban traffic</td>
+          
+        
+        </tr>
+      
+    
+      
+        <tr class="defra-aq-levels-table__row">
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM10<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
+          
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">Site</td>
+          
+        
+          
+          
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily"></td>
+          
+        
+        </tr>
+      
+    
+      
+        <tr class="defra-aq-levels-table__row">
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Nitrogen dioxide<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
+          
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">Site</td>
+          
+        
+          
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">n/a</td>
+          
+        
+        </tr>
+      
+    
+      
+        <tr class="defra-aq-levels-table__row">
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Ozone<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+            <!-- <span class="defra-aq-levels-table__cell--data"><strong class="govuk-tag govuk-tag--red govuk-!-font-size-16">
+              Low data capture
+            </strong></span> --></td>
+          
+        
+          
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">Site</td>
+          
+        
+          
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">n/a</td>
+          
+        
+        </tr>
+        <tr class="defra-aq-levels-table__row">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Sulphur dioxide<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+            <!-- <span class="defra-aq-levels-table__cell--data"><strong class="govuk-tag govuk-tag--red govuk-!-font-size-16">
+              Low data capture
+            </strong></span> --></td>
+          
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">Site</td>
+          
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily"></td>
+        </tr>
+      
+    
+  </tbody>
+</table>
+
+      
+      
+     
+  
+      </div>
+    </div>
+
+  
+
+{% endblock %}
