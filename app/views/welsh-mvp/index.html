@@ -1,0 +1,52 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Find monitoring stations by location
+- Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="start.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-8">Finalised MVP pages</h1>
+<h2 class="govuk-heading-m">Main pages</h2>
+<h3 class="govuk-heading-s">Start</h3>
+   <p class="govuk-body"><a href="start.html" class="govuk-link">Start page</a></p>
+   <h3 class="govuk-heading-s">Search</h3>
+   <p class="govuk-body"><a href="search.html" class="govuk-link">Search page</a></p>
+   <p class="govuk-body"><a href="search-error.html" class="govuk-link">Validation error, nothing in search box</a></p>
+   <p class="govuk-body"><a href="search-no-results.html" class="govuk-link">No locations found</a></p>
+   <p class="govuk-body"><a href="search-multiple-results.html" class="govuk-link">More than one location found</a></p>
+   <p class="govuk-body"><a href="no-results-5-miles.html" class="govuk-link">Location found but no stations within 5 or 25 miles</a></p>
+
+   <p class="govuk-body"><a href="no-results-50-miles.html" class="govuk-link">Location found but no stations within 50 miles</a></p>
+
+   <h3 class="govuk-heading-s">Search results page</h3>
+   <p class="govuk-body"><a href="results-b2-4qa.html" class="govuk-link">Monitoring stations within 5 miles of B2 4QA example</a></p>
+
+   <h3 class="govuk-heading-s">Monitoring station page</h3>
+   <p class="govuk-body"><a href="station.html" class="govuk-link">Monitoring station page example</a></p>
+
+   <h2 class="govuk-heading-m govuk-!-margin-top-6">Exemption pages</h2>
+   <p class="govuk-body"><a href="service-unavailable.html" class="govuk-link">Service is unavailable</a></p>
+   <p class="govuk-body"><a href="service-problem.html" class="govuk-link">There is a problem on the service</a></p>
+
+
+   <h2 class="govuk-heading-m govuk-!-margin-top-6">Footer pages</h2>
+   <p class="govuk-body"><a href="privacy.html" class="govuk-link">Privacy</a></p>
+   <p class="govuk-body"><a href="accessibility.html" class="govuk-link">Accessibility statement</a></p>
+   <p class="govuk-body"><a href="cookies.html" class="govuk-link">Cookies</a></p>
+
+
+
+   <h2 class="govuk-heading-m govuk-!-margin-top-6">Banners</h2>
+   <p class="govuk-body"><a href="start-cookies.html" class="govuk-link">Cookie banner</a></p>
+      </div>
+</div>
+
+{% endblock %}

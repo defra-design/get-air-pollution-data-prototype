@@ -1,0 +1,516 @@
+{% extends "layouts/welsh.html" %}
+
+{% set pageName="Birmingham A4540 Roadside monitoring station - Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'Mae hwn yn wasanaeth newydd. Helpwch ni i’w wella a <a class="govuk-link" href="#">rhowch eich adborth (mae’n agor mewn tab newydd)</a>.'
+}) }}
+<a href="results-b2-4qa.html" class="govuk-back-link">Yn ôl</a>
+
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Birmingham A4540 Roadside monitoring station - Get air pollution data - GOV.UK">
+  <meta name="description" content="Monitoring station information for Birmingham A4540 Roadside.">
+  <meta name="og:description" content="Monitoring station information for Birmingham A4540 Roadside.">
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">Birmingham A4540 Roadside</h1>   
+          <strong class="govuk-tag status-tag govuk-tag--green">
+            Ar waith
+          </strong>
+          <p class="govuk-body status-description govuk-!-margin-top-3">Y diweddaraf am 10:00am ar 2 May 2025</p>
+
+          <dl class="defra-aq-features__list govuk-!-margin-top-3">
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m"> Rhwydwaith monitro</dt>
+              <dd class="defra-aq-features__value govuk-body">Rhwydwaith Trefol a Gwledig Awtomatig (AURN)</dd>
+            </div>
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Rhanbarth</dt>
+              <dd class="defra-aq-features__value govuk-body"> Gorllewin Canolbarth Lloegr</dd>
+            </div>
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Math o safle</dt>
+              <dd class="defra-aq-features__value govuk-body">
+                <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about urban traffic" data-toggletip-content=" Mae’r safle monitro hwn mewn dinas neu dref sy’n agos at ffyrdd, traffyrdd neu briffyrdd.">
+                  traffig trefol
+                  </div>
+                  <p class="defra-aq-features__link govuk-body govuk-!-margin-top-1"><a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" class="govuk-link" target="_blank" >Gweld ar Google Maps (bydd yn agor mewn tab newydd)</a></p>
+                </dd>
+             
+            </div>
+            </dl>
+
+ 
+
+
+            
+             
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution levels in 2024</h2>
+          <p class="govuk-body govuk-!-margin-bottom-3">1 Ionawr tan 31 Rhagfyr</p>
+          <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
+
+            <ul class="moj-sub-navigation__list">
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#1">2018</a>
+              </li>
+          
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#2">2019</a>
+              </li>
+          
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">2020</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">2021</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">2022</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#5">2023</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" aria-current="page"  href="">2024</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link"  href="station.html">2025</a>
+              </li>
+            </ul>
+          
+          </nav>
+
+         
+         
+          
+          <h3 class="govuk-heading-s"> <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about what verified means" data-toggletip-content=" Bydd data’n cael ei ddilysu pan fydd wedi cael ei wirio am anghysondebau.">
+            Dydy’r data ar gyfer y flwyddyn hon ddim wedi cael ei ddilysu
+             </div></h3>
+             
+             <table class="govuk-table defra-aq-levels-table  govuk-!-margin-bottom-5">
+
+
+              <thead class="defra-aq-levels-table__head">
+                <tr class="defra-aq-levels-table__row">
+                
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">Llygrydd</th>
+                
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title">Cyfartaledd</th>
+                
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title"> Gormodiant dyddiol</th>
+
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title"> Gormodiant fesul awr</th>
+                 
+                
+                </tr>
+              </thead>
+              
+              <tbody class="defra-aq-levels-table__body">
+                    <tr class="defra-aq-levels-table__row">
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM2.5<span class="defra-aq-levels-table__cell--data">Cofnodi data: 100%</span></td>
+                   
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        8 µg/m3
+                        
+                        </td>
+                      
+                    
+                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">amh</td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">amh</td>
+
+                     
+                      
+                    
+                    </tr>
+                  
+                
+                  
+                    <tr class="defra-aq-levels-table__row">
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM10<span class="defra-aq-levels-table__cell--data">Cofnodi data: 100%</span></td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        14 µg/m3
+                         </td>
+                      
+                    
+                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                          1
+                           </td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">amh</td>
+
+                      
+                      
+                    
+                    </tr>
+                  
+                
+                  
+                    <tr class="defra-aq-levels-table__row">
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Nitrogen deuocsid
+                        <span class="defra-aq-levels-table__cell--data">Cofnodi data: 100%</span></td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        42 µg/m3
+                        <span class="defra-aq-levels-table__cell--data"><strong class="govuk-tag govuk-tag--red govuk-!-font-size-16">
+                          Uwchlaw'r terfyn
+                        </strong></span>
+                        </td>
+                      
+
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">amh</td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                        0
+                         </td>
+                    </tr>
+                  
+                
+                  
+                    <tr class="defra-aq-levels-table__row">
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Oson<span class="defra-aq-levels-table__cell--data">
+                        <strong class="govuk-tag govuk-tag--red govuk-!-font-size-16">Cofnodi data isel
+                        </strong></span><span class="defra-aq-levels-table__cell--data"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about low data capture" data-toggletip-content="Mae cofnodi data o dan 75% yn isel. Nid ydym yn cyfrifo'r cyfartaledd pan fydd cipio data yn isel.">
+                          Cofnodi data: 71%
+                           </div></span>
+                        </span>
+                      </td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        _
+                         </td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">amh</td>
+
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">amh</td>
+                      
+                    
+                    </tr>
+                    <tr class="defra-aq-levels-table__row">
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Sylffwr deuocsid
+                        <span class="defra-aq-levels-table__cell--data">Cofnodi data: 100%</span>
+                        <!-- <span class="defra-aq-levels-table__cell--data"><strong class="govuk-tag govuk-tag--red govuk-!-font-size-16">
+                          Low data capture
+                        </strong></span> --></td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        12 µg/m3
+                         </td>
+
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                        0
+                         </td>
+
+                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                          0
+                           </td>
+                    </tr>
+                  
+                
+              </tbody>
+            </table>
+
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Edrychwch ar y terfyn i bob llygyrdd 
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <h3 class="govuk-heading-s">PM2.5</h3>
+                <p class="govuk-body">Rhaid i gyfartaledd blynyddol lefelau PM2.5 mewn unrhyw safle beidio â mynd yn uwch na 20 microgram fesul metr ciwbig (µg/m³) mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan). </p>
+                <h3 class="govuk-heading-s">PM10</h3>
+                <p class="govuk-body">Rhaid i gyfartaledd blynyddol lefelau PM10 mewn unrhyw safle beidio â mynd yn uwch na 40 microgram fesul metr ciwbig (µg/m³) mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan). </p>
+                <p class="govuk-body">Rhaid i gyfartaledd dyddiol lefelau PM10 beidio â mynd yn uwch na 50 microgram fesul metr ciwbig (µg/m³) fwy na 35 mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan). </p>
+                <h3 class="govuk-heading-s">Nitrogen deuocsid</h3>
+                <p class="govuk-body">Rhaid i gyfartaledd blynyddol lefelau nitrogen deuocsid mewn unrhyw safle beidio â mynd yn uwch na 40 microgram fesul metr ciwbig (µg/m³) mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan). </p>
+                <p class="govuk-body">Rhaid i lefelau fesul awr nitrogen deuocsid beidio â mynd yn uwch na 200 microgram fesul metr ciwbig (µg/m³) fwy na 18 gwaith mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan).</p>
+                <h3 class="govuk-heading-s">Oson</h3>
+                <p class="govuk-body"> Does dim gwerth terfyn cyfartaledd blynyddol ar gyfer yr oson.</p>
+                <h3 class="govuk-heading-s">Sylffwr deuocsid</h3>
+                <p class="govuk-body"> Does dim gwerth terfyn cyfartaledd blynyddol ar gyfer sylffwr deuocsid.</p>
+                <p class="govuk-body">Rhaid i gyfartaledd dyddiol lefelau sylffwr deuocsid beidio â mynd yn uwch na 125 microgram fesul metr ciwbig (µg/m³) fwy na 3 mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan).   </p>
+                <p class="govuk-body">Rhaid i lefelau fesul awr sylffwr deuocsid beidio â mynd yn uwch na 350 microgram fesul metr ciwbig (µg/m³) fwy na 24 gwaith mewn blwyddyn galendr (wrth dalgrynnu i rif cyfan).</p>
+                
+              </div>
+              
+            </details>
+          
+
+
+              <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-6"> Lawrlwytho data ar gyfer 2024</h2>
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    Meintiau ffeiliau bras (CSV)
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                 <p>Meintiau ffeil ar gyfer blwyddyn o ddata:</p>
+                  <ul class="govuk-body govuk-list--bullet">
+                  
+                    <li>data fesul awr - llai na 1MB fel arfer</li>
+                    <li>data cyfartaledd dyddiol - llai na 500KB fel arfer</li>
+                    <li>data cyfartaledd blynyddol - llai na 100KB fel arfer</li>
+                
+                  </ul>
+                </div>
+              </details>
+
+          
+                    <h3 class="govuk-heading-m">All pollutants</h3>
+                    <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                         Lawrlwytho data fesul awr</span>
+                        
+                    </a>
+                    <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                         Lawrlwytho data cyfartaledd dyddiol</span>
+                    </a>
+                    <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Lawrlwytho data cyfartaledd blynyddo</span>
+                    </a>
+                    
+      
+      
+      
+              
+                       
+                     
+                       
+                    <h3 class="govuk-heading-m govuk-!-margin-top-4">PM2.5</h3>
+                   
+                    <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                     <span class="aq-button-secondary__icon">
+                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                     </span>
+                     <span class="aq-button-secondary__text">
+                        Lawrlwytho data fesul awr</span>
+                     
+                   </a>
+                   <br>
+                   <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                     <span class="aq-button-secondary__icon">
+                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                     </span>
+                     <span class="aq-button-secondary__text">
+                        Lawrlwytho data cyfartaledd dyddiol</span>
+                      
+                   </a>
+                   <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Lawrlwytho data cyfartaledd blynyddo</span>
+                    </a>
+                  
+                
+
+                        <h3 class="govuk-heading-m govuk-!-margin-top-4">PM10</h3>
+                 
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                             Lawrlwytho data fesul awr</span>
+                           
+                        </a>
+                        <br>
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                             Lawrlwytho data cyfartaledd dyddiol</span>
+                          
+                        </a>
+                        <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Lawrlwytho data cyfartaledd blynyddo</span>
+                    </a>
+                      
+      
+                      
+                    
+                     
+      
+                      <h3 class="govuk-heading-m govuk-!-margin-top-4">Nitrogen deuocsid</h3>
+                      <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                       <span class="aq-button-secondary__icon">
+                         <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                       </span>
+                       <span class="aq-button-secondary__text">
+                          Lawrlwytho data fesul awr</span>
+                         
+                     </a>
+                     <br>
+                     <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                       <span class="aq-button-secondary__icon">
+                         <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                       </span>
+                       <span class="aq-button-secondary__text">
+                          Lawrlwytho data cyfartaledd dyddiol</span>
+                        
+                     </a>
+                     <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Lawrlwytho data cyfartaledd blynyddo</span>
+                    </a>
+                  
+           
+          
+                        <h3 class="govuk-heading-m govuk-!-margin-top-4">Oson</h3>
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                             Lawrlwytho data fesul awr</span>
+                           
+                        </a>
+                        <br>
+                        <!-- <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Download 8-hour rolling average hourly data</span>
+                            
+                        </a>
+                             
+                        <br> -->
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                             Lawrlwytho data cyfartaledd dyddiol</span>
+                        </a>
+                        <br>
+                        <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Lawrlwytho data cyfartaledd blynyddo</span>
+                        </a>
+
+
+                        <h3 class="govuk-heading-m govuk-!-margin-top-4">Sylffwr deuocsid</h3>
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                         <span class="aq-button-secondary__icon">
+                           <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                         </span>
+                         <span class="aq-button-secondary__text">
+                            Lawrlwytho data fesul awr</span>
+                           
+                       </a>
+                       <br>
+                       <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                         <span class="aq-button-secondary__icon">
+                           <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                         </span>
+                         <span class="aq-button-secondary__text">
+                            Lawrlwytho data cyfartaledd dyddiol</span>
+                          
+                       </a>
+                       <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Lawrlwytho data cyfartaledd blynyddo</span>
+                    </a>
+                        
+                  
+                  
+                </div>
+               
+                
+              </div>
+          
+ 
+
+
+        
+
+        
+
+         
+          </div>
+          </div>
+    </div>
+    
+</div>
+
+{% endblock %}

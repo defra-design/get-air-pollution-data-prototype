@@ -1,0 +1,84 @@
+{% extends "layouts/welsh.html" %}
+
+{% set pageName="Find monitoring stations by location
+- Get air pollution data - GOV.UK" %}
+
+{% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Find monitoring stations by location - Get air pollution data - GOV.UK">
+  <meta name="description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+  <meta name="og:description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+{% endblock %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'Mae hwn yn wasanaeth newydd. Helpwch ni i’w wella a <a class="govuk-link" href="#">rhowch eich adborth (mae’n agor mewn tab newydd)</a>.'
+}) }}
+<a href="start.html" class="govuk-back-link">Yn ôl</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Chwilio am orsafoedd monitro yn ôl lleoliad</h1>
+
+   <p class="govuk-body govuk-hint">Rhaid defnyddio cod post i chwilio am leoliadau yng Ngogledd Iwerddon.</p>
+
+   <div class="govuk-form-group">
+    <label class="govuk-label" for="address-line-1">
+      Rhowch dref neu god post
+    </label>
+    <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+  </div>
+
+    <div class="govuk-form-group govuk-!-margin-top-3">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <legend class="govuk-fieldset__legend">
+            Amcan o’r ardal chwilio 
+          </legend>
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month" checked>
+            <label class="govuk-label govuk-radios__label" for="changedName">
+              5 milltir
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName-2" name="changedName" type="radio" value="year">
+            <label class="govuk-label govuk-radios__label" for="changedName-2">
+              25 milltir
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName-3" name="changedName" type="radio" value="year">
+            <label class="govuk-label govuk-radios__label" for="changedName-3">
+              50 milltir
+            </label>
+          </div>
+        </div>
+      </fieldset>
+     
+    </div>
+    {{ govukButton({
+      text: "Bwrw ymlaen",
+      classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
+      href: "results-b2-4qa.html"
+      }) }}
+  </div>
+    
+</div>
+
+    
+
+      </div>
+</div>
+
+{% endblock %}

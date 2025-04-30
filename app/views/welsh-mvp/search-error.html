@@ -1,0 +1,89 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Error - Find monitoring stations by location
+- Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="start.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#full-name-input">Enter a town or postcode</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Find monitoring stations by location</h1>
+    <p class="govuk-body govuk-hint">For locations in Northern Ireland, you can only search by postcode.</p>
+    <div class="govuk-form-group govuk-form-group--error">
+      
+      <p id="full-name-input-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter a town or postcode
+      </p>
+      <input class="govuk-input govuk-input--error" id="full-name-input" name="name" type="text" aria-describedby="full-name-input-error" autocomplete="name">
+    </div>
+
+    <div class="govuk-form-group govuk-!-margin-top-3">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <legend class="govuk-fieldset__legend">
+            Approximate search area
+          </legend>
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month" checked>
+            <label class="govuk-label govuk-radios__label" for="changedName">
+              5 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName-2" name="changedName" type="radio" value="year">
+            <label class="govuk-label govuk-radios__label" for="changedName-2">
+              25 miles
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="changedName-3" name="changedName" type="radio" value="year">
+            <label class="govuk-label govuk-radios__label" for="changedName-3">
+              50 miles
+            </label>
+          </div>
+        </div>
+      </fieldset>
+     
+    </div>
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-0",
+      href: "results-b2-4qa.html"
+      }) }}
+  </div>
+    
+</div>
+
+    
+
+      </div>
+</div>
+
+{% endblock %}

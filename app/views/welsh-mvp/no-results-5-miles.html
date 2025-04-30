@@ -1,0 +1,36 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="There are no monitoring stations within 5 miles of 'location' - Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l govuk-!-margin-top-6">There are no monitoring stations within 5 miles of 'location'</h1>
+        <p>You should either:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>choose a different search area</li>
+          <li>choose a different location</li>
+        </ul>
+      
+        <p><a href="search.html">Go back to search a location</a></p>
+      </div>
+    </div>
+
+    
+
+      </div>
+</div>
+
+{% endblock %}

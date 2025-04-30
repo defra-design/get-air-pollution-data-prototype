@@ -1,0 +1,125 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Monitoring stations within 5 miles of B2 4QA
+- Get air pollution data - GOV.UK" %}
+
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html:  'Mae hwn yn wasanaeth newydd. Helpwch ni i’w wella a <a class="govuk-link" href="#">rhowch eich adborth (mae’n agor mewn tab newydd)</a>.'
+}) }}
+<a href="search.html" class="govuk-back-link">Yn ôl</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Gorsafoedd monitro o fewn 5 milltir o B2 4QA
+    </h1>
+    <p class="govuk-body govuk-!-margin-top-3"><a href="search.html" class="govuk-link">Newid yr ardal chwilio</a></p>
+</div>
+</div>
+
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+       
+                <th class="govuk-table__header" scope="col" style="width: 50%;">Gorsaf monitro</th>
+                 
+                  <th class="govuk-table__header" scope="col" style="width: 25%;">Math o safle</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="width: 25%;">Llygryddion</th>
+          
+                
+    
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body" >
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link">Birmingham A4540 Roadside</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">1.1 milltir i ffwrdd</span>
+                  </th>
+                  <td class="govuk-table__cell">
+                    traffig trefol 
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen deuocsid<br> oson<br> sylffwr deuocsid</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">1.2 milltir i ffwrdd</span>
+            
+            
+                  </th>
+  
+              
+  
+                  <td class="govuk-table__cell">
+                    cefndir trefol 
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen deuocsid<br> oson<br>sylffwr deuocsid 
+                    
+                  </td>
+                  
+                </tr>
+                <tr class="govuk-table__row">
+                
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">2.3 milltir i ffwrdd</span>
+                 
+                
+                  </th>
+  
+                 
+  
+                  <td class="govuk-table__cell">
+                    cefndir trefol 
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen deuocsid<br>oson </td>
+
+                  
+                </tr>
+
+                
+                <tr class="govuk-table__row">
+               
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">2.5 milltir i ffwrdd</span>
+              
+              
+                  </th>
+  
+                  
+  
+                  <td class="govuk-table__cell">
+                    traffig trefol 
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen deuocsid</td>
+                 
+     
+                </tr>
+               
+                
+              </tbody>
+            </table>
+          
+
+      
+      
+     
+  
+      </div>
+    </div>
+
+  
+
+{% endblock %}

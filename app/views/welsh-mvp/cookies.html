@@ -1,0 +1,134 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Cookies
+- Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+<a href="index.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+        <div class="app-cookies-page" data-module="app-cookies-page">
+    
+          <div class="govuk-notification-banner govuk-notification-banner--success js-cookies-page-success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" hidden="" tabindex="-1">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">  <p class="govuk-notification-banner__heading">You’ve set your cookie preferences.</p>
+    </div>
+    </div>
+    
+    
+          <h1 class="govuk-heading-xl odd-page">Cookies</h1>
+          <p class="govuk-body">The <a href="/" class="govuk-link">Get air pollution data</a> website puts small files (known as ‘cookies’) on your computer.          </p>
+    
+          <p class="govuk-body">These cookies are used across the 'get air pollution data' website.</p>
+    
+          <p class="govuk-body">We only set cookies when JavaScript is running in your browser and you have accepted them. If you choose not to run Javascript, the information on this page will not apply to you.</p>
+    
+          <p class="govuk-body">Find out <a href="https://ico.org.uk/for-the-public/online/cookies" class="govuk-link">how to manage cookies</a> from the Information Commissioner‘s Office.</p>
+    
+          <form class="js-cookies-page-form">
+    
+            <h2 class="govuk-heading-m">Essential cookies (strictly necessary)</h2>
+    
+            <p class="govuk-body">We use an essential cookie to remember when you accept or reject cookies on our website.</p>
+    
+            <table class="govuk-table">
+      <caption class="govuk-table__caption">Essential cookies we use</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Purpose</th>
+          <th scope="col" class="govuk-table__header">Expires</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">airaqie_cookies_analytics</th>
+              <td class="govuk-table__cell">Saves your cookie consent settings</td>
+              <td class="govuk-table__cell">1 year</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">_ga</th>
+              <td class="govuk-table__cell">Helps us count how many people visit the 'get air pollution data' website by telling us if you have visited before</td>
+              <td class="govuk-table__cell">2 years</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">_gat_UA-[G-8CMZBTDQBC]</th>
+              <td class="govuk-table__cell">Used to reduce the number of requests</td>
+              <td class="govuk-table__cell">1 minute</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">session</th>
+              <td class="govuk-table__cell">Application related data is managed in this cookie – it is required for the website to work</td>
+              <td class="govuk-table__cell">30 minutes</td>
+            </tr>
+      </tbody>
+    </table>
+    
+            <p class="govuk-body">The cookies <strong>_ga_ </strong> and <strong>_gat_UA-[G-8CMZBTDQBC]</strong> will only be active if you accept the cookies. However, if you do not accept cookies, they may still appear in your cookie session but they will not be active.</p>
+            <h2 class="govuk-heading-m">Analytics cookies (optional)</h2>
+    
+            <p class="govuk-body">We use Google Analytics software to understand how people use the 'get air pollution data' website. We do this to:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>help make sure it is meeting the needs of its users</li>
+              <li>help us make improvements </li>
+            </ul>
+    
+            <p class="govuk-body">We do not collect or store your personal information (for example your name or address) so this information cannot be used to identify you.</p>
+    
+            <p class="govuk-body">We do not allow Google to use or share our analytics data.</p>
+    
+            <p class="govuk-body">Google Analytics stores information about:</p>
+    
+            <ul class="govuk-list govuk-list--bullet">
+              <li>the pages you visit</li>
+              <li>how long you spend on each page</li>
+              <li>how you arrived at the site</li>
+              <li>what you click on while you visit the site</li>
+              <li>the device and browser you use</li>
+            </ul>
+            <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset js-cookies-page-form-fieldset" data-cookie-type="analytics">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+        Do you want to accept analytics cookies?
+      </legend>
+      <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="cookies-analytics" name="cookies[analytics]" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="cookies-analytics">
+            Yes
+          </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="cookies-analytics-2" name="cookies[analytics]" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="cookies-analytics-2">
+            No
+          </label>
+            </div>
+      </div>
+    
+    </fieldset>
+    </div>
+     
+    
+            <button type="submit" class="govuk-button js-cookies-form-button" data-module="govuk-button">
+      Save cookie settings
+    </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+      </div>
+</div>
+
+{% endblock %}
