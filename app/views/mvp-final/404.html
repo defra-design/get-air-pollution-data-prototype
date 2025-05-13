@@ -1,0 +1,34 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Find monitoring stations by location
+- Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Page not found</h1>
+
+   <p class="govuk-body">If you typed the web address, check it is correct.
+   </p>
+
+   <p class="govuk-body">If you pasted the web address, check you copied the entire address.
+  </p>
+
+   <p class="govuk-body">Contact the <a href="mailto:getairpollutiondata@defra.gov.uk" class="govuk-link">air quality team</a> if you continue to get this error message</p>
+   
+      </div>
+</div>
+
+{% endblock %}
