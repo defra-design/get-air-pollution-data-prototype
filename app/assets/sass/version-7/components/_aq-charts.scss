@@ -17,6 +17,7 @@ rect {
     border: 1px solid black;
     display: none;
     pointer-events: none; /* This prevents the tooltip from blocking mouse events */
+    z-index: 1000;
 }
 
 .graph-container {
@@ -156,3 +157,8 @@ rect {
     @include govuk-font($size: 19);
   }  
   
+
+  #pm10-container-2024 .focus-points circle:focus {
+  outline: none;
+  z-index: 5;
+}

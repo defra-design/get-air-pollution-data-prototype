@@ -13,9 +13,42 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   {{ govukHeader({
     homepageUrl: "/",
     serviceName: serviceName,
-    serviceUrl: "/version-7/search.html",
+    serviceUrl: "/version-7/hub.html",
     containerClasses: "govuk-width-container"
   }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "/mvp-final/privacy.html",
+         text: "Privacy"
+       },
+       {
+        href: "/mvp-final/cookies.html",
+        text: "Cookies"
+      },
+      {
+       href: "/mvp-final/accessibility.html",
+       text: "Accessibility statement"
+     }
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
 {% endblock %}
 
 
@@ -26,8 +59,10 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
-  <script src="/public/javascripts/bundles/autocomplete_v7.bundle.js"></script>
   <script src="/public/javascripts/version_7/v7.js"></script>
+
+  <script src="/public/javascripts/bundles/autocomplete_v7.bundle.js"></script>
+  <script src="/public/javascripts/bundles/autocomplete_pv7.bundle.js"></script>
 
   <!-- Components -->
   <script src="/public/javascripts/version_7/components/toggletip.js"></script>

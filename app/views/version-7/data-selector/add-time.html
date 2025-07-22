@@ -1,0 +1,130 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+   
+    
+ 
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="time-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h2 class="govuk-heading-m">
+            Select time period
+          </h2>
+          <p class="govuk-body"><span id="start-year"></span></p>
+        </legend>
+       
+        <div class="govuk-radios govuk-!-margin-top-0" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-1" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-1">
+              Last 24 hours
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-2" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-2">
+              Last 7 days
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-3" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-3">
+              Last 30 days
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-4" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-4">
+              Last year
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-5">
+              Year to date
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-6" name="time" type="radio" value="text" data-aria-controls="conditional-time-3" >
+            <label class="govuk-label govuk-radios__label" for="time-6">
+              Choose a range of years
+            </label>
+            <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             1 January to 31 December
+            </div> -->
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-time-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="time-by-text">
+                  Enter first year
+                </label>
+                <div id="signIn-item-hint" class="govuk-hint">
+                  For example: 2009
+                </div>
+                <div class="govuk-date-input" id="passport-issued">
+                  
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        <!-- Enter start year -->
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                  </div>
+              </div>
+            </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="time-by-text">
+                  Enter last year
+                </label>
+               
+                <div class="govuk-date-input" id="passport-issued">
+                   <div id="signIn-item-hint" class="govuk-hint">
+                   For example: 2010
+                </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        <!-- In YYYY format -->
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                  </div>
+              </div>
+            </div>
+             
+            </div>
+          
+        
+         
+      </fieldset>
+      
+    </div>
+
+    {{ govukButton({
+      text: "Get data",
+      href: "download?contact.html"
+    }) }}
+   
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+
+<a href="../choose-dataset" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Choose one or more pollutants</h1>
+
+      </div>
+    </div>
+         <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+    <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Pollutant
+    </dt>
+    <dd class="govuk-summary-list__value" id="pollutant-summary-list">
+     None selected
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-pollutant.html">Add<span class="govuk-visually-hidden"> pollutant</span></a>
+    </dd>
+  </div>
+   
+  
+  
+</dl>  
+
+    <p class="govuk-body">Choose a time period and location.</p>
+
+      <dl class="govuk-summary-list">
+    
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Time period
+    </dt>
+    <dd class="govuk-summary-list__value">
+      None selected
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-time.html">Add<span class="govuk-visually-hidden"> time period</span></a>
+    </dd>
+  </div>
+   
+  
+  
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Location
+    </dt>
+    <dd class="govuk-summary-list__value">
+     None selected
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-location.html">Add<span class="govuk-visually-hidden"> location</span></a>
+    </dd>
+  </div>
+ 
+  
+</dl>
+
+ <p class="govuk-body">Optional: choose a data source(s) or site type(s)</p>
+ <p class="govuk-body"><a href="#" class="govuk-link">View more information about data sources (opens in new tab)</a></p>
+
+      <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Data source
+    </dt>
+    <dd class="govuk-summary-list__value" id="data-source-list">
+    Any
+    </dd>
+    <dd class="govuk-summary-list__actions">
+   <!--    <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> date of birth</span></a> -->
+    </dd>
+  </div>
+   <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Site type
+    </dt>
+    <dd class="govuk-summary-list__value">
+     Any
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+    </dd>
+  </div>
+  
+</dl>
+          </div>
+           <!--   <div class="govuk-grid-column-one-third-from-desktop">
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            
+            <li>
+              <a href="#">
+                What data sources are available (opens in new tab)
+              </a>
+            </li>
+          
+          </ul>
+        </nav>
+      </aside>
+
+    </div> -->
+        </div>
+
+        {{ govukButton({
+          text: "Get data",
+          href: "results-b2-4qa-filtered.html"
+        }) }}
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const stored = sessionStorage.getItem('selectedPollutants');
+  const valueCell = document.querySelector('.govuk-summary-list__row dd.govuk-summary-list__value');
+  const actionLink = document.querySelector('.govuk-summary-list__row dd.govuk-summary-list__actions a');
+
+  if (stored && valueCell && actionLink) {
+    const pollutants = JSON.parse(stored);
+    if (pollutants.length > 0) {
+      // Populate the summary row
+      valueCell.innerHTML = pollutants.map(p => `<div>${p}</div>`).join('');
+
+      // Change the "Add" link to "Change"
+      actionLink.textContent = 'Change';
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
+
+  const pollutantListEl = document.getElementById('pollutant-summary-list');
+  const dataSourceEl = document.getElementById('data-source-list');
+  const dataSources = new Set();
+
+  if (pollutants.length > 0 && pollutantListEl) {
+    // Show pollutants
+    pollutantListEl.innerHTML = pollutants.map(p => `<div>${p}</div>`).join('');
+
+    // Determine data sources based on pollutant name
+    pollutants.forEach(pollutant => {
+      const name = pollutant.toLowerCase();
+
+      if (
+        ['pm2.5', 'pm10', 'ozone', 'sulphur dioxide', 'carbon monoxide'].includes(name)
+      ) {
+        dataSources.add('Real-time data from Defra');
+        dataSources.add('Local authority data');
+      }
+
+      if (name === 'nitrogen dioxide') {
+        dataSources.add('Real-time data from Defra');
+        dataSources.add('Local authority data');
+        dataSources.add('Monthly data from Defra');
+        dataSources.add('Monthly rural data');
+      }
+    });
+
+    // Display data sources
+    if (dataSourceEl) {
+      dataSourceEl.innerHTML = [...dataSources]
+        .map(source => `<div>${source}</div>`)
+        .join('');
+    }
+  }
+});
+
+</script>
+<!-- end of second row-->
+  
+
+{% endblock %}

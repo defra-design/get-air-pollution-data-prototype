@@ -22,6 +22,9 @@
         background-color: $govuk-focus-colour;
         border-color: $govuk-focus-colour;
         box-shadow: 0 2px 0 govuk-colour('black') !important;
+         .aq-button-secondary__text {
+        color: $govuk-text-colour;
+        }
     }
     &--icon {
         padding-left: 31px;
