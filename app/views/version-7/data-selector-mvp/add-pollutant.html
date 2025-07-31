@@ -1,0 +1,81 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+<div id="duplicate-error" class="govuk-error-summary" data-module="govuk-error-summary" hidden>
+  <div role="alert">
+    <h2 class="govuk-error-summary__title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#my-autocomplete">This pollutant has already been added</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <h1 class="govuk-heading-l">
+     Add pollutant(s)
+    </h1>
+    
+
+
+
+
+
+    <div class="govuk-form-group">
+              <div id="signIn-item-hint" class="govuk-hint">
+                Enter a pollutant
+              </div>
+            
+              <div id="autocomplete-container-p" class="govuk-body"></div>
+            </div>
+
+
+
+
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Add pollutant(s)"
+  }) }}
+
+  {{ govukButton({
+    text: "Add multiple pollutants",
+    classes: "govuk-button--secondary"
+  }) }}
+</div>
+
+   <table class="govuk-table govuk-!-margin-top-4" id="pollutant-table" hidden>
+  <caption class="govuk-table__caption govuk-table__caption--m">Added pollutants</caption>
+  <tbody class="govuk-table__body">
+    <!-- Rows will go here -->
+  </tbody>
+</table>
+   
+      </div>
+    </div>
+<!-- end of second row-->
+  
+
+{% endblock %}

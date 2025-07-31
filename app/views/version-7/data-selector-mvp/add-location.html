@@ -1,0 +1,251 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Add location(s)
+    </h1>
+
+   
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+         <!--  <h2 class="govuk-heading-m">
+            Select search area
+          </h2> -->
+        </legend>
+       <!--  <div id="contact-hint" class="govuk-hint">
+          Select one option
+        </div> -->
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="location" name="location" type="radio" value="email" >
+            <label class="govuk-label govuk-radios__label" for="location">
+              United Kingdom
+            </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              England, Scotland, Wales and Northern Ireland
+            </div>
+          </div>
+       
+         
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="location-4" name="location" type="radio" value="text" data-aria-controls="conditional-location-4">
+            <label class="govuk-label govuk-radios__label" for="location-4">
+             Local authority
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
+            <div class="govuk-form-group">
+         <!--      <div id="signIn-item-hint" class="govuk-hint">
+              Local authority
+              </div> -->
+            <div id="autocomplete-container" class="govuk-body"></div>
+
+
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    
+ <table class="govuk-table govuk-!-margin-top-4" id="location-table" hidden>
+  <caption class="govuk-table__caption govuk-table__caption--m">Added locations</caption>
+  <tbody class="govuk-table__body">
+    <!-- Rows will go here -->
+  </tbody>
+</table>
+  
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Add location",
+    attributes: { id: "add-location-button" }
+  }) }}
+
+  {{ govukButton({
+    text: "Add more locations",
+    classes: "govuk-button--secondary",
+    attributes: { id: "add-more-locations-button" }
+  }) }}
+</div>
+
+   
+
+
+
+      </div>
+    </div>
+<!-- end of second row-->
+  
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const submitButton = document.getElementById('add-location-button');
+  const addMoreButton = document.getElementById('add-more-locations-button');
+
+  const table = document.getElementById('location-table');
+  const tableBody = table.querySelector('tbody');
+  let count = 0;
+  const addedLocations = new Set();
+
+  // === Restore previously saved UK or local authorities ===
+  const savedLocation = sessionStorage.getItem('selectedLocation');
+  const savedList = sessionStorage.getItem('selectedLocations');
+
+  const ukRadio = document.getElementById('location');
+  const laRadio = document.getElementById('location-4');
+  const conditionalField = document.getElementById('conditional-location-4');
+
+  if (savedLocation === 'United Kingdom') {
+    ukRadio.checked = true;
+  } else if (savedList) {
+    laRadio.checked = true;
+    conditionalField.classList.remove('govuk-radios__conditional--hidden');
+
+    const locations = JSON.parse(savedList);
+    locations.forEach(value => addLocationRow(value));
+
+    // Restore first value in the autocomplete input
+    setTimeout(() => {
+      const input = document.querySelector('#my-autocomplete');
+      if (input) input.value = locations[0] || '';
+    }, 100);
+  }
+
+  // === Add location row to table ===
+  function addLocationRow(value) {
+    count++;
+    addedLocations.add(value.toLowerCase());
+
+    const row = document.createElement('tr');
+    row.className = 'govuk-table__row';
+
+    const headerCell = document.createElement('th');
+    headerCell.scope = 'row';
+    headerCell.className = 'govuk-table__header';
+    headerCell.textContent = `Location ${count}`;
+
+    const valueCell = document.createElement('td');
+    valueCell.className = 'govuk-table__cell';
+    valueCell.textContent = value;
+
+    const actionCell = document.createElement('td');
+    actionCell.className = 'govuk-table__cell';
+
+    const removeLink = document.createElement('a');
+    removeLink.href = '#';
+    removeLink.className = 'govuk-link';
+    removeLink.textContent = 'Remove';
+
+    removeLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      row.remove();
+      addedLocations.delete(value.toLowerCase());
+      if (tableBody.children.length === 0) {
+        table.hidden = true;
+        count = 0;
+      }
+    });
+
+    actionCell.appendChild(removeLink);
+    row.appendChild(headerCell);
+    row.appendChild(valueCell);
+    row.appendChild(actionCell);
+    tableBody.appendChild(row);
+
+    table.hidden = false;
+  }
+
+  // === Handle "Add more locations" ===
+  addMoreButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const input = document.querySelector('#my-autocomplete');
+    if (!input) return;
+
+    const value = input.value.trim();
+    if (!value) {
+      alert('Please enter a local authority.');
+      return;
+    }
+
+    const lowerValue = value.toLowerCase();
+    if (addedLocations.has(lowerValue)) {
+      alert('This location has already been added.');
+      return;
+    }
+
+    addLocationRow(value);
+    input.value = '';
+  });
+
+  // === Handle "Add location" (submit) ===
+  submitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const selectedRadio = document.querySelector('input[name="location"]:checked');
+    if (!selectedRadio) {
+      alert('Please select a location option');
+      return;
+    }
+
+    if (selectedRadio.id === 'location') {
+      // UK selected
+      sessionStorage.setItem('selectedLocation', 'United Kingdom');
+      sessionStorage.removeItem('selectedLocations');
+    } else {
+      // Local authorities selected
+      let locations = [];
+
+      if (!table.hidden && tableBody.children.length > 0) {
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+          const name = row.querySelector('td').textContent.trim();
+          locations.push(name);
+        });
+      } else {
+        const input = document.querySelector('#my-autocomplete');
+        if (input && input.value.trim()) {
+          const value = input.value.trim();
+          if (!addedLocations.has(value.toLowerCase())) {
+            locations.push(value);
+          }
+        }
+      }
+
+      if (locations.length === 0) {
+        alert('Please add at least one location.');
+        return;
+      }
+
+      sessionStorage.setItem('selectedLocations', JSON.stringify(locations));
+      sessionStorage.removeItem('selectedLocation');
+    }
+
+    // Go back to summary
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+
+
+
+
+
+{% endblock %}

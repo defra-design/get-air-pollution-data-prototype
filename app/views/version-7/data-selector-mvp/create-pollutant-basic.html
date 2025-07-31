@@ -1,0 +1,136 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+
+<a href="../hub" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Choose how you search for data</h1>
+
+      </div>
+    </div>
+         <div class="govuk-grid-row">
+      <div class="govuk-grid-column-three-quarters-from-desktop">
+   
+
+    <p class="govuk-body">1. Choose a time period and location</p>
+
+      <dl class="govuk-summary-list">
+    
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Time period
+    </dt>
+    <dd class="govuk-summary-list__value" id="time-period-value">
+      None selected
+    </dd>
+    <dd class="govuk-summary-list__actions" id="time-period-action">
+      <a class="govuk-link" href="add-time.html">Add<span class="govuk-visually-hidden"> time period</span></a>
+    </dd>
+  </div>
+   
+  
+  
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Location
+    </dt>
+<dd class="govuk-summary-list__value" id="location-value">
+  None selected
+</dd>
+<dd class="govuk-summary-list__actions" id="location-action">
+  <a class="govuk-link" href="add-location.html">Add<span class="govuk-visually-hidden"> location</span></a>
+</dd>
+  </div>
+      <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Data source
+    </dt>
+    <dd class="govuk-summary-list__value" id="data-source-list">
+    Real-time data from Defra
+    </dd>
+    <dd class="govuk-summary-list__actions">
+   <!--    <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> date of birth</span></a> -->
+    </dd>
+  </div>
+ 
+  
+</dl>
+
+<p class="govuk-body"><a href="#" class="govuk-link">View more information about data sources (opens in new tab)</a></p>
+
+
+          </div>
+           <!--   <div class="govuk-grid-column-one-third-from-desktop">
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            
+            <li>
+              <a href="#">
+                What data sources are available (opens in new tab)
+              </a>
+            </li>
+          
+          </ul>
+        </nav>
+      </aside>
+
+    </div> -->
+        </div>
+
+        {{ govukButton({
+          text: "Get data",
+          href: "download-multiple-years.html"
+        }) }}
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Time period
+  const timePeriod = sessionStorage.getItem('selectedTimePeriod');
+  const timeCell = document.getElementById('time-period-value');
+  const timeActionCell = document.getElementById('time-period-action');
+  if (timePeriod && timeCell && timeActionCell) {
+    timeCell.textContent = timePeriod;
+    timeActionCell.innerHTML = '<a class="govuk-link" href="add-time.html">Change<span class="govuk-visually-hidden"> time period</span></a>';
+  }
+
+  // Location (single or multiple)
+  const location = sessionStorage.getItem('selectedLocation');
+  const locationList = sessionStorage.getItem('selectedLocations');
+  const locationCell = document.getElementById('location-value');
+  const locationActionCell = document.getElementById('location-action');
+
+  if (location && locationCell && locationActionCell) {
+    locationCell.textContent = location;
+    locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
+  } else if (locationList && locationCell && locationActionCell) {
+  const locations = JSON.parse(locationList);
+  locationCell.innerHTML = locations.map(l => `<div>${l}</div>`).join('');
+  locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
+}
+});
+</script>
+
+
+
+  
+
+{% endblock %}

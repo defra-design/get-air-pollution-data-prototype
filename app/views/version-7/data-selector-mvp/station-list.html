@@ -1,0 +1,124 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Monitoring stations
+- Get air pollution data - GOV.UK" %}
+
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="download.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Monitoring stations that match your selection
+    </h1>
+</div>
+</div>
+
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+       
+                <th class="govuk-table__header" scope="col" style="width: 50%;">Monitoring station</th>
+                 
+                  <th class="govuk-table__header" scope="col" style="width: 35%;">Site type</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="width: 15%;">Pollutants</th>
+          
+                
+    
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body" >
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link">Birmingham A4540 Roadside</a></strong>
+                   
+                  </th>
+                  <td class="govuk-table__cell">
+                    urban traffic
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+                   
+            
+            
+                  </th>
+  
+              
+  
+                  <td class="govuk-table__cell">
+                    urban background
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide
+                    
+                  </td>
+                  
+                </tr>
+                <tr class="govuk-table__row">
+                
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
+                    
+                 
+                
+                  </th>
+  
+                 
+  
+                  <td class="govuk-table__cell">
+                    urban background
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>ozone</td>
+
+                  
+                </tr>
+
+                
+                <tr class="govuk-table__row">
+               
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
+                    
+              
+              
+                  </th>
+  
+                  
+  
+                  <td class="govuk-table__cell">
+                    urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide</td>
+                 
+     
+                </tr>
+               
+                
+              </tbody>
+            </table>
+          
+
+      
+      
+     
+  
+      </div>
+    </div>
+
+  
+
+{% endblock %}

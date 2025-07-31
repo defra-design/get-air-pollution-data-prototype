@@ -1,0 +1,269 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-l">Download your data</h2>
+
+   <dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+     Year
+    </dt>
+    <dd class="govuk-summary-list__value" id="download-time-period">
+  
+</dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-time.html">Change<span class="govuk-visually-hidden"> Year</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Location
+    </dt>
+    <dd class="govuk-summary-list__value" id="download-location">
+
+</dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Site type
+    </dt>
+  <dd class="govuk-summary-list__value" id="download-site-type">
+  <p class="govuk-body">Any</p>
+</dd>
+    <dd class="govuk-summary-list__actions">
+        <li class="govuk-summary-list__actions-list-item">
+          <a class="govuk-link" href="add-site-type.html">Change<span class="govuk-visually-hidden"> site type</span></a>
+        </li>
+    </dd>
+  </div>
+</dl>
+    
+
+
+<p class="govuk-body"><a href="station-list.html" class="govuk-link">View monitoring stations that match your selection</a></p>
+
+<h3 class="govuk-heading-s">Save your query</h3>
+<p class="govuk-body">You can bookmark or save your query to quickly download data with the same details next time.</p>
+
+<p class="govuk-body">Bookmark or save this URL: <a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
+
+
+  </div>
+</div>
+
+
+
+<div class="govuk-grid-row govuk-!-margin-top-3">
+   <!-- <div class="govuk-tabs" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#past-day">
+        All pollutants
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-week">
+       PM2.5
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-month">
+       PM10
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-year">
+        Nitrogen dioxide
+      </a>
+    </li>
+     <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-year">
+        Ozone
+      </a>
+    </li>
+     <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-year">
+        Sulphur dioxide
+      </a>
+    </li>
+     <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-year">
+        Carbon monoxide
+      </a>
+    </li>
+  </ul>
+  <div class="govuk-tabs__panel" id="past-day">
+    <h2 class="govuk-heading-l">Past day</h2>
+   
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+   
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+    <h2 class="govuk-heading-l">Past month</h2>
+   
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
+    <h2 class="govuk-heading-l">Past year</h2>
+  
+  </div>
+</div> -->
+  <div class="govuk-grid-column-full" id="download-content-container">
+ 
+   
+      </div>
+    </div>
+<!-- end of second row-->
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Time period
+  const time = sessionStorage.getItem('selectedTimePeriod');
+  const timeTarget = document.getElementById('download-time-period');
+  if (time && timeTarget) {
+    timeTarget.innerHTML = time.replace(/\n/g, '<br>'); // in case newline was used
+  }
+
+  // Location
+  const singleLocation = sessionStorage.getItem('selectedLocation');
+  const locationList = sessionStorage.getItem('selectedLocations');
+  const locationTarget = document.getElementById('download-location');
+  if (locationTarget) {
+    if (singleLocation) {
+      locationTarget.innerHTML = singleLocation;
+    } else if (locationList) {
+      const list = JSON.parse(locationList);
+      locationTarget.innerHTML = list.map(l => `${l}`).join('<br>');
+    }
+  }
+
+  // Site type
+  const siteTypes = sessionStorage.getItem('selectedSiteTypes');
+  const siteTypeTarget = document.getElementById('download-site-type');
+  if (siteTypes && siteTypeTarget) {
+    const list = JSON.parse(siteTypes);
+    siteTypeTarget.innerHTML = list.map(t => `${t}`).join('<br>');
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.getElementById('download-content-container');
+  const timePeriod = sessionStorage.getItem('selectedTimePeriod') || '';
+
+  // Match ranges like "2010 to 2024"
+  const rangeMatch = timePeriod.match(/(\d{4}).*to.*(\d{4})/);
+  const lastYearMatch = timePeriod.match(/1 January to 31 December (\d{4})/);
+  const yearToDateMatch = timePeriod.match(/1 January to \d{1,2} \w+ \d{4}/);
+
+  if (rangeMatch) {
+    let startYear = parseInt(rangeMatch[1]);
+    let endYear = parseInt(rangeMatch[2]);
+
+    // Clamp years between 1994 and 2025
+    startYear = Math.max(1994, Math.min(2025, startYear));
+    endYear = Math.max(1994, Math.min(2025, endYear));
+
+    // Ensure valid range
+    if (startYear > endYear) {
+      container.innerHTML = `<p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
+      return;
+    }
+
+    let rows = '';
+    for (let year = endYear; year >= startYear; year--) {
+      rows += `
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">${year}</th>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download daily average data</a></td>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
+      </tr>`;
+    }
+
+    container.innerHTML = `
+      <div class="govuk-grid-row govuk-!-margin-top-3">
+        <div class="govuk-grid-column-full">
+          <h2 class="govuk-heading-m">Download by year</h2>
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Year</th>
+                <th scope="col" class="govuk-table__header">Hourly data</th>
+                <th scope="col" class="govuk-table__header">Daily average</th>
+                <th scope="col" class="govuk-table__header">Annual average</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              ${rows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  } else if (lastYearMatch || yearToDateMatch) {
+    const heading = `<h2 class="govuk-heading-m">Download data for ${timePeriod}</h2>`;
+    const buttons = `
+      <div class="govuk-grid-row govuk-!-margin-top-3">
+        <div class="govuk-grid-column-two-thirds">
+          ${heading}
+          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text">Download hourly data</span>
+          </a><br>
+          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text">Download daily average data</span>
+          </a><br>
+          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text">Download annual average data</span>
+          </a>
+        </div>
+      </div>
+    `;
+    container.innerHTML = buttons;
+  } else {
+    container.innerHTML = `<p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+  }
+});
+</script>
+
+
+
+
+{% endblock %}

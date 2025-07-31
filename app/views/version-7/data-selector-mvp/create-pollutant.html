@@ -1,0 +1,154 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+
+<a href="../hub" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Choose how you search for data</h1>
+
+      </div>
+    </div>
+         <div class="govuk-grid-row">
+      <div class="govuk-grid-column-three-quarters-from-desktop">
+      <p class="govuk-body">Download real-time air pollution data from Defra (Automatic Urban and Rural Network).</p>
+
+<!--           <p class="govuk-body">This data comes from the Automatic Urban and Rural Network (AURN). It’s the most accurate air pollution data in the UK.</p>
+ -->
+    <p class="govuk-body">Choose year(s) and location(s)</p>
+
+      <dl class="govuk-summary-list">
+    
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Year
+    </dt>
+    <dd class="govuk-summary-list__value" id="time-period-value">
+      None selected
+    </dd>
+    <dd class="govuk-summary-list__actions" id="time-period-action">
+      <a class="govuk-link" href="add-time.html">Add<span class="govuk-visually-hidden"> time period</span></a>
+    </dd>
+  </div>
+   
+  
+  
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Location
+    </dt>
+<dd class="govuk-summary-list__value" id="location-value">
+  None selected
+</dd>
+<dd class="govuk-summary-list__actions" id="location-action">
+  <a class="govuk-link" href="add-location.html">Add<span class="govuk-visually-hidden"> location</span></a>
+</dd>
+
+
+  </div>
+ 
+  
+</dl>
+
+ <p class="govuk-body">Optional: choose site type(s)</p>
+ 
+      <dl class="govuk-summary-list">
+     
+   <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Site type
+  </dt>
+  <dd class="govuk-summary-list__value" id="site-type-value">
+    Any
+  </dd>
+  <dd class="govuk-summary-list__actions" id="site-type-action">
+    <a class="govuk-link" href="add-site-type.html">Change<span class="govuk-visually-hidden"> site type</span></a>
+  </dd>
+</div>
+
+  
+</dl>
+
+<!--  <dl class="govuk-summary-list govuk-summary-list--no-border">
+      <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Data source
+    </dt>
+    <dd class="govuk-summary-list__value " id="data-source-list">
+   Real-time data from Defra (Automatic Urban and Rural Network)
+    </dd>
+    <dd class="govuk-summary-list__actions">
+   
+    </dd>
+  </div>
+ 
+  
+</dl> -->
+          </div>
+     
+        </div>
+
+        {{ govukButton({
+          text: "Get data",
+          href: "download.html"
+        }) }}
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Time period
+  const timePeriod = sessionStorage.getItem('selectedTimePeriod');
+  const timeCell = document.getElementById('time-period-value');
+  const timeActionCell = document.getElementById('time-period-action');
+  if (timePeriod && timeCell && timeActionCell) {
+    timeCell.textContent = timePeriod;
+    timeActionCell.innerHTML = '<a class="govuk-link" href="add-time.html">Change<span class="govuk-visually-hidden"> time period</span></a>';
+  }
+
+  // Site types
+const siteTypes = sessionStorage.getItem('selectedSiteTypes');
+const siteTypeCell = document.getElementById('site-type-value');
+const siteTypeActionCell = document.getElementById('site-type-action');
+
+if (siteTypes && siteTypeCell && siteTypeActionCell) {
+  const list = JSON.parse(siteTypes);
+  siteTypeCell.innerHTML = list.join('<br>');
+  siteTypeActionCell.innerHTML = '<a class="govuk-link" href="add-site-type.html">Change<span class="govuk-visually-hidden"> site type</span></a>';
+}
+
+
+  // Location (single or multiple)
+  const location = sessionStorage.getItem('selectedLocation');
+  const locationList = sessionStorage.getItem('selectedLocations');
+  const locationCell = document.getElementById('location-value');
+  const locationActionCell = document.getElementById('location-action');
+
+  if (location && locationCell && locationActionCell) {
+    locationCell.textContent = location;
+    locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
+  } else if (locationList && locationCell && locationActionCell) {
+  const locations = JSON.parse(locationList);
+  locationCell.innerHTML = locations.map(l => `<div>${l}</div>`).join('');
+  locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
+}
+});
+</script>
+
+
+
+  
+
+{% endblock %}
