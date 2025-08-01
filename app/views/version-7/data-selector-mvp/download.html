@@ -18,7 +18,13 @@
   <div class="govuk-grid-column-two-thirds">
 
     <h2 class="govuk-heading-l">Download your data</h2>
-
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     View and change your search details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
    <dl class="govuk-summary-list">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
@@ -56,6 +62,9 @@
     </dd>
   </div>
 </dl>
+  </div>
+</details>
+ 
     
 
 
@@ -65,13 +74,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
- <div class="govuk-inset-text">
-  <h3 class="govuk-heading-s">Save your search</h3>
-<p class="govuk-body">Save this URL to quickly download data with the same details next time.</p>
-
-<p class="govuk-body"><a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
-
-</div>
+ 
   </div>
 </div>
 
@@ -79,7 +82,7 @@
 
 <div class="govuk-grid-row govuk-!-margin-top-3">
  
-   <!-- <div class="govuk-tabs" data-module="govuk-tabs">
+  <!--  <div class="govuk-tabs" data-module="govuk-tabs">
   <h2 class="govuk-tabs__title">
     Contents
   </h2>
@@ -121,18 +124,18 @@
     </li>
   </ul>
   <div class="govuk-tabs__panel" id="past-day">
-    <h2 class="govuk-heading-l">Past day</h2>
+    
    
   </div>
   <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
    
   </div>
   <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
-    <h2 class="govuk-heading-l">Past month</h2>
+    
    
   </div>
   <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
-    <h2 class="govuk-heading-l">Past year</h2>
+   
   
   </div>
 </div> -->
@@ -140,39 +143,63 @@
  
    
       </div>
+      
     </div>
+    <div class="govuk-inset-text">
+  <h3 class="govuk-heading-s">Save your search</h3>
+<p class="govuk-body">Save this URL to quickly download data with the same details next time.</p>
+
+<p class="govuk-body"><a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
+
+</div>
 <!-- end of second row-->
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Time period
+  // === Time period ===
   const time = sessionStorage.getItem('selectedTimePeriod');
   const timeTarget = document.getElementById('download-time-period');
   if (time && timeTarget) {
-    timeTarget.innerHTML = time.replace(/\n/g, '<br>'); // in case newline was used
+    timeTarget.innerHTML = time.replace(/\n/g, '<br>');
   }
 
-  // Location
-  const singleLocation = sessionStorage.getItem('selectedLocation');
-  const locationList = sessionStorage.getItem('selectedLocations');
+  // === Location (Countries, Local Authorities, legacy single) ===
   const locationTarget = document.getElementById('download-location');
+
+  // Read storage
+  const countriesRaw = sessionStorage.getItem('selectedCountries');   // ["England","Wales",...]
+  const lasRaw       = sessionStorage.getItem('selectedLocations');   // ["Birmingham City Council",...]
+  const single       = sessionStorage.getItem('selectedLocation');    // legacy e.g. "United Kingdom"
+
+  // Parse safely
+  const countries = (() => { try { return countriesRaw ? JSON.parse(countriesRaw) : null; } catch { return null; } })();
+  const las       = (() => { try { return lasRaw ? JSON.parse(lasRaw) : null; } catch { return null; } })();
+
   if (locationTarget) {
-    if (singleLocation) {
-      locationTarget.innerHTML = singleLocation;
-    } else if (locationList) {
-      const list = JSON.parse(locationList);
-      locationTarget.innerHTML = list.map(l => `${l}`).join('<br>');
+    const parts = [];
+
+    if (Array.isArray(countries) && countries.length) {
+      parts.push(countries.join('<br>'));
     }
+    if (Array.isArray(las) && las.length) {
+      parts.push(las.join('<br>'));
+    }
+    if (!parts.length && single) {
+      parts.push(single); // fallback for older flows
+    }
+
+    locationTarget.innerHTML = parts.length ? parts.join('<br>') : 'None selected';
   }
 
-  // Site type
+  // === Site type ===
   const siteTypes = sessionStorage.getItem('selectedSiteTypes');
   const siteTypeTarget = document.getElementById('download-site-type');
   if (siteTypes && siteTypeTarget) {
-    const list = JSON.parse(siteTypes);
-    siteTypeTarget.innerHTML = list.map(t => `${t}`).join('<br>');
+    const list = (() => { try { return JSON.parse(siteTypes); } catch { return []; } })();
+    siteTypeTarget.innerHTML = Array.isArray(list) && list.length ? list.join('<br>') : 'Any';
   }
 });
 </script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

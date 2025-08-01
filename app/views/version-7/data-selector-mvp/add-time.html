@@ -23,9 +23,9 @@
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset" aria-describedby="time-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h2 class="govuk-heading-m">
-            Select time period
-          </h2>
+          <h1 class="govuk-heading-l">
+            Add time period
+          </h1>
           <p class="govuk-body"><span id="start-year"></span></p>
         </legend>
        
@@ -33,13 +33,13 @@
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="time-4" name="time" type="radio" value="text" >
             <label class="govuk-label govuk-radios__label" for="time-4">
-              Last year
+              Last year (1 January to 31 December 2024)
             </label>
           </div>
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="text" >
             <label class="govuk-label govuk-radios__label" for="time-5">
-              Year to date
+              Year to date (1 January to <span id="ytd-today"></span>)
             </label>
           </div>
           <div class="govuk-radios__item">
@@ -100,7 +100,7 @@
     </div>
 
     {{ govukButton({
-      text: "Add time period"
+      text: "Continue"
     }) }}
    
       </div>
@@ -156,6 +156,18 @@ document.querySelector('.govuk-button').addEventListener('click', function (e) {
   window.location.href = 'create-pollutant.html';
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Format like "1 August"
+  const today = new Date();
+  const formatted =
+    new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(today);
+
+  const span = document.getElementById('ytd-today');
+  if (span) span.textContent = formatted;
+});
+</script>
+
 
 
 {% endblock %}
