@@ -1,0 +1,152 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Add site types
+          </h1>
+        </legend>
+        <div id="waste-hint" class="govuk-hint">
+      
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-select-all" name="site-type" type="checkbox" value="select-all">
+    <label class="govuk-label govuk-checkboxes__label" for="site-select-all">
+      Select all
+    </label>
+  </div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-rural" name="site-type" type="checkbox" value="Rural background">
+    <label class="govuk-label govuk-checkboxes__label" for="site-rural">
+      Rural background
+    </label>
+    <div class="govuk-hint govuk-checkboxes__hint">
+      This monitoring area is in small settlements or areas with natural ecosystems, forests or crops...
+    </div>
+  </div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-suburban-bg" name="site-type" type="checkbox" value="Suburban background">
+    <label class="govuk-label govuk-checkboxes__label" for="site-suburban-bg">
+      Suburban background
+    </label>
+    <div class="govuk-hint govuk-checkboxes__hint">
+      This monitoring site is on the outskirts of an urban area or in an area of its own...
+    </div>
+  </div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-urban-bg" name="site-type" type="checkbox" value="Urban background">
+    <label class="govuk-label govuk-checkboxes__label" for="site-urban-bg">
+      Urban background
+    </label>
+    <div class="govuk-hint govuk-checkboxes__hint">
+      This monitoring area is in a city or town...
+    </div>
+  </div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-suburban-industrial" name="site-type" type="checkbox" value="Suburban industrial">
+    <label class="govuk-label govuk-checkboxes__label" for="site-suburban-industrial">
+      Suburban industrial
+    </label>
+    <div class="govuk-hint govuk-checkboxes__hint">
+      This monitoring site is on the outskirts of an urban area downwind of an industrial source.
+    </div>
+  </div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-urban-industrial" name="site-type" type="checkbox" value="Urban industrial">
+    <label class="govuk-label govuk-checkboxes__label" for="site-urban-industrial">
+      Urban industrial
+    </label>
+    <div class="govuk-hint govuk-checkboxes__hint">
+      This monitoring site is in a city or town downwind of an industrial source.
+    </div>
+  </div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="site-urban-traffic" name="site-type" type="checkbox" value="Urban traffic">
+    <label class="govuk-label govuk-checkboxes__label" for="site-urban-traffic">
+      Urban traffic
+    </label>
+    <div class="govuk-hint govuk-checkboxes__hint">
+      This monitoring site is in a city or town close to roads, motorways or highways.
+    </div>
+  </div>
+</div>
+
+      </fieldset>
+    </div>
+
+    
+
+
+    {{ govukButton({
+      text: "Continue",
+      href: "filters-4.html",
+      classes: "govuk-!-margin-top-3"
+    }) }}
+      </div>
+    </div>
+<!-- end of second row-->
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const addButton = document.querySelector('.govuk-button');
+
+  addButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const checkboxes = document.querySelectorAll('input[name="site-type"]');
+    const selected = [];
+
+    const siteTypeLabels = {
+      "Rural background": true,
+      "Suburban background": true,
+      "Urban background": true,
+      "Suburban industrial": true,
+      "Urban industrial": true,
+      "Urban traffic": true
+    };
+
+    const allTypes = Object.keys(siteTypeLabels);
+
+    checkboxes.forEach(cb => {
+      if (cb.checked) {
+        if (cb.value === 'select-all') {
+          selected.push(...allTypes);
+        } else if (siteTypeLabels[cb.value]) {
+          selected.push(cb.value);
+        }
+      }
+    });
+
+    if (selected.length === 0) {
+      alert('Please select at least one site type.');
+      return;
+    }
+
+    // Deduplicate in case of select all + manual overlap
+    const unique = [...new Set(selected)];
+    sessionStorage.setItem('selectedSiteTypes', JSON.stringify(unique));
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+
+
+{% endblock %}

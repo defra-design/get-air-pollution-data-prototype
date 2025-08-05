@@ -49,22 +49,22 @@
               </div>
             
               <div id="autocomplete-container-p" class="govuk-body"></div>
+              {{ govukButton({
+    text: "Add another pollutant",
+    classes: "govuk-button--secondary"
+  }) }}
             </div>
-
+ 
 
 
 
 
 <div class="govuk-button-group">
-  {{ govukButton({
-    text: "Add pollutant(s)"
-  }) }}
 
-  {{ govukButton({
-    text: "Add multiple pollutants",
-    classes: "govuk-button--secondary"
-  }) }}
+
+ 
 </div>
+
 
    <table class="govuk-table govuk-!-margin-top-4" id="pollutant-table" hidden>
   <caption class="govuk-table__caption govuk-table__caption--m">Added pollutants</caption>
@@ -72,7 +72,9 @@
     <!-- Rows will go here -->
   </tbody>
 </table>
-   
+     {{ govukButton({
+    text: "Continue"
+  }) }}
       </div>
     </div>
 <!-- end of second row-->

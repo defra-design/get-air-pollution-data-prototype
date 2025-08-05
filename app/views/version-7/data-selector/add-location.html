@@ -24,259 +24,283 @@
    
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-         <!--  <h2 class="govuk-heading-m">
-            Select search area
-          </h2> -->
-        </legend>
-       <!--  <div id="contact-hint" class="govuk-hint">
-          Select one option
-        </div> -->
-        <div class="govuk-radios" data-module="govuk-radios">
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="location" name="location" type="radio" value="email" >
-            <label class="govuk-label govuk-radios__label" for="location">
-              United Kingdom
-            </label>
-            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-              England, Scotland, Wales and Northern Ireland
-            </div>
-          </div>
-       
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="location-2" name="location" type="radio" value="text" data-aria-controls="conditional-location-2">
-            <label class="govuk-label govuk-radios__label" for="location-2">
-             Country
-            </label>
-          </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
-            <div class="govuk-form-group">
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation">
-                    England
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
-                    Scotland
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
-                    Wales
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
-                    Northern Ireland
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
+        
+       <div class="govuk-radios" data-module="govuk-radios">
+  <!-- Countries -->
+  <div class="govuk-radios__item">
+    <input class="govuk-radios__input" id="location-2" name="location" type="radio" value="countries" data-aria-controls="conditional-location-2">
+    <label class="govuk-label govuk-radios__label" for="location-2">
+      Countries
+    </label>
+    <div class="govuk-hint govuk-radios__hint">
+      Choose one or more: England, Scotland, Wales or Northern Ireland.
+    </div>
+  </div>
 
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="location-3" name="location" type="radio" value="text" data-aria-controls="conditional-location-3">
-            <label class="govuk-label govuk-radios__label" for="location-3">
-             Region
-            </label>
-          </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-3">
-            <div class="govuk-form-group">
-              <h3 class="govuk-heading-s">England</h3>
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="north-east" name="region" type="checkbox" value="north-east">
-                  <label class="govuk-label govuk-checkboxes__label" for="north-east">
-                    North East
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="north-west" name="region" type="checkbox" value="north-west">
-                  <label class="govuk-label govuk-checkboxes__label" for="north-west">
-                    North West
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="yorkshire-humber" name="region" type="checkbox" value="yorkshire-humber">
-                  <label class="govuk-label govuk-checkboxes__label" for="yorkshire-humber">
-                    Yorkshire and the Humber
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="east-midlands" name="region" type="checkbox" value="east-midlands">
-                  <label class="govuk-label govuk-checkboxes__label" for="east-midlands">
-                    East Midlands
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="west-midlands" name="region" type="checkbox" value="west-midlands">
-                  <label class="govuk-label govuk-checkboxes__label" for="west-midlands">
-                    West Midlands
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="east-of-england" name="region" type="checkbox" value="east-of-england">
-                  <label class="govuk-label govuk-checkboxes__label" for="east-of-england">
-                    East of England
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="south-east" name="region" type="checkbox" value="south-east">
-                  <label class="govuk-label govuk-checkboxes__label" for="south-east">
-                    South East
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="south-west" name="region" type="checkbox" value="south-west">
-                  <label class="govuk-label govuk-checkboxes__label" for="south-west">
-                    South West
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="greater-london" name="region" type="checkbox" value="greater-london">
-                  <label class="govuk-label govuk-checkboxes__label" for="greater-london">
-                    Greater London
-                  </label>
-                </div>
-              </div>
-            </div>
-            
-            <div class="govuk-form-group">
-              <h3 class="govuk-heading-s">Scotland</h3>
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="highlands-islands" name="region" type="checkbox" value="highlands-islands">
-                  <label class="govuk-label govuk-checkboxes__label" for="highlands-islands">
-                    Highlands and Islands 
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="central-belt" name="region" type="checkbox" value="central-belt">
-                  <label class="govuk-label govuk-checkboxes__label" for="central-belt">
-                    Central Belt 
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="southern-uplands" name="region" type="checkbox" value="southern-uplands">
-                  <label class="govuk-label govuk-checkboxes__label" for="southern-uplands">
-                    Southern Uplands 
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="northeast-scotland" name="region" type="checkbox" value="northeast-scotland">
-                  <label class="govuk-label govuk-checkboxes__label" for="northeast-scotland">
-                    Northeast Scotland
-                  </label>
-                </div>
-              </div>
-            </div>
-            
-            <div class="govuk-form-group">
-              <h3 class="govuk-heading-s">Wales</h3>
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="north-wales" name="region" type="checkbox" value="north-wales">
-                  <label class="govuk-label govuk-checkboxes__label" for="north-wales">
-                    North Wales
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="mid-wales" name="region" type="checkbox" value="mid-wales">
-                  <label class="govuk-label govuk-checkboxes__label" for="mid-wales">
-                    Mid Wales
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="south-wales" name="region" type="checkbox" value="south-wales">
-                  <label class="govuk-label govuk-checkboxes__label" for="south-wales">
-                    South Wales
-                  </label>
-                </div>
-              </div>
-            </div>
-            
-            <div class="govuk-form-group">
-              <h3 class="govuk-heading-s">Northern Ireland</h3>
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="belfast" name="region" type="checkbox" value="belfast">
-                  <label class="govuk-label govuk-checkboxes__label" for="belfast">
-                    Belfast Metropolitan Area
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="causeway-coast" name="region" type="checkbox" value="causeway-coast">
-                  <label class="govuk-label govuk-checkboxes__label" for="causeway-coast">
-                    Causeway Coast and Glens 
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="mid-ulster" name="region" type="checkbox" value="mid-ulster">
-                  <label class="govuk-label govuk-checkboxes__label" for="mid-ulster">
-                    Mid-Ulster 
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="south-armagh-down" name="region" type="checkbox" value="south-armagh-down">
-                  <label class="govuk-label govuk-checkboxes__label" for="south-armagh-down">
-                    South Armagh and Down
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="fermanagh-west" name="region" type="checkbox" value="fermanagh-west">
-                  <label class="govuk-label govuk-checkboxes__label" for="fermanagh-west">
-                    Fermanagh and the West
-                  </label>
-                </div>
-              </div>
-            </div>
-            
-            
-          </div>
-
-       
-         
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="location-4" name="location" type="radio" value="text" data-aria-controls="conditional-location-4">
-            <label class="govuk-label govuk-radios__label" for="location-4">
-             Local authority
-            </label>
-          </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
-            <div class="govuk-form-group">
-              <div id="signIn-item-hint" class="govuk-hint">
-                Enter a local authority
-              </div>
-              <div id="autocomplete-container" class="govuk-body"></div>
-            </div>
-          </div>
+  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+    <div class="govuk-form-group">
+      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="country-england" name="country" type="checkbox" value="England">
+          <label class="govuk-label govuk-checkboxes__label" for="country-england">England</label>
         </div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="country-scotland" name="country" type="checkbox" value="Scotland">
+          <label class="govuk-label govuk-checkboxes__label" for="country-scotland">Scotland</label>
+        </div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="country-wales" name="country" type="checkbox" value="Wales">
+          <label class="govuk-label govuk-checkboxes__label" for="country-wales">Wales</label>
+        </div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="country-ni" name="country" type="checkbox" value="Northern Ireland">
+          <label class="govuk-label govuk-checkboxes__label" for="country-ni">Northern Ireland</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local authority -->
+  <div class="govuk-radios__item">
+    <input class="govuk-radios__input" id="location-4" name="location" type="radio" value="la" data-aria-controls="conditional-location-4">
+    <label class="govuk-label govuk-radios__label" for="location-4">Local authority</label>
+     <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Choose one or more
+        </div>
+  </div>
+  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
+    <div class="govuk-form-group">
+      <div id="autocomplete-container" class="govuk-body"></div>
+      {{ govukButton({
+          text: "Add another location",
+          classes: "govuk-button--secondary",
+          attributes: { id: "add-more-locations-button" }
+      }) }}
+    </div>
+  </div>
+</div>
+
       </fieldset>
     </div>
 
     
- 
+ <table class="govuk-table govuk-!-margin-top-4" id="location-table" hidden>
+  <caption class="govuk-table__caption govuk-table__caption--m">Added locations</caption>
+  <tbody class="govuk-table__body">
+    <!-- Rows will go here -->
+  </tbody>
+</table>
   
 
 <div class="govuk-button-group">
   {{ govukButton({
-    text: "Add location"
+    text: "Continue",
+    attributes: { id: "add-location-button" }
   }) }}
 
-  {{ govukButton({
-    text: "Add more locations",
-    classes: "govuk-button--secondary"
-  }) }}
+  
 </div>
+
    
+
+
+
       </div>
     </div>
 <!-- end of second row-->
   
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const submitButton = document.getElementById('add-location-button');
+  const addMoreButton = document.getElementById('add-more-locations-button');
+
+  // Elements
+  const table = document.getElementById('location-table');
+  const tableBody = table.querySelector('tbody');
+
+  // Radios / conditionals
+  const countriesRadio = document.getElementById('location-2');
+  const laRadio = document.getElementById('location-4');
+  const countriesConditional = document.getElementById('conditional-location-2');
+  const laConditional = document.getElementById('conditional-location-4');
+
+  // State for LA table
+  let count = 0;
+  const addedLocations = new Set();
+
+  // ---------- Restore previously saved selection ----------
+  const savedCountries = sessionStorage.getItem('selectedCountries');
+  const savedLAList = sessionStorage.getItem('selectedLocations');
+  const savedUK = sessionStorage.getItem('selectedLocation'); // legacy single value like 'United Kingdom'
+
+  if (savedCountries) {
+    // Restore countries
+    countriesRadio.checked = true;
+    countriesConditional.classList.remove('govuk-radios__conditional--hidden');
+    try {
+      const arr = JSON.parse(savedCountries);
+      arr.forEach(val => {
+        const id = ({
+          'England': 'country-england',
+          'Scotland': 'country-scotland',
+          'Wales': 'country-wales',
+          'Northern Ireland': 'country-ni'
+        })[val];
+        if (id) {
+          const cb = document.getElementById(id);
+          if (cb) cb.checked = true;
+        }
+      });
+    } catch {}
+  } else if (savedLAList) {
+    // Restore local authorities
+    laRadio.checked = true;
+    laConditional.classList.remove('govuk-radios__conditional--hidden');
+    try {
+      const locations = JSON.parse(savedLAList);
+      locations.forEach(value => addLocationRow(value));
+      // Restore first value in the autocomplete input (optional)
+      setTimeout(() => {
+        const input = document.querySelector('#my-autocomplete');
+        if (input) input.value = locations[0] || '';
+      }, 100);
+    } catch {}
+  } else if (savedUK === 'United Kingdom') {
+    // If you still store this sometimes, pick the Countries option with all selected
+    countriesRadio.checked = true;
+    countriesConditional.classList.remove('govuk-radios__conditional--hidden');
+    ['country-england','country-scotland','country-wales','country-ni'].forEach(id => {
+      const cb = document.getElementById(id);
+      if (cb) cb.checked = true;
+    });
+  }
+
+  // ---------- Helpers ----------
+  function addLocationRow(value) {
+    count++;
+    addedLocations.add(value.toLowerCase());
+
+    const row = document.createElement('tr');
+    row.className = 'govuk-table__row';
+
+    const headerCell = document.createElement('th');
+    headerCell.scope = 'row';
+    headerCell.className = 'govuk-table__header';
+    headerCell.textContent = `Location ${count}`;
+
+    const valueCell = document.createElement('td');
+    valueCell.className = 'govuk-table__cell';
+    valueCell.textContent = value;
+
+    const actionCell = document.createElement('td');
+    actionCell.className = 'govuk-table__cell';
+
+    const removeLink = document.createElement('a');
+    removeLink.href = '#';
+    removeLink.className = 'govuk-link';
+    removeLink.textContent = 'Remove';
+
+    removeLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      row.remove();
+      addedLocations.delete(value.toLowerCase());
+      if (tableBody.children.length === 0) {
+        table.hidden = true;
+        count = 0;
+      }
+    });
+
+    actionCell.appendChild(removeLink);
+    row.appendChild(headerCell);
+    row.appendChild(valueCell);
+    row.appendChild(actionCell);
+    tableBody.appendChild(row);
+
+    table.hidden = false;
+  }
+
+  // ---------- Add more local authorities ----------
+  if (addMoreButton) {
+    addMoreButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const input = document.querySelector('#my-autocomplete');
+      if (!input) return;
+
+      const value = input.value.trim();
+      if (!value) {
+        alert('Please enter a local authority.');
+        return;
+      }
+
+      const lowerValue = value.toLowerCase();
+      if (addedLocations.has(lowerValue)) {
+        alert('This location has already been added.');
+        return;
+      }
+
+      addLocationRow(value);
+      input.value = '';
+    });
+  }
+
+  // ---------- Submit ----------
+  submitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const selectedRadio = document.querySelector('input[name="location"]:checked');
+    if (!selectedRadio) {
+      alert('Please select Countries or Local authority.');
+      return;
+    }
+
+    // Clear mutually exclusive keys first
+    sessionStorage.removeItem('selectedLocation');  // legacy single
+    sessionStorage.removeItem('selectedLocations'); // LA list
+    sessionStorage.removeItem('selectedCountries'); // countries list
+
+    if (selectedRadio.id === 'location-2') {
+      // Countries
+      const checked = Array.from(document.querySelectorAll('input[name="country"]:checked'))
+        .map(cb => cb.value.trim());
+      if (checked.length === 0) {
+        alert('Please select at least one country.');
+        return;
+      }
+      sessionStorage.setItem('selectedCountries', JSON.stringify(checked));
+
+    } else if (selectedRadio.id === 'location-4') {
+      // Local authorities
+      let locations = [];
+      if (!table.hidden && tableBody.children.length > 0) {
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+          const name = row.querySelector('td').textContent.trim();
+          locations.push(name);
+        });
+      } else {
+        const input = document.querySelector('#my-autocomplete');
+        if (input && input.value.trim()) {
+          const value = input.value.trim();
+          if (!addedLocations.has(value.toLowerCase())) {
+            locations.push(value);
+          }
+        }
+      }
+      if (locations.length === 0) {
+        alert('Please add at least one local authority.');
+        return;
+      }
+      sessionStorage.setItem('selectedLocations', JSON.stringify(locations));
+    }
+
+    // Go back to summary
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+
+
+
 
 {% endblock %}
