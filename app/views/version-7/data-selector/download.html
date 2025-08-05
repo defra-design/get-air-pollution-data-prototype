@@ -15,7 +15,7 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-three-quarters-from-desktop">
 
     <h2 class="govuk-heading-l">Download your data</h2>
 <details class="govuk-details">
@@ -26,6 +26,17 @@
   </summary>
   <div class="govuk-details__text">
    <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Pollutant
+  </dt>
+  <dd class="govuk-summary-list__value" id="download-pollutant">
+    None selected
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <a class="govuk-link" href="add-pollutant.html">Change<span class="govuk-visually-hidden"> pollutant</span></a>
+  </dd>
+</div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
      Year
@@ -49,6 +60,17 @@
     </dd>
   </div>
   <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Data source
+  </dt>
+  <dd class="govuk-summary-list__value" id="download-data-source">
+    Any
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> data source</span></a>
+  </dd>
+</div>
+  <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
       Site type
     </dt>
@@ -68,33 +90,64 @@
     
 
 <h2 class="govuk-heading-m">View monitoring stations</h2>
-<p class="govuk-body"><a href="station-list.html" class="govuk-link">View monitoring stations that match your selection</a></p>
+<p class="govuk-body">View information about individual monitoring stations including: data capture, graphs and air pollution summary.</p>
+
+<p class="govuk-body"><a href="#" class="govuk-link">View monitoring stations that match your search</a></p>
   </div>
 </div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
- 
-  </div>
-</div>
+
 
 
 
 <div class="govuk-grid-row govuk-!-margin-top-3">
- 
+  <div class="govuk-grid-column-full">
+    <div class="govuk-tabs" data-module="govuk-tabs">
+
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#past-day">
+        Latest hourly data from Defra
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-week">
+        Monthly data from Defra
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-month">
+        Local authority data
+      </a>
+    </li>
+   
+  </ul>
+  <div class="govuk-tabs__panel" id="past-day">
+    <h2 class="govuk-heading-l">Past day</h2>
+    
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+    <h2 class="govuk-heading-l">Past month</h2>
+   
+  </div>
+</div>
   <div class="govuk-grid-column-full" id="download-content-container">
  
    
-      </div>
       
-    </div>
-    <div class="govuk-inset-text">
+    <div class="govuk-inset-text govuk-!-margin-top-0">
   <h3 class="govuk-heading-s">Save your search</h3>
 <p class="govuk-body">Save this URL to quickly download data with the same details next time.</p>
 
 <p class="govuk-body"><a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
 
 </div>
+</div>
+      
+    </div>
 <!-- end of second row-->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -146,98 +199,215 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const container = document.getElementById('download-content-container');
+  const tabsContainer = document.querySelector('.govuk-tabs__list');
+  const panelsContainer = document.querySelector('.govuk-tabs');
+
   const timePeriod = sessionStorage.getItem('selectedTimePeriod') || '';
+  const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
+  const sources = new Set();
 
-  // Match ranges like "2010 to 2024"
-  const rangeMatch = timePeriod.match(/(\d{4}).*to.*(\d{4})/);
-  const lastYearMatch = timePeriod.match(/1 January to 31 December (\d{4})/);
-  const yearToDateMatch = timePeriod.match(/1 January to \d{1,2} \w+ \d{4}/);
-
-  if (rangeMatch) {
-    let startYear = parseInt(rangeMatch[1]);
-    let endYear = parseInt(rangeMatch[2]);
-
-    // Clamp years between 1994 and 2025
-    startYear = Math.max(1994, Math.min(2025, startYear));
-    endYear = Math.max(1994, Math.min(2025, endYear));
-
-    // Ensure valid range
-    if (startYear > endYear) {
-      container.innerHTML = `<p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
-      return;
+  // Determine data sources from selected pollutants
+  pollutants.forEach(p => {
+    const name = p.toLowerCase();
+    if (
+      name.includes('pm2.5') || name.includes('pm10') || name.includes('ozone') ||
+      name.includes('sulphur dioxide') || name.includes('carbon monoxide') || name.includes('particulate matter')
+    ) {
+      sources.add('Latest hourly data from Defra');
+      sources.add('Monthly data from Defra');
+      sources.add('Local authority data');
+    } else if (name === 'nitrogen dioxide') {
+      sources.add('Latest hourly data from Defra');
+      sources.add('Monthly data from Defra');
+      sources.add('Local authority data');
+    } else if (name === 'benzene') {
+      sources.add('Latest hourly data from Defra');
+      sources.add('Monthly data from Defra');
+    } else {
+      sources.add('Monthly data from Defra');
     }
+  });
 
+  // Helper to slugify text for tab IDs
+  const slugify = text => text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+
+  // === Updated: Build download buttons with source name ===
+  function buildButtons(timeText, sourceName) {
+    return `
+      <h2 class="govuk-heading-m">${sourceName}</h2>
+      <p class="govuk-body">Download data for ${timeText}</p>
+      <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+        <span class="aq-button-secondary__icon">
+          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+        <span class="aq-button-secondary__text">Download hourly data</span>
+      </a><br>
+      <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+        <span class="aq-button-secondary__icon">
+          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+        <span class="aq-button-secondary__text">Download daily average data</span>
+      </a><br>
+      <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+        <span class="aq-button-secondary__icon">
+          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+        <span class="aq-button-secondary__text">Download annual average data</span>
+      </a>
+    `;
+  }
+
+  // === Updated: Build year table with source name ===
+  function buildYearTable(startYear, endYear, sourceName) {
     let rows = '';
     for (let year = endYear; year >= startYear; year--) {
       rows += `
-      <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">${year}</th>
-        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
-        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download daily average data</a></td>
-        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
-      </tr>`;
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">${year}</th>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">Download daily average data</a></td>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
+        </tr>`;
     }
 
-    container.innerHTML = `
-      <div class="govuk-grid-row govuk-!-margin-top-3">
-        <div class="govuk-grid-column-full">
-          <h2 class="govuk-heading-m">Download by year</h2>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Year</th>
-                <th scope="col" class="govuk-table__header">Hourly data</th>
-                <th scope="col" class="govuk-table__header">Daily average</th>
-                <th scope="col" class="govuk-table__header">Annual average</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              ${rows}
-            </tbody>
-          </table>
-        </div>
-      </div>
+    return `
+     <h2 class="govuk-heading-m">Download ${sourceName.toLowerCase()} by year</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Year</th>
+            <th scope="col" class="govuk-table__header">Hourly data</th>
+            <th scope="col" class="govuk-table__header">Daily average</th>
+            <th scope="col" class="govuk-table__header">Annual average</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          ${rows}
+        </tbody>
+      </table>
     `;
-  } else if (lastYearMatch || yearToDateMatch) {
-    const heading = `<h2 class="govuk-heading-m">Download data for ${timePeriod}</h2>`;
-    const buttons = `
-      <div class="govuk-grid-row govuk-!-margin-top-3">
-        <div class="govuk-grid-column-two-thirds">
-          ${heading}
-          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
-                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
-              </svg>
-            </span>
-            <span class="aq-button-secondary__text">Download hourly data</span>
-          </a><br>
-          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
-                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
-              </svg>
-            </span>
-            <span class="aq-button-secondary__text">Download daily average data</span>
-          </a><br>
-          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-            <span class="aq-button-secondary__icon">
-              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
-                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
-              </svg>
-            </span>
-            <span class="aq-button-secondary__text">Download annual average data</span>
-          </a>
-        </div>
+  }
+
+  // === Clear tabs and insert new dynamic panels based on selected sources ===
+  tabsContainer.innerHTML = '';
+  panelsContainer.querySelectorAll('.govuk-tabs__panel').forEach(el => el.remove());
+
+  if (!sources.size) {
+    sources.add('Monthly data from Defra');
+  }
+
+  [...sources].forEach((source, i) => {
+    const id = slugify(source);
+    const isSelected = i === 0 ? ' govuk-tabs__list-item--selected' : '';
+    const hiddenClass = i === 0 ? '' : ' govuk-tabs__panel--hidden';
+
+    // Determine dynamic content based on time period
+    let dynamicContent = '';
+    const rangeMatch = timePeriod.match(/(\d{4}).*to.*(\d{4})/);
+    const lastYearMatch = timePeriod.match(/1 January to 31 December (\d{4})/);
+    const yearToDateMatch = timePeriod.match(/1 January to \d{1,2} \w+ \d{4}/);
+
+    if (rangeMatch) {
+      let startYear = Math.max(1994, Math.min(2025, parseInt(rangeMatch[1])));
+      let endYear = Math.max(1994, Math.min(2025, parseInt(rangeMatch[2])));
+      if (startYear > endYear) {
+        dynamicContent = `<p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
+      } else {
+        dynamicContent = buildYearTable(startYear, endYear, source);
+      }
+    } else if (lastYearMatch || yearToDateMatch) {
+      dynamicContent = buildButtons(timePeriod, source);
+    } else {
+      dynamicContent = `<p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+    }
+
+    // Add tab header
+    tabsContainer.insertAdjacentHTML('beforeend', `
+      <li class="govuk-tabs__list-item${isSelected}">
+        <a class="govuk-tabs__tab" href="#${id}">${source}</a>
+      </li>
+    `);
+
+    // Add content panel
+    panelsContainer.insertAdjacentHTML('beforeend', `
+      <div class="govuk-tabs__panel${hiddenClass}" id="${id}">
+        ${dynamicContent}
       </div>
-    `;
-    container.innerHTML = buttons;
-  } else {
-    container.innerHTML = `<p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+    `);
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // === Pollutants ===
+  const pollutantTarget = document.getElementById('download-pollutant');
+  const storedPollutants = sessionStorage.getItem('selectedPollutants');
+  if (storedPollutants && pollutantTarget) {
+    try {
+      const list = JSON.parse(storedPollutants);
+      pollutantTarget.innerHTML = Array.isArray(list) && list.length ? list.map(p => `<div>${p}</div>`).join('') : 'None selected';
+    } catch (e) {
+      pollutantTarget.innerHTML = 'None selected';
+    }
+  }
+
+  // === Data sources ===
+  const dataSourceTarget = document.getElementById('download-data-source');
+  const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
+  const dataSources = new Set();
+
+  if (Array.isArray(pollutants)) {
+    pollutants.forEach(pollutant => {
+      const name = pollutant.toLowerCase();
+
+      if (
+        name.includes('pm2.5') ||
+        name.includes('pm10') ||
+        name.includes('particulate matter') ||
+        name.includes('ozone') ||
+        name.includes('sulphur dioxide') ||
+        name.includes('carbon monoxide')
+      ) {
+        dataSources.add('Latest hourly data from Defra');
+        dataSources.add('Monthly data from Defra');
+        dataSources.add('Local authority data');
+      }
+
+      if (name === 'nitrogen dioxide') {
+        dataSources.add('Latest hourly data from Defra');
+        dataSources.add('Monthly data from Defra');
+        dataSources.add('Local authority data');
+      }
+
+      if (name === 'benzene') {
+        dataSources.add('Latest hourly data from Defra');
+        dataSources.add('Monthly data from Defra');
+      }
+
+      // Default fallback
+      if (!dataSources.size) {
+        dataSources.add('Monthly data from Defra');
+      }
+    });
+  }
+
+  if (dataSourceTarget) {
+    dataSourceTarget.innerHTML = dataSources.size
+      ? [...dataSources].map(source => `<div>${source}</div>`).join('')
+      : 'Any';
   }
 });
 </script>
+
+
 
 
 

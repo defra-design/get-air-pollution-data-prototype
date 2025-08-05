@@ -104,14 +104,35 @@
       </div>
     </div>
 <!-- end of second row-->
-  <script>
+ <script>
 document.addEventListener('DOMContentLoaded', function () {
   const addButton = document.querySelector('.govuk-button');
+  const selectAllCheckbox = document.getElementById('site-select-all');
+  const allCheckboxes = Array.from(document.querySelectorAll('input[name="site-type"]')).filter(cb => cb.id !== 'site-select-all');
 
+  // When "Select all" is clicked
+  selectAllCheckbox.addEventListener('change', function () {
+    allCheckboxes.forEach(cb => {
+      cb.checked = selectAllCheckbox.checked;
+    });
+  });
+
+  // When any individual checkbox is clicked
+  allCheckboxes.forEach(cb => {
+    cb.addEventListener('change', function () {
+      if (!cb.checked) {
+        selectAllCheckbox.checked = false;
+      } else {
+        const allChecked = allCheckboxes.every(c => c.checked);
+        selectAllCheckbox.checked = allChecked;
+      }
+    });
+  });
+
+  // On continue button click
   addButton.addEventListener('click', function (e) {
     e.preventDefault();
 
-    const checkboxes = document.querySelectorAll('input[name="site-type"]');
     const selected = [];
 
     const siteTypeLabels = {
@@ -123,15 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
       "Urban traffic": true
     };
 
-    const allTypes = Object.keys(siteTypeLabels);
-
-    checkboxes.forEach(cb => {
-      if (cb.checked) {
-        if (cb.value === 'select-all') {
-          selected.push(...allTypes);
-        } else if (siteTypeLabels[cb.value]) {
-          selected.push(cb.value);
-        }
+    allCheckboxes.forEach(cb => {
+      if (cb.checked && siteTypeLabels[cb.value]) {
+        selected.push(cb.value);
       }
     });
 
@@ -140,13 +155,12 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Deduplicate in case of select all + manual overlap
-    const unique = [...new Set(selected)];
-    sessionStorage.setItem('selectedSiteTypes', JSON.stringify(unique));
+    sessionStorage.setItem('selectedSiteTypes', JSON.stringify(selected));
     window.location.href = 'create-pollutant.html';
   });
 });
 </script>
+
 
 
 {% endblock %}
