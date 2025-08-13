@@ -130,8 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
       '2-Methyl phenanthrene',
       '4.5-Methylene phenanthrene',
       '5-Methyl Chrysene',
-      '9-Methyl anthracene'
-      
+      '9-Methyl anthracene',
+      'Reactive mercury',
+      'Elemental mercury',
+      'Mercury in PM2.5',
+      'Gaseous ammonia (active)',
+      'Gaseous ammonia (passive)',
+      'Particulate ammonium',
+      'Gaseous ammonia (diffusion tube)'
     ],
   });
 });

@@ -1,0 +1,245 @@
+{% extends "layouts/v7.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-l">Download your data</h2>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     View and change your search details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+     Year
+    </dt>
+    <dd class="govuk-summary-list__value" id="download-time-period">
+  
+</dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-time.html">Change<span class="govuk-visually-hidden"> Year</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Location
+    </dt>
+    <dd class="govuk-summary-list__value" id="download-location">
+
+</dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Site type
+    </dt>
+  <dd class="govuk-summary-list__value" id="download-site-type">
+  <p class="govuk-body">Any</p>
+</dd>
+    <dd class="govuk-summary-list__actions">
+        <li class="govuk-summary-list__actions-list-item">
+          <a class="govuk-link" href="add-site-type.html">Change<span class="govuk-visually-hidden"> site type</span></a>
+        </li>
+    </dd>
+  </div>
+</dl>
+  </div>
+</details>
+ 
+    
+
+<h2 class="govuk-heading-m">View monitoring stations</h2>
+<p class="govuk-body"><a href="station-list.html" class="govuk-link">View monitoring stations that match your selection</a></p>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+ 
+  </div>
+</div>
+
+
+
+<div class="govuk-grid-row govuk-!-margin-top-3">
+ 
+  <div class="govuk-grid-column-full" id="download-content-container">
+ 
+   
+      </div>
+      
+    </div>
+    <div class="govuk-inset-text">
+  <h3 class="govuk-heading-s">Save your search</h3>
+<p class="govuk-body">Save this URL to quickly download data with the same details next time.</p>
+
+<p class="govuk-body"><a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
+
+</div>
+<!-- end of second row-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // === Time period ===
+  const time = sessionStorage.getItem('selectedTimePeriod');
+  const timeTarget = document.getElementById('download-time-period');
+  if (time && timeTarget) {
+    timeTarget.innerHTML = time.replace(/\n/g, '<br>');
+  }
+
+  // === Location (Countries, Local Authorities, legacy single) ===
+  const locationTarget = document.getElementById('download-location');
+
+  // Read storage
+  const countriesRaw = sessionStorage.getItem('selectedCountries');   // ["England","Wales",...]
+  const lasRaw       = sessionStorage.getItem('selectedLocations');   // ["Birmingham City Council",...]
+  const single       = sessionStorage.getItem('selectedLocation');    // legacy e.g. "United Kingdom"
+
+  // Parse safely
+  const countries = (() => { try { return countriesRaw ? JSON.parse(countriesRaw) : null; } catch { return null; } })();
+  const las       = (() => { try { return lasRaw ? JSON.parse(lasRaw) : null; } catch { return null; } })();
+
+  if (locationTarget) {
+    const parts = [];
+
+    if (Array.isArray(countries) && countries.length) {
+      parts.push(countries.join('<br>'));
+    }
+    if (Array.isArray(las) && las.length) {
+      parts.push(las.join('<br>'));
+    }
+    if (!parts.length && single) {
+      parts.push(single); // fallback for older flows
+    }
+
+    locationTarget.innerHTML = parts.length ? parts.join('<br>') : 'None selected';
+  }
+
+  // === Site type ===
+  const siteTypes = sessionStorage.getItem('selectedSiteTypes');
+  const siteTypeTarget = document.getElementById('download-site-type');
+  if (siteTypes && siteTypeTarget) {
+    const list = (() => { try { return JSON.parse(siteTypes); } catch { return []; } })();
+    siteTypeTarget.innerHTML = Array.isArray(list) && list.length ? list.join('<br>') : 'Any';
+  }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.getElementById('download-content-container');
+  const timePeriod = sessionStorage.getItem('selectedTimePeriod') || '';
+
+  // Match ranges like "2010 to 2024"
+  const rangeMatch = timePeriod.match(/(\d{4}).*to.*(\d{4})/);
+  const lastYearMatch = timePeriod.match(/1 January to 31 December (\d{4})/);
+  const yearToDateMatch = timePeriod.match(/1 January to \d{1,2} \w+ \d{4}/);
+
+  if (rangeMatch) {
+    let startYear = parseInt(rangeMatch[1]);
+    let endYear = parseInt(rangeMatch[2]);
+
+    // Clamp years between 1994 and 2025
+    startYear = Math.max(1994, Math.min(2025, startYear));
+    endYear = Math.max(1994, Math.min(2025, endYear));
+
+    // Ensure valid range
+    if (startYear > endYear) {
+      container.innerHTML = `<p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
+      return;
+    }
+
+    let rows = '';
+    for (let year = endYear; year >= startYear; year--) {
+      rows += `
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">${year}</th>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download daily average data</a></td>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
+      </tr>`;
+    }
+
+    container.innerHTML = `
+      <div class="govuk-grid-row govuk-!-margin-top-3">
+        <div class="govuk-grid-column-full">
+          <h2 class="govuk-heading-m">Download by year</h2>
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Year</th>
+                <th scope="col" class="govuk-table__header">Hourly data</th>
+                <th scope="col" class="govuk-table__header">Daily average</th>
+                <th scope="col" class="govuk-table__header">Annual average</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              ${rows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  } else if (lastYearMatch || yearToDateMatch) {
+    const heading = `<h2 class="govuk-heading-m">Download data for ${timePeriod}</h2>`;
+    const buttons = `
+      <div class="govuk-grid-row govuk-!-margin-top-3">
+        <div class="govuk-grid-column-two-thirds">
+          ${heading}
+          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text">Download hourly data</span>
+          </a><br>
+          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text">Download daily average data</span>
+          </a><br>
+          <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+                <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text">Download annual average data</span>
+          </a>
+        </div>
+      </div>
+    `;
+    container.innerHTML = buttons;
+  } else {
+    container.innerHTML = `<p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+  }
+});
+</script>
+
+
+
+
+{% endblock %}

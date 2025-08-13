@@ -30,26 +30,34 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 
 {% block footer %}
- {{ govukFooter({
-   meta: {
-     items: [
-       {
-         href: "/mvp-final/privacy.html",
-         text: "Privacy"
-       },
-       {
-        href: "/mvp-final/cookies.html",
-        text: "Cookies"
-      },
-      {
-       href: "/mvp-final/accessibility.html",
-       text: "Accessibility statement"
-     }
-     ],
-     visuallyHiddenTitle: "Footer links"
-   }
- }) }}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/mvp-final/privacy.html",
+          text: "Privacy"
+        },
+        {
+          href: "/mvp-final/cookies.html",
+          text: "Cookies"
+        },
+        {
+          href: "/mvp-final/accessibility.html",
+          text: "Accessibility statement"
+        },
+        {
+          href: "#",
+          text: "Reset prototype",
+          attributes: {
+            id: "reset-prototype"
+          }
+        }
+      ],
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
 {% endblock %}
+
 
 
 
@@ -102,7 +110,22 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   <script src="/public/javascripts/version_7/graphs/24/ozone.js"></script>
 
     
-
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const resetLink = document.getElementById('reset-prototype');
+  if (resetLink) {
+    resetLink.addEventListener('click', e => {
+      e.preventDefault();
+      if (confirm('Clear all selections and start again?')) {
+        sessionStorage.clear();
+        // If you also store anything in localStorage, clear it too:
+        // localStorage.clear();
+        window.location.href = '/'; // or whatever your prototype start page is
+      }
+    });
+  }
+});
+</script>
   
 
 {% endblock %}

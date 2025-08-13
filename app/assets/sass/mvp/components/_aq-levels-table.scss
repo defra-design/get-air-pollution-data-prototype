@@ -123,3 +123,15 @@
         }
       }
   }
+
+@media (max-width: 330px) {
+  .table-scroll-container {
+    overflow-x: scroll; /* always show scrollbar */
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    max-width: 100%;
+  }
+
+  .table-scroll-container table {
+    min-width: 500px; /* adjust to prevent squishing */
+  }
+}
