@@ -7,7 +7,7 @@
   tag: { text: "Beta" },
   html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
 }) }}
-<a href="../choose-dataset.html" class="govuk-back-link">Back</a>
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -30,274 +30,159 @@
           Select one option. Some options will ask you to choose a specific network.
         </div>
 
-        <div class="govuk-radios govuk-!-margin-top-3" data-module="govuk-radios">
+     <div class="govuk-checkboxes govuk-!-margin-top-3" data-module="govuk-checkboxes">
+  <!-- the three parent checkboxes live here: hourly, monthly, la -->
 
-          <!-- Latest hourly data -->
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="ds-hourly"
-                   name="data-source"
-                   type="radio"
-                   value="hourly"
-                   data-aria-controls="conditional-ds-hourly">
-            <label class="govuk-label govuk-radios__label" for="ds-hourly">
-              Latest hourly data from Defra
-            </label>
-          </div>
 
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-ds-hourly">
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset" aria-describedby="hourly-network-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                  Choose a network
-                </legend>
-                <div id="hourly-network-hint" class="govuk-hint">
-                  Select one network for hourly data.
-                </div>
 
-                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="hourly-aurn"
-                           name="hourly-network"
-                           type="radio"
-                           value="Automatic Urban and Rural Network (AURN)">
-                    <label class="govuk-label govuk-radios__label" for="hourly-aurn">
-                      Automatic Urban and Rural Network (AURN)
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      UK’s main automatic compliance network; hourly measurements of NOx, SO₂, O₃, CO, PM₁₀ and PM₂.₅ at urban and rural sites.
-                    </div>
-                  </div>
+         <!-- Latest hourly data -->
+<div class="govuk-checkboxes__item">
+  <input class="govuk-checkboxes__input"
+         id="ds-hourly"
+         name="data-source"
+         type="checkbox"
+         value="hourly"
+         data-aria-controls="conditional-ds-hourly">
+  <label class="govuk-label govuk-checkboxes__label" for="ds-hourly">
+    Latest hourly data from Defra
+  </label>
+</div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="hourly-ahn"
-                           name="hourly-network"
-                           type="radio"
-                           value="Automatic Hydrocarbon Network">
-                    <label class="govuk-label govuk-radios__label" for="hourly-ahn">
-                      Automatic Hydrocarbon Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Automatic sites measuring hydrocarbons (e.g. benzene/VOCs) for national assessment and reporting.
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-          </div>
+<div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-ds-hourly">
+  <fieldset class="govuk-fieldset" aria-describedby="hourly-network-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Choose network(s)</legend>
+    <div id="hourly-network-hint" class="govuk-hint">Tick one or more hourly networks.</div>
 
-          <!-- Monthly data -->
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="ds-monthly"
-                   name="data-source"
-                   type="radio"
-                   value="monthly"
-                   data-aria-controls="conditional-ds-monthly">
-            <label class="govuk-label govuk-radios__label" for="ds-monthly">
-              Monthly data from Defra
-            </label>
-          </div>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes" id="hourly-networks">
+      <!-- We'll populate ONLY the available networks into this container -->
+      <div class="govuk-checkboxes__item" data-net-key="Automatic Urban and Rural Network (AURN)">
+        <input class="govuk-checkboxes__input" id="hourly-aurn" name="hourly-network" type="checkbox"
+               value="Automatic Urban and Rural Network (AURN)">
+        <label class="govuk-label govuk-checkboxes__label" for="hourly-aurn">
+          Automatic Urban and Rural Network (AURN)
+        </label>
+        <div class="govuk-hint govuk-checkboxes__hint">
+          UK’s main automatic compliance network; hourly measurements of NOx, SO₂, O₃, CO, PM₁₀ and PM₂.₅.
+        </div>
+      </div>
 
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-ds-monthly">
-            <div class="govuk-form-group">
-              <fieldset class="govuk-fieldset" aria-describedby="monthly-network-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                  Choose a network
-                </legend>
-                <div id="monthly-network-hint" class="govuk-hint">
-                  Select one network for monthly data.
-                </div>
+      <div class="govuk-checkboxes__item" data-net-key="Automatic Hydrocarbon Network">
+        <input class="govuk-checkboxes__input" id="hourly-ahn" name="hourly-network" type="checkbox"
+               value="Automatic Hydrocarbon Network">
+        <label class="govuk-label govuk-checkboxes__label" for="hourly-ahn">
+          Automatic Hydrocarbon Network
+        </label>
+        <div class="govuk-hint govuk-checkboxes__hint">
+          Automatic sites measuring hydrocarbons (e.g. benzene/VOCs).
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
 
-                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-uun"
-                           name="monthly-network"
-                           type="radio"
-                           value="UK Urban NO2 Network (UUNN)">
-                    <label class="govuk-label govuk-radios__label" for="monthly-uun">
-                      UK Urban NO₂ Network (UUNN)
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Urban traffic NO₂ concentrations to support national compliance assessment (established 2020).
-                    </div>
-                  </div>
+<!-- Monthly data -->
+<div class="govuk-checkboxes__item">
+  <input class="govuk-checkboxes__input"
+         id="ds-monthly"
+         name="data-source"
+         type="checkbox"
+         value="monthly"
+         data-aria-controls="conditional-ds-monthly">
+  <label class="govuk-label govuk-checkboxes__label" for="ds-monthly">
+    Monthly data from Defra
+  </label>
+</div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-nahn"
-                           name="monthly-network"
-                           type="radio"
-                           value="Non-Automatic Hydrocarbon Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-nahn">
-                      Non-Automatic Hydrocarbon Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Manual sampling for hydrocarbons (notably benzene) analysed in the lab to assess long-term trends and targets.
-                    </div>
-                  </div>
+<div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-ds-monthly">
+  <fieldset class="govuk-fieldset" aria-describedby="monthly-network-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Choose network(s)</legend>
+    <div id="monthly-network-hint" class="govuk-hint">Tick one or more monthly networks.</div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-hm"
-                           name="monthly-network"
-                           type="radio"
-                           value="Heavy Metals Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-hm">
-                      Heavy Metals Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Monitors PM₁₀ for lead (Pb), nickel (Ni), arsenic (As) and cadmium (Cd) to meet directive requirements.
-                    </div>
-                  </div>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes" id="monthly-networks">
+      <!-- Keep all items but add data-net-key on each so we can hide non-available -->
+      <div class="govuk-checkboxes__item" data-net-key="UK Urban NO2 Network">
+        <input class="govuk-checkboxes__input" id="monthly-uun" name="monthly-network" type="checkbox"
+               value="UK Urban NO2 Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-uun">UK Urban NO₂ Network (UUNN)</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-marga"
-                           name="monthly-network"
-                           type="radio"
-                           value="UKEAP: MARGA Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-marga">
-                      UKEAP: MARGA Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Speciated water-soluble gases and particle ions (e.g. nitrate, sulphate, ammonium) at background sites to characterise PM.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="Non-Automatic Hydrocarbon Network">
+        <input class="govuk-checkboxes__input" id="monthly-nahn" name="monthly-network" type="checkbox"
+               value="Non-Automatic Hydrocarbon Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-nahn">Non-Automatic Hydrocarbon Network</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-namn"
-                           name="monthly-network"
-                           type="radio"
-                           value="UKEAP: National Ammonia Monitoring Network (NAMN)">
-                    <label class="govuk-label govuk-radios__label" for="monthly-namn">
-                      UKEAP: National Ammonia Monitoring Network (NAMN)
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Monthly NH₃ (and related ammonium) using passive/active samplers to track rural ammonia across the UK.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="Heavy Metals Network">
+        <input class="govuk-checkboxes__input" id="monthly-hm" name="monthly-network" type="checkbox"
+               value="Heavy Metals Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-hm">Heavy Metals Network</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-aganet"
-                           name="monthly-network"
-                           type="radio"
-                           value="UKEAP: Acid Gas and Aerosol Network (AGANet)">
-                    <label class="govuk-label govuk-radios__label" for="monthly-aganet">
-                      UKEAP: Acid Gas and Aerosol Network (AGANet)
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Monthly acid gases and inorganic aerosol composition to track long-term rural trends linked to acidification/eutrophication.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="UKEAP: MARGA Network">
+        <input class="govuk-checkboxes__input" id="monthly-marga" name="monthly-network" type="checkbox"
+               value="UKEAP: MARGA Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-marga">UKEAP: MARGA Network</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-rural-no2"
-                           name="monthly-network"
-                           type="radio"
-                           value="UKEAP: Rural NO2 Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-rural-no2">
-                      UKEAP: Rural NO₂ Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Diffusion-tube NO₂ at rural sites used to map background NOx for national Pollution Climate Mapping (PCM).
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="UKEAP: National Ammonia Monitoring Network (NAMN)">
+        <input class="govuk-checkboxes__input" id="monthly-namn" name="monthly-network" type="checkbox"
+               value="UKEAP: National Ammonia Monitoring Network (NAMN)">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-namn">UKEAP: National Ammonia Monitoring Network (NAMN)</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-mercury"
-                           name="monthly-network"
-                           type="radio"
-                           value="UKEAP: Rural Mercury Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-mercury">
-                      UKEAP: Rural Mercury Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      High-frequency measurements of gaseous elemental/oxidised mercury (and particulate-bound Hg) at key rural sites.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="UKEAP: Acid Gas & Aerosol Network (AGANet)">
+        <input class="govuk-checkboxes__input" id="monthly-aganet" name="monthly-network" type="checkbox"
+               value="UKEAP: Acid Gas & Aerosol Network (AGANet)">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-aganet">UKEAP: Acid Gas & Aerosol Network (AGANet)</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-pah"
-                           name="monthly-network"
-                           type="radio"
-                           value="PAH Monitoring Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-pah">
-                      Polycyclic Aromatic Hydrocarbons (PAH) Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Non-automatic sampling at >30 sites to assess PAHs (e.g. benzo[a]pyrene) against UK/EU targets.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="UKEAP: Rural NO2 Network">
+        <input class="govuk-checkboxes__input" id="monthly-rural-no2" name="monthly-network" type="checkbox"
+               value="UKEAP: Rural NO2 Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-rural-no2">UKEAP: Rural NO₂ Network</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-tomps"
-                           name="monthly-network"
-                           type="radio"
-                           value="Toxic Organic Micro Pollutants (TOMPs) Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-tomps">
-                      Toxic Organic Micro Pollutants (TOMPs) Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Long-term POPs (e.g. dioxins, PCBs) at urban and rural sites using high-volume sampling for trend assessment.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="UKEAP: Rural Mercury Network">
+        <input class="govuk-checkboxes__input" id="monthly-mercury" name="monthly-network" type="checkbox"
+               value="UKEAP: Rural Mercury Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-mercury">UKEAP: Rural Mercury Network</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-bc"
-                           name="monthly-network"
-                           type="radio"
-                           value="Black Carbon Network">
-                    <label class="govuk-label govuk-radios__label" for="monthly-bc">
-                      Black Carbon Network
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Continues the historic “black smoke” record; measures black carbon as a combustion/soot indicator.
-                    </div>
-                  </div>
+      <div class="govuk-checkboxes__item" data-net-key="PAH Network">
+        <input class="govuk-checkboxes__input" id="monthly-pah" name="monthly-network" type="checkbox"
+               value="PAH Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-pah">PAH Network</label>
+      </div>
 
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input"
-                           id="monthly-pcn"
-                           name="monthly-network"
-                           type="radio"
-                           value="Particle Concentrations and Numbers Network (PCN)">
-                    <label class="govuk-label govuk-radios__label" for="monthly-pcn">
-                      Particle Concentrations and Numbers Network (PCN)
-                    </label>
-                    <div class="govuk-hint govuk-radios__hint">
-                      Particle number/size and related metrics to understand sources and support assessment objectives.
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-          </div>
+      <div class="govuk-checkboxes__item" data-net-key="Toxic Organic Micro Pollutants (TOMPs) Network">
+        <input class="govuk-checkboxes__input" id="monthly-tomps" name="monthly-network" type="checkbox"
+               value="Toxic Organic Micro Pollutants (TOMPs) Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-tomps">Toxic Organic Micro Pollutants (TOMPs) Network</label>
+      </div>
 
-          <!-- Local authority data -->
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="ds-la"
-                   name="data-source"
-                   type="radio"
-                   value="local-authority">
-            <label class="govuk-label govuk-radios__label" for="ds-la">
-              Local authority data
-            </label>
-            <div class="govuk-hint govuk-radios__hint">
-              Measurements reported by local authorities from their own monitoring stations.
-            </div>
-          </div>
+      <div class="govuk-checkboxes__item" data-net-key="Black Carbon Network">
+        <input class="govuk-checkboxes__input" id="monthly-bc" name="monthly-network" type="checkbox"
+               value="Black Carbon Network">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-bc">Black Carbon Network</label>
+      </div>
+
+      <div class="govuk-checkboxes__item" data-net-key="Particle Concentrations and Numbers Network (PCN)">
+        <input class="govuk-checkboxes__input" id="monthly-pcn" name="monthly-network" type="checkbox"
+               value="Particle Concentrations and Numbers Network (PCN)">
+        <label class="govuk-label govuk-checkboxes__label" for="monthly-pcn">Particle Concentrations and Numbers Network (PCN)</label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Local authority -->
+<div class="govuk-checkboxes__item">
+  <input class="govuk-checkboxes__input" id="ds-la" name="data-source" type="checkbox" value="local-authority">
+  <label class="govuk-label govuk-checkboxes__label" for="ds-la">
+    Non-Defra data (locally managed automatic monitoring)
+  </label>
+</div>
+
 
         </div>
       </fieldset>
@@ -312,5 +197,228 @@
 
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Read what the first page saved
+  const available = (() => {
+    try { return JSON.parse(sessionStorage.getItem('availableDataSources') || '{}'); }
+    catch { return {}; }
+  })();
+
+  const hourlyList   = Array.isArray(available.hourly)  ? available.hourly  : [];
+  const monthlyList  = Array.isArray(available.monthly) ? available.monthly : [];
+  const hasLocal     = !!available.hasLocal;
+
+  // Parent bucket rows (the main checkboxes)
+  const hourlyItem  = document.getElementById('ds-hourly')?.closest('.govuk-checkboxes__item');
+  const monthlyItem = document.getElementById('ds-monthly')?.closest('.govuk-checkboxes__item');
+  const laItem      = document.getElementById('ds-la')?.closest('.govuk-checkboxes__item');
+
+  if (hourlyItem)  hourlyItem.style.display  = hourlyList.length  ? '' : 'none';
+  if (monthlyItem) monthlyItem.style.display = monthlyList.length ? '' : 'none';
+  if (laItem)      laItem.style.display      = hasLocal           ? '' : 'none';
+
+  // Child network rows
+  const hourlyHost  = document.getElementById('hourly-networks');
+  const monthlyHost = document.getElementById('monthly-networks');
+
+  hourlyHost?.querySelectorAll('[data-net-key]').forEach(row => {
+    const key = row.getAttribute('data-net-key') || '';
+    row.style.display = hourlyList.includes(key) ? '' : 'none';
+  });
+
+  monthlyHost?.querySelectorAll('[data-net-key]').forEach(row => {
+    const key = row.getAttribute('data-net-key') || '';
+    row.style.display = monthlyList.includes(key) ? '' : 'none';
+  });
+
+  // Optional: if a parent bucket is hidden, make sure its checkbox is unticked
+  if (hourlyItem && hourlyItem.style.display === 'none')  document.getElementById('ds-hourly').checked  = false;
+  if (monthlyItem && monthlyItem.style.display === 'none') document.getElementById('ds-monthly').checked = false;
+  if (laItem && laItem.style.display === 'none')           document.getElementById('ds-la').checked      = false;
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const goBtn = document.getElementById('add-location-button');
+  if (!goBtn) return;
+
+  goBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Parent buckets
+    const hourlyChecked  = document.getElementById('ds-hourly')?.checked;
+    const monthlyChecked = document.getElementById('ds-monthly')?.checked;
+    const laChecked      = document.getElementById('ds-la')?.checked;
+
+    // Child networks (only if parent is checked)
+    const getCheckedValues = (hostId, inputName) => {
+      const host = document.getElementById(hostId);
+      if (!host) return [];
+      return Array.from(host.querySelectorAll(`input[name="${inputName}"]:checked`))
+        .map(el => el.value);
+    };
+
+    const selected = {
+      hourly: {
+        enabled: !!hourlyChecked,
+        networks: hourlyChecked ? getCheckedValues('hourly-networks', 'hourly-network') : []
+      },
+      monthly: {
+        enabled: !!monthlyChecked,
+        networks: monthlyChecked ? getCheckedValues('monthly-networks', 'monthly-network') : []
+      },
+      local: !!laChecked
+    };
+
+    // Persist for the create page
+    sessionStorage.setItem('selectedDataSources', JSON.stringify(selected));
+
+    // Back to summary
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // If pollutants have changed since user last chose data sources, nuke the choice
+  let cur = [];
+  try { cur = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]'); } catch { cur = []; }
+  const hash = JSON.stringify((Array.isArray(cur) ? cur : [])
+                .map(s => (s || '').toLowerCase().trim())
+                .sort());
+  const KEY = 'dsPollutantHash';
+  const prev = sessionStorage.getItem(KEY) || '';
+  if (hash !== prev) {
+    sessionStorage.removeItem('selectedDataSources');
+    sessionStorage.setItem(KEY, hash);
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // --- helpers ---
+  const qs  = (s, r=document) => r.querySelector(s);
+  const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
+  const setChecked = (input, checked) => {
+    if (!input) return;
+    input.checked = !!checked;
+    // fire change to trigger govuk-frontend conditional reveals
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+
+  // current availability (already prepared by your earlier script)
+  let available = {};
+  try { available = JSON.parse(sessionStorage.getItem('availableDataSources') || '{}'); } catch {}
+  const hourlyAvail  = Array.isArray(available.hourly)  ? available.hourly  : [];
+  const monthlyAvail = Array.isArray(available.monthly) ? available.monthly : [];
+  const hasLocal     = !!available.hasLocal;
+
+  const elHourlyParent  = qs('#ds-hourly');
+  const elMonthlyParent = qs('#ds-monthly');
+  const elLocalParent   = qs('#ds-la');
+
+  const hourlyHost  = qs('#hourly-networks');
+  const monthlyHost = qs('#monthly-networks');
+
+  const getCheckedValues = (host, name) =>
+    host ? qsa(`input[name="${name}"]:checked`, host).map(el => el.value) : [];
+
+  const persist = () => {
+    const selected = {
+      hourly: {
+        enabled: !!(elHourlyParent && elHourlyParent.checked),
+        networks: getCheckedValues(hourlyHost, 'hourly-network')
+      },
+      monthly: {
+        enabled: !!(elMonthlyParent && elMonthlyParent.checked),
+        networks: getCheckedValues(monthlyHost, 'monthly-network')
+      },
+      local: !!(elLocalParent && elLocalParent.checked)
+    };
+    sessionStorage.setItem('selectedDataSources', JSON.stringify(selected));
+  };
+
+  // restore previous selection (if any), intersecting with current availability
+  let saved = null;
+  try { saved = JSON.parse(sessionStorage.getItem('selectedDataSources') || 'null'); } catch {}
+
+  if (saved) {
+    // filter to currently available options
+    const hourlyEnabled  = saved.hourly?.enabled && hourlyAvail.length > 0;
+    const monthlyEnabled = saved.monthly?.enabled && monthlyAvail.length > 0;
+    const localEnabled   = saved.local && hasLocal;
+
+    setChecked(elHourlyParent,  hourlyEnabled);
+    setChecked(elMonthlyParent, monthlyEnabled);
+    setChecked(elLocalParent,   localEnabled);
+
+    // child networks: check only those still available (and visible)
+    const applyChildSelection = (host, name, allowed, chosen) => {
+      if (!host) return;
+      const chosenSet = new Set((chosen || []).filter(v => allowed.includes(v)));
+      qsa(`input[name="${name}"]`, host).forEach(cb => {
+        // respect visibility — skip hidden rows (style.display === 'none')
+        const row = cb.closest('.govuk-checkboxes__item');
+        const visible = row && row.style.display !== 'none';
+        setChecked(cb, visible && chosenSet.has(cb.value));
+      });
+    };
+    if (hourlyEnabled)  applyChildSelection(hourlyHost,  'hourly-network',  hourlyAvail,  saved.hourly?.networks);
+    if (monthlyEnabled) applyChildSelection(monthlyHost, 'monthly-network', monthlyAvail, saved.monthly?.networks);
+
+    // if parent is enabled but nothing remains visible, disable it
+    const ensureParentHasAny = (parent, host) => {
+      if (!parent || !host || !parent.checked) return;
+      const anyVisibleChecked = qsa('input[type="checkbox"]:checked', host)
+        .some(cb => cb.closest('.govuk-checkboxes__item')?.style.display !== 'none');
+      if (!anyVisibleChecked) setChecked(parent, false);
+    };
+    ensureParentHasAny(elHourlyParent,  hourlyHost);
+    ensureParentHasAny(elMonthlyParent, monthlyHost);
+
+    // after restoring, persist the filtered state
+    persist();
+  } else {
+    // FIRST LOAD: select everything that's visible & available
+    setChecked(elHourlyParent,  hourlyAvail.length > 0);
+    setChecked(elMonthlyParent, monthlyAvail.length > 0);
+    setChecked(elLocalParent,   hasLocal);
+
+    const checkAllVisibleChildren = (host, name) => {
+      if (!host) return;
+      qsa(`input[name="${name}"]`, host).forEach(cb => {
+        const row = cb.closest('.govuk-checkboxes__item');
+        const visible = row && row.style.display !== 'none';
+        setChecked(cb, visible);
+      });
+    };
+    if (elHourlyParent?.checked)  checkAllVisibleChildren(hourlyHost,  'hourly-network');
+    if (elMonthlyParent?.checked) checkAllVisibleChildren(monthlyHost, 'monthly-network');
+
+    persist();
+  }
+
+  // live-save as user edits
+  qsa('input[type="checkbox"][name="data-source"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      // if a parent is unchecked, also uncheck its children
+      if (cb.id === 'ds-hourly' && !cb.checked) {
+        qsa('input[name="hourly-network"]', hourlyHost).forEach(child => setChecked(child, false));
+      }
+      if (cb.id === 'ds-monthly' && !cb.checked) {
+        qsa('input[name="monthly-network"]', monthlyHost).forEach(child => setChecked(child, false));
+      }
+      persist();
+    });
+  });
+  qsa('#hourly-networks input[name="hourly-network"], #monthly-networks input[name="monthly-network"]')
+    .forEach(cb => cb.addEventListener('change', persist));
+});
+</script>
+
+
 
 {% endblock %}

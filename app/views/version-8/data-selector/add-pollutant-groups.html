@@ -1,0 +1,224 @@
+{% extends "layouts/v7.html" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "Beta" },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="pollutant-group-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Add pollutant group</h1>
+    </legend>
+    <p class="govuk-body"><a href="add-pollutant.html" class="govuk-link">Change to add specific pollutants</a></p>
+    <div id="pollutant-group-hint" class="govuk-hint">
+      Select one option.
+    </div>
+
+    <div class="govuk-radios govuk-!-margin-top-3" data-module="govuk-radios">
+
+      <!-- Core / DAQI pollutants -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-core" name="pollutant-group" type="radio" value="core" aria-describedby="pg-core-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-core">
+          Daily Air Quality Index (DAQI) pollutants
+        </label>
+        <div id="pg-core-hint" class="govuk-hint govuk-radios__hint">
+          Particulate matter (PM2.5), Particulate matter (PM10), Nitrogen dioxide (NO₂), Ozone (O₃), Sulphur dioxide (SO₂)
+        </div>
+      </div>
+
+      <!-- VOCs / Hydrocarbons -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-hydrocarbon" name="pollutant-group" type="radio" value="hydrocarbon" aria-describedby="pg-hydrocarbon-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-hydrocarbon">
+          Volatile organic compounds (VOCs)
+        </label>
+        <div id="pg-hydrocarbon-hint" class="govuk-hint govuk-radios__hint">
+          Benzene, Toluene, Ethylbenzene, m+p-Xylene, o-Xylene, 1,3-Butadiene, Propane/Propene, Isoprene, n-/iso-Butane, n-/iso-Pentane, 1-Butene, 1-Pentene, 2-Methylpentane, n-Hexane, n-Heptane, iso-Octane, n-Octane, Ethane/Ethene/Ethyne, 1,2,3-/1,2,4-/1,3,5-Trimethylbenzene…
+        </div>
+      </div>
+
+      <!-- Heavy metals (air, PM10) -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-heavy-metals" name="pollutant-group" type="radio" value="heavy-metals" aria-describedby="pg-heavy-metals-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-heavy-metals">
+          Heavy metals in air (PM₁₀)
+        </label>
+        <div id="pg-heavy-metals-hint" class="govuk-hint govuk-radios__hint">
+          Arsenic, Cadmium, Chromium, Cobalt, Copper, Iron, Lead, Manganese, Nickel, Selenium, Vanadium, Zinc, Aluminium, Antimony
+        </div>
+      </div>
+
+      <!-- PAHs -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-pah" name="pollutant-group" type="radio" value="pah" aria-describedby="pg-pah-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-pah">
+          Polycyclic aromatic hydrocarbons (PAHs)
+        </label>
+        <div id="pg-pah-hint" class="govuk-hint govuk-radios__hint">
+          Benzo(a)pyrene, Benzo(a)anthracene, Benzo(b)-/Benzo(j)-/Benzo(k)fluoranthene, Indeno(1,2,3-cd)pyrene, Dibenzo(ah)-/Dibenzo(ac)anthracene, Benzo(b+j)fluoranthene, 1-/2-Methyl naphthalene, 1-/2-Methyl anthracene, 1-Methyl phenanthrene, 2-Methyl phenanthrene, 4,5-Methylene phenanthrene, 5-Methyl chrysene, 9-Methyl anthracene
+        </div>
+      </div>
+
+      <!-- Ammonia / NAMN (gaseous + particulate ammonium) -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-namn" name="pollutant-group" type="radio" value="namn" aria-describedby="pg-namn-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-namn">
+          Ammonia
+        </label>
+        <div id="pg-namn-hint" class="govuk-hint govuk-radios__hint">
+          Gaseous ammonia (active), Gaseous ammonia (passive), Gaseous ammonia (diffusion tube), Particulate ammonium
+        </div>
+      </div>
+
+      <!-- Particulate ions & acid gases (AGANet / MARGA) -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-aganet" name="pollutant-group" type="radio" value="aganet" aria-describedby="pg-aganet-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-aganet">
+          Particulate ions and acid gases
+        </label>
+        <div id="pg-aganet-hint" class="govuk-hint govuk-radios__hint">
+          Nitrate, Nitrite, Sulphate, Chloride, Ammonium, Sodium, Potassium, Calcium, Magnesium; Gaseous nitric acid (HNO₃), nitrous acid (HONO), hydrochloric acid (HCl)
+        </div>
+      </div>
+
+      <!-- Precipitation chemistry -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-precipnet" name="pollutant-group" type="radio" value="precipnet" aria-describedby="pg-precipnet-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-precipnet">
+          Precipitation chemistry
+        </label>
+        <div id="pg-precipnet-hint" class="govuk-hint govuk-radios__hint">
+          Ions/metals measured in precipitation (e.g. sulphate, nitrate, chloride, sodium, etc.)
+        </div>
+      </div>
+
+      <!-- Mercury -->
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pg-ruralmercury" name="pollutant-group" type="radio" value="ruralmercury" aria-describedby="pg-ruralmercury-hint">
+        <label class="govuk-label govuk-radios__label" for="pg-ruralmercury">
+          Mercury species
+        </label>
+        <div id="pg-ruralmercury-hint" class="govuk-hint govuk-radios__hint">
+          Elemental mercury (Hg⁰), Reactive/oxidised mercury, Mercury in PM2.5
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+</div>
+
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Continue",
+        attributes: { id: "add-location-button" }
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Exact species lists, capitalised for display
+  const GROUPS = {
+    core: [
+      'Particulate matter (PM2.5)',
+      'Particulate matter (PM10)',
+      'Nitrogen dioxide',
+      'Ozone',
+      'Sulphur dioxide'
+    ],
+
+    hydrocarbon: [
+      'Benzene','Toluene','Ethylbenzene','m+p-Xylene','o-Xylene',
+      '1,3-Butadiene','Propane','Propene','Isoprene',
+      'Iso-butane','n-Butane','1-Butene',
+      'Iso-pentane','n-Pentane','1-Pentene','Trans-2-pentene',
+      '2-Methylpentane','n-Hexane','n-Heptane','Iso-octane','n-Octane',
+      'Ethane','Ethene','Ethyne',
+      '1,2,3-Trimethylbenzene','1,2,4-Trimethylbenzene','1,3,5-Trimethylbenzene'
+    ],
+
+    'heavy-metals': [
+      'Arsenic','Cadmium','Chromium','Cobalt','Copper','Iron','Lead','Manganese',
+      'Nickel','Selenium','Vanadium','Zinc','Aluminium','Antimony'
+    ],
+
+    pah: [
+      'Benzo(a)pyrene','Benzo(a)anthracene','Benzo(b)fluoranthene','Benzo(j)fluoranthene','Benzo(b+j)fluoranthene',
+      'Benzo(k)fluoranthene','Indeno(1,2,3-cd)pyrene','Dibenzo(ac)anthracene','Dibenzo(ah)anthracene','Dibenzo(ah+ac)anthracene',
+      '1-Methyl anthracene','1-Methyl naphthalene','1-Methyl phenanthrene','2-Methyl anthracene','2-Methyl naphthalene',
+      '2-Methyl phenanthrene','4,5-Methylene phenanthrene','5-Methyl chrysene','9-Methyl anthracene'
+    ],
+
+    namn: [
+      'Gaseous ammonia',
+      'Gaseous ammonia (active)',
+      'Gaseous ammonia (passive)',
+      'Gaseous ammonia (diffusion tube)',
+      'Particulate ammonium'
+    ],
+
+    aganet: [
+      'Nitrate','Nitrite','Sulphate','Chloride','Ammonium',
+      'Sodium','Potassium','Calcium','Magnesium',
+      'Gaseous nitric acid','Gaseous nitrous acid','Gaseous hydrochloric acid'
+    ],
+
+    precipnet: [
+      'Sulphate in precipitation','Nitrate in precipitation','Chloride in precipitation',
+      'Sodium in precipitation','Potassium in precipitation',
+      'Calcium in precipitation','Magnesium in precipitation'
+    ],
+
+    ruralmercury: [
+      'Elemental mercury','Reactive mercury','Mercury in PM2.5'
+    ]
+  };
+
+  // 2) Hook up the Continue button
+  const goBtn = document.getElementById('add-location-button');
+  if (!goBtn) return;
+
+  goBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const chosen = document.querySelector('input[name="pollutant-group"]:checked');
+    if (!chosen) return;
+
+    const key = chosen.value;
+    const list = GROUPS[key] || [];
+
+    // Save to sessionStorage (case-insensitive checks elsewhere will still work if you lowercase for comparison)
+    sessionStorage.setItem('selectedPollutants', JSON.stringify(list));
+
+    // Reset stale data sources
+    sessionStorage.removeItem('selectedDataSources');
+
+    // Update the pollutant hash for reset logic
+    const hash = JSON.stringify(list.map(s => (s || '').toLowerCase().trim()).sort());
+    sessionStorage.setItem('dsPollutantHash', hash);
+
+    // Redirect to create-pollutant.html
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+
+
+
+{% endblock %}

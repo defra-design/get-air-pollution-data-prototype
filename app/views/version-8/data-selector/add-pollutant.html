@@ -1,4 +1,4 @@
-{% extends "layouts/v7.html" %}
+{% extends "layouts/v8.html" %}
 
 {% set pageName="Home" %}
 
@@ -39,7 +39,8 @@
     </h1>
     
 
-
+<p class="govuk-body">Choose up to 5 pollutants</p>
+<p class="govuk-body"><a href="add-pollutant-groups.html" class="govuk-link">Add entire groups of pollutants (networks)</a></p>
 
 
 
@@ -49,10 +50,12 @@
               </div>
             
               <div id="autocomplete-container-p" class="govuk-body"></div>
+            
               {{ govukButton({
     text: "Add another pollutant",
     classes: "govuk-button--secondary"
   }) }}
+ 
             </div>
  
 

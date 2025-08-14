@@ -1,0 +1,131 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% set version = "version-7" %}
+{% set bodyClasses = "version-7" %}
+
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/version-7/hub.html",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/mvp-final/privacy.html",
+          text: "Privacy"
+        },
+        {
+          href: "/mvp-final/cookies.html",
+          text: "Cookies"
+        },
+        {
+          href: "/mvp-final/accessibility.html",
+          text: "Accessibility statement"
+        },
+        {
+          href: "#",
+          text: "Reset prototype",
+          attributes: {
+            id: "reset-prototype"
+          }
+        }
+      ],
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
+{% endblock %}
+
+
+
+
+{% block scripts %}
+  {{ super() }}
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+  <script src="/public/javascripts/version_7/v7.js"></script>
+
+  <script src="/public/javascripts/bundles/autocomplete_v7.bundle.js"></script>
+  <script src="/public/javascripts/bundles/autocomplete_pv7.bundle.js"></script>
+
+  <!-- Components -->
+  <script src="/public/javascripts/version_7/components/toggletip.js"></script>
+  <script src="/public/javascripts/version_7/components/status.js"></script>
+
+  <!-- Routes -->
+  <script src="/public/javascripts/version_7/routes.js"></script>
+  
+  <!-- Graphs for 2023 -->
+  <script src="/public/javascripts/version_7/graphs/nitrogen.js"></script>
+  <script src="/public/javascripts/version_7/graphs/pm10.js"></script>
+  <script src="/public/javascripts/version_7/graphs/pm2_5.js"></script>
+  <script src="/public/javascripts/version_7/graphs/ozone.js"></script>
+
+  <!-- Graphs for 2024 -->
+  <script src="/public/javascripts/version_7/graphs/2024/nitrogen.js"></script>
+  <script src="/public/javascripts/version_7/graphs/2024/pm10.js"></script>
+  <script src="/public/javascripts/version_7/graphs/2024/pm2_5.js"></script>
+  <script src="/public/javascripts/version_7/graphs/2024/ozone.js"></script>
+
+  <!-- Graphs for last month -->
+  <script src="/public/javascripts/version_7/graphs/past-month/nitrogen.js"></script>
+  <script src="/public/javascripts/version_7/graphs/past-month/pm10.js"></script>
+  <script src="/public/javascripts/version_7/graphs/past-month/pm2_5.js"></script>
+  <script src="/public/javascripts/version_7/graphs/past-month/ozone.js"></script>
+
+  <!-- Graphs for last week -->
+  <script src="/public/javascripts/version_7/graphs/past-week/nitrogen.js"></script>
+  <script src="/public/javascripts/version_7/graphs/past-week/pm10.js"></script>
+  <script src="/public/javascripts/version_7/graphs/past-week/pm2_5.js"></script>
+  <script src="/public/javascripts/version_7/graphs/past-week/ozone.js"></script>
+
+  <!-- Graphs for last 24 hours -->
+  <script src="/public/javascripts/version_7/graphs/24/nitrogen.js"></script>
+  <script src="/public/javascripts/version_7/graphs/24/pm10.js"></script>
+  <script src="/public/javascripts/version_7/graphs/24/pm2_5.js"></script>
+  <script src="/public/javascripts/version_7/graphs/24/ozone.js"></script>
+
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const resetLink = document.getElementById('reset-prototype');
+  if (resetLink) {
+    resetLink.addEventListener('click', e => {
+      e.preventDefault();
+      if (confirm('Clear all selections and start again?')) {
+        sessionStorage.clear();
+        // If you also store anything in localStorage, clear it too:
+        // localStorage.clear();
+        window.location.href = '/'; // or whatever your prototype start page is
+      }
+    });
+  }
+});
+</script>
+  
+
+{% endblock %}
