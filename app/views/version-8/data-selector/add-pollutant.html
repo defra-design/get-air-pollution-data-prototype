@@ -38,7 +38,6 @@
      Add pollutant(s)
     </h1>
     
-<p class="govuk-body"><a href="add-pollutant-groups.html" class="govuk-link">Add entire groups of pollutants (networks)</a></p>
 
 
 
@@ -48,12 +47,20 @@
               </div>
             
               <div id="autocomplete-container-p" class="govuk-body"></div>
-            
-              {{ govukButton({
-    text: "Add another pollutant",
-    classes: "govuk-button--secondary"
-  }) }}
- 
+            <div class="govuk-button-group">
+
+             {{ govukButton({
+              text: "Add pollutant",
+              classes: "govuk-button--secondary",
+              attributes: {
+                id: "add-pollutant-button"
+              }
+            }) }}
+
+  <p class="govuk-body"><a href="add-pollutant-groups.html" class="govuk-link">Add groups of related pollutants</a></p>
+
+
+            </div>
             </div>
  
 
@@ -79,6 +86,7 @@
       </div>
     </div>
 <!-- end of second row-->
-  
+
+
 
 {% endblock %}

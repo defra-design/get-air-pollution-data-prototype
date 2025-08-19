@@ -75,7 +75,7 @@
 </dl>
 
  <p class="govuk-body">Optional: choose data source(s) or site type(s)</p>
- <p class="govuk-body"><a href="#" class="govuk-link">View more information about data sources (opens in new tab)</a></p>
+ <p class="govuk-body"><a target="_blank" href="https://draft-origin.publishing.service.gov.uk/guidance/sources-of-air-pollution-data?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YjQzNGFhZC1mZjg1LTRhOWMtOTMxZC0zZmNkZGJiYzEzNjYiLCJjb250ZW50X2lkIjoiNDhkYmUwMDMtYmQ3OS00YjlkLTlmNDQtMWM4NWUyMDdkYTlkIiwiaWF0IjoxNzU1NTk3MjI2LCJleHAiOjE3NTgyNzU2MjZ9.GTmfTBhc4vKdAg3YoGYahajjpDZeZVfECfPgQv-HDvc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share" class="govuk-link">View more information about data sources (opens in new tab)</a></p>
 
 
       <dl class="govuk-summary-list">
@@ -417,7 +417,7 @@ function buildNetworksForPollutant(rawName) {
   const seen = new Set();
   const add = (label) => { if (!seen.has(label)) { sections.push(label); seen.add(label); } };
   const addHourly = (net) => { add('<strong>Latest hourly data from Defra</strong>'); add(net); };
-  const addMonthly = (net) => { add('<strong>Monthly data from Defra</strong>'); add(net); };
+  const addMonthly = (net) => { add('<strong>Weekly and monthly data from Defra</strong>'); add(net); };
   const addNonDefra = () => { add('<strong>Non-Defra data</strong>'); add('Locally managed automatic monitoring'); };
 
   // groups
@@ -614,7 +614,7 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
 // === Save available networks for the "Add data source" page ===
 (function () {
   const HOUR_HDR   = '<strong>Latest hourly data from Defra</strong>';
-  const MONTH_HDR  = '<strong>Monthly data from Defra</strong>';
+  const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
   const NONDEF_HDR = '<strong>Non-Defra data</strong>';
 
   const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // headings we use in the summary
   const HOUR_HDR   = '<strong>Latest hourly data from Defra</strong>';
-  const MONTH_HDR  = '<strong>Monthly data from Defra</strong>';
+  const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
   const NONDEF_HDR = '<strong>Non-Defra data</strong>';
 
   // Build “available” from current pollutants (same logic you use elsewhere)

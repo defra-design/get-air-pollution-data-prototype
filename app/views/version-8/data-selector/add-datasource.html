@@ -13,13 +13,209 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
 
     <h1 class="govuk-heading-l">Add data source</h1>
 
-    <p class="govuk-body">
+   <!--  <p class="govuk-body">
       <a href="#" class="govuk-link">Find out more about sources of air pollution data (opens in new tab)</a>
-    </p>
+    </p> -->
+
+     <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Find out more about each monitoring network
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <table class="govuk-table">
+ <!--  <caption class="govuk-table__caption govuk-table__caption--m">
+    UK AIR monitoring networks (automatic and non-automatic)
+  </caption> -->
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Network</th>
+      <th scope="col" class="govuk-table__header">What it measures</th>
+      <th scope="col" class="govuk-table__header">Start</th>
+      <th scope="col" class="govuk-table__header">End</th>
+      <th scope="col" class="govuk-table__header">Instrument / method</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+
+    <!-- AUTOMATIC NETWORKS -->
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Automatic Urban and Rural Network (AURN)</th>
+      <td class="govuk-table__cell">NOx, O<sub>3</sub>, SO<sub>2</sub>, CO, PM<sub>10</sub>, PM<sub>2.5</sub></td>
+      <td class="govuk-table__cell">1972</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Chemiluminescence (NOx), UV photometry (O<sub>3</sub>), UV fluorescence (SO<sub>2</sub>), NDIR (CO), PM mass-equivalent (TEOM-FDMS / BAM) and daily gravimetric.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Automatic Hydrocarbon Network</th>
+      <td class="govuk-table__cell">Speciated VOCs (incl. benzene, 1,3-butadiene)</td>
+      <td class="govuk-table__cell">1992</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Automatic gas chromatographs (PerkinElmer GC) reporting hourly VOCs.</td>
+    </tr>
+
+   <!--  <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Automatic London Network (subset of AURN)</th>
+      <td class="govuk-table__cell">NOx, O<sub>3</sub>, SO<sub>2</sub>, CO, PM<sub>10</sub>, PM<sub>2.5</sub></td>
+      <td class="govuk-table__cell">1994</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">As AURN (reference/equivalent continuous analysers; PM TEOM-FDMS / BAM).</td>
+    </tr> -->
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Locally-managed automatic monitoring</th>
+      <td class="govuk-table__cell">Local authority & other automatic NO<sub>2</sub>, O<sub>3</sub>, PM, CO, SO<sub>2</sub></td>
+      <td class="govuk-table__cell">1973</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Varies by provider; typically AURN-equivalent continuous analysers and BAM/FDMS for PM.</td>
+    </tr>
+
+    <!-- NON-AUTOMATIC NETWORKS -->
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UKEAP — Precip-Net</th>
+      <td class="govuk-table__cell">Precipitation chemistry (major ions)</td>
+      <td class="govuk-table__cell">1986</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Warren-Spring bulk collectors (weekly→fortnightly); Digitel DRA-12 wet-only at EMEP supersites.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UKEAP — Acid Gas & Aerosol Network (AGANet)</th>
+      <td class="govuk-table__cell">HNO<sub>3</sub>, HCl, NH<sub>4</sub><sup>+</sup>, NO<sub>3</sub><sup>−</sup>, SO<sub>4</sub><sup>2−</sup>, etc.</td>
+      <td class="govuk-table__cell">Not stated</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Monthly denuder sampling (DELTA).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UKEAP — National Ammonia Monitoring Network (NAMN)</th>
+      <td class="govuk-table__cell">Ammonia (NH<sub>3</sub>) / ammonium (NH<sub>4</sub><sup>+</sup>)</td>
+      <td class="govuk-table__cell">Not stated</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Monthly passive ALPHA (NH<sub>3</sub>); DELTA denuder (NH<sub>3</sub>/NH<sub>4</sub><sup>+</sup> at AGANet sites).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UKEAP — Rural NO<sub>2</sub> Network</th>
+      <td class="govuk-table__cell">NO<sub>2</sub> at rural/background</td>
+      <td class="govuk-table__cell">Not stated</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Palmes-type open diffusion tubes (4-weekly).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UKEAP — MARGA Network</th>
+      <td class="govuk-table__cell">Hourly NH<sub>3</sub>, acid gases, PM<sub>2.5</sub>/PM<sub>10</sub> inorganic ions</td>
+      <td class="govuk-table__cell">Not stated</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">MARGA analyser (Metrohm) – hourly ion chromatography.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UKEAP — Rural Mercury Network</th>
+      <td class="govuk-table__cell">GEM, PBM (PM<sub>2.5</sub>), GOM</td>
+      <td class="govuk-table__cell">Not stated</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Tekran 2537x (GEM) + 1130/1135 for speciated Hg.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Black Carbon Network</th>
+      <td class="govuk-table__cell">Black carbon (BC) and UVPM</td>
+      <td class="govuk-table__cell">2006</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Aethalometers (Magee AE22/AE33).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">PAH Network</th>
+      <td class="govuk-table__cell">Polycyclic aromatic hydrocarbons (e.g. B[a]P)</td>
+      <td class="govuk-table__cell">1991</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Filter/adsorbent sampling with laboratory GC-MS (non-automatic).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">TOXics Organic Micro-Pollutants (TOMPs)</th>
+      <td class="govuk-table__cell">PCBs, pesticides and other semi-volatile organics</td>
+      <td class="govuk-table__cell">1991</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Hi-vol/PUF sampling with laboratory GC-MS (non-automatic).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Non-Automatic Hydrocarbon Network</th>
+      <td class="govuk-table__cell">Benzene (historically also 1,3-butadiene)</td>
+      <td class="govuk-table__cell">2001</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Fortnightly pumped sorbent tubes (Carbopack X) with GC-FID analysis.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Heavy Metals Network</th>
+      <td class="govuk-table__cell">As, Cd, Ni, Pb in PM<sub>10</sub></td>
+      <td class="govuk-table__cell">Not stated</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">PM<sub>10</sub> filter sampling with EN 14902 laboratory analysis (ICP-MS).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Particle Concentrations & Numbers (PCN)</th>
+      <td class="govuk-table__cell">Particle number, size distributions, OC/EC, elemental composition</td>
+      <td class="govuk-table__cell">2001</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">SMPS, CPC, EC/OC on filters, XRF, ACSM; Digitel PM<sub>2.5</sub> samplers.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">UK Urban NO<sub>2</sub> Network (UUNN)</th>
+      <td class="govuk-table__cell">NO<sub>2</sub> at urban traffic locations</td>
+      <td class="govuk-table__cell">2020</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Triplicate Palmes-type diffusion tubes with wind caps (co-located QA at AURN sites).</td>
+    </tr>
+
+    <!-- <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Nitrogen Dioxide Diffusion Tube (historic)</th>
+      <td class="govuk-table__cell">NO<sub>2</sub> (historic national tube network)</td>
+      <td class="govuk-table__cell">1993</td>
+      <td class="govuk-table__cell">2005</td>
+      <td class="govuk-table__cell">Diffusion tubes (Palmes), 4-weekly exposure.</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Smoke & Sulphur Dioxide (historic)</th>
+      <td class="govuk-table__cell">Black smoke & SO<sub>2</sub></td>
+      <td class="govuk-table__cell">1961</td>
+      <td class="govuk-table__cell">2005</td>
+      <td class="govuk-table__cell">Historic manual methods (smoke stain reflectometry; SO<sub>2</sub> bubbler techniques).</td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Upland Waters Monitoring Network</th>
+      <td class="govuk-table__cell">Stream/lake chemistry & biota (acidification impacts)</td>
+      <td class="govuk-table__cell">1988</td>
+      <td class="govuk-table__cell">Present</td>
+      <td class="govuk-table__cell">Regular water chemistry sampling and biological surveys.</td>
+    </tr> -->
+
+  </tbody>
+</table>
+
+  </div>
+</details>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
 
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset" aria-describedby="data-source-hint">
@@ -89,14 +285,14 @@
          value="monthly"
          data-aria-controls="conditional-ds-monthly">
   <label class="govuk-label govuk-checkboxes__label" for="ds-monthly">
-    Monthly data from Defra
+    Weekly and monthly data from Defra
   </label>
 </div>
 
 <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-ds-monthly">
   <fieldset class="govuk-fieldset" aria-describedby="monthly-network-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Choose network(s)</legend>
-    <div id="monthly-network-hint" class="govuk-hint">Tick one or more monthly networks.</div>
+    <div id="monthly-network-hint" class="govuk-hint">Tick one or more weekly and monthly networks.</div>
 
     <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes" id="monthly-networks">
       <!-- Keep all items but add data-net-key on each so we can hide non-available -->

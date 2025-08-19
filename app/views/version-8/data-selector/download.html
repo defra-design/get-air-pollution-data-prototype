@@ -90,13 +90,11 @@
     
 
 <h2 class="govuk-heading-m">View monitoring stations</h2>
-<p class="govuk-body">View information about individual monitoring stations including: data capture, graphs and air pollution summary.</p>
+<p class="govuk-body">View information about individual monitoring stations including: data capture, graphs and air pollution summaries.</p>
 
 <p class="govuk-body"><a href="#" class="govuk-link">View monitoring stations that match your search</a></p>
   </div>
 </div>
-
-
 
 
 
@@ -115,7 +113,7 @@
     </li>
     <li class="govuk-tabs__list-item">
       <a class="govuk-tabs__tab" href="#past-week">
-        Monthly data from Defra
+        Weekly and monthly data from Defra
       </a>
     </li>
     <li class="govuk-tabs__list-item">
@@ -140,7 +138,7 @@
       
     <div class="govuk-inset-text govuk-!-margin-top-0">
   <h3 class="govuk-heading-s">Save your search</h3>
-<p class="govuk-body">Save this URL to quickly download data with the same details next time.</p>
+<p class="govuk-body">Save this URL to download data with the same details next time.</p>
 
 <p class="govuk-body"><a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
 
@@ -149,6 +147,7 @@
       
     </div>
 <!-- end of second row-->
+ 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   // === Time period ===
@@ -220,7 +219,7 @@ function buildNetworksForPollutant(rawName) {
   const seen = new Set();
   const add = (label) => { if (!seen.has(label)) { sections.push(label); seen.add(label); } };
   const addHourly = (net) => { add('<strong>Latest hourly data from Defra</strong>'); add(net); };
-  const addMonthly = (net) => { add('<strong>Monthly data from Defra</strong>'); add(net); };
+  const addMonthly = (net) => { add('<strong>Weekly and monthly data from Defra</strong>'); add(net); };
   const addNonDefra = () => { add('<strong>Non-Defra data</strong>'); add('Locally managed automatic monitoring'); };
 
   // groups
@@ -342,7 +341,7 @@ function collateNetworks(pollutants) {
   let current = null;
   flat.forEach(item => {
     if (item.includes('<strong>Latest hourly data from Defra</strong>')) current = 'hourly';
-    else if (item.includes('<strong>Monthly data from Defra</strong>')) current = 'monthly';
+    else if (item.includes('<strong>Weekly and monthly data from Defra</strong>')) current = 'monthly';
     else if (item.includes('<strong>Non-Defra data</strong>')) current = 'nonDefra';
     else if (current) buckets[current].push(item);
   });
@@ -375,10 +374,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Which tabs to show (match your headings -> tab labels)
   const sources = [];
   if (buckets.hourly.length)   sources.push('Latest hourly data from Defra');
-  if (buckets.monthly.length)  sources.push('Monthly data from Defra');
+  if (buckets.monthly.length)  sources.push('Weekly and monthly data from Defra');
   if (buckets.nonDefra.length) sources.push('Non-Defra data'); // label for your Non-Defra bucket
 
-  if (!sources.length) sources.push('Monthly data from Defra'); // fallback
+  if (!sources.length) sources.push('Weekly and monthly data from Defra'); // fallback
 
   // Clear any static tabs/panels that were in the HTML
   tabsContainer.innerHTML = '';
@@ -389,39 +388,105 @@ document.addEventListener('DOMContentLoaded', function () {
   const timePeriod = sessionStorage.getItem('selectedTimePeriod') || '';
 
   function buildButtons(timeText, sourceName) {
+  const isMonthly = sourceName === 'Weekly and monthly data from Defra';
+
+  if (isMonthly) {
     return `
       <h2 class="govuk-heading-m">${sourceName}</h2>
       <p class="govuk-body">Download data for ${timeText}</p>
+
       <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
         <span class="aq-button-secondary__icon">
           <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
             <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </span>
-        <span class="aq-button-secondary__text">Download hourly data</span>
+        <span class="aq-button-secondary__text">Download metadata</span>
       </a><br>
+
       <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
         <span class="aq-button-secondary__icon">
           <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
             <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </span>
-        <span class="aq-button-secondary__text">Download daily average data</span>
-      </a><br>
-      <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-        <span class="aq-button-secondary__icon">
-          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
-            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </span>
-        <span class="aq-button-secondary__text">Download annual average data</span>
+        <span class="aq-button-secondary__text">Download data</span>
       </a>
     `;
   }
 
-  function buildYearTable(startYear, endYear, sourceName) {
-    let rows = '';
-    for (let year = endYear; year >= startYear; year--) {
+  // Default layout for other sources
+  return `
+    <h2 class="govuk-heading-m">${sourceName}</h2>
+    <p class="govuk-body">Download data for ${timeText}</p>
+
+    <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+      <span class="aq-button-secondary__icon">
+        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+          <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="aq-button-secondary__text">Download metadata</span>
+    </a><br>
+
+    <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+      <span class="aq-button-secondary__icon">
+        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+          <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="aq-button-secondary__text">Download hourly data</span>
+    </a><br>
+
+    <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+      <span class="aq-button-secondary__icon">
+        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+          <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="aq-button-secondary__text">Download daily average data</span>
+    </a><br>
+
+    <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+      <span class="aq-button-secondary__icon">
+        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+          <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
+        </svg>
+      </span>
+      <span class="aq-button-secondary__text">Download annual average data</span>
+    </a>
+  `;
+}
+
+
+function buildYearTable(startYear, endYear, sourceName) {
+  const isMonthly = sourceName === 'Weekly and monthly data from Defra';
+  const hasMultipleYears = startYear !== endYear;
+
+  let metadataButton = '';
+  if (hasMultipleYears) {
+    metadataButton = `
+      <a href="#" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+        <span class="aq-button-secondary__icon">
+          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12"
+              fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </span>
+        <span class="aq-button-secondary__text">Download metadata</span>
+      </a>
+    `;
+  }
+
+  let rows = '';
+  for (let year = endYear; year >= startYear; year--) {
+    if (isMonthly) {
+      rows += `
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">${year}</th>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
+        </tr>`;
+    } else {
       rows += `
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">${year}</th>
@@ -430,21 +495,38 @@ document.addEventListener('DOMContentLoaded', function () {
           <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
         </tr>`;
     }
-    return `
-      <h2 class="govuk-heading-m">Download ${sourceName.toLowerCase()} by year</h2>
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Year</th>
-            <th scope="col" class="govuk-table__header">Hourly data</th>
-            <th scope="col" class="govuk-table__header">Daily average</th>
-            <th scope="col" class="govuk-table__header">Annual average</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">${rows}</tbody>
-      </table>
-    `;
   }
+
+  const tableHead = isMonthly
+    ? `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Year</th>
+          <th scope="col" class="govuk-table__header">Download</th>
+        </tr>
+      </thead>`
+    : `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Year</th>
+          <th scope="col" class="govuk-table__header">Hourly data</th>
+          <th scope="col" class="govuk-table__header">Daily average</th>
+          <th scope="col" class="govuk-table__header">Annual average</th>
+        </tr>
+      </thead>`;
+
+  return `
+    <h2 class="govuk-heading-m">Download ${sourceName.toLowerCase()} by year</h2>
+    ${metadataButton}
+    <table class="govuk-table">
+      ${tableHead}
+      <tbody class="govuk-table__body">${rows}</tbody>
+    </table>
+  `;
+}
+
+
+
 
   // Build a panel for each available source
   sources.forEach((source, i) => {
