@@ -108,59 +108,92 @@
 document.addEventListener('DOMContentLoaded', function () {
   const addButton = document.querySelector('.govuk-button');
   const selectAllCheckbox = document.getElementById('site-select-all');
-  const allCheckboxes = Array.from(document.querySelectorAll('input[name="site-type"]')).filter(cb => cb.id !== 'site-select-all');
+  const allCheckboxes = Array.from(document.querySelectorAll('input[name="site-type"]'))
+    .filter(cb => cb.id !== 'site-select-all');
 
-  // When "Select all" is clicked
+  // Canonical list (must match checkbox values exactly)
+  const VALID_LABELS = new Set([
+    "Rural background",
+    "Suburban background",
+    "Urban background",
+    "Suburban industrial",
+    "Urban industrial",
+    "Urban traffic"
+  ]);
+
+  // --- helpers ---
+  const getSelectedValues = () =>
+    allCheckboxes.filter(cb => cb.checked).map(cb => cb.value);
+
+  const writeToStorage = () => {
+    const selected = getSelectedValues().filter(v => VALID_LABELS.has(v));
+    sessionStorage.setItem('selectedSiteTypes', JSON.stringify(selected));
+  };
+
+  const updateSelectAllState = () => {
+    selectAllCheckbox.checked = allCheckboxes.every(c => c.checked);
+    selectAllCheckbox.indeterminate =
+      !selectAllCheckbox.checked && allCheckboxes.some(c => c.checked);
+  };
+
+  const hydrateFromStorage = () => {
+    let saved = [];
+    try {
+      saved = JSON.parse(sessionStorage.getItem('selectedSiteTypes') || '[]');
+    } catch { saved = []; }
+
+    // Clear all first
+    allCheckboxes.forEach(cb => { cb.checked = false; });
+
+    // Re-check saved ones (only valid labels)
+    if (Array.isArray(saved) && saved.length) {
+      const savedSet = new Set(saved.filter(v => VALID_LABELS.has(v)));
+      allCheckboxes.forEach(cb => {
+        if (savedSet.has(cb.value)) cb.checked = true;
+      });
+    }
+
+    updateSelectAllState();
+  };
+
+  // --- initial hydrate ---
+  hydrateFromStorage();
+
+  // --- "Select all" behaviour ---
   selectAllCheckbox.addEventListener('change', function () {
-    allCheckboxes.forEach(cb => {
-      cb.checked = selectAllCheckbox.checked;
-    });
+    const on = selectAllCheckbox.checked;
+    allCheckboxes.forEach(cb => { cb.checked = on; });
+    updateSelectAllState();
+    writeToStorage();
   });
 
-  // When any individual checkbox is clicked
+  // --- Individual checkbox behaviour ---
   allCheckboxes.forEach(cb => {
     cb.addEventListener('change', function () {
-      if (!cb.checked) {
-        selectAllCheckbox.checked = false;
-      } else {
-        const allChecked = allCheckboxes.every(c => c.checked);
-        selectAllCheckbox.checked = allChecked;
-      }
+      updateSelectAllState();
+      writeToStorage();
     });
   });
 
-  // On continue button click
+  // --- Continue button ---
   addButton.addEventListener('click', function (e) {
     e.preventDefault();
 
-    const selected = [];
-
-    const siteTypeLabels = {
-      "Rural background": true,
-      "Suburban background": true,
-      "Urban background": true,
-      "Suburban industrial": true,
-      "Urban industrial": true,
-      "Urban traffic": true
-    };
-
-    allCheckboxes.forEach(cb => {
-      if (cb.checked && siteTypeLabels[cb.value]) {
-        selected.push(cb.value);
-      }
-    });
+    const selected = getSelectedValues().filter(v => VALID_LABELS.has(v));
 
     if (selected.length === 0) {
       alert('Please select at least one site type.');
       return;
     }
 
+    // Persist (already persisted on change, but ensure on click too)
     sessionStorage.setItem('selectedSiteTypes', JSON.stringify(selected));
+
+    // Navigate
     window.location.href = 'create-pollutant.html';
   });
 });
 </script>
-
 
 
 {% endblock %}
