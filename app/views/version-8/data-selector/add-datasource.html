@@ -615,6 +615,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  function wireParentToChildren(parentId, hostSelector, childName) {
+    const parent = document.getElementById(parentId);
+    const host = document.querySelector(hostSelector);
+    if (!parent || !host) return;
+
+    parent.addEventListener('change', () => {
+      const children = host.querySelectorAll(`input[name="${childName}"]`);
+      children.forEach(cb => {
+        const row = cb.closest('.govuk-checkboxes__item');
+        const visible = !row || row.style.display !== 'none';
+
+        // When checking the parent: tick all VISIBLE children.
+        // When unchecking the parent: untick ALL children (visible or hidden).
+        const targetChecked = parent.checked ? visible : false;
+
+        if (cb.checked !== targetChecked) {
+          cb.checked = targetChecked;
+          cb.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  }
+
+  wireParentToChildren('ds-hourly',  '#hourly-networks',  'hourly-network');
+  wireParentToChildren('ds-monthly', '#monthly-networks', 'monthly-network');
+  // No children under 'ds-la', so nothing to wire there.
+});
+</script>
+
+
 
 
 {% endblock %}

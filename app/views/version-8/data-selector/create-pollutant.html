@@ -18,8 +18,10 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-three-quarters-from-desktop">
         <h1 class="govuk-heading-l">Create a custom dataset</h1>
-<p class="govuk">Choose pollutant(s)
-</p>
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="#" id="clear-selections" class="govuk-link">Clear selections</a></p>
+
+<p class="govuk-body">Choose pollutant(s)</p>
      
     <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -286,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return sections;
   }
 
-  function availabilityFromPollutants(polls) {
+  /* function availabilityFromPollutants(polls) {
     const flat = [], seen = new Set();
     polls.forEach(p => {
       (buildNetworksForPollutant(p) || []).forEach(x => { if (!seen.has(x)) { flat.push(x); seen.add(x); } });
@@ -300,7 +302,30 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (current) buckets[current].push(item);
     });
     return buckets;
-  }
+  } */
+ function availabilityFromPollutants(polls) {
+  const buckets = { hourly: [], monthly: [], nonDefra: [] };
+  const seen = { hourly: new Set(), monthly: new Set() };
+
+  (Array.isArray(polls) ? polls : []).forEach(p => {
+    let current = null;
+    (buildNetworksForPollutant(p) || []).forEach(item => {
+      if (item === HOUR_HDR) current = 'hourly';
+      else if (item === MONTH_HDR) current = 'monthly';
+      else if (item === NONDEF_HDR) current = 'nonDefra';
+      else if (current === 'hourly' && !seen.hourly.has(item)) {
+        seen.hourly.add(item); buckets.hourly.push(item);
+      } else if (current === 'monthly' && !seen.monthly.has(item)) {
+        seen.monthly.add(item); buckets.monthly.push(item);
+      } else if (current === 'nonDefra') {
+        if (!buckets.nonDefra.length) buckets.nonDefra.push('Locally managed automatic monitoring');
+      }
+    });
+  });
+
+  return buckets;
+}
+
 
   const available = availabilityFromPollutants(pollutants);
 
@@ -616,6 +641,7 @@ function buildNetworksForPollutant(rawName) {
   const isSO2 = name === 'sulphur dioxide' || name === 'gaseous sulphur dioxide';
   const isO3  = name === 'ozone';
   const isCO  = name === 'carbon monoxide';
+  const isBenz  = name === 'benzene';
   const isNO2 = name === 'nitrogen dioxide';
   const isNOxAsNO2 = name === 'nitrogen oxides as nitrogen dioxide';
   const isNO  = name === 'nitric oxide';
@@ -668,6 +694,12 @@ function buildNetworksForPollutant(rawName) {
     addMonthly('UK Urban NO2 Network');
     addMonthly('UKEAP: Rural NO2 Network');
      addNonDefra();
+  }
+
+  if (isBenz) { {
+    addHourly('Automatic Hydrocarbon Network');
+    addMonthly('Non-Automatic Hydrocarbon Network');
+  }
   }
 
   if (vocs.has(name)) {
@@ -757,6 +789,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 
+<script>
+// Bucket PER pollutant, then union — avoids header leakage across pollutants
+function bucketsFromPollutants(polls) {
+  const H = '<strong>Latest hourly data from Defra</strong>';
+  const M = '<strong>Weekly and monthly data from Defra</strong>';
+  const L = '<strong>Non-Defra data</strong>';
+
+  const out = { hourly: [], monthly: [], nonDefra: [] };
+  const seenH = new Set(), seenM = new Set();
+
+  (Array.isArray(polls) ? polls : []).forEach(p => {
+    let cur = null;
+    (buildNetworksForPollutant(p) || []).forEach(item => {
+      if (item === H) cur = 'h';
+      else if (item === M) cur = 'm';
+      else if (item === L) cur = 'l';
+      else if (cur === 'h' && !seenH.has(item)) { seenH.add(item); out.hourly.push(item); }
+      else if (cur === 'm' && !seenM.has(item)) { seenM.add(item); out.monthly.push(item); }
+      else if (cur === 'l' && out.nonDefra.length === 0) {
+        out.nonDefra.push('Locally managed automatic monitoring');
+      }
+    });
+  });
+
+  return out;
+}
+</script>
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -802,6 +863,7 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
   }
 });
 </script>
+
 <script>
 // === Save available networks for the "Add data source" page ===
 (function () {
@@ -816,7 +878,7 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
   }
 
   // Build the same flat list you already use
-  const flat = [];
+  /* const flat = [];
   const seen = new Set();
   pollutants.forEach(p => {
     (buildNetworksForPollutant(p) || []).forEach(x => {
@@ -832,7 +894,10 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
     else if (item === MONTH_HDR) current = 'monthly';
     else if (item === NONDEF_HDR) current = 'nonDefra';
     else if (current) buckets[current].push(item);
-  });
+  }); */
+
+  const buckets = bucketsFromPollutants(pollutants);
+
 
   // Persist a minimal, clean payload for the next page
   const payload = {
@@ -843,7 +908,8 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
   sessionStorage.setItem('availableDataSources', JSON.stringify(payload));
 })();
 </script>
-<script>
+
+<!-- <script>
 document.addEventListener('DOMContentLoaded', () => {
   const dsListEl = document.getElementById('data-source-list');
   const pollutantListEl = document.getElementById('pollutant-summary-list');
@@ -936,7 +1002,138 @@ document.addEventListener('DOMContentLoaded', () => {
   // No valid selection → show the available networks (what the user can pick from)
   dsListEl.innerHTML = flat.length ? flat.map(x => `<div>${x}</div>`).join('') : 'Any';
 });
+</script> -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const dsListEl = document.getElementById('data-source-list');
+  const pollutantListEl = document.getElementById('pollutant-summary-list');
+
+  // read pollutants for the pollutant summary text (unchanged behaviour)
+  const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
+  if (pollutants.length && pollutantListEl) {
+    pollutantListEl.innerHTML = pollutants.map(p => `<div>${p}</div>`).join('');
+  }
+
+  if (!dsListEl) return;
+
+  // headings we use in the summary
+  const HOUR_HDR   = '<strong>Latest hourly data from Defra</strong>';
+  const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
+  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+
+  // --- HEADER-SAFE BUCKETING (per pollutant, then union) ---
+  const buckets = bucketsFromPollutants(pollutants);
+
+  // Save availability for add-datasource page
+  sessionStorage.setItem('availableDataSources', JSON.stringify({
+    hourly:  buckets.hourly,
+    monthly: buckets.monthly,
+    hasLocal: buckets.nonDefra.length > 0
+  }));
+
+  // Try to read the user's saved selection from add-datasource
+  let selected = null;
+  try { selected = JSON.parse(sessionStorage.getItem('selectedDataSources') || 'null'); } catch {}
+
+  // Helper to render a grouped summary from a selection object
+  const renderSelection = (sel) => {
+    const out = [];
+    if (sel.hourly?.enabled && sel.hourly.networks?.length) {
+      out.push(HOUR_HDR, ...sel.hourly.networks);
+    }
+    if (sel.monthly?.enabled && sel.monthly.networks?.length) {
+      out.push(MONTH_HDR, ...sel.monthly.networks);
+    }
+    if (sel.local) {
+      out.push(NONDEF_HDR, 'Locally managed automatic monitoring');
+    }
+    return out.map(x => `<div>${x}</div>`).join('');
+  };
+
+  // If we have a selection, filter it against current availability (in case the pollutant changed)
+  if (selected) {
+    const filtered = {
+      hourly: {
+        enabled: !!selected.hourly?.enabled,
+        networks: (selected.hourly?.networks || []).filter(n => buckets.hourly.includes(n))
+      },
+      monthly: {
+        enabled: !!selected.monthly?.enabled,
+        networks: (selected.monthly?.networks || []).filter(n => buckets.monthly.includes(n))
+      },
+      local: !!selected.local && buckets.nonDefra.length > 0
+    };
+
+    const hasAny =
+      (filtered.hourly.enabled  && filtered.hourly.networks.length) ||
+      (filtered.monthly.enabled && filtered.monthly.networks.length) ||
+      filtered.local;
+
+    if (hasAny) {
+      dsListEl.innerHTML = renderSelection(filtered);
+      return; // don't fall through and overwrite with availability
+    } else {
+      // stale selection → drop it so we fall back to availability display
+      sessionStorage.removeItem('selectedDataSources');
+    }
+  }
+
+  // No valid selection → show the available networks (what the user can pick from)
+  const flat = [];
+  if (buckets.hourly.length)   flat.push(HOUR_HDR,  ...buckets.hourly);
+  if (buckets.monthly.length)  flat.push(MONTH_HDR, ...buckets.monthly);
+  if (buckets.nonDefra.length) flat.push(NONDEF_HDR, ...buckets.nonDefra);
+
+  dsListEl.innerHTML = flat.length ? flat.map(x => `<div>${x}</div>`).join('') : 'Any';
+});
 </script>
+
+
+<script>
+// Minimal visibility gate for summary-list action links
+document.addEventListener('DOMContentLoaded', () => {
+  // Ensure [hidden] always hides, even if CSS overrides it.
+  (function enforceHidden() {
+    const style = document.createElement('style');
+    style.textContent = '[hidden]{display:none!important;}';
+    document.head.appendChild(style);
+  })();
+
+  // Show other action cells only when at least one pollutant is selected
+  let hasPollutants = false;
+  try {
+    const arr = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
+    hasPollutants = Array.isArray(arr) && arr.length > 0;
+  } catch (e) { /* ignore */ }
+
+  ['time-period-action', 'location-action', 'data-source-action', 'site-type-action']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (hasPollutants) {
+        el.removeAttribute('hidden');   // unhide when pollutants exist
+      } else {
+        el.setAttribute('hidden', '');  // keep hidden until then
+      }
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const link = document.getElementById('clear-selections');
+  if (!link) return;
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    sessionStorage.clear();
+    window.location.reload();
+  });
+});
+</script>
+
+
+
 
 
 
