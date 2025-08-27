@@ -614,22 +614,27 @@ document.addEventListener('DOMContentLoaded', () => {
     .forEach(cb => cb.addEventListener('change', persist));
 });
 </script>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // Parent toggles all visible children; suppression-aware
   function wireParentToChildren(parentId, hostSelector, childName) {
     const parent = document.getElementById(parentId);
     const host = document.querySelector(hostSelector);
     if (!parent || !host) return;
 
     parent.addEventListener('change', () => {
+      // Skip cascade if this parent was flipped by a child action
+      if (parent.dataset.suppressCascade === '1') {
+        parent.dataset.suppressCascade = '';
+        return;
+      }
       const children = host.querySelectorAll(`input[name="${childName}"]`);
       children.forEach(cb => {
         const row = cb.closest('.govuk-checkboxes__item');
         const visible = !row || row.style.display !== 'none';
 
-        // When checking the parent: tick all VISIBLE children.
-        // When unchecking the parent: untick ALL children (visible or hidden).
+        // When checking parent: tick all VISIBLE children.
+        // When unchecking parent: untick ALL children.
         const targetChecked = parent.checked ? visible : false;
 
         if (cb.checked !== targetChecked) {
@@ -640,11 +645,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Children keep parent in sync:
+  // - 0 checked -> parent off
+  // - >=1 checked -> parent on (without cascading to tick all children)
+  function syncParentWithChildren(parentId, hostSelector, childName) {
+    const parent = document.getElementById(parentId);
+    const host = document.querySelector(hostSelector);
+    if (!parent || !host) return;
+
+    const isVisible = (cb) => {
+      const row = cb.closest('.govuk-checkboxes__item');
+      return !row || row.style.display !== 'none';
+    };
+
+    host.addEventListener('change', (e) => {
+      if (!e.target || !e.target.matches(`input[name="${childName}"]`)) return;
+
+      const children = Array.from(host.querySelectorAll(`input[name="${childName}"]`)).filter(isVisible);
+      const checkedCount = children.filter(cb => cb.checked).length;
+
+      if (checkedCount === 0 && parent.checked) {
+        // No children remain -> untick parent (let govuk-frontend hide the conditional)
+        parent.checked = false;
+        parent.dispatchEvent(new Event('change', { bubbles: true }));
+      } else if (checkedCount > 0 && !parent.checked) {
+        // First/last child just got ticked -> tick parent, but suppress cascade to avoid auto-ticking others
+        parent.dataset.suppressCascade = '1';
+        parent.checked = true;
+        parent.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  }
+
   wireParentToChildren('ds-hourly',  '#hourly-networks',  'hourly-network');
   wireParentToChildren('ds-monthly', '#monthly-networks', 'monthly-network');
-  // No children under 'ds-la', so nothing to wire there.
+
+  syncParentWithChildren('ds-hourly',  '#hourly-networks',  'hourly-network');
+  syncParentWithChildren('ds-monthly', '#monthly-networks', 'monthly-network');
 });
 </script>
+
+
 
 
 
