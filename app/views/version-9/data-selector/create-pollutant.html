@@ -17,13 +17,32 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-three-quarters-from-desktop">
+
+        <div id="no-stations-error"
+     class="govuk-error-summary"
+     data-module="govuk-error-summary"
+     role="alert"
+     tabindex="-1"
+     hidden>
+  <div role="alert">
+    <h2 class="govuk-error-summary__title">There is a problem</h2>
+    <div class="govuk-error-summary__body">
+      <p class="govuk-body">There are no stations available based on your selection. Please change year or location.</p>
+      <ul class="govuk-list govuk-error-summary__list">
+        <li><a href="add-time.html">Change year</a></li>
+        <li><a href="add-location.html">Change location</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
         <h1 class="govuk-heading-l">Create a custom dataset</h1>
 
         <p class="govuk-body govuk-!-margin-bottom-6"><a href="#" id="clear-selections" class="govuk-link">Clear selections</a></p>
 
 
-        <div id="station-inset-container" aria-live="polite"></div>
-        
+        <div id="station-inset-container" aria-live="polite" style="display: none;"></div>
+
 <p class="govuk-body">Choose pollutant(s)</p>
      
     <dl class="govuk-summary-list">
@@ -90,7 +109,7 @@
   
 </dl>
 
- <p class="govuk-body">Optional: choose site type(s)</p>
+<!--  <p class="govuk-body">Optional: choose site type(s)</p>
 
 
       <dl class="govuk-summary-list">
@@ -107,7 +126,7 @@
 </dd>
 </div>
   
-</dl>
+</dl> -->
 
 
           </div>
@@ -133,8 +152,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('station-inset-container');
-  if (!container) return;
+  const container = document.getElementById('station-inset-container'); // may not exist; still compute
+
 
   const SHOW_DEBUG = false; // set true to render a breakdown <details> under the inset
 
@@ -620,6 +639,13 @@ document.addEventListener('DOMContentLoaded', () => {
     : '';
 
   container.innerHTML = insetHtml + debugHtml;
+  // make the count available to other logic on this page
+ try { sessionStorage.setItem('availableStationCount', String(scaledTotal)); } catch {}
+
+ // only render inset if the container exists on this page
+  if (container) {
+   container.innerHTML = insetHtml + debugHtml;
+  }
 });
 </script>
 
@@ -1136,6 +1162,30 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Find the Continue button rendered by govukButton with an href
+  const continueBtn = document.querySelector('.govuk-button[href="download.html"]');
+  if (!continueBtn) return;
+
+  continueBtn.addEventListener('click', (e) => {
+    let count = NaN;
+    try { count = parseInt(sessionStorage.getItem('availableStationCount'), 10); } catch {}
+
+    if (!Number.isFinite(count) || count <= 0) {
+      e.preventDefault();
+
+      const err = document.getElementById('no-stations-error');
+      if (!err) return;
+
+      err.hidden = false;
+      // Scroll and focus for accessibility
+      err.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      err.focus();
+    }
+  });
+});
+</script>
 
 
 
