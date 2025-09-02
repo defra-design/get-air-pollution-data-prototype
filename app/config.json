@@ -1,3 +1,8 @@
 {
-  "serviceName": "Get air pollution data"
+  "serviceName": "Get air pollution data",
+"plugins": {
+  "govuk-frontend": {
+	"rebrand": true
+  }
+}
 }

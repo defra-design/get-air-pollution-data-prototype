@@ -1,0 +1,308 @@
+{% extends "layouts/v9.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "Beta" },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-l">View data source</h1>
+    
+ <p class="govuk-body govuk-!-margin-bottom-7"><a target="_blank" href="https://draft-origin.publishing.service.gov.uk/guidance/sources-of-air-pollution-data?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YjQzNGFhZC1mZjg1LTRhOWMtOTMxZC0zZmNkZGJiYzEzNjYiLCJjb250ZW50X2lkIjoiNDhkYmUwMDMtYmQ3OS00YjlkLTlmNDQtMWM4NWUyMDdkYTlkIiwiaWF0IjoxNzU1NTk3MjI2LCJleHAiOjE3NTgyNzU2MjZ9.GTmfTBhc4vKdAg3YoGYahajjpDZeZVfECfPgQv-HDvc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share" class="govuk-link">View more information about data sources (opens in new tab)</a></p>
+<!-- TABS UI -->
+<div class="govuk-tabs" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">Contents</h2>
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#tab-relevant">Networks for your selected pollutant(s)</a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#tab-other">Other networks</a>
+    </li>
+  </ul>
+
+  <div class="govuk-tabs__panel" id="tab-relevant">
+    <div id="networks-relevant"></div>
+  </div>
+
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="tab-other">
+    <div id="networks-other"></div>
+  </div>
+</div>
+
+<!-- HIDDEN TEMPLATE: one <tr> per network (copied from your details table) -->
+<template id="network-rows-template">
+  <tr class="govuk-table__row" data-net-key="Automatic Urban and Rural Network (AURN)">
+    <th scope="row" class="govuk-table__header">Automatic Urban and Rural Network (AURN)</th>
+    <td class="govuk-table__cell">NOx, O<sub>3</sub>, SO<sub>2</sub>, CO, PM<sub>10</sub>, PM<sub>2.5</sub></td>
+    <td class="govuk-table__cell">1972</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Chemiluminescence (NOx), UV photometry (O<sub>3</sub>), UV fluorescence (SO<sub>2</sub>), NDIR (CO), PM mass-equivalent (TEOM-FDMS / BAM) and daily gravimetric.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Automatic Hydrocarbon Network">
+    <th scope="row" class="govuk-table__header">Automatic Hydrocarbon Network</th>
+    <td class="govuk-table__cell">Speciated VOCs (incl. benzene, 1,3-butadiene)</td>
+    <td class="govuk-table__cell">1992</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Automatic gas chromatographs (PerkinElmer GC) reporting hourly VOCs.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Locally managed automatic monitoring">
+    <th scope="row" class="govuk-table__header">Locally-managed automatic monitoring</th>
+    <td class="govuk-table__cell">Local authority & other automatic NO<sub>2</sub>, O<sub>3</sub>, PM, CO, SO<sub>2</sub></td>
+    <td class="govuk-table__cell">1973</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Varies by provider; typically AURN-equivalent continuous analysers and BAM/FDMS for PM.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UKEAP: Precipitation Chemistry Network (Precip-Net)">
+    <th scope="row" class="govuk-table__header">UKEAP — Precip-Net</th>
+    <td class="govuk-table__cell">Precipitation chemistry (major ions)</td>
+    <td class="govuk-table__cell">1986</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Warren-Spring bulk collectors (weekly→fortnightly); Digitel DRA-12 wet-only at EMEP supersites.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UKEAP: Acid Gas & Aerosol Network (AGANet)">
+    <th scope="row" class="govuk-table__header">UKEAP — Acid Gas & Aerosol Network (AGANet)</th>
+    <td class="govuk-table__cell">HNO<sub>3</sub>, HCl, NH<sub>4</sub><sup>+</sup>, NO<sub>3</sub><sup>−</sup>, SO<sub>4</sub><sup>2−</sup>, etc.</td>
+    <td class="govuk-table__cell">1980</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Monthly denuder sampling (DELTA).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UKEAP: National Ammonia Monitoring Network (NAMN)">
+    <th scope="row" class="govuk-table__header">UKEAP — National Ammonia Monitoring Network (NAMN)</th>
+    <td class="govuk-table__cell">Ammonia (NH<sub>3</sub>) / ammonium (NH<sub>4</sub><sup>+</sup>)</td>
+    <td class="govuk-table__cell">1980</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Monthly passive ALPHA (NH<sub>3</sub>); DELTA denuder (NH<sub>3</sub>/NH<sub>4</sub><sup>+</sup> at AGANet sites).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UKEAP: Rural NO2 Network">
+    <th scope="row" class="govuk-table__header">UKEAP — Rural NO<sub>2</sub> Network</th>
+    <td class="govuk-table__cell">NO<sub>2</sub> at rural/background</td>
+    <td class="govuk-table__cell">1980</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Palmes-type open diffusion tubes (4-weekly).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UKEAP: MARGA Network">
+    <th scope="row" class="govuk-table__header">UKEAP — MARGA Network</th>
+    <td class="govuk-table__cell">Hourly NH<sub>3</sub>, acid gases, PM<sub>2.5</sub>/PM<sub>10</sub> inorganic ions</td>
+    <td class="govuk-table__cell">1980</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">MARGA analyser (Metrohm) – hourly ion chromatography.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UKEAP: Rural Mercury Network">
+    <th scope="row" class="govuk-table__header">UKEAP — Rural Mercury Network</th>
+    <td class="govuk-table__cell">GEM, PBM (PM<sub>2.5</sub>), GOM</td>
+    <td class="govuk-table__cell">1980</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Tekran 2537x (GEM) + 1130/1135 for speciated Hg.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Black Carbon Network">
+    <th scope="row" class="govuk-table__header">Black Carbon Network</th>
+    <td class="govuk-table__cell">Black carbon (BC) and UVPM</td>
+    <td class="govuk-table__cell">2006</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Aethalometers (Magee AE22/AE33).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="PAH Network">
+    <th scope="row" class="govuk-table__header">PAH Network</th>
+    <td class="govuk-table__cell">Polycyclic aromatic hydrocarbons (e.g. B[a]P)</td>
+    <td class="govuk-table__cell">1991</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Filter/adsorbent sampling with laboratory GC-MS (non-automatic).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Toxic Organic Micro Pollutants (TOMPs) Network">
+    <th scope="row" class="govuk-table__header">TOXics Organic Micro-Pollutants (TOMPs)</th>
+    <td class="govuk-table__cell">PCBs, pesticides and other semi-volatile organics</td>
+    <td class="govuk-table__cell">1991</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Hi-vol/PUF sampling with laboratory GC-MS (non-automatic).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Non-Automatic Hydrocarbon Network">
+    <th scope="row" class="govuk-table__header">Non-Automatic Hydrocarbon Network</th>
+    <td class="govuk-table__cell">Benzene (historically also 1,3-butadiene)</td>
+    <td class="govuk-table__cell">2001</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Fortnightly pumped sorbent tubes (Carbopack X) with GC-FID analysis.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Heavy Metals Network">
+    <th scope="row" class="govuk-table__header">Heavy Metals Network</th>
+    <td class="govuk-table__cell">As, Cd, Ni, Pb in PM<sub>10</sub></td>
+    <td class="govuk-table__cell">1980</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">PM<sub>10</sub> filter sampling with EN 14902 laboratory analysis (ICP-MS).</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="Particle Concentrations and Numbers Network (PCN)">
+    <th scope="row" class="govuk-table__header">Particle Concentrations & Numbers (PCN)</th>
+    <td class="govuk-table__cell">Particle number, size distributions, OC/EC, elemental composition</td>
+    <td class="govuk-table__cell">2001</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">SMPS, CPC, EC/OC on filters, XRF, ACSM; Digitel PM<sub>2.5</sub> samplers.</td>
+  </tr>
+
+  <tr class="govuk-table__row" data-net-key="UK Urban NO2 Network">
+    <th scope="row" class="govuk-table__header">UK Urban NO<sub>2</sub> Network (UUNN)</th>
+    <td class="govuk-table__cell">NO<sub>2</sub> at urban traffic locations</td>
+    <td class="govuk-table__cell">2020</td>
+    <td class="govuk-table__cell">Present</td>
+    <td class="govuk-table__cell">Triplicate Palmes-type diffusion tubes with wind caps (co-located QA at AURN sites).</td>
+  </tr>
+</template>
+
+<!-- RENDER SCRIPT: builds the two tab panels with grouped, year-sorted tables -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Availability from previous page
+  let available = {};
+  try { available = JSON.parse(sessionStorage.getItem('availableDataSources') || '{}'); } catch {}
+  const hourlyAvail  = Array.isArray(available.hourly)  ? available.hourly  : [];
+  const monthlyAvail = Array.isArray(available.monthly) ? available.monthly : [];
+  const hasLocal     = !!available.hasLocal;
+
+  // 2) Build row + year maps from template
+  const tpl = document.getElementById('network-rows-template');
+  const rowMap = {};
+  const startYearMap = {};
+  const masterOrder = [];
+
+  const toYear = (text) => {
+    const m = String(text || '').match(/\b(19|20)\d{2}\b/);
+    const y = m ? parseInt(m[0], 10) : NaN;
+    return Number.isFinite(y) ? y : Infinity; // unknown years -> last
+  };
+
+  tpl.content.querySelectorAll('tr[data-net-key]').forEach(tr => {
+    const key = tr.getAttribute('data-net-key');
+    masterOrder.push(key);
+    rowMap[key] = tr.cloneNode(true);
+
+    // Start year is 3rd column (index 2 among <td>), but our rows have: measures, Start, End, Method
+    const tds = tr.querySelectorAll('td');
+    const startCell = tds[1]; // index 1 = "Start"
+    startYearMap[key] = toYear(startCell ? startCell.textContent : '');
+  });
+
+  // 3) Grouping helpers
+  const NONDEF_KEY = 'Locally managed automatic monitoring';
+
+  const defaultGroup = (key) => {
+    if (key === NONDEF_KEY) return 'nonDefra';
+    if (key === 'Automatic Urban and Rural Network (AURN)') return 'hourly';
+    if (key === 'Automatic Hydrocarbon Network') return 'hourly';
+    return 'monthly';
+  };
+
+  const byMasterOrder = (a, b) => masterOrder.indexOf(a) - masterOrder.indexOf(b);
+  const byStartThenMaster = (a, b) => {
+    const A = startYearMap[a] ?? Infinity;
+    const B = startYearMap[b] ?? Infinity;
+    if (A !== B) return A - B;
+    return byMasterOrder(a, b);
+  };
+
+  const makeTable = (keys) => {
+    if (!keys.length) return null;
+    const table = document.createElement('table');
+    table.className = 'govuk-table';
+    table.innerHTML = `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Network</th>
+          <th scope="col" class="govuk-table__header">What it measures</th>
+          <th scope="col" class="govuk-table__header">Start</th>
+          <th scope="col" class="govuk-table__header">End</th>
+          <th scope="col" class="govuk-table__header">Instrument / method</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body"></tbody>
+    `;
+    const tb = table.querySelector('tbody');
+    keys.forEach(k => {
+      const row = rowMap[k];
+      if (row) tb.appendChild(row.cloneNode(true));
+    });
+    return table;
+  };
+
+  const renderSection = (root, sectionTitle, buckets) => {
+    const total =
+      (buckets.hourly?.length || 0) + (buckets.monthly?.length || 0) + (buckets.nonDefra?.length || 0);
+    if (!total) return;
+
+    const h2 = document.createElement('h2');
+    h2.className = 'govuk-heading-m';
+    h2.textContent = sectionTitle;
+    root.appendChild(h2);
+
+    const addGroup = (label, keys) => {
+      if (!keys || !keys.length) return;
+      const h3 = document.createElement('h3');
+      h3.className = 'govuk-heading-s';
+      h3.textContent = label;
+      root.appendChild(h3);
+      const table = makeTable(keys);
+      if (table) root.appendChild(table);
+    };
+
+    addGroup('Near real-time data from Defra',  buckets.hourly);
+    addGroup('Weekly and monthly data from Defra', buckets.monthly);
+    addGroup('Non-Defra data', buckets.nonDefra);
+  };
+
+  // 4) Build relevant (from availability) and other (everything else), sort by Start year
+  const relevant = {
+    hourly:   hourlyAvail.filter(k => rowMap[k]).sort(byStartThenMaster),
+    monthly:  monthlyAvail.filter(k => rowMap[k]).sort(byStartThenMaster),
+    nonDefra: hasLocal ? [NONDEF_KEY] : []
+  };
+
+  const relevantSet = new Set([...relevant.hourly, ...relevant.monthly, ...relevant.nonDefra]);
+  const allKeys = masterOrder.filter(k => rowMap[k]);
+  const otherKeys = allKeys.filter(k => !relevantSet.has(k));
+
+  const other = { hourly: [], monthly: [], nonDefra: [] };
+  otherKeys.forEach(k => { other[defaultGroup(k)].push(k); });
+  other.hourly.sort(byStartThenMaster);
+  other.monthly.sort(byStartThenMaster);
+  other.nonDefra.sort(byStartThenMaster);
+
+  // 5) Render into the two tab panels
+  const relRoot   = document.getElementById('networks-relevant');
+  const otherRoot = document.getElementById('networks-other');
+
+  renderSection(relRoot, 'Networks for your selected pollutant(s)', relevant);
+  renderSection(otherRoot, 'Other networks', other);
+
+  if (!relRoot.children.length) {
+    const p = document.createElement('p');
+    p.className = 'govuk-body';
+    p.textContent = 'No networks are specifically relevant to your current selection. Showing all networks under “Other networks”.';
+    relRoot.appendChild(p);
+  }
+});
+</script>
+
+
+
+{% endblock %}

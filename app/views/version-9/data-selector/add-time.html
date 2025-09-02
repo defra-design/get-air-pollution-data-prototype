@@ -1,0 +1,172 @@
+{% extends "layouts/v9.html" %}
+
+{% set pageName="Home" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+   
+    
+ 
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="time-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-heading-l">
+            Add year(s)
+          </h1>
+         <!--  <p class="govuk-body">Data is available in hourly, daily average or annual average format.</p> -->
+           
+        <div class="govuk-radios govuk-!-margin-top-0" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-4" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-4">
+              Last year (1 January to 31 December 2024)
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-5" name="time" type="radio" value="text" >
+            <label class="govuk-label govuk-radios__label" for="time-5">
+              Year to date (1 January to <span id="ytd-today"></span>)
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="time-6" name="time" type="radio" value="text" data-aria-controls="conditional-time-3" >
+            <label class="govuk-label govuk-radios__label" for="time-6">
+              Choose a range of years
+            </label>
+            <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             You can download by year or in one file
+            </div> -->
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-time-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="time-by-text">
+                  Enter start year
+                </label>
+                <div id="signIn-item-hint" class="govuk-hint">
+                  For example: 2009
+                </div>
+                <div class="govuk-date-input" id="passport-issued">
+                  
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        <!-- Enter start year -->
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                  </div>
+              </div>
+            </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="time-by-text">
+                  Enter end year
+                </label>
+               
+                <div class="govuk-date-input" id="passport-issued">
+                   <div id="signIn-item-hint" class="govuk-hint">
+                   For example: 2010
+                </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        <!-- In YYYY format -->
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                    </div>
+                  </div>
+              </div>
+            </div>
+             
+            </div>
+          
+        
+         
+      </fieldset>
+      
+    </div>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+   
+      </div>
+    </div>
+<!-- end of second row-->
+  <script>
+document.querySelector('.govuk-button').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const radios = document.getElementsByName('time');
+  let selectedValue = null;
+
+  for (const radio of radios) {
+    if (radio.checked) {
+      selectedValue = radio.id;
+      break;
+    }
+  }
+
+  let timePeriod = 'None selected';
+  const currentYear = new Date().getFullYear();
+  const today = new Date();
+  const formattedToday = `${today.getDate()} ${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
+
+  if (selectedValue === 'time-4') {
+    // Last year
+    timePeriod = `1 January to 31 December ${currentYear - 1}`;
+  } else if (selectedValue === 'time-5') {
+    // Year to date
+    timePeriod = `1 January to ${formattedToday}`;
+  } else if (selectedValue === 'time-6') {
+    // Range
+    const years = document.querySelectorAll('#conditional-time-3 input');
+    const startYear = years[0].value.trim();
+    const endYear = years[1].value.trim();
+
+    if (!startYear || !endYear) {
+      alert('Please enter both start and end year');
+      return;
+    }
+
+    if (endYear === "2025") {
+      timePeriod = `1 January ${startYear} to ${formattedToday}`;
+    } else {
+      timePeriod = `1 January ${startYear} to 31 December ${endYear}`;
+    }
+  }
+
+  // Store the time period
+  sessionStorage.setItem('selectedTimePeriod', timePeriod);
+
+  // Redirect
+  window.location.href = 'create-pollutant.html';
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Format like "1 August"
+  const today = new Date();
+  const formatted =
+    new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(today);
+
+  const span = document.getElementById('ytd-today');
+  if (span) span.textContent = formatted;
+});
+</script>
+
+
+
+{% endblock %}

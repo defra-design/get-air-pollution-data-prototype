@@ -1,0 +1,422 @@
+{% extends "layouts/v9.html" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "Beta" },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="create-pollutant.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- duplicate error (specific pollutants flow) -->
+    <div id="duplicate-error" class="govuk-error-summary" data-module="govuk-error-summary" hidden>
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li><a href="#my-autocomplete">This pollutant has already been added</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-l">Add pollutant(s)</h1>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="mode-hint">
+        <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          Choose how you’d like to add pollutants
+        </legend> -->
+        <div id="mode-hint" class="govuk-hint">Select one option.</div>
+
+        <div class="govuk-radios" data-module="govuk-radios">
+          <!-- MODE: specific -->
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="mode-specific"
+                   name="pollutant-mode"
+                   type="radio"
+                   value="specific"
+                   data-aria-controls="conditional-specific">
+            <label class="govuk-label govuk-radios__label" for="mode-specific">
+              Add specific pollutant(s)
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-specific">
+            <div class="govuk-form-group">
+              <div class="govuk-hint">Enter a pollutant</div>
+
+              <!-- Autocomplete target + input -->
+              <div id="autocomplete-container-p" class="govuk-body"></div>
+
+              <div class="govuk-button-group govuk-!-margin-top-3">
+                {{ govukButton({
+                  text: "Add pollutant",
+                  classes: "govuk-button--secondary",
+                  attributes: { id: "add-pollutant-button" }
+                }) }}
+              </div>
+
+              <table class="govuk-table govuk-!-margin-top-4" id="pollutant-table" hidden>
+                <caption class="govuk-table__caption govuk-table__caption--m">Added pollutants</caption>
+                <tbody class="govuk-table__body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- MODE: groups -->
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="mode-group"
+                   name="pollutant-mode"
+                   type="radio"
+                   value="group"
+                   data-aria-controls="conditional-groups">
+            <label class="govuk-label govuk-radios__label" for="mode-group">
+              Add groups of pollutants
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-groups">
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-describedby="pollutant-group-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"></legend>
+                <div id="pollutant-group-hint" class="govuk-hint">Select one option.</div>
+
+                <div class="govuk-radios govuk-!-margin-top-3" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-core" name="pollutant-group" type="radio" value="core" aria-describedby="pg-core-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-core">Daily Air Quality Index (DAQI) pollutants</label>
+                    <div id="pg-core-hint" class="govuk-hint govuk-radios__hint">
+                      Particulate matter (PM2.5), Particulate matter (PM10), Nitrogen dioxide (NO₂), Ozone (O₃), Sulphur dioxide (SO₂)
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-hydrocarbon" name="pollutant-group" type="radio" value="hydrocarbon" aria-describedby="pg-hydrocarbon-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-hydrocarbon">Volatile organic compounds (VOCs)</label>
+                    <div id="pg-hydrocarbon-hint" class="govuk-hint govuk-radios__hint">
+                      Benzene, Toluene, Ethylbenzene, m+p-Xylene, o-Xylene, 1,3-Butadiene, Propane/Propene, Isoprene, n-/iso-Butane, n-/iso-Pentane, 1-Butene, 1-Pentene, 2-Methylpentane, n-Hexane, n-Heptane, iso-Octane, n-Octane, Ethane/Ethene/Ethyne, 1,2,3-/1,2,4-/1,3,5-Trimethylbenzene…
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-heavy-metals" name="pollutant-group" type="radio" value="heavy-metals" aria-describedby="pg-heavy-metals-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-heavy-metals">Heavy metals in air (PM₁₀)</label>
+                    <div id="pg-heavy-metals-hint" class="govuk-hint govuk-radios__hint">
+                      Arsenic, Cadmium, Chromium, Cobalt, Copper, Iron, Lead, Manganese, Nickel, Selenium, Vanadium, Zinc, Aluminium, Antimony
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-pah" name="pollutant-group" type="radio" value="pah" aria-describedby="pg-pah-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-pah">Polycyclic aromatic hydrocarbons (PAHs)</label>
+                    <div id="pg-pah-hint" class="govuk-hint govuk-radios__hint">
+                      Benzo(a)pyrene, Benzo(a)anthracene, Benzo(b)-/Benzo(j)-/Benzo(k)fluoranthene, Indeno(1,2,3-cd)pyrene, Dibenzo(ah)-/Dibenzo(ac)anthracene, Benzo(b+j)fluoranthene, 1-/2-Methyl naphthalene, 1-/2-Methyl anthracene, 1-Methyl phenanthrene, 2-Methyl phenanthrene, 4,5-Methylene phenanthrene, 5-Methyl chrysene, 9-Methyl anthracene
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-namn" name="pollutant-group" type="radio" value="namn" aria-describedby="pg-namn-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-namn">Ammonia</label>
+                    <div id="pg-namn-hint" class="govuk-hint govuk-radios__hint">
+                      Gaseous ammonia (active), Gaseous ammonia (passive), Gaseous ammonia (diffusion tube), Particulate ammonium
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-aganet" name="pollutant-group" type="radio" value="aganet" aria-describedby="pg-aganet-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-aganet">Particulate ions and acid gases</label>
+                    <div id="pg-aganet-hint" class="govuk-hint govuk-radios__hint">
+                      Nitrate, Nitrite, Sulphate, Chloride, Ammonium, Sodium, Potassium, Calcium, Magnesium; Gaseous nitric acid (HNO₃), nitrous acid (HONO), hydrochloric acid (HCl)
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-precipnet" name="pollutant-group" type="radio" value="precipnet" aria-describedby="pg-precipnet-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-precipnet">Precipitation chemistry</label>
+                    <div id="pg-precipnet-hint" class="govuk-hint govuk-radios__hint">
+                      Ions/metals measured in precipitation (e.g. sulphate, nitrate, chloride, sodium, etc.)
+                    </div>
+                  </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="pg-ruralmercury" name="pollutant-group" type="radio" value="ruralmercury" aria-describedby="pg-ruralmercury-hint">
+                    <label class="govuk-label govuk-radios__label" for="pg-ruralmercury">Mercury species</label>
+                    <div id="pg-ruralmercury-hint" class="govuk-hint govuk-radios__hint">
+                      Elemental mercury (Hg⁰), Reactive/oxidised mercury, Mercury in PM2.5
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    {{ govukButton({
+      text: "Continue",
+      attributes: { id: "continue-button" }
+    }) }}
+
+  </div>
+</div>
+
+<script>
+// For guidance on how to add JavaScript see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+
+document.addEventListener('DOMContentLoaded', () => {
+  // ----- Group definitions (used by group mode)
+  const GROUPS = {
+    core: [
+      'Particulate matter (PM2.5)','Particulate matter (PM10)',
+      'Nitrogen dioxide','Ozone','Sulphur dioxide'
+    ],
+    hydrocarbon: [
+      'Benzene','Toluene','Ethylbenzene','m+p-Xylene','o-Xylene',
+      '1,3-Butadiene','Propane','Propene','Isoprene',
+      'Iso-butane','n-Butane','1-Butene',
+      'Iso-pentane','n-Pentane','1-Pentene','Trans-2-pentene',
+      '2-Methylpentane','n-Hexane','n-Heptane','Iso-octane','n-Octane',
+      'Ethane','Ethene','Ethyne',
+      '1,2,3-Trimethylbenzene','1,2,4-Trimethylbenzene','1,3,5-Trimethylbenzene'
+    ],
+    'heavy-metals': [
+      'Arsenic','Cadmium','Chromium','Cobalt','Copper','Iron','Lead','Manganese',
+      'Nickel','Selenium','Vanadium','Zinc','Aluminium','Antimony'
+    ],
+    pah: [
+      'Benzo(a)pyrene','Benzo(a)anthracene','Benzo(b)fluoranthene','Benzo(j)fluoranthene','Benzo(b+j)fluoranthene',
+      'Benzo(k)fluoranthene','Indeno(1,2,3-cd)pyrene','Dibenzo(ac)anthracene','Dibenzo(ah)anthracene','Dibenzo(ah+ac)anthracene',
+      '1-Methyl anthracene','1-Methyl naphthalene','1-Methyl phenanthrene','2-Methyl anthracene','2-Methyl naphthalene',
+      '2-Methyl phenanthrene','4,5-Methylene phenanthrene','5-Methyl chrysene','9-Methyl anthracene'
+    ],
+    namn: [
+      'Gaseous ammonia','Gaseous ammonia (active)','Gaseous ammonia (passive)',
+      'Gaseous ammonia (diffusion tube)','Particulate ammonium'
+    ],
+    aganet: [
+      'Nitrate','Nitrite','Sulphate','Chloride','Ammonium',
+      'Sodium','Potassium','Calcium','Magnesium',
+      'Gaseous nitric acid','Gaseous nitrous acid','Gaseous hydrochloric acid'
+    ],
+    precipnet: [
+      'Sulphate in precipitation','Nitrate in precipitation','Chloride in precipitation',
+      'Sodium in precipitation','Potassium in precipitation',
+      'Calcium in precipitation','Magnesium in precipitation'
+    ],
+    ruralmercury: ['Elemental mercury','Reactive mercury','Mercury in PM2.5']
+  };
+
+  // ----- Cache key elements
+  const addButton = document.getElementById('add-pollutant-button');
+  const continueButton = document.getElementById('continue-button');
+  const table = document.getElementById('pollutant-table');
+  const tableBody = table.querySelector('tbody');
+
+  // ----- State for specific mode
+  let count = 0;
+  const addedPollutants = new Set(); // Track unique values (lowercased)
+
+  // 🔁 Helper to update add button text
+  function updateAddButtonText() {
+    if (!addButton) return;
+    addButton.textContent = tableBody.children.length > 0 ? 'Add another pollutant' : 'Add pollutant';
+  }
+
+  // 1) Restore any previously stored pollutants (specific mode)
+  (function restoreFromSession() {
+    const stored = sessionStorage.getItem('selectedPollutants');
+    if (!stored) { updateAddButtonText(); return; }
+
+    let pollutants = [];
+    try { pollutants = JSON.parse(stored) || []; } catch { pollutants = []; }
+
+    pollutants.forEach((value) => {
+      count++;
+      addedPollutants.add((value || '').toLowerCase());
+
+      const row = document.createElement('tr');
+      row.className = 'govuk-table__row';
+
+      const headerCell = document.createElement('th');
+      headerCell.scope = 'row';
+      headerCell.className = 'govuk-table__header';
+      headerCell.textContent = `Pollutant ${count}`;
+
+      const valueCell = document.createElement('td');
+      valueCell.className = 'govuk-table__cell';
+      valueCell.textContent = value;
+
+      const actionCell = document.createElement('td');
+      actionCell.className = 'govuk-table__cell';
+
+      const removeLink = document.createElement('a');
+      removeLink.href = '#';
+      removeLink.className = 'govuk-link';
+      removeLink.textContent = 'Remove';
+
+      removeLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        row.remove();
+        addedPollutants.delete((value || '').toLowerCase());
+        if (tableBody.children.length === 0) {
+          table.hidden = true;
+          count = 0;
+        }
+        updateAddButtonText();
+      });
+
+      actionCell.appendChild(removeLink);
+      row.appendChild(headerCell);
+      row.appendChild(valueCell);
+      row.appendChild(actionCell);
+      tableBody.appendChild(row);
+
+      table.hidden = false;
+    });
+
+    updateAddButtonText();
+  })();
+
+  // 2) Add new pollutant with duplicate check (specific mode)
+  addButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const input = document.querySelector('#my-autocomplete');
+    if (!input) return;
+
+    const value = (input.value || '').trim();
+    if (!value) {
+      alert('Please select a pollutant.');
+      return;
+    }
+
+    const lowerValue = value.toLowerCase();
+    if (addedPollutants.has(lowerValue)) {
+      const errorSummary = document.getElementById('duplicate-error');
+      if (errorSummary) {
+        errorSummary.hidden = false;
+        errorSummary.focus();
+        errorSummary.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+
+    count++;
+    addedPollutants.add(lowerValue);
+
+    if (table.hidden) table.hidden = false;
+
+    const row = document.createElement('tr');
+    row.className = 'govuk-table__row';
+
+    const headerCell = document.createElement('th');
+    headerCell.scope = 'row';
+    headerCell.className = 'govuk-table__header';
+    headerCell.textContent = `Pollutant ${count}`;
+
+    const valueCell = document.createElement('td');
+    valueCell.className = 'govuk-table__cell';
+    valueCell.textContent = value;
+
+    const actionCell = document.createElement('td');
+    actionCell.className = 'govuk-table__cell';
+
+    const removeLink = document.createElement('a');
+    removeLink.href = '#';
+    removeLink.className = 'govuk-link';
+    removeLink.textContent = 'Remove';
+
+    removeLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      row.remove();
+      addedPollutants.delete(lowerValue);
+      if (tableBody.children.length === 0) {
+        table.hidden = true;
+        count = 0;
+      }
+      updateAddButtonText();
+    });
+
+    actionCell.appendChild(removeLink);
+    row.appendChild(headerCell);
+    row.appendChild(valueCell);
+    row.appendChild(actionCell);
+    tableBody.appendChild(row);
+
+    input.value = '';
+
+    const errorSummary = document.getElementById('duplicate-error');
+    if (errorSummary) errorSummary.hidden = true;
+
+    updateAddButtonText();
+  });
+
+  // Ensure a mode is selected on load (default to specific)
+  (function setInitialMode() {
+    const modeSpecific = document.getElementById('mode-specific');
+    if (modeSpecific) {
+      modeSpecific.checked = true;
+      // Fire change so GOV.UK Radios reveals the conditional
+      modeSpecific.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  })();
+
+  // 3) Continue: save and redirect (handles both modes)
+  continueButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const selectedMode = document.querySelector('input[name="pollutant-mode"]:checked')?.value;
+
+    if (selectedMode === 'group') {
+      const chosen = document.querySelector('input[name="pollutant-group"]:checked');
+      if (!chosen) return;
+
+      const key = chosen.value;
+      const list = GROUPS[key] || [];
+
+      sessionStorage.setItem('selectedPollutants', JSON.stringify(list));
+      sessionStorage.setItem('selectedPollutantGroup', key);
+      sessionStorage.removeItem('selectedDataSources');
+
+      const hash = JSON.stringify(list.map(s => (s || '').toLowerCase().trim()).sort());
+      sessionStorage.setItem('dsPollutantHash', hash);
+
+      window.location.href = 'create-pollutant.html';
+      return;
+    }
+
+    // default/specific mode
+    let pollutants = [];
+
+    if (!table.hidden && tableBody.children.length > 0) {
+      const rows = tableBody.querySelectorAll('tr');
+      rows.forEach(row => {
+        const name = row.querySelector('td')?.textContent?.trim();
+        if (name) pollutants.push(name);
+      });
+    } else {
+      const input = document.querySelector('#my-autocomplete');
+      if (input && input.value.trim()) {
+        pollutants.push(input.value.trim());
+      }
+    }
+
+    sessionStorage.setItem('selectedPollutants', JSON.stringify(pollutants));
+    sessionStorage.removeItem('selectedPollutantGroup');
+    sessionStorage.removeItem('selectedDataSources');
+
+    const hash = JSON.stringify(pollutants.map(s => (s || '').toLowerCase().trim()).sort());
+    sessionStorage.setItem('dsPollutantHash', hash);
+
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+{% endblock %}
