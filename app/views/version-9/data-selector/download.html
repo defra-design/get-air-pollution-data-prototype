@@ -18,6 +18,69 @@
   <div class="govuk-grid-column-three-quarters-from-desktop">
 
     <h2 class="govuk-heading-l">Download your data</h2>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     View and change your search details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Pollutant
+  </dt>
+  <dd class="govuk-summary-list__value" id="download-pollutant">
+    None selected
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <a class="govuk-link" href="add-pollutant.html">Change<span class="govuk-visually-hidden"> pollutant</span></a>
+  </dd>
+</div>
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Data source
+  </dt>
+  <dd class="govuk-summary-list__value" id="download-data-source">
+    Any
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <a class="govuk-link" href="add-datasource.html">View<span class="govuk-visually-hidden"> data source</span></a>
+  </dd>
+</div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+     Year
+    </dt>
+    <dd class="govuk-summary-list__value" id="download-time-period">
+  
+</dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-time.html">Change<span class="govuk-visually-hidden"> Year</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Location
+    </dt>
+    <dd class="govuk-summary-list__value" id="download-location">
+
+</dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>
+    </dd>
+  </div>
+  
+
+</dl>
+  </div>
+</details>
+ 
+    
+
+
+
+ 
 
   </div>
 </div>
@@ -97,9 +160,7 @@
 </div>
       
     </div>
-<!-- end of second row-->
-
-<!-- 1) Shared summary initialisers (safe even if details section is commented out) -->
+<!-- end of second row--><!-- 1) Shared summary initialisers (safe even if details section is commented out) -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   // Time period
