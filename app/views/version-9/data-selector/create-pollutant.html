@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mercuryVariants = ['reactive mercury','elemental mercury','mercury in pm2.5'];
 
     if (isSO2 || isO3 || isCO || isNO2 || isNOxAsNO2 || isNO || pmMass) {
-      addHourly('Automatic Urban and Rural Network (AURN)');
+      addHourly('Automatic Urban and Rural Network');
       addNonDefra();
     }
     if (isNO2) {
@@ -286,11 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const looksLikeParticulateIon = particulateIonKeywords.some(k => name.includes(k)) && !pmMass;
     if (looksLikeParticulateIon) {
       addMonthly('UKEAP: MARGA Network');
-      addMonthly('UKEAP: Acid Gas & Aerosol Network (AGANet)');
+      addMonthly('UKEAP: Acid Gas & Aerosol Network ');
     }
     if (gaseousAcids.includes(name)) {
       if (name.includes('nitric')) addHourly('UKEAP: MARGA Network');
-      addMonthly('UKEAP: Acid Gas & Aerosol Network (AGANet)');
+      addMonthly('UKEAP: Acid Gas & Aerosol Network ');
     }
     if (ammoniaVariants.some(a => name === a || name === a.replace(/\s*\(.*\)/,''))) {
       addMonthly('UKEAP: National Ammonia Monitoring Network (NAMN)');
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addMonthly('UKEAP: Rural Mercury Network');
     }
     if (isSO2) {
-      addMonthly('UKEAP: Acid Gas & Aerosol Network (AGANet)');
+      addMonthly('UKEAP: Acid Gas & Aerosol Network ');
     }
     return sections;
   }
@@ -701,7 +701,7 @@ function buildNetworksForPollutant(rawName) {
 
   // rules
   if (isSO2 || isO3 || isCO || isNO2 || isNOxAsNO2 || isNO || pmMass) {
-    addHourly('Automatic Urban and Rural Network (AURN)');
+    addHourly('Automatic Urban and Rural Network ');
      addNonDefra();
   }
 
@@ -731,12 +731,12 @@ function buildNetworksForPollutant(rawName) {
 
   if (looksLikeParticulateIon) {
     addMonthly('UKEAP: MARGA Network');
-    addMonthly('UKEAP: Acid Gas & Aerosol Network (AGANet)');
+    addMonthly('UKEAP: Acid Gas & Aerosol Network');
   }
 
   if (gaseousAcids.includes(name)) {
     if (name.includes('nitric')) addHourly('UKEAP: MARGA Network');
-    addMonthly('UKEAP: Acid Gas & Aerosol Network (AGANet)');
+    addMonthly('UKEAP: Acid Gas & Aerosol Network ');
   }
 
   if (ammoniaVariants.some(a => name === a || name === a.replace(/\s*\(.*\)/,''))) {
@@ -756,7 +756,7 @@ function buildNetworksForPollutant(rawName) {
   }
 
   if (isSO2) {
-    addMonthly('UKEAP: Acid Gas & Aerosol Network (AGANet)');
+    addMonthly('UKEAP: Acid Gas & Aerosol Network ');
   }
 
  
