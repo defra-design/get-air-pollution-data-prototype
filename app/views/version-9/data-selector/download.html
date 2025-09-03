@@ -136,7 +136,7 @@
   <ul class="govuk-tabs__list">
     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
       <a class="govuk-tabs__tab" href="#past-day">
-        Latest hourly data from Defra
+        Near real-time data from Defra
       </a>
     </li>
     <li class="govuk-tabs__list-item">
@@ -244,7 +244,7 @@ function buildNetworksForPollutant(rawName) {
   const name = rawName.trim().toLowerCase();
   const sections = [], seen = new Set();
   const add = (label) => { if (!seen.has(label)) { sections.push(label); seen.add(label); } };
-  const addHourly  = (net) => { add('<strong>Latest hourly data from Defra</strong>'); add(net); };
+  const addHourly  = (net) => { add('<strong>Near real-time data from Defra</strong>'); add(net); };
   const addMonthly = (net) => { add('<strong>Weekly and monthly data from Defra</strong>'); add(net); };
   const addNonDefra = () => { add('<strong>Non-Defra data</strong>'); add('Locally managed automatic monitoring'); };
 
@@ -542,7 +542,7 @@ function buildNonDefraYearTableForNetwork(userStart, userEnd, networkName) {
 
 /* -------------------- Data sources summary + tabs (respect selection) -------------------- */
 document.addEventListener('DOMContentLoaded', function () {
-  const HOUR_HDR   = '<strong>Latest hourly data from Defra</strong>';
+  const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
   const NONDEF_HDR = '<strong>Non-Defra data</strong>';
   const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants_normalised') || '[]');
@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!tabsContainer || !panelsRoot) return;
 
   const sources = [];
-  if (finalBuckets.hourly.length)   sources.push('Latest hourly data from Defra');
+  if (finalBuckets.hourly.length)   sources.push('Near real-time data from Defra');
   if (finalBuckets.monthly.length)  sources.push('Weekly and monthly data from Defra');
   if (finalBuckets.nonDefra.length) sources.push('Non-Defra data');
   if (!sources.length) sources.push('Weekly and monthly data from Defra');
@@ -660,7 +660,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const networks = finalBuckets.monthly || [];
       return header + buildMonthlyPanel(networks);
     }
-    if (source === 'Latest hourly data from Defra') {
+    if (source === 'Near real-time data from Defra') {
       const networks = finalBuckets.hourly || [];
       return header + buildHourlyPanel(networks);
     }
@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <script>
 /* -------------------- Data sources summary + tabs + per-network station insets -------------------- */
 document.addEventListener('DOMContentLoaded', function () {
-  const HOUR_HDR   = '<strong>Latest hourly data from Defra</strong>';
+  const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
   const NONDEF_HDR = '<strong>Non-Defra data</strong>';
 
@@ -1087,7 +1087,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!tabsList || !tabsRoot) return;
 
   const sources = [];
-  if (finalBuckets.hourly.length)   sources.push('Latest hourly data from Defra');
+  if (finalBuckets.hourly.length)   sources.push('Near real-time data from Defra');
   if (finalBuckets.monthly.length)  sources.push('Weekly and monthly data from Defra');
   if (finalBuckets.nonDefra.length) sources.push('Non-Defra data');
   if (!sources.length) sources.push('Weekly and monthly data from Defra');
@@ -1100,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function buildPanelHTML(source) {
     const header = `<h2 class="govuk-heading-m">${source}</h2>`;
-    if (source === 'Latest hourly data from Defra') {
+    if (source === 'Near real-time data from Defra') {
       return header + (finalBuckets.hourly || []).map(n => renderHourlyBlock(n, tm)).join('');
     }
     if (source === 'Weekly and monthly data from Defra') {

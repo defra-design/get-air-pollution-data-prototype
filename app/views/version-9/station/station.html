@@ -345,7 +345,7 @@
                 
               </tbody>
             </table>
-            <p class="govuk-hint">Levels are measured against UK standard 2010 limit values.</p>
+<p class="govuk-hint">The pollution levels shown are measured against <a href="" class="govuk-link">UK legal limits (opens in new tab)</a></p>
 
             <a href="pm10-graph.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
                 <span class="aq-button-secondary__icon">
@@ -383,21 +383,32 @@
               <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-6">Download data for 2025</h2>
                            <p class="govuk-body">You can also <a href="" class="govuk-link">create a custom dataset</a> if you need to customise your data.</p>
     
-                 <h3 class="govuk-heading-m">File format</h3>
-                  <p class="govuk-body">This data will download in a wide format.</p>
-              <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
-           <!--    <p class="govuk-body">You can use wide format when you want to interpret and analyse data.</p> -->
+              
 
-                 <h3 class="govuk-heading-m">Metadata</h3>
-                 <p class="govuk-body">These files contain the following metadata:</p>
+                 <details class="govuk-details govuk-!-margin-top-3">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      File format and metadata
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <h3 class="govuk-heading-s">File format</h3>
+                             <p class="govuk-body">This data will download in a wide format.</p>
+              <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
+
+                 <h3 class="govuk-heading-s">Metadata</h3>
+                 <p class="govuk-body">These files could contain the following metadata:</p>
                  <ul class="govuk-body govuk-list--bullet">
                   <li>name of monitoring station</li>
                   <li>map coordinates</li>
                   <li>local authority</li>
                   <li>region</li>
+                  <li>site ID</li>
                   <li>instrument type</li>
                   <li>inlet height</li>
                  </ul>
+  </div>
+</details>
           
                     <h3 class="govuk-heading-m">All pollutants</h3>
                     <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">

@@ -310,21 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return sections;
   }
 
-  /* function availabilityFromPollutants(polls) {
-    const flat = [], seen = new Set();
-    polls.forEach(p => {
-      (buildNetworksForPollutant(p) || []).forEach(x => { if (!seen.has(x)) { flat.push(x); seen.add(x); } });
-    });
-    const buckets = { hourly: [], monthly: [], nonDefra: [] };
-    let current = null;
-    flat.forEach(item => {
-      if (item === HOUR_HDR) current = 'hourly';
-      else if (item === MONTH_HDR) current = 'monthly';
-      else if (item === NONDEF_HDR) current = 'nonDefra';
-      else if (current) buckets[current].push(item);
-    });
-    return buckets;
-  } */
+ 
  function availabilityFromPollutants(polls) {
   const buckets = { hourly: [], monthly: [], nonDefra: [] };
   const seen = { hourly: new Set(), monthly: new Set() };
@@ -906,24 +892,7 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
     return;
   }
 
-  // Build the same flat list you already use
-  /* const flat = [];
-  const seen = new Set();
-  pollutants.forEach(p => {
-    (buildNetworksForPollutant(p) || []).forEach(x => {
-      if (!seen.has(x)) { flat.push(x); seen.add(x); }
-    });
-  });
 
-  // Split into buckets
-  const buckets = { hourly: [], monthly: [], nonDefra: [] };
-  let current = null;
-  flat.forEach(item => {
-    if (item === HOUR_HDR) current = 'hourly';
-    else if (item === MONTH_HDR) current = 'monthly';
-    else if (item === NONDEF_HDR) current = 'nonDefra';
-    else if (current) buckets[current].push(item);
-  }); */
 
   const buckets = bucketsFromPollutants(pollutants);
 
@@ -937,101 +906,6 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
   sessionStorage.setItem('availableDataSources', JSON.stringify(payload));
 })();
 </script>
-
-<!-- <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const dsListEl = document.getElementById('data-source-list');
-  const pollutantListEl = document.getElementById('pollutant-summary-list');
-
-  // read pollutants for the pollutant summary text (unchanged behaviour)
-  const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
-  if (pollutants.length && pollutantListEl) {
-    pollutantListEl.innerHTML = pollutants.map(p => `<div>${p}</div>`).join('');
-  }
-
-  if (!dsListEl) return;
-
-  // headings we use in the summary
-  const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
-  const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
-  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
-
-  // Build “available” from current pollutants (same logic you use elsewhere)
-  const flat = [];          // headings + network lines, order preserved, de-duped
-  const seen = new Set();
-  pollutants.forEach(p => {
-    (buildNetworksForPollutant(p) || []).forEach(x => {
-      if (!seen.has(x)) { flat.push(x); seen.add(x); }
-    });
-  });
-
-  const buckets = { hourly: [], monthly: [], nonDefra: [] };
-  let current = null;
-  flat.forEach(item => {
-    if (item === HOUR_HDR) current = 'hourly';
-    else if (item === MONTH_HDR) current = 'monthly';
-    else if (item === NONDEF_HDR) current = 'nonDefra';
-    else if (current) buckets[current].push(item);
-  });
-
-  // Save availability for add-datasource page
-  sessionStorage.setItem('availableDataSources', JSON.stringify({
-    hourly:  buckets.hourly,
-    monthly: buckets.monthly,
-    hasLocal: buckets.nonDefra.length > 0
-  }));
-
-  // Try to read the user's saved selection from add-datasource
-  let selected = null;
-  try { selected = JSON.parse(sessionStorage.getItem('selectedDataSources') || 'null'); } catch {}
-
-  // Helper to render a grouped summary from a selection object
-  const renderSelection = (sel) => {
-    const out = [];
-    if (sel.hourly?.enabled && sel.hourly.networks?.length) {
-      out.push(HOUR_HDR, ...sel.hourly.networks);
-    }
-    if (sel.monthly?.enabled && sel.monthly.networks?.length) {
-      out.push(MONTH_HDR, ...sel.monthly.networks);
-    }
-    if (sel.local) {
-      out.push(NONDEF_HDR, 'Locally managed automatic monitoring');
-    }
-    return out.map(x => `<div>${x}</div>`).join('');
-  };
-
-  // If we have a selection, filter it against current availability (in case the pollutant changed)
-  if (selected) {
-    const filtered = {
-      hourly: {
-        enabled: !!selected.hourly?.enabled,
-        networks: (selected.hourly?.networks || []).filter(n => buckets.hourly.includes(n))
-      },
-      monthly: {
-        enabled: !!selected.monthly?.enabled,
-        networks: (selected.monthly?.networks || []).filter(n => buckets.monthly.includes(n))
-      },
-      local: !!selected.local && buckets.nonDefra.length > 0
-    };
-
-    const hasAny =
-      (filtered.hourly.enabled  && filtered.hourly.networks.length) ||
-      (filtered.monthly.enabled && filtered.monthly.networks.length) ||
-      filtered.local;
-
-    if (hasAny) {
-      dsListEl.innerHTML = renderSelection(filtered);
-      return; // <- important: don’t fall through and overwrite with availability
-    } else {
-      // stale selection → drop it so we fall back to availability display
-      sessionStorage.removeItem('selectedDataSources');
-    }
-  }
-
-  // No valid selection → show the available networks (what the user can pick from)
-  dsListEl.innerHTML = flat.length ? flat.map(x => `<div>${x}</div>`).join('') : 'Any';
-});
-</script> -->
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
