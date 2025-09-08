@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mercuryVariants = ['reactive mercury','elemental mercury','mercury in pm2.5'];
 
     if (isSO2 || isO3 || isCO || isNO2 || isNOxAsNO2 || isNO || pmMass) {
-      addHourly('Automatic Urban and Rural Network');
+      addHourly('Automatic Urban and Rural Network (AURN)');
       addNonDefra();
     }
     if (isNO2) {
@@ -701,7 +701,7 @@ function buildNetworksForPollutant(rawName) {
 
   // rules
   if (isSO2 || isO3 || isCO || isNO2 || isNOxAsNO2 || isNO || pmMass) {
-    addHourly('Automatic Urban and Rural Network ');
+    addHourly('Automatic Urban and Rural Network (AURN)');
      addNonDefra();
   }
 
