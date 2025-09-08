@@ -788,7 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    dataSourceEl.innerHTML = merged.map(s => `<div>${s}</div>`).join('');
+    dataSourceEl.innerHTML = merged.map(dsRowDivHtml).join('');
   } else if (dataSourceEl) {
     dataSourceEl.textContent = 'Any';
 
@@ -920,10 +920,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!dsListEl) return;
 
+
+  
+
+
+
   // headings we use in the summary
   const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Weekly and monthly data from Defra</strong>';
   const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+
+  // Renders one line in the "Data source" cell, adding 3px top margin
+  // to the two header rows you specified.
+  function dsRowDivHtml(x) {
+    const isMonthlyHdr = x === '<strong>Weekly and monthly data from Defra</strong>';
+    const isNonDefraHdr = x === '<strong>Non-Defra data</strong>';
+    const mt = (isMonthlyHdr || isNonDefraHdr) ? ' style="margin-top:6px;"' : '';
+    return `<div${mt}>${x}</div>`;
+  }
 
   // --- HEADER-SAFE BUCKETING (per pollutant, then union) ---
   const buckets = bucketsFromPollutants(pollutants);
@@ -951,7 +965,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sel.local) {
       out.push(NONDEF_HDR, 'Locally managed automatic monitoring');
     }
-    return out.map(x => `<div>${x}</div>`).join('');
+    return out.map(dsRowDivHtml).join('');
+
   };
 
   // If we have a selection, filter it against current availability (in case the pollutant changed)
@@ -988,7 +1003,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (buckets.monthly.length)  flat.push(MONTH_HDR, ...buckets.monthly);
   if (buckets.nonDefra.length) flat.push(NONDEF_HDR, ...buckets.nonDefra);
 
-  dsListEl.innerHTML = flat.length ? flat.map(x => `<div>${x}</div>`).join('') : 'Any';
+  dsListEl.innerHTML = flat.length ? flat.map(dsRowDivHtml).join('') : 'Any';
 });
 </script>
 
