@@ -48,7 +48,7 @@
           </div>
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-specific">
             <div class="govuk-form-group">
-              <div class="govuk-hint">Enter a pollutant</div>
+              <div class="govuk-hint">Add up to 5 pollutants</div>
 
               <!-- Autocomplete target + input -->
               <div id="autocomplete-container-p" class="govuk-body"></div>
@@ -167,10 +167,17 @@
 </div>
 
 <script>
-// For guidance on how to add JavaScript see:
-// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- storage helpers + keys
+  const KEY_SELECTED = 'selectedPollutants';           // full list used everywhere downstream
+  const KEY_GROUP    = 'selectedPollutantGroup';       // which group (if any) was last chosen
+  const KEY_SPECIFIC = 'selectedPollutantsSpecific';   // NEW: table-only list for "Add pollutant(s)" mode
+
+  const readJSON = (k, fb = null) => {
+    try { return JSON.parse(sessionStorage.getItem(k) || JSON.stringify(fb)); } catch { return fb; }
+  };
+  const writeJSON = (k, v) => sessionStorage.setItem(k, JSON.stringify(v || []));
+
   // ----- Group definitions (used by group mode)
   const GROUPS = {
     core: [
@@ -229,13 +236,24 @@ document.addEventListener('DOMContentLoaded', () => {
     addButton.textContent = tableBody.children.length > 0 ? 'Add another pollutant' : 'Add pollutant';
   }
 
+  // 🔁 Persist the current table rows into the table-only list
+  function persistSpecificFromTable() {
+    const rows = Array.from(tableBody.querySelectorAll('tr'));
+    const list = rows.map(r => r.querySelector('td')?.textContent?.trim()).filter(Boolean);
+    writeJSON(KEY_SPECIFIC, list);
+  }
+
   // 1) Restore any previously stored pollutants (specific mode)
   (function restoreFromSession() {
-    const stored = sessionStorage.getItem('selectedPollutants');
-    if (!stored) { updateAddButtonText(); return; }
+    const hasGroup = !!sessionStorage.getItem(KEY_GROUP);
 
-    let pollutants = [];
-    try { pollutants = JSON.parse(stored) || []; } catch { pollutants = []; }
+    // If a group exists, restore the table only from the "specific" list (which may be empty),
+    // otherwise fall back to the full selected list.
+    let pollutants = hasGroup
+      ? readJSON(KEY_SPECIFIC, [])
+      : readJSON(KEY_SELECTED, []);
+
+    if (!Array.isArray(pollutants) || pollutants.length === 0) { updateAddButtonText(); return; }
 
     pollutants.forEach((value) => {
       count++;
@@ -265,6 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         row.remove();
         addedPollutants.delete((value || '').toLowerCase());
+
+        // Persist updated table-only list
+        persistSpecificFromTable();
+
         if (tableBody.children.length === 0) {
           table.hidden = true;
           count = 0;
@@ -308,6 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // OPTIONAL: enforce max 5 for specific mode (uncomment to strictly cap)
+    // if (tableBody.children.length >= 5) {
+    //   alert('You can add up to 5 pollutants.');
+    //   return;
+    // }
+
     count++;
     addedPollutants.add(lowerValue);
 
@@ -337,6 +365,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       row.remove();
       addedPollutants.delete(lowerValue);
+
+      // Persist updated table-only list
+      persistSpecificFromTable();
+
       if (tableBody.children.length === 0) {
         table.hidden = true;
         count = 0;
@@ -354,6 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const errorSummary = document.getElementById('duplicate-error');
     if (errorSummary) errorSummary.hidden = true;
+
+    // Persist updated table-only list
+    persistSpecificFromTable();
 
     updateAddButtonText();
   });
@@ -381,8 +416,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const key = chosen.value;
       const list = GROUPS[key] || [];
 
-      sessionStorage.setItem('selectedPollutants', JSON.stringify(list));
-      sessionStorage.setItem('selectedPollutantGroup', key);
+      // Keep downstream behaviour the same:
+      //  - selectedPollutants = full expanded group list
+      //  - selectedPollutantGroup = chosen key
+      //  - specific table list is cleared so it won't re-populate the table next time
+      writeJSON(KEY_SELECTED, list);
+      sessionStorage.setItem(KEY_GROUP, key);
+      writeJSON(KEY_SPECIFIC, []); // <<< important
+
+      // Reset any previous data source selection
       sessionStorage.removeItem('selectedDataSources');
 
       const hash = JSON.stringify(list.map(s => (s || '').toLowerCase().trim()).sort());
@@ -408,8 +450,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    sessionStorage.setItem('selectedPollutants', JSON.stringify(pollutants));
-    sessionStorage.removeItem('selectedPollutantGroup');
+    // Persist both:
+    //  - selectedPollutants = whatever is in the table (for downstream pages)
+    //  - selectedPollutantsSpecific = same list (so the table restores correctly)
+    writeJSON(KEY_SELECTED, pollutants);
+    writeJSON(KEY_SPECIFIC, pollutants);
+
+    // We’re no longer using a group
+    sessionStorage.removeItem(KEY_GROUP);
+
     sessionStorage.removeItem('selectedDataSources');
 
     const hash = JSON.stringify(pollutants.map(s => (s || '').toLowerCase().trim()).sort());
@@ -419,4 +468,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 {% endblock %}

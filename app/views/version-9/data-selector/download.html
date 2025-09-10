@@ -77,11 +77,6 @@
 </details>
  
     
-
-
-
- 
-
   </div>
 </div>
 <details class="govuk-details govuk-!-margin-top-0">
@@ -619,7 +614,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       return `${headingAndDesc}${inset}${cta}
               ${hasMultiple ? buttonHtml('Download metadata') : ''}
-              ${hasMultiple ? '<p class="govuk-body">You can request a data download for all selected years by providing an email.</p>' : ''}
+              ${hasMultiple ? '<h3 class="govuk-heading-s">Download all hourly data in one file</h3><p class="govuk-body">You can <a class="govuk-link" href="">request a data download for all selected years</a> by providing an email.</p>' : ''}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
@@ -649,26 +644,34 @@ document.addEventListener('DOMContentLoaded', function () {
             ${buttonHtml('Download data')}`;
   }
 
-  function renderHourlyBlock(networkName, tm) {
-    const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
-    const count = stationCountFor(networkName, tm);
-    const inset = insetHtmlForCount(count);
-    const cta   = monitoringCtaHtml(count);
-    const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
 
-    if (tm.mode === 'range') {
-      const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
-      const end   = Math.min(tm.endYear, CURRENT_YEAR);
-      if (start > end) {
-        return `${headingAndDesc}${inset}
-                <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
-      }
-      if (count === 0) {
-        return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
-      }
-      const hasMultiple = start !== end;
-      let rows = '';
-      for (let y = end; y >= start; y--) {
+function renderHourlyBlock(networkName, tm) {
+  const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
+  const count = stationCountFor(networkName, tm);
+  const inset = insetHtmlForCount(count);
+  const cta   = monitoringCtaHtml(count);
+  const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
+
+  if (tm.mode === 'range') {
+    const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
+    const end   = Math.min(tm.endYear, CURRENT_YEAR);
+    if (start > end) {
+      return `${headingAndDesc}${inset}
+              <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
+    }
+    if (count === 0) {
+      return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
+    }
+
+    const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+    let rows = '';
+    for (let y = end; y >= start; y--) {
+      if (isSimple) {
+        rows += `<tr class="govuk-table__row">
+                   <th scope="row" class="govuk-table__header">${y}</th>
+                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
+                 </tr>`;
+      } else {
         rows += `<tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">${y}</th>
                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
@@ -676,62 +679,87 @@ document.addEventListener('DOMContentLoaded', function () {
                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
                 </tr>`;
       }
-      return `${headingAndDesc}${inset}${cta}
-              ${hasMultiple ? buttonHtml('Download metadata') : ''}
-              ${hasMultiple ? '<p class="govuk-body">You can request a data download for all selected years by providing an email.</p>' : ''}
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                  <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Year</th>
-                    <th scope="col" class="govuk-table__header">Hourly data</th>
-                    <th scope="col" class="govuk-table__header">Daily average</th>
-                    <th scope="col" class="govuk-table__header">Annual average</th>
-                  </tr>
-                </thead>
-                <tbody class="govuk-table__body">${rows}</tbody>
-              </table>`;
     }
 
-    if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
-      <p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
-    if (tm.mode === 'none')    return `${headingAndDesc}${inset}
-      <p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+    // Table headers differ for simple vs full
+    const headSimple = `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Year</th>
+          <th scope="col" class="govuk-table__header">Download hourly data</th>
+        </tr>
+      </thead>`;
 
-    const start = getNetworkStartYear(networkName);
-    if (tm.year < start) {
-      return `${headingAndDesc}${inset}
-              <p class="govuk-body">No data available for the selected period (${tm.year}). Data for this network starts in ${start}.</p>`;
-    }
-    if (count === 0) {
-      return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
-    }
+    const headFull = `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Year</th>
+          <th scope="col" class="govuk-table__header">Hourly data</th>
+          <th scope="col" class="govuk-table__header">Daily average</th>
+          <th scope="col" class="govuk-table__header">Annual average</th>
+        </tr>
+      </thead>`;
+
+    const hasMultiple = start !== end;
     return `${headingAndDesc}${inset}${cta}
-            ${buttonHtml('Download metadata')}<br>
-            ${buttonHtml('Download hourly data')}<br>
-            ${buttonHtml('Download daily average data')}<br>
-            ${buttonHtml('Download annual average data')}`;
+            ${hasMultiple ? buttonHtml('Download metadata') : ''}
+            ${hasMultiple ? '<h3 class="govuk-heading-s">Download all hourly data in one file</h3><p class="govuk-body">You can <a class="govuk-link" href="">request a data download for all selected years</a> by providing an email.</p>' : ''}
+            <table class="govuk-table">
+              ${isSimple ? headSimple : headFull}
+              <tbody class="govuk-table__body">${rows}</tbody>
+            </table>`;
   }
+
+  if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
+    <p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
+  if (tm.mode === 'none')    return `${headingAndDesc}${inset}
+    <p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+
+  const start = getNetworkStartYear(networkName);
+  if (tm.year < start) {
+    return `${headingAndDesc}${inset}
+            <p class="govuk-body">No data available for the selected period (${tm.year}). Data for this network starts in ${start}.</p>`;
+  }
+  if (count === 0) {
+    return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
+  }
+
+  const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+  // Single-year buttons: simple => only "Download data"; full => all three
+  return `${headingAndDesc}${inset}${cta}
+          ${buttonHtml('Download metadata')}<br>
+          ${buttonHtml(isSimple ? 'Download hourly data' : 'Download hourly data')}
+          ${isSimple ? '' : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')}`;
+}
+
 
   function renderNonDefraBlock(networkName, tm) {
-    const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
-    const count = stationCountFor(networkName, tm);
-    const inset = insetHtmlForCount(count);
-    const cta   = monitoringCtaHtml(count);
-    const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
+  const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
+  const count = stationCountFor(networkName, tm);
+  const inset = insetHtmlForCount(count);
+  const cta   = monitoringCtaHtml(count);
+  const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
 
-    if (tm.mode === 'range') {
-      const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
-      const end   = Math.min(tm.endYear, CURRENT_YEAR);
-      if (start > end) {
-        return `${headingAndDesc}${inset}
-                <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
-      }
-      if (count === 0) {
-        return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
-      }
-      const hasMultiple = start !== end;
-      let rows = '';
-      for (let y = end; y >= start; y--) {
+  if (tm.mode === 'range') {
+    const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
+    const end   = Math.min(tm.endYear, CURRENT_YEAR);
+    if (start > end) {
+      return `${headingAndDesc}${inset}
+              <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
+    }
+    if (count === 0) {
+      return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
+    }
+
+    const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+    let rows = '';
+    for (let y = end; y >= start; y--) {
+      if (isSimple) {
+        rows += `<tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">${y}</th>
+                  <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
+                </tr>`;
+      } else {
         rows += `<tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">${y}</th>
                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
@@ -739,41 +767,56 @@ document.addEventListener('DOMContentLoaded', function () {
                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>
                 </tr>`;
       }
-      return `${headingAndDesc}${inset}${cta}
-              ${hasMultiple ? buttonHtml('Download metadata') : ''}
-              ${hasMultiple ? '<p class="govuk-body">You can request a data download for all selected years by providing an email.</p>' : ''}
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                  <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Year</th>
-                    <th scope="col" class="govuk-table__header">Hourly data</th>
-                    <th scope="col" class="govuk-table__header">Daily average</th>
-                    <th scope="col" class="govuk-table__header">Annual average</th>
-                  </tr>
-                </thead>
-                <tbody class="govuk-table__body">${rows}</tbody>
-              </table>`;
     }
 
-    if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
-      <p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
-    if (tm.mode === 'none')    return `${headingAndDesc}${inset}
-      <p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+    const headSimple = `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Year</th>
+          <th scope="col" class="govuk-table__header">Download hourly data</th>
+        </tr>
+      </thead>`;
 
-    const start = getNetworkStartYear(networkName);
-    if (tm.year < start) {
-      return `${headingAndDesc}${inset}
-              <p class="govuk-body">No data available for the selected period (${tm.year}). Data for this network starts in ${start}.</p>`;
-    }
-    if (count === 0) {
-      return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
-    }
+    const headFull = `
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Year</th>
+          <th scope="col" class="govuk-table__header">Hourly data</th>
+          <th scope="col" class="govuk-table__header">Daily average</th>
+          <th scope="col" class="govuk-table__header">Annual average</th>
+        </tr>
+      </thead>`;
+
+    const hasMultiple = start !== end;
     return `${headingAndDesc}${inset}${cta}
-            ${buttonHtml('Download metadata')}<br>
-            ${buttonHtml('Download hourly data')}<br>
-            ${buttonHtml('Download daily average data')}<br>
-            ${buttonHtml('Download annual average data')}`;
+            ${hasMultiple ? buttonHtml('Download metadata') : ''}
+            ${hasMultiple ? '<h3 class="govuk-heading-s">Download all hourly data in one file</h3><p class="govuk-body">You can <a class="govuk-link" href="">request a data download for all selected years</a> by providing an email.</p>' : ''}
+            <table class="govuk-table">
+              ${isSimple ? headSimple : headFull}
+              <tbody class="govuk-table__body">${rows}</tbody>
+            </table>`;
   }
+
+  if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
+    <p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
+  if (tm.mode === 'none')    return `${headingAndDesc}${inset}
+    <p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+
+  const start = getNetworkStartYear(networkName);
+  if (tm.year < start) {
+    return `${headingAndDesc}${inset}
+            <p class="govuk-body">No data available for the selected period (${tm.year}). Data for this network starts in ${start}.</p>`;
+  }
+  if (count === 0) {
+    return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
+  }
+
+  const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+  return `${headingAndDesc}${inset}${cta}
+          ${buttonHtml('Download metadata')}<br>
+          ${buttonHtml(isSimple ? 'Download hourly data' : 'Download hourly data')}
+          ${isSimple ? '' : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')}`;
+}
 
   // Build tabs & panels
   const tabsList  = document.querySelector('.govuk-tabs__list');
@@ -817,6 +860,14 @@ document.addEventListener('DOMContentLoaded', function () {
     );
   });
 });
+</script>
+<script>
+// Networks that should only show a single "Download" action (no daily/annual)
+const SIMPLE_HOURLY_NETWORKS = new Set([
+  'Automatic Urban and Rural Network (AURN)',
+  'Automatic Hydrocarbon Network',
+  'Locally managed automatic monitoring'
+]);
 </script>
 
 

@@ -1057,24 +1057,115 @@ document.addEventListener('DOMContentLoaded', () => {
   const continueBtn = document.querySelector('.govuk-button[href="download.html"]');
   if (!continueBtn) return;
 
+  // --- Helpers to read selection state from sessionStorage ---
+  const hasYear = () => {
+    const tp = sessionStorage.getItem('selectedTimePeriod');
+    return !!(tp && tp.trim());
+  };
+
+  const hasLocation = () => {
+    // Countries (array), Local authorities (array), or legacy single string
+    const countriesRaw = sessionStorage.getItem('selectedCountries');
+    const lasRaw       = sessionStorage.getItem('selectedLocations');
+    const single       = sessionStorage.getItem('selectedLocation');
+
+    let countries = [], las = [];
+    try { countries = countriesRaw ? JSON.parse(countriesRaw) : []; } catch {}
+    try { las       = lasRaw ? JSON.parse(lasRaw) : []; } catch {}
+
+    if (Array.isArray(countries) && countries.length) return true;
+    if (Array.isArray(las) && las.length) return true;
+    if (single && single.trim() && single.trim().toLowerCase() !== 'none selected') return true;
+    return false;
+  };
+
+  // Update the shared error summary content based on the problem
+  function showErrorSummary(kind) {
+    const err = document.getElementById('no-stations-error');
+    if (!err) return;
+
+    const titleEl = err.querySelector('.govuk-error-summary__title');
+    const bodyEl  = err.querySelector('.govuk-error-summary__body');
+
+    let bodyHtml = '';
+
+    if (kind === 'both-missing') {
+      bodyHtml = `
+        <p class="govuk-body">Select a year and a location to continue.</p>
+        <ul class="govuk-list govuk-error-summary__list">
+          <li><a href="add-time.html">Add year</a></li>
+          <li><a href="add-location.html">Add location</a></li>
+        </ul>`;
+    } else if (kind === 'year-missing') {
+      bodyHtml = `
+        <p class="govuk-body">Select a year to continue.</p>
+        <ul class="govuk-list govuk-error-summary__list">
+          <li><a href="add-time.html">Add year</a></li>
+        </ul>`;
+    } else if (kind === 'location-missing') {
+      bodyHtml = `
+        <p class="govuk-body">Select a location to continue.</p>
+        <ul class="govuk-list govuk-error-summary__list">
+          <li><a href="add-location.html">Add location</a></li>
+        </ul>`;
+    } else {
+      // Fallback: your existing "no stations" message
+      bodyHtml = `
+        <p class="govuk-body">There are no stations available based on your selection. Please change year or location.</p>
+        <ul class="govuk-list govuk-error-summary__list">
+          <li><a href="add-time.html">Change year</a></li>
+          <li><a href="add-location.html">Change location</a></li>
+        </ul>`;
+    }
+
+    if (titleEl) titleEl.textContent = 'There is a problem';
+    if (bodyEl)  bodyEl.innerHTML = bodyHtml;
+
+    err.hidden = false;
+    // Scroll and focus for accessibility
+    err.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    err.focus();
+  }
+
   continueBtn.addEventListener('click', (e) => {
+    const yearSelected = hasYear();
+    const locationSelected = hasLocation();
+
+    // 1) Block if both missing
+    if (!yearSelected && !locationSelected) {
+      e.preventDefault();
+      showErrorSummary('both-missing');
+      return;
+    }
+
+    // 2) Block if only one is missing
+    if (!yearSelected && locationSelected) {
+      e.preventDefault();
+      showErrorSummary('year-missing');
+      return;
+    }
+
+    if (yearSelected && !locationSelected) {
+      e.preventDefault();
+      showErrorSummary('location-missing');
+      return;
+    }
+
+    // 3) Otherwise, validate station availability as before
     let count = NaN;
     try { count = parseInt(sessionStorage.getItem('availableStationCount'), 10); } catch {}
 
     if (!Number.isFinite(count) || count <= 0) {
       e.preventDefault();
-
-      const err = document.getElementById('no-stations-error');
-      if (!err) return;
-
-      err.hidden = false;
-      // Scroll and focus for accessibility
-      err.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      err.focus();
+      showErrorSummary('no-stations');
+      return;
     }
+
+    // If we get here, allow navigation to proceed
   });
 });
 </script>
+
 
 
 
