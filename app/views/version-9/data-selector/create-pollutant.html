@@ -43,7 +43,7 @@
 
         <div id="station-inset-container" aria-live="polite" style="display: none;"></div>
 
-<p class="govuk-body">Choose pollutant(s)</p>
+<!-- <p class="govuk-body">Choose pollutant(s)</p> -->
      
     <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -59,7 +59,7 @@
   </div>
    <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Data source
+      Data sources
     </dt>
     <dd class="govuk-summary-list__value" id="data-source-list">
     Any
@@ -73,7 +73,7 @@
   
 </dl>  
 
-    <p class="govuk-body">Choose year(s) and location(s)</p>
+<!--     <p class="govuk-body">Choose year(s) and location(s)</p> -->
 
       <dl class="govuk-summary-list">
     
@@ -1050,46 +1050,50 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Find the Continue button rendered by govukButton with an href
   const continueBtn = document.querySelector('.govuk-button[href="download.html"]');
   if (!continueBtn) return;
 
-  // --- Helpers to read selection state from sessionStorage ---
+  // NEW: do we have at least one pollutant?
+  const hasPollutant = () => {
+    let arr = [];
+    try { arr = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]'); } catch {}
+    return Array.isArray(arr) && arr.length > 0;
+  };
+
   const hasYear = () => {
     const tp = sessionStorage.getItem('selectedTimePeriod');
     return !!(tp && tp.trim());
   };
 
   const hasLocation = () => {
-    // Countries (array), Local authorities (array), or legacy single string
     const countriesRaw = sessionStorage.getItem('selectedCountries');
     const lasRaw       = sessionStorage.getItem('selectedLocations');
     const single       = sessionStorage.getItem('selectedLocation');
-
     let countries = [], las = [];
     try { countries = countriesRaw ? JSON.parse(countriesRaw) : []; } catch {}
     try { las       = lasRaw ? JSON.parse(lasRaw) : []; } catch {}
-
     if (Array.isArray(countries) && countries.length) return true;
     if (Array.isArray(las) && las.length) return true;
     if (single && single.trim() && single.trim().toLowerCase() !== 'none selected') return true;
     return false;
   };
 
-  // Update the shared error summary content based on the problem
   function showErrorSummary(kind) {
     const err = document.getElementById('no-stations-error');
     if (!err) return;
-
     const titleEl = err.querySelector('.govuk-error-summary__title');
     const bodyEl  = err.querySelector('.govuk-error-summary__body');
 
     let bodyHtml = '';
-
-    if (kind === 'both-missing') {
+    if (kind === 'pollutant-missing') {
+      bodyHtml = `
+        <p class="govuk-body">Select a pollutant to continue.</p>
+        <ul class="govuk-list govuk-error-summary__list">
+          <li><a href="add-pollutant.html">Add pollutant</a></li>
+        </ul>`;
+    } else if (kind === 'both-missing') {
       bodyHtml = `
         <p class="govuk-body">Select a year and a location to continue.</p>
         <ul class="govuk-list govuk-error-summary__list">
@@ -1109,7 +1113,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <li><a href="add-location.html">Add location</a></li>
         </ul>`;
     } else {
-      // Fallback: your existing "no stations" message
       bodyHtml = `
         <p class="govuk-body">There are no stations available based on your selection. Please change year or location.</p>
         <ul class="govuk-list govuk-error-summary__list">
@@ -1122,51 +1125,48 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bodyEl)  bodyEl.innerHTML = bodyHtml;
 
     err.hidden = false;
-    // Scroll and focus for accessibility
     err.scrollIntoView({ behavior: 'smooth', block: 'start' });
     err.focus();
   }
 
   continueBtn.addEventListener('click', (e) => {
+    // NEW: require pollutant first
+    if (!hasPollutant()) {
+      e.preventDefault();
+      showErrorSummary('pollutant-missing');
+      return;
+    }
+
     const yearSelected = hasYear();
     const locationSelected = hasLocation();
 
-    // 1) Block if both missing
     if (!yearSelected && !locationSelected) {
       e.preventDefault();
       showErrorSummary('both-missing');
       return;
     }
-
-    // 2) Block if only one is missing
     if (!yearSelected && locationSelected) {
       e.preventDefault();
       showErrorSummary('year-missing');
       return;
     }
-
     if (yearSelected && !locationSelected) {
       e.preventDefault();
       showErrorSummary('location-missing');
       return;
     }
 
-    // 3) Otherwise, validate station availability as before
+    // As before: block if 0 stations available
     let count = NaN;
     try { count = parseInt(sessionStorage.getItem('availableStationCount'), 10); } catch {}
-
     if (!Number.isFinite(count) || count <= 0) {
       e.preventDefault();
       showErrorSummary('no-stations');
       return;
     }
-
-    // If we get here, allow navigation to proceed
   });
 });
 </script>
-
-
 
 
 

@@ -88,7 +88,7 @@
   <div class="govuk-details__text">
    <h3 class="govuk-heading-s">File format</h3>
                   <p class="govuk-body">This data will download in a long format (CSV).</p>
-              <p class="govuk-body">Data in a narrow (long) format is stacked, with variables that repeat in the first column.</p>
+              <p class="govuk-body">Data in a long format is stacked vertically.</p>
            <!--    <p class="govuk-body">You can use wide format when you want to interpret and analyse data.</p> -->
 
                  <h3 class="govuk-heading-s">Metadata</h3>
@@ -294,22 +294,22 @@ function buttonHtml(label) {
 
 // Network descriptions
 const NETWORK_DESCRIPTIONS = {
-  'Automatic Urban and Rural Network (AURN)': 'The AURN provides the most accurate air pollution data in the UK.',
-  'Automatic Hydrocarbon Network': 'Automatic VOC measurements at selected urban and roadside locations.',
-  'Non-Automatic Hydrocarbon Network': 'Weekly canister sampling of hydrocarbons with laboratory analysis.',
-  'UK Urban NO2 Network': 'Diffusion tube network providing monthly nitrogen dioxide concentrations at urban sites.',
-  'UKEAP: Rural NO2 Network': 'Monthly diffusion tube measurements of NO2 at rural background locations.',
-  'UKEAP: Acid Gas & Aerosol Network (AGANet)': 'Weekly integrated sampling of acidic gases and aerosol ionic components.',
-  'UKEAP: MARGA Network': 'Automatic hourly aqueous-phase measurements of ions in gas and aerosol.',
-  'PAH Network': 'Measurement of polycyclic aromatic hydrocarbons at selected sites.',
-  'Heavy Metals Network': 'Particulate-bound metal concentrations measured at urban and industrial sites.',
+  'Automatic Urban and Rural Network (AURN)': 'The most accurate air pollution data in the UK. Provides hourly measurements of particulate matter (PM10 and PM2.5), nitrogen dioxide, ozone, sulphur dioxide and carbon monoxide.',
+  'Automatic Hydrocarbon Network': 'Hourly measurements of hydrocarbons such as benzene.',
+  'Non-Automatic Hydrocarbon Network': 'Measures ambient hydrocarbon and benzene.',
+  'UK Urban NO2 Network': 'Measures nitrogen dioxide at urban traffic sites.',
+  'UKEAP: Rural NO2 Network': 'Monthly diffusion tube measurements of nitrogen dioxide at rural background locations.',
+  'UKEAP: Acid Gas & Aerosol Network (AGANet)': 'Measures acid gases and inorganic aerosols to track long-term rural trends.',
+  'UKEAP: MARGA Network': 'Measures aerosols and gases in ambient air.',
+  'PAH Network': 'Measures ambient concentrations of PAH in PM10 and PAH in deposition.',
+  'Heavy Metals Network': 'Measures arsenic, cadmium, chromium, cobalt, copper, iron, manganese, nickel, lead and selenium.',
   'UKEAP: National Ammonia Monitoring Network (NAMN)': 'National ammonia measurements using active and passive samplers.',
   'UKEAP: Precipitation Chemistry Network (Precip-Net)': 'Chemical composition of rainfall at rural sites.',
   'UKEAP: Rural Mercury Network': 'Speciated mercury measurements at rural background locations.',
-  'Locally managed automatic monitoring': 'Automatic monitoring operated by local authorities or partners (non-Defra).',
+  'Locally managed automatic monitoring': 'Measures air pollution at hotspots across the UK. This data mostly comes from local authority monitoring stations.',
   // Extras supported
   'Black Carbon Network': 'Black carbon (BC) and UVPM measurements.',
-  'TOXics Organic Micro-Pollutants (TOMPs)': 'PCBs, pesticides and other semi-volatile organics.',
+  'TOXics Organic Micro-Pollutants (TOMPs)': 'Measures persistent organic pollutants (PCBs, PCDDs, PCDFs, PBDEs and decaBDE).',
   'Particle Concentrations & Numbers (PCN)': 'Particle number, size distributions, OC/EC, elemental composition.'
 };
 
@@ -587,62 +587,67 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Renderers (description immediately under heading; CTA under inset; hide downloads when count=0)
-  function renderMonthlyBlock(networkName, tm) {
-    const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
-    const count = stationCountFor(networkName, tm);
-    const inset = insetHtmlForCount(count);
-    const cta   = monitoringCtaHtml(count);
-    const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
+function renderMonthlyBlock(networkName, tm) {
+  const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
+  const count = stationCountFor(networkName, tm);
+  const inset = insetHtmlForCount(count);
+  const cta   = monitoringCtaHtml(count);
+  const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
 
-    if (tm.mode === 'range') {
-      const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
-      const end   = Math.min(tm.endYear, CURRENT_YEAR);
-      if (start > end) {
-        return `${headingAndDesc}${inset}
-                <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
-      }
-      if (count === 0) {
-        return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
-      }
-      const hasMultiple = start !== end;
-      let rows = '';
-      for (let y = end; y >= start; y--) {
-        rows += `<tr class="govuk-table__row">
-                   <th scope="row" class="govuk-table__header">${y}</th>
-                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
-                 </tr>`;
-      }
-      return `${headingAndDesc}${inset}${cta}
-              ${hasMultiple ? buttonHtml('Download metadata') : ''}
-              ${hasMultiple ? '<h3 class="govuk-heading-s">Download all hourly data in one file</h3><p class="govuk-body">You can <a class="govuk-link" href="">request a data download for all selected years</a> by providing an email.</p>' : ''}
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                  <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Year</th>
-                    <th scope="col" class="govuk-table__header">Download</th>
-                  </tr>
-                </thead>
-                <tbody class="govuk-table__body">${rows}</tbody>
-              </table>`;
-    }
-
-    if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
-      <p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
-    if (tm.mode === 'none')    return `${headingAndDesc}${inset}
-      <p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
-
-    const start = getNetworkStartYear(networkName);
-    if (tm.year < start) {
+  if (tm.mode === 'range') {
+    const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
+    const end   = Math.min(tm.endYear, CURRENT_YEAR);
+    if (start > end) {
       return `${headingAndDesc}${inset}
-              <p class="govuk-body">No data available for the selected period (${tm.year}). Data for this network starts in ${start}.</p>`;
+              <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
     }
     if (count === 0) {
       return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
     }
+
+    // Build rows with an "All years" row at the top
+    let rows = `
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">All years</th>
+        <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+      </tr>`;
+    for (let y = end; y >= start; y--) {
+      rows += `<tr class="govuk-table__row">
+                 <th scope="row" class="govuk-table__header">${y}</th>
+                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
+               </tr>`;
+    }
+
     return `${headingAndDesc}${inset}${cta}
-            ${buttonHtml('Download metadata')}<br>
-            ${buttonHtml('Download data')}`;
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Year</th>
+                  <th scope="col" class="govuk-table__header">Download</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">${rows}</tbody>
+            </table>`;
   }
+
+  if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
+    <p class="govuk-body">Invalid year range selected. <a href="add-time.html" class="govuk-link">Go back</a>.</p>`;
+  if (tm.mode === 'none')    return `${headingAndDesc}${inset}
+    <p class="govuk-body">No valid time period selected. <a href="add-time.html" class="govuk-link">Choose one</a>.</p>`;
+
+  const start = getNetworkStartYear(networkName);
+  if (tm.year < start) {
+    return `${headingAndDesc}${inset}
+            <p class="govuk-body">No data available for the selected period (${tm.year}). Data for this network starts in ${start}.</p>`;
+  }
+  if (count === 0) {
+    return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
+  }
+
+  // Single-year (no metadata button)
+  return `${headingAndDesc}${inset}${cta}
+          ${buttonHtml('Download data')}`;
+}
 
 
 function renderHourlyBlock(networkName, tm) {
@@ -664,7 +669,23 @@ function renderHourlyBlock(networkName, tm) {
     }
 
     const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+
+    // Build rows with "All years" row first
     let rows = '';
+    if (isSimple) {
+      rows += `<tr class="govuk-table__row">
+                 <th scope="row" class="govuk-table__header">All years</th>
+                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+               </tr>`;
+    } else {
+      rows += `<tr class="govuk-table__row">
+                 <th scope="row" class="govuk-table__header">All years</th>
+                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+                 <td class="govuk-table__cell"></td>
+                 <td class="govuk-table__cell"></td>
+               </tr>`;
+    }
+
     for (let y = end; y >= start; y--) {
       if (isSimple) {
         rows += `<tr class="govuk-table__row">
@@ -681,12 +702,11 @@ function renderHourlyBlock(networkName, tm) {
       }
     }
 
-    // Table headers differ for simple vs full
     const headSimple = `
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Year</th>
-          <th scope="col" class="govuk-table__header">Download hourly data</th>
+          <th scope="col" class="govuk-table__header">Hourly data</th>
         </tr>
       </thead>`;
 
@@ -700,10 +720,7 @@ function renderHourlyBlock(networkName, tm) {
         </tr>
       </thead>`;
 
-    const hasMultiple = start !== end;
     return `${headingAndDesc}${inset}${cta}
-            ${hasMultiple ? buttonHtml('Download metadata') : ''}
-            ${hasMultiple ? '<h3 class="govuk-heading-s">Download all hourly data in one file</h3><p class="govuk-body">You can <a class="govuk-link" href="">request a data download for all selected years</a> by providing an email.</p>' : ''}
             <table class="govuk-table">
               ${isSimple ? headSimple : headFull}
               <tbody class="govuk-table__body">${rows}</tbody>
@@ -724,16 +741,15 @@ function renderHourlyBlock(networkName, tm) {
     return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
   }
 
+  // Single-year (no metadata button)
   const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
-  // Single-year buttons: simple => only "Download data"; full => all three
   return `${headingAndDesc}${inset}${cta}
-          ${buttonHtml('Download metadata')}<br>
-          ${buttonHtml(isSimple ? 'Download hourly data' : 'Download hourly data')}
+          ${buttonHtml('Download hourly data')}
           ${isSimple ? '' : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')}`;
 }
 
 
-  function renderNonDefraBlock(networkName, tm) {
+function renderNonDefraBlock(networkName, tm) {
   const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
   const count = stationCountFor(networkName, tm);
   const inset = insetHtmlForCount(count);
@@ -752,7 +768,23 @@ function renderHourlyBlock(networkName, tm) {
     }
 
     const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+
+    // Build rows with "All years" row first
     let rows = '';
+    if (isSimple) {
+      rows += `<tr class="govuk-table__row">
+                 <th scope="row" class="govuk-table__header">All years</th>
+                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+               </tr>`;
+    } else {
+      rows += `<tr class="govuk-table__row">
+                 <th scope="row" class="govuk-table__header">All years</th>
+                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+                 <td class="govuk-table__cell"></td>
+                 <td class="govuk-table__cell"></td>
+               </tr>`;
+    }
+
     for (let y = end; y >= start; y--) {
       if (isSimple) {
         rows += `<tr class="govuk-table__row">
@@ -773,7 +805,7 @@ function renderHourlyBlock(networkName, tm) {
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Year</th>
-          <th scope="col" class="govuk-table__header">Download hourly data</th>
+          <th scope="col" class="govuk-table__header">Hourly data</th>
         </tr>
       </thead>`;
 
@@ -787,10 +819,7 @@ function renderHourlyBlock(networkName, tm) {
         </tr>
       </thead>`;
 
-    const hasMultiple = start !== end;
     return `${headingAndDesc}${inset}${cta}
-            ${hasMultiple ? buttonHtml('Download metadata') : ''}
-            ${hasMultiple ? '<h3 class="govuk-heading-s">Download all hourly data in one file</h3><p class="govuk-body">You can <a class="govuk-link" href="">request a data download for all selected years</a> by providing an email.</p>' : ''}
             <table class="govuk-table">
               ${isSimple ? headSimple : headFull}
               <tbody class="govuk-table__body">${rows}</tbody>
@@ -811,12 +840,13 @@ function renderHourlyBlock(networkName, tm) {
     return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
   }
 
+  // Single-year (no metadata button)
   const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
   return `${headingAndDesc}${inset}${cta}
-          ${buttonHtml('Download metadata')}<br>
-          ${buttonHtml(isSimple ? 'Download hourly data' : 'Download hourly data')}
+          ${buttonHtml('Download hourly data')}
           ${isSimple ? '' : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')}`;
 }
+
 
   // Build tabs & panels
   const tabsList  = document.querySelector('.govuk-tabs__list');

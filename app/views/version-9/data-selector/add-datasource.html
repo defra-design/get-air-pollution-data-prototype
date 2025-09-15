@@ -15,9 +15,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h1 class="govuk-heading-l">View data source</h1>
+    <h1 class="govuk-heading-l">View data sources</h1>
     
- <p class="govuk-body govuk-!-margin-bottom-7"><a target="_blank" href="https://draft-origin.publishing.service.gov.uk/guidance/sources-of-air-pollution-data?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YjQzNGFhZC1mZjg1LTRhOWMtOTMxZC0zZmNkZGJiYzEzNjYiLCJjb250ZW50X2lkIjoiNDhkYmUwMDMtYmQ3OS00YjlkLTlmNDQtMWM4NWUyMDdkYTlkIiwiaWF0IjoxNzU1NTk3MjI2LCJleHAiOjE3NTgyNzU2MjZ9.GTmfTBhc4vKdAg3YoGYahajjpDZeZVfECfPgQv-HDvc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share" class="govuk-link">View more information about data sources (opens in new tab)</a></p>
+ <p class="govuk-body govuk-!-margin-bottom-7"><a target="_blank" href="https://draft-origin.publishing.service.gov.uk/guidance/sources-of-air-pollution-data?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YjQzNGFhZC1mZjg1LTRhOWMtOTMxZC0zZmNkZGJiYzEzNjYiLCJjb250ZW50X2lkIjoiNDhkYmUwMDMtYmQ3OS00YjlkLTlmNDQtMWM4NWUyMDdkYTlkIiwiaWF0IjoxNzU1NTk3MjI2LCJleHAiOjE3NTgyNzU2MjZ9.GTmfTBhc4vKdAg3YoGYahajjpDZeZVfECfPgQv-HDvc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share" class="govuk-link">View more information about sources of air pollution data (opens in new tab)</a></p>
 <!-- TABS UI -->
 <div class="govuk-tabs" data-module="govuk-tabs">
   <h2 class="govuk-tabs__title">Contents</h2>
@@ -260,6 +260,13 @@ document.addEventListener('DOMContentLoaded', () => {
       h3.className = 'govuk-heading-s';
       h3.textContent = label;
       root.appendChild(h3);
+
+      // NEW: paragraph under each group header
+      const p = document.createElement('p');
+      p.className = 'govuk-body';
+      p.textContent = GROUP_DESCRIPTIONS[label] || '';
+      if (p.textContent) root.appendChild(p);
+
       const table = makeTable(keys);
       if (table) root.appendChild(table);
     };
@@ -268,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addGroup('Weekly and monthly data from Defra', buckets.monthly);
     addGroup('Non-Defra data', buckets.nonDefra);
   };
+
 
   // 4) Build relevant (from availability) and other (everything else), sort by Start year
   const relevant = {
@@ -289,6 +297,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5) Render into the two tab panels
   const relRoot   = document.getElementById('networks-relevant');
   const otherRoot = document.getElementById('networks-other');
+
+    const GROUP_DESCRIPTIONS = {
+    'Near real-time data from Defra': 'This data is automatically published every hour.',
+    'Weekly and monthly data from Defra': 'This data is published weekly or monthly.',
+    'Non-Defra data': 'This data is published by local authorities and partners.'
+  };
 
   renderSection(relRoot, 'Networks for your selected pollutant(s)', relevant);
   renderSection(otherRoot, 'Other networks', other);
