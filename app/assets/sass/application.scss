@@ -163,4 +163,30 @@
 
 }
 
+.version-10 {
+
+    // Tools
+  @import "version-8/tools/mixins";
+
+  // Components
+  @import "version-8/components/aq-buttons";
+  @import "version-8/components/aq-charts";
+  @import "version-8/components/aq-features";
+  @import "version-8/components/aq-levels-list";
+  @import "version-8/components/status";
+  @import "version-8/components/aq-levels-table";
+  @import "version-8/components/govuk-cards";
+
+
+  
+  // Other
+  @import "version-8/other/fixes";
+
+  // Settings
+  @import "version-8/settings";
+
+  @import "version-8/components/autocomplete";
+
+}
+
   

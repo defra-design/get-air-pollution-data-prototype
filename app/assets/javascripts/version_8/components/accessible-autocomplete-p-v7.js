@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
       'Particulate sulphate',
       'Gaseous nitric acid',
       'Gaseous nitrous acid',
-      'Gaseous sulphur dioxide',
       'Ethane',
       'Ethene',
       'Ethyne',
