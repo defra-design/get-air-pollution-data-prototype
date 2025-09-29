@@ -150,7 +150,7 @@
   <h3 class="govuk-heading-s">Save your search</h3>
 <p class="govuk-body">Bookmark this URL to save your selections for next time.</p>
 
-<p class="govuk-body"><a href="station-list.html" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
+<p class="govuk-body"><a href="" class="govuk-link">https://get-air-pollution-data.defra.gov.uk/data-selector/download-data?saved=url</a></p>
 
 </div>
 </div>
@@ -295,7 +295,7 @@ function buttonHtml(label) {
 
 // Network descriptions
 const NETWORK_DESCRIPTIONS = {
-  'Automatic Urban and Rural Network (AURN)': 'The most accurate air pollution data in the UK. Provides hourly measurements of particulate matter (PM10 and PM2.5), nitrogen dioxide, ozone, sulphur dioxide and carbon monoxide.',
+  'Automatic Urban and Rural Network (AURN)': 'The most reliable air pollution data in the UK. Provides hourly measurements of particulate matter (PM10 and PM2.5), nitrogen dioxide, ozone, sulphur dioxide and carbon monoxide.',
   'Automatic Hydrocarbon Network': 'Hourly measurements of hydrocarbons such as benzene.',
   'Non-Automatic Hydrocarbon Network': 'Measures ambient hydrocarbon and benzene.',
   'UK Urban NO2 Network': 'Measures nitrogen dioxide at urban traffic sites.',
@@ -864,15 +864,27 @@ function renderNonDefraBlock(networkName, tm) {
   tabsRoot.querySelectorAll('.govuk-tabs__panel').forEach(el => el.remove());
 
   function buildPanelHTML(source) {
-    const header = `<h2 class="govuk-heading-m">${source}</h2>`;
-    if (source === 'Near real-time data from Defra') {
-      return header + (finalBuckets.hourly || []).map(n => renderHourlyBlock(n, tm)).join('');
-    }
-    if (source === 'Other data from Defra') {
-      return header + (finalBuckets.monthly || []).map(n => renderMonthlyBlock(n, tm)).join('');
-    }
-    return header + (finalBuckets.nonDefra || []).map(n => renderNonDefraBlock(n, tm)).join('');
+  const header = `<h2 class="govuk-heading-m">${source}</h2>`;
+
+  // New one-liners under the panel heading
+  const descMap = {
+    'Near real-time data from Defra':
+      '<p class="govuk-body govuk-!-margin-bottom-5">This data is automatically measured and published every hour.</p>',
+    'Other data from Defra':
+      '<p class="govuk-body govuk-!-margin-bottom-5">Data is measured hourly, weekly or monthly depending on the network.</p>'
+  };
+  const desc = descMap[source] || '';
+
+  if (source === 'Near real-time data from Defra') {
+    return header + desc + (finalBuckets.hourly || []).map(n => renderHourlyBlock(n, tm)).join('');
   }
+  if (source === 'Other data from Defra') {
+    return header + desc + (finalBuckets.monthly || []).map(n => renderMonthlyBlock(n, tm)).join('');
+  }
+  // Non-Defra tab has no extra paragraph
+  return header + (finalBuckets.nonDefra || []).map(n => renderNonDefraBlock(n, tm)).join('');
+}
+
 
   sources.forEach((source, i) => {
     const id = slugify(source);
