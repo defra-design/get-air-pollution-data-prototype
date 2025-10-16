@@ -5,15 +5,15 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
-{% set version = "version-9" %}
-{% set bodyClasses = "version-9" %}
+{% set version = "version-11" %}
+{% set bodyClasses = "version-11" %}
 
 
 {% block header %}
   {{ govukHeader({
     homepageUrl: "/",
     serviceName: serviceName,
-    serviceUrl: "/data-selector-mvp-build/hub.html",
+    serviceUrl: "/version-11/hub.html",
     containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
@@ -44,6 +44,13 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
         {
           href: "/mvp-final/accessibility.html",
           text: "Accessibility statement"
+        },
+        {
+          href: "#",
+          text: "Reset prototype",
+          attributes: {
+            id: "reset-prototype"
+          }
         }
       ],
       visuallyHiddenTitle: "Footer links"
@@ -63,12 +70,15 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   <!-- <script src="/public/javascripts/version_8/main.js"></script> -->
 
   <script src="/public/javascripts/bundles/autocomplete_v7.bundle.js"></script>
-  <script src="/public/javascripts/bundles/autocomplete_pv_mvp.bundle.js"></script>
+  <script src="/public/javascripts/bundles/autocomplete_pv8.bundle.js"></script>
 
   <!-- Components -->
   <script src="/public/javascripts/version_8/components/toggletip.js"></script>
-<!--   <script src="/public/javascripts/version_8/components/status.js"></script> -->
+  <script src="/public/javascripts/version_8/components/status.js"></script>
 
+  <!-- Routes -->
+  <script src="/public/javascripts/version_8/routes.js"></script>
+  
 
 
     
