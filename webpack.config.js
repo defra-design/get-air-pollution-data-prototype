@@ -8,7 +8,14 @@ module.exports = {
    autocomplete_v7 :   './app/assets/javascripts/version_7/components/accessible-autocomplete.js',
    autocomplete_pv7 :   './app/assets/javascripts/version_7/components/accessible-autocomplete-p-v7.js',
    autocomplete_pv8 :   './app/assets/javascripts/version_8/components/accessible-autocomplete-p-v8.js',
-   autocomplete_pv_mvp :   './app/assets/javascripts/data-select-mvp/accessible-autocomplete-p-mvp.js'
+
+   // Data selector mvp
+   autocomplete_pv_mvp :   './app/assets/javascripts/data-select-mvp/accessible-autocomplete-p-mvp.js',
+   autocomplete_la_mvp :   './app/assets/javascripts/data-select-mvp/accessible-autocomplete.js',
+
+   // Version 11
+   autocomplete_p_11 :   './app/assets/javascripts/version_11/components/accessible-autocomplete-p-v8.js',
+   autocomplete_la_11 :   './app/assets/javascripts/version_11/components/accessible-autocomplete.js'
    },
     // Adjust if your entry file has a different path
   output: {
