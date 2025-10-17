@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const INPUT_SELECTOR = '#my-autocomplete'; // must match the id used by accessible-autocomplete
   const KEY_COUNTRIES = 'selectedCountries';
   const KEY_LA_LIST   = 'selectedLocations';
+  const MAX_LAS = 10;
 
   // Always fetch the latest list (avoids load-order race)
   function getAllowedLAsRaw() {
@@ -127,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function isAllowedLA(value) {
     const arr = getAllowedLAsRaw();
-    if (!arr.length) return false; // fail closed if the list truly isn't loaded
+    if (!arr.length) return false;
     const set = new Set(arr.map(s => String(s).toLowerCase().trim()));
     return set.has(String(value || '').toLowerCase().trim());
   }
@@ -245,8 +246,8 @@ document.addEventListener('DOMContentLoaded', function () {
         table.hidden = true;
         count = 0;
       }
-      updateAddButtonLabel();
       clearInlineError();
+      updateAddButtonLabel();
     });
 
     actionCell.appendChild(removeLink);
@@ -272,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
     laConditional.classList.remove('govuk-radios__conditional--hidden');
     try {
       const locations = JSON.parse(savedLAList);
-      locations.forEach(value => addLocationRow(value)); // don't validate here
+      locations.slice(0, MAX_LAS).forEach(value => addLocationRow(value)); // restore up to 10
     } catch {}
   } else if (savedUK === 'United Kingdom') {
     countriesRadio.checked = true;
@@ -286,10 +287,17 @@ document.addEventListener('DOMContentLoaded', function () {
   laRadio.addEventListener('change', updateAddButtonLabel);
   updateAddButtonLabel();
 
-  // ------- ADD MORE (inline validation pulling FRESH list) -------
+  // ------- ADD MORE (inline validation + limit check ONLY shows error) -------
   if (addMoreButton) {
     addMoreButton.addEventListener('click', function (e) {
       e.preventDefault();
+
+      const current = tableBody.children.length;
+      if (current >= MAX_LAS) {
+        showInlineError('You can only add up to 10 local authorities');
+        return;
+      }
+
       const input = document.querySelector(INPUT_SELECTOR);
       if (!input) return;
 
@@ -301,7 +309,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
       if (!isAllowedLA(value)) {
-        // If the list isn't loaded yet, give a clearer hint
         if (getAllowedLAsRaw().length === 0) {
           showInlineError('The local authority list is still loading. Try again in a moment, or select from the suggestions.');
         } else {
@@ -311,10 +318,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       if (addedLocations.has(lower)) {
         showInlineError('This local authority has already been added');
-        return;
-      }
-      if (tableBody.children.length >= 10) {
-        showInlineError('You can only add up to 10 local authorities');
         return;
       }
 
@@ -342,7 +345,6 @@ document.addEventListener('DOMContentLoaded', function () {
     sessionStorage.removeItem(KEY_COUNTRIES);
 
     if (selectedRadio.id === 'location-2') {
-      // Countries
       const checked = Array.from(document.querySelectorAll('input[name="country"]:checked'))
         .map(cb => cb.value.trim());
       if (checked.length === 0) {
@@ -352,7 +354,6 @@ document.addEventListener('DOMContentLoaded', function () {
       sessionStorage.setItem(KEY_COUNTRIES, JSON.stringify(checked));
 
     } else if (selectedRadio.id === 'location-4') {
-      // Local authorities
       let locations = [];
 
       if (!table.hidden && tableBody.children.length > 0) {
@@ -373,6 +374,12 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
         locations.push(value);
+      }
+
+      // (We don't disable the button or change label; just ensure no more than 10 are saved)
+      if (locations.length > MAX_LAS) {
+        showInlineError('You can only add up to 10 local authorities');
+        return;
       }
 
       // Final de-dupe + re-validate
@@ -398,15 +405,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Back to summary
     window.location.href = 'create-pollutant.html';
   });
-
-  // Optional: if your autocomplete initialiser can dispatch an event when ready,
-  // re-run input listeners to be super-safe.
-  document.addEventListener('la-source-ready', () => {
-    const input = document.querySelector(INPUT_SELECTOR);
-    if (!input) return;
-    input.addEventListener('input', clearInlineError, { once: true });
-  });
 });
 </script>
+
+
 
 {% endblock %}
