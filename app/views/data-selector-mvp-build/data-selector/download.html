@@ -390,7 +390,7 @@ function buttonHtml(label) {
 
 // Network descriptions
 const NETWORK_DESCRIPTIONS = {
-  'Automatic Urban and Rural Network (AURN)': 'The most reliable air pollution data in the UK. Provides hourly measurements of fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide (NO2), nitric oxide (NO), nitrogen oxides as nitrogen dioxide (NOx), ozone (O3), sulphur dioxide (SO2) and carbon monoxide (CO).',
+  'Automatic Urban and Rural Network (AURN)': 'The most reliable air pollution data in the UK. Provides hourly measurements of fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide, nitric oxide, nitrogen oxides as nitrogen dioxide, ozone, sulphur dioxide and carbon monoxide.',
   'Automatic Hydrocarbon Network': 'Hourly measurements of hydrocarbons such as benzene.',
   'Non-Automatic Hydrocarbon Network': 'Measures ambient hydrocarbon and benzene.',
   'UK Urban NO2 Network': 'Measures nitrogen dioxide at urban traffic sites.',
@@ -707,7 +707,7 @@ function renderMonthlyBlock(networkName, tm) {
     let rows = `
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header">Download all years</th>
-        <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+        <td class="govuk-table__cell"><a href="request-email.html" class="govuk-link">Request data</a></td>
       </tr>`;
     for (let y = end; y >= start; y--) {
       rows += `<tr class="govuk-table__row">
@@ -773,12 +773,12 @@ function renderHourlyBlock(networkName, tm) {
     if (isSimple) {
       rows += `<tr class="govuk-table__row">
                  <th scope="row" class="govuk-table__header">Download all years</th>
-                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+                 <td class="govuk-table__cell"><a href="request-email.html" class="govuk-link">Request data</a></td>
                </tr>`;
     } else {
       rows += `<tr class="govuk-table__row">
                  <th scope="row" class="govuk-table__header">Download all years</th>
-                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+                 <td class="govuk-table__cell"><a href="request-email.html" class="govuk-link">Request data</a></td>
                  <td class="govuk-table__cell"></td>
                  <td class="govuk-table__cell"></td>
                </tr>`;
@@ -872,12 +872,12 @@ function renderNonDefraBlock(networkName, tm) {
     if (isSimple) {
       rows += `<tr class="govuk-table__row">
                  <th scope="row" class="govuk-table__header">Download all years</th>
-                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+                 <td class="govuk-table__cell"><a href="request-email.html" class="govuk-link">Request data</a></td>
                </tr>`;
     } else {
       rows += `<tr class="govuk-table__row">
                  <th scope="row" class="govuk-table__header">Download all years</th>
-                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
+                 <td class="govuk-table__cell"><a href="request-email.html" class="govuk-link">Request data</a></td>
                  <td class="govuk-table__cell"></td>
                  <td class="govuk-table__cell"></td>
                </tr>`;
