@@ -123,24 +123,55 @@
     </div>
 <!-- end of second row-->
  
-<script>
+ <script>
 (function () {
   const MIN_YEAR = 1973;
-  const MAX_YEAR = 2025;
+  const MAX_YEAR = 2025; // keep as-is; change to (new Date().getFullYear()) if you prefer it dynamic
 
+  // ===== Error summary helpers (adds summary ABOVE the H1) =====
+  function ensureErrorSummaryRoot() {
+    let root = document.getElementById('page-error-summary');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'page-error-summary';
+      const h1 = document.querySelector('.govuk-heading-l');
+      if (h1 && h1.parentNode) {
+        h1.parentNode.insertBefore(root, h1); // place ABOVE H1
+      } else {
+        document.body.insertBefore(root, document.body.firstChild);
+      }
+    }
+    return root;
+  }
+  function showErrorSummary(items) {
+    const root = ensureErrorSummaryRoot();
+    root.innerHTML = `
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary" tabindex="-1">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            ${items.map(i => `<li><a href="${i.href}">${i.text}</a></li>`).join('')}
+          </ul>
+        </div>
+      </div>`;
+    root.querySelector('.govuk-error-summary')?.focus?.();
+  }
+  function clearErrorSummary() {
+    const root = document.getElementById('page-error-summary');
+    if (root) root.innerHTML = '';
+  }
+
+  // ===== Inline error utilities (kept as in your page, with a small tidy) =====
   function clearErrors() {
     document.querySelectorAll('.govuk-form-group--error').forEach(el => el.classList.remove('govuk-form-group--error'));
     document.querySelectorAll('.govuk-input--error').forEach(el => el.classList.remove('govuk-input--error'));
     document.querySelectorAll('.govuk-error-message').forEach(el => el.remove());
     // remove error ids from describedby
     document.querySelectorAll('[aria-describedby]').forEach(input => {
-      input.setAttribute('aria-describedby',
-        input.getAttribute('aria-describedby')
-          .split(' ')
-          .filter(id => id && !id.endsWith('-error'))
-          .join(' ')
-      );
+      const ids = (input.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
+      input.setAttribute('aria-describedby', ids.filter(id => !id.endsWith('-error')).join(' '));
     });
+    clearErrorSummary(); // NEW: also clear the page summary
   }
 
   function showError(groupId, inputId, message) {
@@ -152,17 +183,14 @@
     input.classList.add('govuk-input--error');
 
     const errorId = inputId + '-error';
-    // Create error node with GOV.UK styling
     const p = document.createElement('p');
     p.className = 'govuk-error-message';
     p.id = errorId;
     p.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
 
-    // Insert just before the input (after label/hint)
     const where = input.parentElement; // inner form-group
     where.insertBefore(p, input);
 
-    // Link via aria-describedby
     const describedby = (input.getAttribute('aria-describedby') || '').trim();
     input.setAttribute('aria-describedby', (describedby ? describedby + ' ' : '') + errorId);
   }
@@ -170,26 +198,36 @@
   function isFourDigitYear(value) {
     return /^\d{4}$/.test(value);
   }
-
   function withinRange(year) {
     const n = Number(year);
     return n >= MIN_YEAR && n <= MAX_YEAR;
   }
 
+  // ===== Validations that produce BOTH inline + summary =====
   function validateAnyYear() {
+    const items = [];
     const year = (document.getElementById('any-year-input').value || '').trim();
+
     if (!year) {
       showError('any-year-group', 'any-year-input', 'Enter a year.');
+      items.push({ text: 'Enter a year.', href: '#any-year-input' });
+      showErrorSummary(items);
       return null;
     }
     if (!isFourDigitYear(year)) {
       showError('any-year-group', 'any-year-input', 'Enter a 4-digit year, for example 2009.');
+      items.push({ text: 'Enter a 4-digit year, for example 2009.', href: '#any-year-input' });
+      showErrorSummary(items);
       return null;
     }
     if (!withinRange(year)) {
       showError('any-year-group', 'any-year-input', `Year must be between ${MIN_YEAR} and ${MAX_YEAR}.`);
+      items.push({ text: `Year must be between ${MIN_YEAR} and ${MAX_YEAR}.`, href: '#any-year-input' });
+      showErrorSummary(items);
       return null;
     }
+    // no errors
+    clearErrorSummary();
     return Number(year);
   }
 
@@ -197,27 +235,34 @@
     const start = (document.getElementById('range-start-year').value || '').trim();
     const end   = (document.getElementById('range-end-year').value || '').trim();
 
+    const items = [];
     let ok = true;
 
     if (!start) {
       showError('range-start-group', 'range-start-year', 'Enter a start year.');
+      items.push({ text: 'Enter a start year.', href: '#range-start-year' });
       ok = false;
     } else if (!isFourDigitYear(start)) {
       showError('range-start-group', 'range-start-year', 'Start year must be 4 digits, for example 2009.');
+      items.push({ text: 'Start year must be 4 digits, for example 2009.', href: '#range-start-year' });
       ok = false;
     } else if (!withinRange(start)) {
       showError('range-start-group', 'range-start-year', `Start year must be between ${MIN_YEAR} and ${MAX_YEAR}.`);
+      items.push({ text: `Start year must be between ${MIN_YEAR} and ${MAX_YEAR}.`, href: '#range-start-year' });
       ok = false;
     }
 
     if (!end) {
       showError('range-end-group', 'range-end-year', 'Enter an end year.');
+      items.push({ text: 'Enter an end year.', href: '#range-end-year' });
       ok = false;
     } else if (!isFourDigitYear(end)) {
       showError('range-end-group', 'range-end-year', 'End year must be 4 digits, for example 2010.');
+      items.push({ text: 'End year must be 4 digits, for example 2010.', href: '#range-end-year' });
       ok = false;
     } else if (!withinRange(end)) {
       showError('range-end-group', 'range-end-year', `End year must be between ${MIN_YEAR} and ${MAX_YEAR}.`);
+      items.push({ text: `End year must be between ${MIN_YEAR} and ${MAX_YEAR}.`, href: '#range-end-year' });
       ok = false;
     }
 
@@ -225,28 +270,41 @@
       const s = Number(start), e = Number(end);
       if (s > e) {
         showError('range-start-group', 'range-start-year', 'Start year must be the same as or before the end year.');
-        showError('range-end-group', 'range-end-year', 'End year must be the same as or after the start year.');
-        ok = false;
+        showError('range-end-group',   'range-end-year',   'End year must be the same as or after the start year.');
+        items.push({ text: 'Start year must be the same as or before the end year.', href: '#range-start-year' });
+        items.push({ text: 'End year must be the same as or after the start year.', href: '#range-end-year' });
+        showErrorSummary(items);
+        return null;
       }
-      // If you also want to enforce the “up to 5 years” rule programmatically, uncomment:
+      // If you want to enforce the “up to 5 years” rule, uncomment:
       // if ((e - s + 1) > 5) {
       //   showError('range-end-group', 'range-end-year', 'Choose a range of up to 5 years.');
-      //   ok = false;
+      //   items.push({ text: 'Choose a range of up to 5 years.', href: '#range-end-year' });
+      //   showErrorSummary(items);
+      //   return null;
       // }
+      clearErrorSummary();
+      return { start: s, end: e };
+    } else {
+      showErrorSummary(items);
+      return null;
     }
-
-    return ok ? { start: Number(start), end: Number(end) } : null;
   }
 
+  // ===== Continue button handler =====
   document.querySelector('.govuk-button').addEventListener('click', function (e) {
     e.preventDefault();
     clearErrors();
 
     const selected = document.querySelector('input[name="time"]:checked');
     if (!selected) {
-      // Keep your existing alert for missing radio choice (page-level error would require extra markup)
-      alert('Please select a year option');
+      // Show ONLY a page-level summary (no inline) when no radio is selected
+      showErrorSummary([{ text: 'Please select an option before continuing', href: '#time-ytd' }]);
+      const first = document.getElementById('time-ytd') || document.getElementById('time-any') || document.getElementById('time-range');
+      if (first) first.focus();
       return;
+    } else {
+      clearErrorSummary();
     }
 
     const today = new Date();
@@ -262,8 +320,7 @@
     }
     else if (selected.id === 'time-any') {
       const year = validateAnyYear();
-      if (year === null) return; // stop on inline error
-
+      if (year === null) return; // stop on error (summary already shown)
       if (year === currentYear) {
         timePeriod = `1 January to ${formattedToday}`;
       } else {
@@ -272,8 +329,7 @@
     }
     else if (selected.id === 'time-range') {
       const range = validateRangeYears();
-      if (range === null) return; // stop on inline error
-
+      if (range === null) return; // stop on error (summary already shown)
       if (range.end === currentYear) {
         timePeriod = `1 January ${range.start} to ${formattedToday}`;
       } else {
@@ -286,7 +342,7 @@
     window.location.href = 'create-pollutant.html';
   });
 
-  // Optional: hard-block extra digits during typing (beyond maxlength)
+  // Limit to 4 digits while typing (kept)
   ['any-year-input','range-start-year','range-end-year'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -294,13 +350,43 @@
       el.value = el.value.replace(/\D/g, '').slice(0, 4);
     });
   });
+
+  // ===== Clear page summary (and any inline for that control) as the user interacts =====
+  function attachClearOnChange(inputId, groupId) {
+    const el = document.getElementById(inputId);
+    if (!el) return;
+    el.addEventListener('input', () => { clearErrorSummary(); removeInlineFor(inputId, groupId); });
+    el.addEventListener('change', () => { clearErrorSummary(); removeInlineFor(inputId, groupId); });
+    el.addEventListener('blur', () => { /* no-op; inline cleared on input/change already */ });
+  }
+  function removeInlineFor(inputId, groupId) {
+    const group = document.getElementById(groupId);
+    const input = document.getElementById(inputId);
+    if (!group || !input) return;
+    group.classList.remove('govuk-form-group--error');
+    input.classList.remove('govuk-input--error');
+    const err = document.getElementById(inputId + '-error');
+    if (err) err.remove();
+    const ids = (input.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
+    input.setAttribute('aria-describedby', ids.filter(id => id !== (inputId + '-error')).join(' '));
+  }
+
+  attachClearOnChange('any-year-input', 'any-year-group');
+  attachClearOnChange('range-start-year', 'range-start-group');
+  attachClearOnChange('range-end-year', 'range-end-group');
+
+  // Clear summary when picking a top-level radio
+  document.querySelectorAll('input[name="time"]').forEach(r => {
+    r.addEventListener('change', () => {
+      clearErrorSummary();
+    });
+  });
 })();
 </script>
 
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Format like "1 August"
+  // Set "Year to date" label date
   const today = new Date();
   const formatted =
     new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(today);
@@ -309,6 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (span) span.textContent = formatted;
 });
 </script>
+
 
 
 

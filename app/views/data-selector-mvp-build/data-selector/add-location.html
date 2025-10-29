@@ -17,7 +17,8 @@
     <h1 class="govuk-heading-l">Add location(s)</h1>
 
     <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+      <fieldset class="govuk-fieldset" aria-describedby="location-hint" id="location-mode-fieldset">
+
         <div id="location-hint" class="govuk-hint">Select one option</div>
 
         <div class="govuk-radios" data-module="govuk-radios">
@@ -103,8 +104,7 @@
   </div>
 </div>
 
-<!-- Page script (enforces "select from list" + no duplicates with inline errors) -->
-<script>
+<!-- Page script (enforces "select from list" + no duplicates with inline errors) --><script>
 document.addEventListener('DOMContentLoaded', function () {
   // ------- SETTINGS -------
   const INPUT_SELECTOR = '#my-autocomplete'; // must match the id used by accessible-autocomplete
@@ -112,7 +112,43 @@ document.addEventListener('DOMContentLoaded', function () {
   const KEY_LA_LIST   = 'selectedLocations';
   const MAX_LAS = 10;
 
-  // Always fetch the latest list (avoids load-order race)
+  // ------- ERROR SUMMARY (new) -------
+  function ensureErrorSummaryRoot() {
+    let root = document.getElementById('page-error-summary');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'page-error-summary';
+      const h1 = document.querySelector('.govuk-heading-l');
+      if (h1 && h1.parentNode) {
+        h1.parentNode.insertBefore(root, h1); // place ABOVE the H1
+      } else {
+        document.body.insertBefore(root, document.body.firstChild);
+      }
+    }
+    return root;
+  }
+
+  function showErrorSummary(items) {
+    // items: [{ text: 'message', href: '#fieldId' }]
+    const root = ensureErrorSummaryRoot();
+    root.innerHTML = `
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary" tabindex="-1">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            ${items.map(i => `<li><a href="${i.href}">${i.text}</a></li>`).join('')}
+          </ul>
+        </div>
+      </div>`;
+    root.querySelector('.govuk-error-summary')?.focus?.();
+  }
+
+  function clearErrorSummary() {
+    const root = document.getElementById('page-error-summary');
+    if (root) root.innerHTML = '';
+  }
+
+  // ------- ALLOWED LIST HELPERS -------
   function getAllowedLAsRaw() {
     try {
       const raw = sessionStorage.getItem('allLocalAuthorities');
@@ -145,27 +181,40 @@ document.addEventListener('DOMContentLoaded', function () {
   const countriesConditional = document.getElementById('conditional-location-2');
   const laConditional = document.getElementById('conditional-location-4');
 
+  const modeFieldset = document.getElementById('location-mode-fieldset') || document.querySelector('fieldset[aria-describedby="location-hint"]');
+
   // Inline-error target within LA conditional
   const laFormGroup =
     document.querySelector('#conditional-location-4 .govuk-form-group') ||
     document.getElementById('conditional-location-4');
 
-  // ------- INLINE ERROR HELPERS -------
-  function showInlineError(message) {
-    if (!laFormGroup) return;
-    laFormGroup.classList.add('govuk-form-group--error');
+  // Inline-error target for Countries (fallbacks supported)
+  const countriesFormGroup =
+    document.getElementById('countries-form-group') ||
+    document.querySelector('#conditional-location-2 .govuk-form-group') ||
+    document.getElementById('conditional-location-2');
 
-    let err = laFormGroup.querySelector('#la-error');
+  // ------- INLINE ERROR HELPERS (reuseable) -------
+  function ensureInlineError(container, id) {
+    container.classList.add('govuk-form-group--error');
+    let err = container.querySelector('#' + id);
     if (!err) {
       err = document.createElement('p');
-      err.id = 'la-error';
+      err.id = id;
       err.className = 'govuk-error-message';
-      const before = laFormGroup.querySelector('#autocomplete-container') || laFormGroup.firstChild;
-      err.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
-      laFormGroup.insertBefore(err, before);
-    } else {
-      err.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
+      const before =
+        container.querySelector('#autocomplete-container') ||
+        container.querySelector('.govuk-checkboxes, .govuk-radios') ||
+        container.firstChild;
+      container.insertBefore(err, before);
     }
+    return err;
+  }
+
+  function showLAInlineError(message) {
+    if (!laFormGroup) return;
+    const err = ensureInlineError(laFormGroup, 'la-error');
+    err.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
 
     const input = document.querySelector(INPUT_SELECTOR);
     if (input) {
@@ -177,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function clearInlineError() {
+  function clearLAInlineError() {
     if (!laFormGroup) return;
     laFormGroup.classList.remove('govuk-form-group--error');
     const err = laFormGroup.querySelector('#la-error');
@@ -193,13 +242,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  (function attachInputListeners() {
+  function showCountriesInlineError(message) {
+    if (!countriesFormGroup) return;
+    const err = ensureInlineError(countriesFormGroup, 'countries-error');
+    err.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
+  }
+
+  function clearCountriesInlineError() {
+    if (!countriesFormGroup) return;
+    countriesFormGroup.classList.remove('govuk-form-group--error');
+    const err = countriesFormGroup.querySelector('#countries-error');
+    if (err) err.remove();
+  }
+
+  // ------- INPUT LISTENERS (clear errors as user interacts) -------
+  ;(function attachInputListeners() {
     const input = document.querySelector(INPUT_SELECTOR);
-    if (!input) return;
-    input.addEventListener('input', clearInlineError);
-    input.addEventListener('change', clearInlineError);
-    input.addEventListener('blur', (e) => {
-      if (!(e.target.value || '').trim()) clearInlineError();
+    if (input) {
+      input.addEventListener('input', () => { clearLAInlineError(); clearErrorSummary(); });
+      input.addEventListener('change', () => { clearLAInlineError(); clearErrorSummary(); });
+      input.addEventListener('blur', (e) => { if (!(e.target.value || '').trim()) { clearLAInlineError(); clearErrorSummary(); }});
+    }
+
+    // Clear summary/inline when switching top-level radios
+    document.querySelectorAll('input[name="location"]').forEach(r => {
+      r.addEventListener('change', () => {
+        clearErrorSummary();
+        clearCountriesInlineError();
+        clearLAInlineError();
+      });
+    });
+
+    // Clear summary/inline when toggling country checkboxes
+    document.querySelectorAll('#conditional-location-2 input[name="country"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        clearCountriesInlineError();
+        clearErrorSummary();
+      });
     });
   })();
 
@@ -246,7 +325,8 @@ document.addEventListener('DOMContentLoaded', function () {
         table.hidden = true;
         count = 0;
       }
-      clearInlineError();
+      clearLAInlineError();
+      clearErrorSummary();
       updateAddButtonLabel();
     });
 
@@ -287,14 +367,15 @@ document.addEventListener('DOMContentLoaded', function () {
   laRadio.addEventListener('change', updateAddButtonLabel);
   updateAddButtonLabel();
 
-  // ------- ADD MORE (inline validation + limit check ONLY shows error) -------
+  // ------- ADD MORE (inline validation + summary + limit check) -------
   if (addMoreButton) {
     addMoreButton.addEventListener('click', function (e) {
       e.preventDefault();
 
       const current = tableBody.children.length;
       if (current >= MAX_LAS) {
-        showInlineError('You can only add up to 10 local authorities');
+        showLAInlineError('You can only add up to 10 local authorities');
+        showErrorSummary([{ text: 'You can only add up to 10 local authorities', href: INPUT_SELECTOR }]);
         return;
       }
 
@@ -305,23 +386,28 @@ document.addEventListener('DOMContentLoaded', function () {
       const lower = value.toLowerCase();
 
       if (!value) {
-        showInlineError('Enter a local authority');
+        showLAInlineError('Enter a local authority');
+        showErrorSummary([{ text: 'Enter a local authority', href: INPUT_SELECTOR }]);
         return;
       }
       if (!isAllowedLA(value)) {
         if (getAllowedLAsRaw().length === 0) {
-          showInlineError('The local authority list is still loading. Try again in a moment, or select from the suggestions.');
+          showLAInlineError('The local authority list is still loading. Try again in a moment, or select from the suggestions.');
+          showErrorSummary([{ text: 'The local authority list is still loading. Try again in a moment, or select from the suggestions.', href: INPUT_SELECTOR }]);
         } else {
-          showInlineError('Select a local authority from the list');
+          showLAInlineError('Select a local authority from the list');
+          showErrorSummary([{ text: 'Select a local authority from the list', href: INPUT_SELECTOR }]);
         }
         return;
       }
       if (addedLocations.has(lower)) {
-        showInlineError('This local authority has already been added');
+        showLAInlineError('This local authority has already been added');
+        showErrorSummary([{ text: 'This local authority has already been added', href: INPUT_SELECTOR }]);
         return;
       }
 
-      clearInlineError();
+      clearLAInlineError();
+      clearErrorSummary();
       addLocationRow(value);
       input.value = '';
     });
@@ -332,11 +418,17 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
 
     const selectedRadio = document.querySelector('input[name="location"]:checked');
+
+    // No top-level radio: show ONLY summary (no inline for fieldset)
     if (!selectedRadio) {
+      clearCountriesInlineError();
+      clearLAInlineError();
+      showErrorSummary([{ text: 'Please select an option before continuing', href: '#location-2' }]);
       const first = document.getElementById('location-2') || document.getElementById('location-4');
       if (first) first.focus();
-      alert('Please select Countries or Local authority.');
       return;
+    } else {
+      clearErrorSummary();
     }
 
     // Clear mutually exclusive keys
@@ -348,9 +440,12 @@ document.addEventListener('DOMContentLoaded', function () {
       const checked = Array.from(document.querySelectorAll('input[name="country"]:checked'))
         .map(cb => cb.value.trim());
       if (checked.length === 0) {
-        alert('Please select at least one country.');
+        showCountriesInlineError('Select at least one country');
+        showErrorSummary([{ text: 'Select at least one country', href: '#country-england' }]);
         return;
       }
+      clearCountriesInlineError();
+      clearErrorSummary();
       sessionStorage.setItem(KEY_COUNTRIES, JSON.stringify(checked));
 
     } else if (selectedRadio.id === 'location-4') {
@@ -366,19 +461,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const input = document.querySelector(INPUT_SELECTOR);
         const value = (input && input.value.trim()) || '';
         if (!value) {
-          showInlineError('Add at least one local authority');
+          showLAInlineError('Add at least one local authority');
+          showErrorSummary([{ text: 'Add at least one local authority', href: INPUT_SELECTOR }]);
           return;
         }
         if (!isAllowedLA(value)) {
-          showInlineError('Select a local authority from the list');
+          showLAInlineError('Select a local authority from the list');
+          showErrorSummary([{ text: 'Select a local authority from the list', href: INPUT_SELECTOR }]);
           return;
         }
         locations.push(value);
       }
 
-      // (We don't disable the button or change label; just ensure no more than 10 are saved)
       if (locations.length > MAX_LAS) {
-        showInlineError('You can only add up to 10 local authorities');
+        showLAInlineError('You can only add up to 10 local authorities');
+        showErrorSummary([{ text: 'You can only add up to 10 local authorities', href: INPUT_SELECTOR }]);
         return;
       }
 
@@ -388,17 +485,21 @@ document.addEventListener('DOMContentLoaded', function () {
       for (const v of locations) {
         const l = v.toLowerCase();
         if (!isAllowedLA(v)) {
-          showInlineError('Select a local authority from the list');
+          showLAInlineError('Select a local authority from the list');
+          showErrorSummary([{ text: 'Select a local authority from the list', href: INPUT_SELECTOR }]);
           return;
         }
         if (seen.has(l)) {
-          showInlineError('This local authority has already been added');
+          showLAInlineError('This local authority has already been added');
+          showErrorSummary([{ text: 'This local authority has already been added', href: INPUT_SELECTOR }]);
           return;
         }
         seen.add(l);
         unique.push(v);
       }
 
+      clearLAInlineError();
+      clearErrorSummary();
       sessionStorage.setItem(KEY_LA_LIST, JSON.stringify(unique));
     }
 
