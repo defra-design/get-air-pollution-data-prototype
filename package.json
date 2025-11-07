@@ -11,9 +11,12 @@
     "d3": "^7.9.0",
     "govuk-frontend": "5.11.2",
     "govuk-prototype-kit": "13.17.0",
-    "jquery": "3.7.1"
+    "jquery": "3.7.1",
+    "maplibre-gl": "^5.11.0"
   },
   "devDependencies": {
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
     "webpack": "^5.100.2",
     "webpack-cli": "^5.1.4"
   }
