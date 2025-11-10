@@ -29,13 +29,14 @@ const mockStations = [
 
   // --- MIDLANDS ---
   { id: 19, name: "Birmingham Tyburn", lat: 52.5099, lng: -1.8340, authority: "Birmingham City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2011-06-01" },
-  { id: 20, name: "Birmingham Acocks Green", lat: 52.438, lng: -1.824, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2019-01-01" },
+  { id: 20, name: "Birmingham Acocks Green", lat: 52.438, lng: -1.824, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "closed", daqi: null, siteType: "Urban background", startDate: "2011-03-18", endDate: "2021-10-01" },
   { id: 21, name: "Coventry Allesley", lat: 52.425, lng: -1.544, authority: "Coventry City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Suburban", startDate: "2000-01-01" },
   { id: 22, name: "Nottingham Centre", lat: 52.954, lng: -1.150, authority: "Nottingham City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 3, siteType: "Urban centre", startDate: "1998-01-01" },
   { id: 23, name: "Leicester University Road", lat: 52.624, lng: -1.120, authority: "Leicester City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2000-01-01" },
   { id: 24, name: "Derby St Alkmund's Way", lat: 52.926, lng: -1.478, authority: "Derby City Council", pollutants: ["PM10","NO2"], status: "closed", daqi: null, siteType: "Urban traffic", startDate: "1996-01-01", endDate: "2024-12-31" },
   { id: 25, name: "Wolverhampton Centre", lat: 52.585, lng: -2.129, authority: "Wolverhampton City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 4, siteType: "Urban background", startDate: "2001-05-01" },
   { id: 26, name: "Stoke-on-Trent", lat: 53.002, lng: -2.179, authority: "Stoke-on-Trent City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2004-01-01" },
+  { id: 71, name: "Birmingham A4540 Roadside", lat: 52.476, lng: -1.874, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban traffic", startDate: "2016-09-09" },
 
   // --- NORTH WEST / YORKS & HUMBER ---
   { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2003-08-01" },
