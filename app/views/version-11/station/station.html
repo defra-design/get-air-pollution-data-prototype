@@ -1,0 +1,500 @@
+{% extends "layouts/mvp-final.html" %}
+
+{% set pageName="Birmingham A4540 Roadside monitoring station - Get air pollution data - GOV.UK" %}
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
+  Back
+</a>
+
+
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Birmingham Acocks Green monitoring station - Get air pollution data - GOV.UK">
+  <meta name="description" content="Monitoring station information for Birmingham Acocks Green.">
+  <meta name="og:description" content="Monitoring station information for Birmingham Acocks Green.">
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">Birmingham Acocks Green</h1>   
+          <strong class="govuk-tag status-tag govuk-tag--blue">
+            Active
+          </strong>
+          <p class="govuk-body status-description govuk-!-margin-top-3" id="status">Latest at 11:00am on 25 November 2024</p>
+  </div>
+  </div>
+          <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <a href="../map.html?center=52.4862,-1.8904&zoom=12"  role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
+                <span class="aq-button-secondary__icon">
+                  <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="aq-button-secondary__text">
+                  View map of nearby monitoring stations</span>
+                  <span class="govuk-visually-hidden">
+                  (Visual only)
+                </span>
+              </a>
+   
+          
+          <dl class="defra-aq-features__list govuk-!-margin-top-3">
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Monitoring network</dt>
+              <dd class="defra-aq-features__value govuk-body">Automatic Urban and Rural Network (AURN)</dd>
+            </div>
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Local authority</dt>
+              <dd class="defra-aq-features__value govuk-body">Birmingham City Council</dd>
+            </div>
+            <div class="defra-aq-features__item">
+              <dt class="defra-aq-features__key govuk-caption-m">Site type</dt>
+              <dd class="defra-aq-features__value govuk-body">
+                <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about urban background" data-toggletip-content="This monitoring area is in a city or town. It is located so pollutant measurements do not come from one specific source.">
+                  Urban background
+                  </div>
+                  <p class="defra-aq-features__link govuk-body govuk-!-margin-top-1"><a href="https://www.google.co.uk/maps?q=52.476145,-1.874978" class="govuk-link" target="_blank" >View on Google Maps (opens in new tab)</a></p>
+                </dd>
+             
+            </div>
+            </dl>
+
+ 
+
+
+            
+             
+
+          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution summary: last 24 hours</h2>
+          <p class="govuk-body govuk-!-margin-bottom-3">10 to 11 November</p>
+          <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
+
+            <ul class="moj-sub-navigation__list">
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" aria-current="page" href="#3">Last 24 hours</a>
+              </li>
+      
+          
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">Last 7 days</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#3">Last 30 days</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">2025</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link"  href="#5">2024</a>
+              </li>
+      
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="#5">2023</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="station-2025.html" href="">2022</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="station-2025.html" href="">2021</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="station-2025.html" href="">2020</a>
+              </li>
+               <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="station_early.html" href="">2019 to 2000</a>
+              </li>
+            </ul>
+          
+          </nav>
+
+             <div class="govuk-inset-text" style="border-left: 10px solid 		#f47738; background-color: #f9e2d7;">
+      Data has not been checked and verified
+      
+</div>
+     
+          
+         
+        
+
+              <p class="govuk-body"><a href="https://uk-air.defra.gov.uk/air-pollution/daqi" target="_blank" class="govuk-link">Find out about the Daily Air Quality Index (DAQI) (opens in new tab)</a></p>
+         
+             
+             <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+
+
+              <thead class="defra-aq-levels-table__head">
+                <tr class="defra-aq-levels-table__row">
+                
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">Pollutant</th>
+                
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title">DAQI</th>
+                
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title">24 hour average</th>
+
+                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title">Hourly exceedances</th>
+                 
+                
+                </tr>
+              </thead>
+              
+              <tbody class="defra-aq-levels-table__body">
+                    <tr class="defra-aq-levels-table__row">
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM2.5<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
+                   
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        <strong class="govuk-tag govuk-tag--green">
+          2 (low)
+        </strong>
+                          </td>
+                      
+                    
+                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for PM2.5" data-toggletip-content="Annual average PM2.5 levels at any site must not go above 20 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                        12 µg/m3
+                         </div></td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">n/a</td>
+
+                     
+                      
+                    
+                    </tr>
+                  
+                
+                  
+                    <tr class="defra-aq-levels-table__row">
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM10<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        <strong class="govuk-tag govuk-tag--green">
+          2 (low)
+        </strong>
+                        </td>
+                      
+                    
+                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for PM10" data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number). ">
+                        18 µg/m3
+                         </div></td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">n/a</td>
+
+                      
+                      
+                    
+                    </tr>
+                  
+                
+                  
+                    <tr class="defra-aq-levels-table__row">
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Nitrogen dioxide<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                        <strong class="govuk-tag govuk-tag--yellow">
+          4 (moderate)
+        </strong>
+                        </td>
+                      
+
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+      <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide" data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number). ">
+                        201 µg/m3
+                         </div></td>
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about hourly exceedances for nitrogen dioxide" data-toggletip-content="Hourly nitrogen dioxide levels must not go above 200 micrograms per cubic metre (µg/m³) more than 18 times in a calendar year (when rounded to a whole number).">
+                        1
+                         </div></td>
+                    </tr>
+                  
+                
+                  
+                    <tr class="defra-aq-levels-table__row">
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Ozone<span class="defra-aq-levels-table__cell--data">
+                        Data capture: 100%
+                        </span>
+                      </td>
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average"><strong class="govuk-tag govuk-tag--green">
+          2 (low)
+        </strong></td>
+                   
+                      
+                    
+                      
+                      
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for ozone" data-toggletip-content="There is no annual average limit value for ozone.">
+                        41 µg/m3
+                         </div></td>
+
+                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">n/a</td>
+                      
+                    
+                    </tr>
+                 
+                  
+                
+              </tbody>
+            </table>
+<p class="govuk-hint">The pollution levels shown are measured against <a href="https://uk-air.defra.gov.uk/compliance-data" class="govuk-link" target="_blank">UK legal limits (opens in new tab)</a></p>
+
+            <a href="pm10-graph.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
+                <span class="aq-button-secondary__icon">
+                  <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
+          <path d="M2.75 14.443v2.791H18v1.5H1.25V1.984h1.5v7.967L6.789 4.91l5.016 4.013 5.056-5.899 2.278 1.952-6.944 8.101L7.211 9.09 2.75 14.443z"></path>
+        </svg>
+                </span>
+                <span class="aq-button-secondary__text" style="padding-left: 5px;">
+                  View graph of pollution levels</span>
+                  <span class="govuk-visually-hidden">
+                  (Visual only)
+                </span>
+              </a>
+          
+                 <details class="govuk-details govuk-!-margin-top-6">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                  Pollutant start dates, end dates, instruments and inlet heights
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                 <p>File sizes for a year of data:</p>
+                  <ul class="govuk-body govuk-list--bullet">
+                  
+                    <li>hourly data - usually less than 1MB</li>
+                    <li>daily average data - usually less than 500KB</li>
+                    <li>annual average data - usually less than 100KB</li>
+                
+                  </ul>
+                </div>
+              </details>
+              
+
+
+              <h2 class="govuk-heading-l govuk-!-margin-top-7 govuk-!-margin-bottom-6">Download data for 2025</h2>
+                           <p class="govuk-body">You can also <a href="" class="govuk-link">create a custom dataset</a> if you need to customise your data.</p>
+    
+              
+
+                 <details class="govuk-details govuk-!-margin-top-3">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      File format and metadata
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <h3 class="govuk-heading-s">File format</h3>
+                             <p class="govuk-body">This data will download in a wide format.</p>
+              <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
+
+                 <h3 class="govuk-heading-s">Metadata</h3>
+                 <p class="govuk-body">These files could contain the following metadata:</p>
+                 <ul class="govuk-body govuk-list--bullet">
+                  <li>name of monitoring station</li>
+                  <li>map coordinates</li>
+                  <li>local authority</li>
+                  <li>region</li>
+                  <li>site ID</li>
+                  <li>instrument type</li>
+                  <li>inlet height</li>
+                 </ul>
+  </div>
+</details>
+          
+                    <h3 class="govuk-heading-m">All pollutants</h3>
+                    <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Download hourly data</span>
+                        
+                    </a>
+                    <br>
+                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                      <span class="aq-button-secondary__icon">
+                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                      </span>
+                      <span class="aq-button-secondary__text">
+                        Download daily average data</span>
+                    </a>
+                    
+      
+      
+      
+              
+                       
+                     
+                       
+                    <h3 class="govuk-heading-m govuk-!-margin-top-4">PM2.5</h3>
+                   
+                    <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                     <span class="aq-button-secondary__icon">
+                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                     </span>
+                     <span class="aq-button-secondary__text">
+                       Download hourly data</span>
+                     
+                   </a>
+                   <br>
+                   <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                     <span class="aq-button-secondary__icon">
+                       <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                     </span>
+                     <span class="aq-button-secondary__text">
+                       Download daily average data</span>
+                      
+                   </a>
+                  
+                
+
+                        <h3 class="govuk-heading-m govuk-!-margin-top-4">PM10</h3>
+                 
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Download hourly data</span>
+                           
+                        </a>
+                        <br>
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Download daily average data</span>
+                          
+                        </a>
+                      
+      
+                      
+                    
+                     
+      
+                      <h3 class="govuk-heading-m govuk-!-margin-top-4">Nitrogen dioxide</h3>
+                      <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                       <span class="aq-button-secondary__icon">
+                         <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                       </span>
+                       <span class="aq-button-secondary__text">
+                         Download hourly data</span>
+                         
+                     </a>
+                     <br>
+                     <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                       <span class="aq-button-secondary__icon">
+                         <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                       </span>
+                       <span class="aq-button-secondary__text">
+                         Download daily average data</span>
+                        
+                     </a>
+                  
+           
+          
+                        <h3 class="govuk-heading-m govuk-!-margin-top-4">Ozone</h3>
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Download hourly data</span>
+                           
+                        </a>
+                        <br>
+                        <!-- <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Download 8-hour rolling average hourly data</span>
+                            
+                        </a>
+                             
+                        <br> -->
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                          <span class="aq-button-secondary__icon">
+                            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                          </span>
+                          <span class="aq-button-secondary__text">
+                            Download daily average data</span>
+                        </a>
+                        <h3 class="govuk-heading-m govuk-!-margin-top-4">Sulphur dioxide</h3>
+                        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
+                         <span class="aq-button-secondary__icon">
+                           <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                         </span>
+                         <span class="aq-button-secondary__text">
+                           Download hourly data</span>
+                           
+                       </a>
+                       <br>
+                       <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
+                         <span class="aq-button-secondary__icon">
+                           <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+                         </span>
+                         <span class="aq-button-secondary__text">
+                           Download daily average data</span>
+                          
+                       </a>
+                        
+                  
+                  
+                </div>
+               
+                
+              </div>
+          
+ 
+
+
+        
+
+        
+
+         
+          </div>
+          </div>
+    </div>
+    
+</div>
+
+{% endblock %}

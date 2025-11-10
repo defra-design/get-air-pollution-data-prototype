@@ -522,3 +522,57 @@ body:has(.defra-map) {
 
 // closed stations
 .govuk-tag--black { background-color: #0b0c0c; color: #fff; }
+
+.reopen-stack {
+  position: absolute;
+  right: 10px;
+  bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;     /* ⬅️ keep each button at its own intrinsic width */
+  z-index: 8;
+  pointer-events: none;
+}
+.reopen-stack > * { pointer-events: auto; }
+
+.reopen-stack .defra-map__menu {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: auto !important;    /* ⬅️ ensure no old width constraints leak in */
+  min-width: 0;              /* allow the narrower one to stay narrow */
+  white-space: nowrap;       /* avoid text wrapping making widths inconsistent */
+}
+
+/* keep icon+text look you already added */
+.reopen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+}
+.reopen-btn .reopen-text { @include govuk-font($size: 16); }
+
+/* hide text on small screens like Exit button */
+@include govuk-media-query($until: tablet) {
+  .reopen-btn .reopen-text { @include govuk-visually-hidden; }
+}
+
+
+.station-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;               /* space between name and status tag */
+}
+
+.station-header .govuk-tag {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.defra-map-info h2.govuk-heading-m {
+  margin-bottom: 6px;     /* tighten space above details list */
+}

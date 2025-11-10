@@ -5,97 +5,96 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 // ---------------------------
 // Mock AURN station data
-// ---------------------------
+// ---------------------------// AURN station data - formatted with ordered pollutants and proper naming
 const mockStations = [
   // --- LONDON & SE ---
-  { id: 1,  name: "London Marylebone Road", lat: 51.5225, lng: -0.1545, authority: "Westminster", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Traffic", startDate: "1997-01-01" },
-  { id: 2,  name: "London Bloomsbury", lat: 51.5225, lng: -0.1256, authority: "Camden", pollutants: ["NO2","PM10","PM2.5","O3","SO2","CO"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "1998-01-01" },
-  { id: 3,  name: "London N. Kensington", lat: 51.5210, lng: -0.2130, authority: "Kensington and Chelsea", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "1996-01-01" },
-  { id: 4,  name: "London Bexley", lat: 51.456, lng: 0.148, authority: "Bexley", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 1, siteType: "Suburban", startDate: "1997-06-01" },
-  { id: 5,  name: "London Eltham", lat: 51.450, lng: 0.070, authority: "Greenwich", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 4, siteType: "Suburban", startDate: "1996-08-01" },
-  { id: 6,  name: "London Teddington", lat: 51.424, lng: -0.338, authority: "Richmond upon Thames", pollutants: ["NO2","O3"], status: "closed", daqi: null, siteType: "Suburban", startDate: "1996-01-01", endDate: "2024-12-31" },
-  { id: 7,  name: "London Haringey Roadside", lat: 51.592, lng: -0.099, authority: "Haringey", pollutants: ["NO2","PM10"], status: "active", daqi: 2, siteType: "Urban Traffic", startDate: "2009-05-01" },
-  { id: 8,  name: "London Harlington", lat: 51.488, lng: -0.441, authority: "Hillingdon", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 3, siteType: "Suburban", startDate: "2004-01-01" },
-  { id: 9,  name: "London Sir John Cass School", lat: 51.514, lng: -0.077, authority: "City of London", pollutants: ["NO2","PM10"], status: "closed", daqi: null, siteType: "Urban Background", startDate: "1996-01-01", endDate: "2024-12-31" },
-  { id: 10, name: "Gravesham", lat: 51.441, lng: 0.368, authority: "Gravesham", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "1997-01-15" },
-  { id: 11, name: "Rochester Stoke", lat: 51.431, lng: 0.640, authority: "Medway", pollutants: ["SO2","PM10","NO2"], status: "closed", daqi: null, siteType: "Industrial", startDate: "1996-02-01", endDate: "2024-12-31" },
-  { id: 12, name: "Southampton Centre", lat: 50.909, lng: -1.404, authority: "Southampton", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2003-01-01" },
-  { id: 13, name: "Portsmouth", lat: 50.805, lng: -1.090, authority: "Portsmouth", pollutants: ["NO2","PM10","SO2"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "1999-01-01" },
-  { id: 14, name: "Brighton Preston Park", lat: 50.842, lng: -0.146, authority: "Brighton and Hove", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2001-01-01" },
-  { id: 15, name: "Crawley", lat: 51.111, lng: -0.189, authority: "Crawley", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2002-01-01" },
-  { id: 16, name: "Oxford St Ebbes", lat: 51.750, lng: -1.258, authority: "Oxford", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "1996-01-01" },
-  { id: 17, name: "Reading New Town", lat: 51.454, lng: -0.959, authority: "Reading", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2003-01-01" },
-  { id: 18, name: "Canterbury", lat: 51.280, lng: 1.079, authority: "Canterbury", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 1, siteType: "Urban Background", startDate: "2000-06-01" },
+  { id: 1,  name: "London Marylebone Road", lat: 51.5225, lng: -0.1545, authority: "Westminster City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban traffic", startDate: "1997-01-01" },
+  { id: 2,  name: "London Bloomsbury", lat: 51.5225, lng: -0.1256, authority: "London Borough of Camden", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "1998-01-01" },
+  { id: 3,  name: "London N. Kensington", lat: 51.5210, lng: -0.2130, authority: "Royal Borough of Kensington and Chelsea", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "1996-01-01" },
+  { id: 4,  name: "London Bexley", lat: 51.456, lng: 0.148, authority: "London Borough of Bexley", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 1, siteType: "Suburban", startDate: "1997-06-01" },
+  { id: 5,  name: "London Eltham", lat: 51.450, lng: 0.070, authority: "Royal Borough of Greenwich", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 4, siteType: "Suburban", startDate: "1996-08-01" },
+  { id: 6,  name: "London Teddington", lat: 51.424, lng: -0.338, authority: "London Borough of Richmond upon Thames", pollutants: ["NO2","O3"], status: "closed", daqi: null, siteType: "Suburban", startDate: "1996-01-01", endDate: "2024-12-31" },
+  { id: 7,  name: "London Haringey Roadside", lat: 51.592, lng: -0.099, authority: "London Borough of Haringey", pollutants: ["PM10","NO2"], status: "active", daqi: 2, siteType: "Urban traffic", startDate: "2009-05-01" },
+  { id: 8,  name: "London Harlington", lat: 51.488, lng: -0.441, authority: "London Borough of Hillingdon", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Suburban", startDate: "2004-01-01" },
+  { id: 9,  name: "London Sir John Cass School", lat: 51.514, lng: -0.077, authority: "City of London Corporation", pollutants: ["PM10","NO2"], status: "closed", daqi: null, siteType: "Urban background", startDate: "1996-01-01", endDate: "2024-12-31" },
+  { id: 10, name: "Gravesham", lat: 51.441, lng: 0.368, authority: "Gravesham Borough Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "1997-01-15" },
+  { id: 11, name: "Rochester Stoke", lat: 51.431, lng: 0.640, authority: "Medway Council", pollutants: ["PM10","NO2","SO2"], status: "closed", daqi: null, siteType: "Industrial", startDate: "1996-02-01", endDate: "2024-12-31" },
+  { id: 12, name: "Southampton Centre", lat: 50.909, lng: -1.404, authority: "Southampton City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2003-01-01" },
+  { id: 13, name: "Portsmouth", lat: 50.805, lng: -1.090, authority: "Portsmouth City Council", pollutants: ["PM10","NO2","SO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "1999-01-01" },
+  { id: 14, name: "Brighton Preston Park", lat: 50.842, lng: -0.146, authority: "Brighton and Hove City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-01-01" },
+  { id: 15, name: "Crawley", lat: 51.111, lng: -0.189, authority: "Crawley Borough Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2002-01-01" },
+  { id: 16, name: "Oxford St Ebbes", lat: 51.750, lng: -1.258, authority: "Oxford City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "1996-01-01" },
+  { id: 17, name: "Reading New Town", lat: 51.454, lng: -0.959, authority: "Reading Borough Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2003-01-01" },
+  { id: 18, name: "Canterbury", lat: 51.280, lng: 1.079, authority: "Canterbury City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 1, siteType: "Urban background", startDate: "2000-06-01" },
 
   // --- MIDLANDS ---
-  { id: 19, name: "Birmingham Tyburn", lat: 52.5099, lng: -1.8340, authority: "Birmingham", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2011-06-01" },
-  { id: 20, name: "Birmingham Acocks Green", lat: 52.438, lng: -1.824, authority: "Birmingham", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2019-01-01" },
-  { id: 21, name: "Coventry Allesley", lat: 52.425, lng: -1.544, authority: "Coventry", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Suburban", startDate: "2000-01-01" },
-  { id: 22, name: "Nottingham Centre", lat: 52.954, lng: -1.150, authority: "Nottingham", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 3, siteType: "Urban Centre", startDate: "1998-01-01" },
-  { id: 23, name: "Leicester University Road", lat: 52.624, lng: -1.120, authority: "Leicester", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 24, name: "Derby St Alkmund's Way", lat: 52.926, lng: -1.478, authority: "Derby", pollutants: ["NO2","PM10"], status: "closed", daqi: null, siteType: "Urban Traffic", startDate: "1996-01-01", endDate: "2024-12-31" },
-  { id: 25, name: "Wolverhampton Centre", lat: 52.585, lng: -2.129, authority: "Wolverhampton", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 4, siteType: "Urban Background", startDate: "2001-05-01" },
-  { id: 26, name: "Stoke-on-Trent", lat: 53.002, lng: -2.179, authority: "Stoke-on-Trent", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2004-01-01" },
+  { id: 19, name: "Birmingham Tyburn", lat: 52.5099, lng: -1.8340, authority: "Birmingham City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2011-06-01" },
+  { id: 20, name: "Birmingham Acocks Green", lat: 52.438, lng: -1.824, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2019-01-01" },
+  { id: 21, name: "Coventry Allesley", lat: 52.425, lng: -1.544, authority: "Coventry City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Suburban", startDate: "2000-01-01" },
+  { id: 22, name: "Nottingham Centre", lat: 52.954, lng: -1.150, authority: "Nottingham City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 3, siteType: "Urban centre", startDate: "1998-01-01" },
+  { id: 23, name: "Leicester University Road", lat: 52.624, lng: -1.120, authority: "Leicester City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 24, name: "Derby St Alkmund's Way", lat: 52.926, lng: -1.478, authority: "Derby City Council", pollutants: ["PM10","NO2"], status: "closed", daqi: null, siteType: "Urban traffic", startDate: "1996-01-01", endDate: "2024-12-31" },
+  { id: 25, name: "Wolverhampton Centre", lat: 52.585, lng: -2.129, authority: "Wolverhampton City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 4, siteType: "Urban background", startDate: "2001-05-01" },
+  { id: 26, name: "Stoke-on-Trent", lat: 53.002, lng: -2.179, authority: "Stoke-on-Trent City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2004-01-01" },
 
   // --- NORTH WEST / YORKS & HUMBER ---
-  { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: null, siteType: "Urban Traffic", startDate: "2003-08-01" },
-  { id: 28, name: "Salford Eccles", lat: 53.484, lng: -2.337, authority: "Salford", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2005-01-01" },
-  { id: 29, name: "Liverpool Speke", lat: 53.340, lng: -2.855, authority: "Liverpool", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 3, siteType: "Suburban", startDate: "2000-01-01" },
-  { id: 30, name: "Preston", lat: 53.763, lng: -2.704, authority: "Preston", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2008-01-01" },
-  { id: 31, name: "Blackpool Marton", lat: 53.798, lng: -3.026, authority: "Blackpool", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 1, siteType: "Suburban", startDate: "1998-01-01" },
-  { id: 32, name: "Warrington", lat: 53.392, lng: -2.580, authority: "Warrington", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2001-01-01" },
-  { id: 33, name: "Leeds Centre", lat: 53.8008, lng: -1.5491, authority: "Leeds", pollutants: ["NO2","PM10"], status: "closed", daqi: null, siteType: "Urban Centre", startDate: "1999-03-01", endDate: "2024-12-31" },
-  { id: 34, name: "Sheffield Devonshire Green", lat: 53.378, lng: -1.477, authority: "Sheffield", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2011-01-01" },
-  { id: 35, name: "York Bootham", lat: 53.964, lng: -1.091, authority: "York", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 36, name: "Rotherham", lat: 53.430, lng: -1.355, authority: "Rotherham", pollutants: ["NO2","PM10"], status: "active", daqi: 1, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 37, name: "Doncaster", lat: 53.5228, lng: -1.1285, authority: "Doncaster", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2001-06-01" },
-  { id: 38, name: "Hull Freetown", lat: 53.756, lng: -0.337, authority: "Kingston upon Hull", pollutants: ["NO2","PM10"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2009-10-01" },
-  { id: 39, name: "Barnsley Gawber", lat: 53.565, lng: -1.503, authority: "Barnsley", pollutants: ["NO2","PM10"], status: "closed", daqi: null, siteType: "Urban Background", startDate: "1997-01-01", endDate: "2024-12-31" },
+  { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2003-08-01" },
+  { id: 28, name: "Salford Eccles", lat: 53.484, lng: -2.337, authority: "Salford City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2005-01-01" },
+  { id: 29, name: "Liverpool Speke", lat: 53.340, lng: -2.855, authority: "Liverpool City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 3, siteType: "Suburban", startDate: "2000-01-01" },
+  { id: 30, name: "Preston", lat: 53.763, lng: -2.704, authority: "Preston City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2008-01-01" },
+  { id: 31, name: "Blackpool Marton", lat: 53.798, lng: -3.026, authority: "Blackpool Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 1, siteType: "Suburban", startDate: "1998-01-01" },
+  { id: 32, name: "Warrington", lat: 53.392, lng: -2.580, authority: "Warrington Borough Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-01-01" },
+  { id: 33, name: "Leeds Centre", lat: 53.8008, lng: -1.5491, authority: "Leeds City Council", pollutants: ["PM10","NO2"], status: "closed", daqi: null, siteType: "Urban centre", startDate: "1999-03-01", endDate: "2024-12-31" },
+  { id: 34, name: "Sheffield Devonshire Green", lat: 53.378, lng: -1.477, authority: "Sheffield City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2011-01-01" },
+  { id: 35, name: "York Bootham", lat: 53.964, lng: -1.091, authority: "City of York Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 36, name: "Rotherham", lat: 53.430, lng: -1.355, authority: "Rotherham Metropolitan Borough Council", pollutants: ["PM10","NO2"], status: "active", daqi: 1, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 37, name: "Doncaster", lat: 53.5228, lng: -1.1285, authority: "Doncaster Metropolitan Borough Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-06-01" },
+  { id: 38, name: "Hull Freetown", lat: 53.756, lng: -0.337, authority: "Kingston upon Hull City Council", pollutants: ["PM10","NO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2009-10-01" },
+  { id: 39, name: "Barnsley Gawber", lat: 53.565, lng: -1.503, authority: "Barnsley Metropolitan Borough Council", pollutants: ["PM10","NO2"], status: "closed", daqi: null, siteType: "Urban background", startDate: "1997-01-01", endDate: "2024-12-31" },
 
   // --- NORTH EAST ---
-  { id: 40, name: "Newcastle Centre", lat: 54.9738, lng: -1.6131, authority: "Newcastle upon Tyne", pollutants: ["NO2","PM10"], status: "active", daqi: 5, siteType: "Urban Centre", startDate: "2002-03-01" },
-  { id: 41, name: "Sunderland Centre", lat: 54.906, lng: -1.383, authority: "Sunderland", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 42, name: "Middlesbrough", lat: 54.576, lng: -1.235, authority: "Middlesbrough", pollutants: ["NO2","PM10","SO2"], status: "closed", daqi: null, siteType: "Industrial", startDate: "1996-01-01", endDate: "2024-12-31" },
-  { id: 43, name: "Stockton-on-Tees Eaglescliffe", lat: 54.528, lng: -1.350, authority: "Stockton-on-Tees", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Suburban", startDate: "2013-01-01" },
-  { id: 44, name: "Darlington", lat: 54.523, lng: -1.556, authority: "Darlington", pollutants: ["NO2","PM10"], status: "active", daqi: 1, siteType: "Urban Background", startDate: "2000-01-01" },
+  { id: 40, name: "Newcastle Centre", lat: 54.9738, lng: -1.6131, authority: "Newcastle City Council", pollutants: ["PM10","NO2"], status: "active", daqi: 5, siteType: "Urban centre", startDate: "2002-03-01" },
+  { id: 41, name: "Sunderland Centre", lat: 54.906, lng: -1.383, authority: "Sunderland City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 42, name: "Middlesbrough", lat: 54.576, lng: -1.235, authority: "Middlesbrough Council", pollutants: ["PM10","NO2","SO2"], status: "closed", daqi: null, siteType: "Industrial", startDate: "1996-01-01", endDate: "2024-12-31" },
+  { id: 43, name: "Stockton-on-Tees Eaglescliffe", lat: 54.528, lng: -1.350, authority: "Stockton-on-Tees Borough Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Suburban", startDate: "2013-01-01" },
+  { id: 44, name: "Darlington", lat: 54.523, lng: -1.556, authority: "Darlington Borough Council", pollutants: ["PM10","NO2"], status: "active", daqi: 1, siteType: "Urban background", startDate: "2000-01-01" },
 
   // --- SCOTLAND ---
-  { id: 45, name: "Glasgow Townhead", lat: 55.866, lng: -4.243, authority: "Glasgow", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "1998-01-01" },
-  { id: 46, name: "Glasgow Kerbside", lat: 55.860, lng: -4.251, authority: "Glasgow", pollutants: ["NO2","PM10","PM2.5"], status: "closed", daqi: null, siteType: "Urban Traffic", startDate: "2004-01-01", endDate: "2024-12-31" },
-  { id: 47, name: "Edinburgh St Leonards", lat: 55.9456, lng: -3.1820, authority: "Edinburgh", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2005-01-01" },
-  { id: 48, name: "Aberdeen", lat: 57.149, lng: -2.094, authority: "Aberdeen", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 49, name: "Dundee", lat: 56.462, lng: -2.970, authority: "Dundee", pollutants: ["NO2","PM10"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 50, name: "Inverness", lat: 57.477, lng: -4.224, authority: "Highland", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2003-01-01" },
-  { id: 51, name: "Paisley", lat: 55.846, lng: -4.423, authority: "Renfrewshire", pollutants: ["NO2","PM10"], status: "active", daqi: 1, siteType: "Urban Background", startDate: "2001-01-01" },
+  { id: 45, name: "Glasgow Townhead", lat: 55.866, lng: -4.243, authority: "Glasgow City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "1998-01-01" },
+  { id: 46, name: "Glasgow Kerbside", lat: 55.860, lng: -4.251, authority: "Glasgow City Council", pollutants: ["PM2.5","PM10","NO2"], status: "closed", daqi: null, siteType: "Urban traffic", startDate: "2004-01-01", endDate: "2024-12-31" },
+  { id: 47, name: "Edinburgh St Leonards", lat: 55.9456, lng: -3.1820, authority: "City of Edinburgh Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2005-01-01" },
+  { id: 48, name: "Aberdeen", lat: 57.149, lng: -2.094, authority: "Aberdeen City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 49, name: "Dundee", lat: 56.462, lng: -2.970, authority: "Dundee City Council", pollutants: ["PM10","NO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 50, name: "Inverness", lat: 57.477, lng: -4.224, authority: "Highland Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2003-01-01" },
+  { id: 51, name: "Paisley", lat: 55.846, lng: -4.423, authority: "Renfrewshire Council", pollutants: ["PM10","NO2"], status: "active", daqi: 1, siteType: "Urban background", startDate: "2001-01-01" },
 
   // --- WALES ---
-  { id: 52, name: "Cardiff Centre", lat: 51.4816, lng: -3.1791, authority: "Cardiff", pollutants: ["NO2","PM10","O3"], status: "active", daqi: 3, siteType: "Urban Centre", startDate: "2000-06-01" },
-  { id: 53, name: "Swansea Morriston", lat: 51.663, lng: -3.934, authority: "Swansea", pollutants: ["NO2","PM10","O3","SO2"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2001-01-01" },
-  { id: 54, name: "Newport", lat: 51.586, lng: -2.998, authority: "Newport", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 55, name: "Wrexham", lat: 53.045, lng: -2.991, authority: "Wrexham", pollutants: ["NO2","PM10"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 56, name: "Port Talbot Margam", lat: 51.595, lng: -3.778, authority: "Neath Port Talbot", pollutants: ["NO2","PM10","SO2"], status: "active", daqi: 3, siteType: "Industrial", startDate: "2000-01-01" },
+  { id: 52, name: "Cardiff Centre", lat: 51.4816, lng: -3.1791, authority: "Cardiff Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban centre", startDate: "2000-06-01" },
+  { id: 53, name: "Swansea Morriston", lat: 51.663, lng: -3.934, authority: "Swansea Council", pollutants: ["PM10","NO2","O3","SO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-01-01" },
+  { id: 54, name: "Newport", lat: 51.586, lng: -2.998, authority: "Newport City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 1, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 55, name: "Wrexham", lat: 53.045, lng: -2.991, authority: "Wrexham County Borough Council", pollutants: ["PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 56, name: "Port Talbot Margam", lat: 51.595, lng: -3.778, authority: "Neath Port Talbot Council", pollutants: ["PM10","NO2","SO2"], status: "active", daqi: 3, siteType: "Industrial", startDate: "2000-01-01" },
 
   // --- NORTHERN IRELAND ---
-  { id: 57, name: "Belfast Centre", lat: 54.596, lng: -5.930, authority: "Belfast", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2003-01-01" },
-  { id: 58, name: "Derry", lat: 54.997, lng: -7.321, authority: "Derry City and Strabane", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2004-01-01" },
-  { id: 59, name: "Lisburn", lat: 54.516, lng: -6.058, authority: "Lisburn and Castlereagh", pollutants: ["NO2","PM10"], status: "active", daqi: 3, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 60, name: "Newry", lat: 54.175, lng: -6.339, authority: "Newry, Mourne and Down", pollutants: ["NO2","PM10"], status: "active", daqi: 5, siteType: "Urban Background", startDate: "2002-01-01" },
+  { id: 57, name: "Belfast Centre", lat: 54.596, lng: -5.930, authority: "Belfast City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2003-01-01" },
+  { id: 58, name: "Derry", lat: 54.997, lng: -7.321, authority: "Derry City and Strabane District Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2004-01-01" },
+  { id: 59, name: "Lisburn", lat: 54.516, lng: -6.058, authority: "Lisburn and Castlereagh City Council", pollutants: ["PM10","NO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 60, name: "Newry", lat: 54.175, lng: -6.339, authority: "Newry, Mourne and Down District Council", pollutants: ["PM10","NO2"], status: "active", daqi: 5, siteType: "Urban background", startDate: "2002-01-01" },
 
   // --- SOUTH WEST ---
-  { id: 61, name: "Bristol St Paul's", lat: 51.4627, lng: -2.5843, authority: "Bristol", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 4, siteType: "Urban Background", startDate: "2008-09-01" },
-  { id: 62, name: "Bath", lat: 51.381, lng: -2.359, authority: "Bath and North East Somerset", pollutants: ["NO2","PM10","PM2.5"], status: "closed", daqi: null, siteType: "Urban Background", startDate: "1997-01-01", endDate: "2024-12-31" },
-  { id: 63, name: "Exeter Heavitree", lat: 50.721, lng: -3.516, authority: "Exeter", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2001-01-01" },
-  { id: 64, name: "Plymouth Centre", lat: 50.375, lng: -4.142, authority: "Plymouth", pollutants: ["NO2","PM10","O3"], status: "inactive", daqi: null, siteType: "Urban Background", startDate: "2000-01-01" },
-  { id: 65, name: "Gloucester", lat: 51.864, lng: -2.245, authority: "Gloucester", pollutants: ["NO2","PM10"], status: "inactive", daqi: null, siteType: "Urban Background", startDate: "2000-06-01" },
+  { id: 61, name: "Bristol St Paul's", lat: 51.4627, lng: -2.5843, authority: "Bristol City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 4, siteType: "Urban background", startDate: "2008-09-01" },
+  { id: 62, name: "Bath", lat: 51.381, lng: -2.359, authority: "Bath and North East Somerset Council", pollutants: ["PM2.5","PM10","NO2"], status: "closed", daqi: null, siteType: "Urban background", startDate: "1997-01-01", endDate: "2024-12-31" },
+  { id: 63, name: "Exeter Heavitree", lat: 50.721, lng: -3.516, authority: "Exeter City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-01-01" },
+  { id: 64, name: "Plymouth Centre", lat: 50.375, lng: -4.142, authority: "Plymouth City Council", pollutants: ["PM10","NO2","O3"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "2000-01-01" },
+  { id: 65, name: "Gloucester", lat: 51.864, lng: -2.245, authority: "Gloucester City Council", pollutants: ["PM10","NO2"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "2000-06-01" },
 
   // --- EASTERN / EAST MIDLANDS ---
-  { id: 66, name: "Cambridge", lat: 52.205, lng: 0.119, authority: "Cambridge", pollutants: ["NO2","PM10","PM2.5","O3"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "1997-01-01" },
-  { id: 67, name: "Norwich Lakenfields", lat: 52.614, lng: 1.299, authority: "Norwich", pollutants: ["NO2","PM10","PM2.5"], status: "inactive", daqi: null, siteType: "Urban Background", startDate: "1998-01-01" },
-  { id: 68, name: "Ipswich", lat: 52.0567, lng: 1.1482, authority: "Ipswich", pollutants: ["NO2","PM10","O3"], status: "closed", daqi: null, siteType: "Urban Background", startDate: "1996-01-01", endDate: "2024-12-31" },
-  { id: 69, name: "Peterborough", lat: 52.572, lng: -0.243, authority: "Peterborough", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban Background", startDate: "2001-01-01" },
-  { id: 70, name: "Lincoln", lat: 53.2307, lng: -0.5406, authority: "Lincoln", pollutants: ["NO2","PM10"], status: "inactive", daqi: null, siteType: "Urban Background", startDate: "2000-01-01" }
+  { id: 66, name: "Cambridge", lat: 52.205, lng: 0.119, authority: "Cambridge City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "1997-01-01" },
+  { id: 67, name: "Norwich Lakenfields", lat: 52.614, lng: 1.299, authority: "Norwich City Council", pollutants: ["PM2.5","PM10","NO2"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "1998-01-01" },
+  { id: 68, name: "Ipswich", lat: 52.0567, lng: 1.1482, authority: "Ipswich Borough Council", pollutants: ["PM10","NO2","O3"], status: "closed", daqi: null, siteType: "Urban background", startDate: "1996-01-01", endDate: "2024-12-31" },
+  { id: 69, name: "Peterborough", lat: 52.572, lng: -0.243, authority: "Peterborough City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-01-01" },
+  { id: 70, name: "Lincoln", lat: 53.2307, lng: -0.5406, authority: "City of Lincoln Council", pollutants: ["PM10","NO2"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "2000-01-01" }
 ];
-
 
 
 // --- Filtering state + registry ---
@@ -107,15 +106,21 @@ const markerRegistry = []; // [{ station, marker }]
 
 function stationMatches(station, state) {
   if (!state) return true;
+
+  // Specific pollutant still filters
   if (state.mode === 'pollutant') {
     return station.pollutants.includes(state.value);
   }
+
+  // Any "group" selection (DAQI or AQS) shows all stations
   if (state.mode === 'group') {
-    const set = state.value === 'aqs' ? AQS_CODES : DAQI_CODES;
-    return station.pollutants.some(p => set.includes(p));
+    return true;
   }
+
   return true;
 }
+
+
 
 function applyFilter() {
   markerRegistry.forEach(({ station, marker }) => {
@@ -205,8 +210,11 @@ function formatDate(dateString) {
 }
 
 // --- Legend panel (Status vs DAQI) ---
+// --- Key overlay panel (styled like station overlay) ---
+let keyClosedByUser = false;        // persists until user re-opens with the button
+let keyHiddenByOverlay = false;     // temporary hide while station overlay is shown
+
 function legendItem(label, fill) {
-  // small SVG disc with label under it
   return `
     <div class="aq-legend__item" role="listitem" aria-label="${label}">
       <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
@@ -216,39 +224,17 @@ function legendItem(label, fill) {
     </div>
   `;
 }
+
 function ensureLegendStylesOnce() {
   if (document.getElementById('aq-legend-styles')) return;
   const style = document.createElement('style');
   style.id = 'aq-legend-styles';
   style.textContent = `
-    /* --- Legend panel styles --- */
-    .defra-legend-panel {
-      position: absolute;
-      bottom: 95px; /* sits slightly above zoom + menu cluster */
-      right: 200px;  /* next to your floating-panel (adjust if needed) */
-      background: #fff;
-      border: 1px solid #b1b4b6;
-      border-radius: 4px;
-      padding: 10px 14px 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-      z-index: 10; /* ensures above map but below modals */
-      min-width: 260px;
-      max-width: 400px;
-    }
-
-    .defra-legend-panel h3 {
-      margin: 0 0 6px 0;
-      font-size: 16px;
-      font-weight: bold;
-      color: #0b0c0c;
-    }
-
     .aq-legend {
       display: flex;
+      gap: 20px;
       justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 15px;
+      flex-wrap: nowrap; /* NEW: keep one row on wider view */
     }
 
     .aq-legend__item {
@@ -256,90 +242,126 @@ function ensureLegendStylesOnce() {
       flex-direction: column;
       align-items: center;
       text-align: center;
-      flex: 1;
-      min-width: 50px;
+      min-width: 100px; /* NEW: enough for “Very high” at 19px */
+      flex: 0 0 auto;   /* NEW: don’t shrink; size to content */
+    }
+
+    .aq-legend__item svg {
+      width: 40px;
+      height: 40px;
     }
 
     .aq-legend__text {
+      font-family: "GDS Transport", Arial, sans-serif;
+      font-weight: 400;
       font-size: 19px;
       line-height: 1.3;
       color: #0b0c0c;
       margin-top: 4px;
+      text-align: center;
+      white-space: nowrap; /* NEW: keep label on one line */
     }
 
-    .aq-legend__item svg {
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-    }
-
-    /* Mobile adjustment: drop below panel */
-    @media (max-width: 800px) {
-      .defra-legend-panel {
-        left: 10px;
-        bottom: 180px;
-        min-width: auto;
+    @media (max-width: 640px) {
+      .aq-legend { 
+        gap: 12px;
+        flex-wrap: wrap; /* NEW: allow wrapping on narrow screens */
       }
     }
   `;
   document.head.appendChild(style);
 }
 
-function createLegendPanel() {
+
+
+function createKeyOverlay() {
   ensureLegendStylesOnce();
 
-  // Remove if it already exists
-  const oldPanel = document.getElementById('legend-key-panel');
-  if (oldPanel) oldPanel.remove();
+  // Remove any older instance
+  document.getElementById('map-key-overlay')?.remove();
 
+  // Build the overlay using the SAME classes as station overlay for look/feel/position
   const panel = document.createElement('div');
-  panel.id = 'legend-key-panel';
-  panel.className = 'defra-legend-panel';
+  panel.id = 'map-key-overlay';
+  panel.className = 'defra-map-info'; // same base class as station info
   panel.setAttribute('role', 'region');
   panel.setAttribute('aria-label', 'Map key');
+
   panel.innerHTML = `
-    <h3>Map key</h3>
-    <div class="aq-legend" role="list"></div>
+    <button class="defra-map-info__close" id="close-key-overlay" aria-label="Close map key">
+      <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20">
+        <path d="M10,8.6L15.6,3L17,4.4L11.4,10L17,15.6L15.6,17L10,11.4L4.4,17L3,15.6L8.6,10L3,4.4L4.4,3L10,8.6Z"></path>
+      </svg>
+      <span class="govuk-visually-hidden">Close</span>
+    </button>
+    <div class="defra-map-info__container">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Key</h2>
+      <div class="aq-legend" id="aq-legend-body" role="list"></div>
+    </div>
   `;
 
-  // Append inside map container so it overlays map UI correctly
-  const mapContainer = document.querySelector('.defra-map-controls');
-  if (mapContainer) {
-    mapContainer.appendChild(panel);
-  } else {
-    document.body.appendChild(panel);
-  }
+  // Mount beside map UI (same container family as station panel)
+  const host = document.querySelector('.defra-map');
+  (host || document.body).appendChild(panel);
+
+  // Wire close
+  panel.querySelector('#close-key-overlay')?.addEventListener('click', () => {
+    hideKeyOverlay({ byUser: true });
+  });
 }
 
+function renderKeyOverlay() {
+  const body = document.getElementById('aq-legend-body');
+  if (!body) return;
 
-function renderLegendPanel() {
-  const panel = document.getElementById('legend-key-panel');
-  if (!panel) return;
-  const row = panel.querySelector('.aq-legend');
-  if (!row) return;
-
-  // Colours match your app:
-  // Status: active=blue, inactive=grey, closed=black
-  // DAQI: green (Low 1–3), yellow (Moderate 4–6), red (High 7–9), black (Very High 10)
   if (colourByDaqi) {
-    const items = [
+    body.innerHTML = [
       legendItem('Low',       '#00703c'),
       legendItem('Moderate',  '#ffdd00'),
       legendItem('High',      '#d4351c'),
       legendItem('Very high', '#0b0c0c'),
-    ];
-    row.innerHTML = items.join('');
-    panel.querySelector('h3').textContent = 'Key';
+    ].join('');
   } else {
-    const items = [
+    body.innerHTML = [
       legendItem('Active',   '#1D70B8'),
       legendItem('Inactive', '#505A5F'),
       legendItem('Closed',   '#0B0C0C'),
-    ];
-    row.innerHTML = items.join('');
-    panel.querySelector('h3').textContent = 'Key';
+    ].join('');
   }
 }
+
+
+
+function showKeyOverlay() {
+  const panel = document.getElementById('map-key-overlay');
+  if (!panel) return;
+  panel.classList.add('visible');       // same class your station overlay uses
+  document.getElementById('key-button')?.setAttribute('hidden', ''); // hide reopen btn
+ 
+}
+
+function hideKeyOverlay({ byUser = false } = {}) {
+  const panel = document.getElementById('map-key-overlay');
+  if (!panel) return;
+  panel.classList.remove('visible');
+
+  if (byUser) {
+    keyClosedByUser = true;
+    document.getElementById('key-button')?.removeAttribute('hidden'); // show reopen btn
+  }
+  
+}
+
+// Re-open from the small button next to the menu
+document.addEventListener('DOMContentLoaded', () => {
+  const keyBtn = document.getElementById('key-button');
+  keyBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    keyClosedByUser = false;
+    showKeyOverlay();
+  });
+});
+
 
 
 // ---------------------------
@@ -347,8 +369,9 @@ function renderLegendPanel() {
 // ---------------------------
 document.addEventListener('DOMContentLoaded', () => {
 
-  createLegendPanel();
-  renderLegendPanel();
+  createKeyOverlay();
+  renderKeyOverlay();
+  showKeyOverlay();
 
   const mapViewport = document.getElementById('map-viewport');
   if (!mapViewport) return;
@@ -366,6 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
     govukBody.classList.add('defra-map-body');
   }
 
+  
   // Init map
   const map = new maplibregl.Map({
     container: 'map-viewport',
@@ -439,15 +463,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function daqiTag(daqi) {
-      if (daqi == null) return ''; // omit if unknown
-      // green 1–3, yellow 4–6, red 7–9, black 10
-      let cls = 'govuk-tag--green';
-      if (daqi >= 4 && daqi <= 6) cls = 'govuk-tag--yellow';
-      else if (daqi >= 7 && daqi <= 9) cls = 'govuk-tag--red';
-      else if (daqi >= 10) cls = 'govuk-tag--black';
+  if (daqi == null) return '';
+  // green 1–3, yellow 4–6, red 7–9, black 10
+  let cls = 'govuk-tag--green';
+  if (daqi >= 4 && daqi <= 6) cls = 'govuk-tag--yellow';
+  else if (daqi >= 7 && daqi <= 9) cls = 'govuk-tag--red';
+  else if (daqi >= 10) cls = 'govuk-tag--black';
 
-      return `<strong class="govuk-tag ${cls}" aria-label="Daily Air Quality Index">${daqi}</strong>`;
-    }
+  const word = getDaqiLabel(daqi).toLowerCase(); // "low", "moderate", etc
+  return `<strong class="govuk-tag ${cls}">${daqi} (${word})</strong>`;
+}
+
 
     // --- Selected marker border management ---
 let selectedInnerEl = null;
@@ -472,6 +498,7 @@ function clearSelectedMarker() {
 
 
   function showStationInfo(station) {
+  hideKeyOverlay({ byUser: false });   // temporarily hide key
   if (!stationInfo) return;
 
   const infoContent = document.getElementById('station-info-content');
@@ -481,48 +508,48 @@ function clearSelectedMarker() {
   // Optional: if you added the GOV.UK tag helpers earlier, you can keep them;
   // this version keeps your existing structure but adds the End date row.
   infoContent.innerHTML = `
-    <h2 class="govuk-heading-m">${station.name}</h2>
-    <dl class="govuk-body-s station-info-list">
-       <div class="station-info-row">
-        <dt></dt>
-        <dd>${statusTag(station.status)}</dd>
-      </div>
+  <div class="station-header">
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-0">${station.name}</h2>
+    ${statusTag(station.status)}
+  </div>
 
-          <div class="station-info-row">
-        <dt>Pollutants:</dt>
-        <dd>${station.pollutants.join(', ')}</dd>
-      </div>
+  <dl class="govuk-body-s station-info-list">
+    <div class="station-info-row">
+      <dt>Pollutants:</dt>
+      <dd>${station.pollutants.join(', ')}</dd>
+    </div>
 
-            ${station.status && station.status.toLowerCase() === 'active' && station.daqi != null ? `
+    ${station.status && station.status.toLowerCase() === 'active' && station.daqi != null ? `
       <div class="station-info-row">
-        <dt>DAQI level:</dt>
-         <dd>${daqiTag(station.daqi)} <span class="govuk-visually-hidden">(${getDaqiLabel(station.daqi)})</span></dd>
+        <dt>DAQI:</dt>
+        <dd>${daqiTag(station.daqi)}</dd>
       </div>` : ''}
 
-      <div class="station-info-row">
-        <dt>Local Authority:</dt>
-        <dd>${station.authority}</dd>
-      </div>
-     
+    <div class="station-info-row">
+      <dt>Local authority:</dt>
+      <dd>${station.authority}</dd>
+    </div>
 
-      <div class="station-info-row">
-        <dt>Site Type:</dt>
-        <dd>${station.siteType}</dd>
-      </div>
+    <div class="station-info-row">
+      <dt>Site type:</dt>
+      <dd>${station.siteType}</dd>
+    </div>
 
-      <div class="station-info-row">
-        <dt>Start Date:</dt>
-        <dd>${formatDate(station.startDate)}</dd>
-      </div>
+    <div class="station-info-row">
+      <dt>Start date:</dt>
+      <dd>${formatDate(station.startDate)}</dd>
+    </div>
 
-       ${station.status && station.status.toLowerCase() === 'closed' && station.endDate ? `
+    ${station.status && station.status.toLowerCase() === 'closed' && station.endDate ? `
       <div class="station-info-row">
         <dt>End date:</dt>
         <dd>${formatDate(station.endDate)}</dd>
       </div>` : ''}
-    </dl>
-    <p><a href="station.html" class="govuk-link">View and download data for this station</a></p>
-  `;
+  </dl>
+
+  <p><a href="/version-11/station/station.html" class="govuk-link">View and download data for this station</a></p>
+`;
+
 
   stationInfo.classList.add('visible');
   stationInfo.setAttribute('aria-label', `Information for ${station.name}`);
@@ -534,11 +561,17 @@ function clearSelectedMarker() {
   function closeStationInfo() {
   if (!stationInfo) return;
   stationInfo.classList.remove('visible');
-  clearSelectedMarker(); // <— revert border to white on close
+  clearSelectedMarker();
+
+  // If the user didn’t explicitly close the key, bring it back
+  if (!keyClosedByUser) showKeyOverlay();
+  keyHiddenByOverlay = false;
+
   if (lastTrigger && typeof lastTrigger.focus === 'function') {
     lastTrigger.focus();
   }
 }
+
 
 
   // --- Map load: add markers ---
@@ -763,29 +796,13 @@ menuButton?.addEventListener('click',   (e) => { e.preventDefault(); openPanel()
     const radioName = `pollutant-choice-${Math.random().toString(36).slice(2, 8)}`;
 
 function renderGroups() {
-  // --- Define pollutant lists ---
-  const daqiList = [
-    'Fine particulate matter (PM2.5)',
-    'Particulate matter (PM10)',
-    'Nitrogen dioxide (NO2)',
-    'Ozone (O3)',
-    'Sulphur dioxide (SO2)'
-  ];
+  // Hint text (lowercase, comma-separated as requested)
+  const daqiHint =
+    'fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide (NO2), ozone (O3), sulphur dioxide (SO2)';
 
-  const aqsList = [
-    ...daqiList,
-    'Nitric oxide (NO)',
-    'Nitrogen oxides (NOx)',
-    'Carbon monoxide (CO)'
-  ];
+  const aqsHint =
+    'fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide (NO2), ozone (O3), sulphur dioxide (SO2), nitric oxide (NO), nitrogen oxides (NOx), carbon monoxide (CO)';
 
-  // --- Helper to build bullet lists ---
-  const listHtml = (items) =>
-    `<ul class="govuk-list govuk-list--bullet govuk-!-margin-top-1">
-      ${items.map(item => `<li>${item}</li>`).join('')}
-    </ul>`;
-
-  // --- Render radios with <details> under each option ---
   mount.innerHTML = `
     <fieldset class="govuk-fieldset">
       <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
@@ -796,74 +813,81 @@ function renderGroups() {
             id="${radioName}-group-particulates"
             name="${radioName}"
             type="radio"
-            value="particulates"
-          >
+            value="particulates">
           <label class="govuk-label govuk-radios__label" for="${radioName}-group-particulates">
             Daily Air Quality Index (DAQI) pollutants
           </label>
-
-          <details class="govuk-details govuk-!-margin-top-1" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">What’s included</span>
-            </summary>
-            <div class="govuk-details__text">
-              ${listHtml(daqiList)}
-            </div>
-          </details>
+          <div class="govuk-hint aq-radio-hint" id="${radioName}-hint-daqi" hidden style="margin-top:0px; margin-left: 35px;">
+            ${daqiHint}
+          </div>
         </div>
 
-        <div class="govuk-radios__item">
+        <div class="govuk-radios__item govuk-!-margin-top-0">
           <input
             class="govuk-radios__input"
             id="${radioName}-group-gases"
             name="${radioName}"
             type="radio"
-            value="gases"
-          >
+            value="gases">
           <label class="govuk-label govuk-radios__label" for="${radioName}-group-gases">
             Pollutants in the Air Quality Standards Regulations 2010
           </label>
-
-          <details class="govuk-details govuk-!-margin-top-1" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">What’s included</span>
-            </summary>
-            <div class="govuk-details__text">
-              ${listHtml(aqsList)}
-            </div>
-          </details>
+          <div class="govuk-hint aq-radio-hint" id="${radioName}-hint-aqs" hidden style="margin-top:0px; margin-left: 35px;">
+            ${aqsHint}
+          </div>
         </div>
+        
 
       </div>
     </fieldset>
   `;
 
-  // --- Hook up filtering ---
-  const daqiInput = root.querySelector(`#${radioName}-group-particulates`);
-  const aqsInput  = root.querySelector(`#${radioName}-group-gases`);
+  const daqiInput  = root.querySelector(`#${radioName}-group-particulates`);
+  const aqsInput   = root.querySelector(`#${radioName}-group-gases`);
+  const daqiHintEl = root.querySelector(`#${radioName}-hint-daqi`);
+  const aqsHintEl  = root.querySelector(`#${radioName}-hint-aqs`);
 
-  daqiInput?.addEventListener('change', () => {
-    if (daqiInput.checked) setFilter('group', 'daqi');
-  });
-  aqsInput?.addEventListener('change', () => {
-    if (aqsInput.checked) setFilter('group', 'aqs');
-  });
-
-  // --- Default: if nothing checked yet in this panel, select DAQI and apply (first load UX) ---
-  if (!root.querySelector(`input[name="${radioName}"]:checked`)) {
-    daqiInput.checked = true;
-    // Only set if global state isn't already something else (avoids bouncing on re-render)
-    if (filterState.mode !== 'group' || filterState.value !== 'daqi') {
-      setFilter('group', 'daqi');
-    }
-  } else {
-    // If something is already selected (e.g., re-render), reflect current global state
-    if (filterState.mode === 'group') {
-      (filterState.value === 'aqs' ? aqsInput : daqiInput).checked = true;
+  function updateHints() {
+    daqiHintEl.hidden = true;
+    aqsHintEl.hidden  = true;
+    daqiInput.removeAttribute('aria-describedby');
+    aqsInput.removeAttribute('aria-describedby');
+    if (daqiInput.checked) {
+      daqiHintEl.hidden = false;
+      daqiInput.setAttribute('aria-describedby', daqiHintEl.id);
+    } else if (aqsInput.checked) {
+      aqsHintEl.hidden = false;
+      aqsInput.setAttribute('aria-describedby', aqsHintEl.id);
     }
   }
+
+  // Always force group-mode + re-show everything
+  function applyGroupSelection(kind) {
+    setFilter('group', kind === 'aqs' ? 'aqs' : 'daqi'); // state value retained (for your UI), but group mode shows all
+    applyFilter();        // make sure visibility updates immediately
+    renderKeyOverlay();   // keep key in sync
+    updateHints();
+  }
+
+  // Change listeners (normal case)
+  daqiInput?.addEventListener('change', () => { if (daqiInput.checked) applyGroupSelection('daqi'); });
+  aqsInput ?.addEventListener('change', () => { if (aqsInput.checked)  applyGroupSelection('aqs');  });
+
+  // Click listeners (covers “already-checked” case)
+  daqiInput?.addEventListener('click', () => applyGroupSelection('daqi'));
+  aqsInput ?.addEventListener('click', () => applyGroupSelection('aqs'));
+
+  // Default reflect current state
+  if (!root.querySelector(`input[name="${radioName}"]:checked`)) {
+    daqiInput.checked = true;
+    applyGroupSelection('daqi');
+  } else {
+    updateHints();
+  }
+
   renderDaqiToggle(root, mount, radioName);
 }
+
 
 function renderPollutants() {
   mount.innerHTML = `
@@ -915,17 +939,27 @@ function renderPollutants() {
       btn.classList.toggle('is-active', !!pressed);
     }
 
-    function showMode(mode) {
-      if (mode === 'groups') {
-        setPressed(extBtn, true);
-        setPressed(depthBtn, false);
-        renderGroups();
-      } else {
-        setPressed(extBtn, false);
-        setPressed(depthBtn, true);
-        renderPollutants();
-      }
-    }
+   function showMode(mode) {
+  if (mode === 'groups') {
+    setPressed(extBtn, true);
+    setPressed(depthBtn, false);
+    renderGroups();
+
+    // NEW: re-apply current group selection (or DAQI by default)
+    const checked = root.querySelector(`input[name="${radioName}"]:checked`);
+    const kind = checked?.value === 'gases' ? 'aqs' : 'daqi';
+    // Fire the same path the click uses:
+    const target = kind === 'aqs'
+      ? root.querySelector(`#${radioName}-group-gases`)
+      : root.querySelector(`#${radioName}-group-particulates`);
+    target?.dispatchEvent(new Event('click', { bubbles: true }));
+  } else {
+    setPressed(extBtn, false);
+    setPressed(depthBtn, true);
+    renderPollutants();
+  }
+}
+
 
     // Wire up clicks (and keyboard activation since these are <button>)
     extBtn.addEventListener('click', (e) => { e.preventDefault(); showMode('groups'); });
@@ -936,6 +970,8 @@ function renderPollutants() {
     showMode(initialMode);
   }
 })();
+
+
 
 // Add a small features block with the DAQI toggle (appended under the radios)
 function renderDaqiToggle(root, mount, radioName) {
@@ -967,10 +1003,11 @@ function renderDaqiToggle(root, mount, radioName) {
 
   const cb = root.querySelector(`#${id}`);
   cb?.addEventListener('change', () => {
-    colourByDaqi = !!cb.checked;
-    updateAllMarkers(); // recolour + show/hide numbers
-    renderLegendPanel();    //
-  });
+  colourByDaqi = !!cb.checked;
+  updateAllMarkers();
+  renderKeyOverlay();          // <-- add this
+});
+
 }
 
 

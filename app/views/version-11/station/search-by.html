@@ -1,0 +1,492 @@
+{% extends "layouts/data-selector-mvp.html" %}
+
+{% set pageName="Search by location" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "Beta" },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
+  Back
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Search by location</h1>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+        <div id="location-hint" class="govuk-hint">Select one option</div>
+
+        <div class="govuk-radios" data-module="govuk-radios">
+          <!-- Countries -->
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="location-2"
+                   name="location"
+                   type="radio"
+                   value="countries"
+                   data-aria-controls="conditional-location-2">
+            <label class="govuk-label govuk-radios__label" for="location-2">Town or postcode</label>
+            <div class="govuk-hint govuk-radios__hint">
+            For locations in Northern Ireland, you can only search by postcode. 
+            </div>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+          <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contactByEmail" type="email" spellcheck="false" autocomplete="email">
+        </div>
+          </div>
+
+          <!-- Local authority -->
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="location-4"
+                   name="location"
+                   type="radio"
+                   value="la"
+                   data-aria-controls="conditional-location-4">
+            <label class="govuk-label govuk-radios__label" for="location-4">Local authority</label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
+            <div class="govuk-form-group">
+              <!-- Inline error will be inserted just before this container -->
+              <div id="autocomplete-container" class="govuk-body"></div>
+
+            
+            </div>
+
+            <table class="govuk-table govuk-!-margin-top-4" id="location-table" hidden>
+              <caption class="govuk-table__caption govuk-table__caption--m">Added local authorities</caption>
+              <tbody class="govuk-table__body"></tbody>
+            </table>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Continue",
+        href: "results-b2-4qa.html"
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+<!-- Page script (enforces "select from list" + no duplicates with inline errors) -->
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ------- SETTINGS -------
+  const INPUT_SELECTOR = '#my-autocomplete'; // must match the id used by accessible-autocomplete
+  const KEY_COUNTRIES = 'selectedCountries';
+  const KEY_LA_LIST   = 'selectedLocations';
+  const MAX_LAS = 10;
+
+  // ------- ERROR SUMMARY (new) -------
+  function ensureErrorSummaryRoot() {
+    let root = document.getElementById('page-error-summary');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'page-error-summary';
+      const h1 = document.querySelector('.govuk-heading-l');
+      if (h1 && h1.parentNode) {
+        h1.parentNode.insertBefore(root, h1); // place ABOVE the H1
+      } else {
+        document.body.insertBefore(root, document.body.firstChild);
+      }
+    }
+    return root;
+  }
+
+  function showErrorSummary(items) {
+    // items: [{ text: 'message', href: '#fieldId' }]
+    const root = ensureErrorSummaryRoot();
+    root.innerHTML = `
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary" tabindex="-1">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            ${items.map(i => `<li><a href="${i.href}">${i.text}</a></li>`).join('')}
+          </ul>
+        </div>
+      </div>`;
+    root.querySelector('.govuk-error-summary')?.focus?.();
+  }
+
+  function clearErrorSummary() {
+    const root = document.getElementById('page-error-summary');
+    if (root) root.innerHTML = '';
+  }
+
+  // ------- ALLOWED LIST HELPERS -------
+  function getAllowedLAsRaw() {
+    try {
+      const raw = sessionStorage.getItem('allLocalAuthorities');
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length) return arr;
+      }
+    } catch {}
+    if (Array.isArray(window.ALL_LOCAL_AUTHORITIES) && window.ALL_LOCAL_AUTHORITIES.length) {
+      return window.ALL_LOCAL_AUTHORITIES.slice();
+    }
+    return [];
+  }
+  function isAllowedLA(value) {
+    const arr = getAllowedLAsRaw();
+    if (!arr.length) return false;
+    const set = new Set(arr.map(s => String(s).toLowerCase().trim()));
+    return set.has(String(value || '').toLowerCase().trim());
+  }
+
+  // ------- ELEMENTS -------
+  const submitButton = document.getElementById('add-location-button');
+  const addMoreButton = document.getElementById('add-more-locations-button');
+
+  const table = document.getElementById('location-table');
+  const tableBody = table.querySelector('tbody');
+
+  const countriesRadio = document.getElementById('location-2');
+  const laRadio = document.getElementById('location-4');
+  const countriesConditional = document.getElementById('conditional-location-2');
+  const laConditional = document.getElementById('conditional-location-4');
+
+  const modeFieldset = document.getElementById('location-mode-fieldset') || document.querySelector('fieldset[aria-describedby="location-hint"]');
+
+  // Inline-error target within LA conditional
+  const laFormGroup =
+    document.querySelector('#conditional-location-4 .govuk-form-group') ||
+    document.getElementById('conditional-location-4');
+
+  // Inline-error target for Countries (fallbacks supported)
+  const countriesFormGroup =
+    document.getElementById('countries-form-group') ||
+    document.querySelector('#conditional-location-2 .govuk-form-group') ||
+    document.getElementById('conditional-location-2');
+
+  // ------- INLINE ERROR HELPERS (reuseable) -------
+  function ensureInlineError(container, id) {
+    container.classList.add('govuk-form-group--error');
+    let err = container.querySelector('#' + id);
+    if (!err) {
+      err = document.createElement('p');
+      err.id = id;
+      err.className = 'govuk-error-message';
+      const before =
+        container.querySelector('#autocomplete-container') ||
+        container.querySelector('.govuk-checkboxes, .govuk-radios') ||
+        container.firstChild;
+      container.insertBefore(err, before);
+    }
+    return err;
+  }
+
+  function showLAInlineError(message) {
+    if (!laFormGroup) return;
+    const err = ensureInlineError(laFormGroup, 'la-error');
+    err.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
+
+    const input = document.querySelector(INPUT_SELECTOR);
+    if (input) {
+      input.setAttribute('aria-invalid', 'true');
+      const described = (input.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      if (!described.includes('la-error')) {
+        input.setAttribute('aria-describedby', [...described, 'la-error'].join(' '));
+      }
+    }
+  }
+
+  function clearLAInlineError() {
+    if (!laFormGroup) return;
+    laFormGroup.classList.remove('govuk-form-group--error');
+    const err = laFormGroup.querySelector('#la-error');
+    if (err) err.remove();
+
+    const input = document.querySelector(INPUT_SELECTOR);
+    if (input) {
+      input.removeAttribute('aria-invalid');
+      const described = (input.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      const pruned = described.filter(x => x !== 'la-error');
+      if (pruned.length) input.setAttribute('aria-describedby', pruned.join(' '));
+      else input.removeAttribute('aria-describedby');
+    }
+  }
+
+  function showCountriesInlineError(message) {
+    if (!countriesFormGroup) return;
+    const err = ensureInlineError(countriesFormGroup, 'countries-error');
+    err.innerHTML = '<span class="govuk-visually-hidden">Error:</span> ' + message;
+  }
+
+  function clearCountriesInlineError() {
+    if (!countriesFormGroup) return;
+    countriesFormGroup.classList.remove('govuk-form-group--error');
+    const err = countriesFormGroup.querySelector('#countries-error');
+    if (err) err.remove();
+  }
+
+  // ------- INPUT LISTENERS (clear errors as user interacts) -------
+  ;(function attachInputListeners() {
+    const input = document.querySelector(INPUT_SELECTOR);
+    if (input) {
+      input.addEventListener('input', () => { clearLAInlineError(); clearErrorSummary(); });
+      input.addEventListener('change', () => { clearLAInlineError(); clearErrorSummary(); });
+      input.addEventListener('blur', (e) => { if (!(e.target.value || '').trim()) { clearLAInlineError(); clearErrorSummary(); }});
+    }
+
+    // Clear summary/inline when switching top-level radios
+    document.querySelectorAll('input[name="location"]').forEach(r => {
+      r.addEventListener('change', () => {
+        clearErrorSummary();
+        clearCountriesInlineError();
+        clearLAInlineError();
+      });
+    });
+
+    // Clear summary/inline when toggling country checkboxes
+    document.querySelectorAll('#conditional-location-2 input[name="country"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        clearCountriesInlineError();
+        clearErrorSummary();
+      });
+    });
+  })();
+
+  // ------- STATE -------
+  let count = 0;
+  const addedLocations = new Set(); // lowercased
+
+  function updateAddButtonLabel() {
+    if (!addMoreButton) return;
+    addMoreButton.textContent = tableBody.children.length === 0
+      ? 'Add local authority'
+      : 'Add another local authority';
+  }
+
+  function addLocationRow(value) {
+    count++;
+    addedLocations.add(value.toLowerCase());
+
+    const row = document.createElement('tr');
+    row.className = 'govuk-table__row';
+
+    const headerCell = document.createElement('th');
+    headerCell.scope = 'row';
+    headerCell.className = 'govuk-table__header';
+    headerCell.textContent = 'Local authority ' + count;
+
+    const valueCell = document.createElement('td');
+    valueCell.className = 'govuk-table__cell';
+    valueCell.textContent = value;
+
+    const actionCell = document.createElement('td');
+    actionCell.className = 'govuk-table__cell';
+
+    const removeLink = document.createElement('a');
+    removeLink.href = '#';
+    removeLink.className = 'govuk-link';
+    removeLink.textContent = 'Remove';
+
+    removeLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      row.remove();
+      addedLocations.delete(value.toLowerCase());
+      if (tableBody.children.length === 0) {
+        table.hidden = true;
+        count = 0;
+      }
+      clearLAInlineError();
+      clearErrorSummary();
+      updateAddButtonLabel();
+    });
+
+    actionCell.appendChild(removeLink);
+    row.appendChild(headerCell);
+    row.appendChild(valueCell);
+    row.appendChild(actionCell);
+    tableBody.appendChild(row);
+
+    table.hidden = false;
+    updateAddButtonLabel();
+  }
+
+  // ------- RESTORE FROM SESSION -------
+  const savedCountries = sessionStorage.getItem(KEY_COUNTRIES);
+  const savedLAList = sessionStorage.getItem(KEY_LA_LIST);
+  const savedUK = sessionStorage.getItem('selectedLocation'); // legacy single value
+
+  if (savedCountries) {
+    countriesRadio.checked = true;
+    countriesConditional.classList.remove('govuk-radios__conditional--hidden');
+  } else if (savedLAList) {
+    laRadio.checked = true;
+    laConditional.classList.remove('govuk-radios__conditional--hidden');
+    try {
+      const locations = JSON.parse(savedLAList);
+      locations.slice(0, MAX_LAS).forEach(value => addLocationRow(value)); // restore up to 10
+    } catch {}
+  } else if (savedUK === 'United Kingdom') {
+    countriesRadio.checked = true;
+    countriesConditional.classList.remove('govuk-radios__conditional--hidden');
+    ['country-england','country-scotland','country-wales','country-ni'].forEach(id => {
+      const cb = document.getElementById(id);
+      if (cb) cb.checked = true;
+    });
+  }
+
+  laRadio.addEventListener('change', updateAddButtonLabel);
+  updateAddButtonLabel();
+
+  // ------- ADD MORE (inline validation + summary + limit check) -------
+  if (addMoreButton) {
+    addMoreButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const current = tableBody.children.length;
+      if (current >= MAX_LAS) {
+        showLAInlineError('You can only add up to 10 local authorities');
+        showErrorSummary([{ text: 'You can only add up to 10 local authorities', href: INPUT_SELECTOR }]);
+        return;
+      }
+
+      const input = document.querySelector(INPUT_SELECTOR);
+      if (!input) return;
+
+      const value = (input.value || '').trim();
+      const lower = value.toLowerCase();
+
+      if (!value) {
+        showLAInlineError('Enter a local authority');
+        showErrorSummary([{ text: 'Enter a local authority', href: INPUT_SELECTOR }]);
+        return;
+      }
+      if (!isAllowedLA(value)) {
+        if (getAllowedLAsRaw().length === 0) {
+          showLAInlineError('The local authority list is still loading. Try again in a moment, or select from the suggestions.');
+          showErrorSummary([{ text: 'The local authority list is still loading. Try again in a moment, or select from the suggestions.', href: INPUT_SELECTOR }]);
+        } else {
+          showLAInlineError('Select a local authority from the list');
+          showErrorSummary([{ text: 'Select a local authority from the list', href: INPUT_SELECTOR }]);
+        }
+        return;
+      }
+      if (addedLocations.has(lower)) {
+        showLAInlineError('This local authority has already been added');
+        showErrorSummary([{ text: 'This local authority has already been added', href: INPUT_SELECTOR }]);
+        return;
+      }
+
+      clearLAInlineError();
+      clearErrorSummary();
+      addLocationRow(value);
+      input.value = '';
+    });
+  }
+
+  // ------- SUBMIT -------
+  submitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const selectedRadio = document.querySelector('input[name="location"]:checked');
+
+    // No top-level radio: show ONLY summary (no inline for fieldset)
+    if (!selectedRadio) {
+      clearCountriesInlineError();
+      clearLAInlineError();
+      showErrorSummary([{ text: 'Please select an option before continuing', href: '#location-2' }]);
+      const first = document.getElementById('location-2') || document.getElementById('location-4');
+      if (first) first.focus();
+      return;
+    } else {
+      clearErrorSummary();
+    }
+
+    // Clear mutually exclusive keys
+    sessionStorage.removeItem('selectedLocation');
+    sessionStorage.removeItem(KEY_LA_LIST);
+    sessionStorage.removeItem(KEY_COUNTRIES);
+
+    if (selectedRadio.id === 'location-2') {
+      const checked = Array.from(document.querySelectorAll('input[name="country"]:checked'))
+        .map(cb => cb.value.trim());
+      if (checked.length === 0) {
+        showCountriesInlineError('Select at least one country');
+        showErrorSummary([{ text: 'Select at least one country', href: '#country-england' }]);
+        return;
+      }
+      clearCountriesInlineError();
+      clearErrorSummary();
+      sessionStorage.setItem(KEY_COUNTRIES, JSON.stringify(checked));
+
+    } else if (selectedRadio.id === 'location-4') {
+      let locations = [];
+
+      if (!table.hidden && tableBody.children.length > 0) {
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+          const name = row.querySelector('td')?.textContent?.trim();
+          if (name) locations.push(name);
+        });
+      } else {
+        const input = document.querySelector(INPUT_SELECTOR);
+        const value = (input && input.value.trim()) || '';
+        if (!value) {
+          showLAInlineError('Add at least one local authority');
+          showErrorSummary([{ text: 'Add at least one local authority', href: INPUT_SELECTOR }]);
+          return;
+        }
+        if (!isAllowedLA(value)) {
+          showLAInlineError('Select a local authority from the list');
+          showErrorSummary([{ text: 'Select a local authority from the list', href: INPUT_SELECTOR }]);
+          return;
+        }
+        locations.push(value);
+      }
+
+      if (locations.length > MAX_LAS) {
+        showLAInlineError('You can only add up to 10 local authorities');
+        showErrorSummary([{ text: 'You can only add up to 10 local authorities', href: INPUT_SELECTOR }]);
+        return;
+      }
+
+      // Final de-dupe + re-validate
+      const unique = [];
+      const seen = new Set();
+      for (const v of locations) {
+        const l = v.toLowerCase();
+        if (!isAllowedLA(v)) {
+          showLAInlineError('Select a local authority from the list');
+          showErrorSummary([{ text: 'Select a local authority from the list', href: INPUT_SELECTOR }]);
+          return;
+        }
+        if (seen.has(l)) {
+          showLAInlineError('This local authority has already been added');
+          showErrorSummary([{ text: 'This local authority has already been added', href: INPUT_SELECTOR }]);
+          return;
+        }
+        seen.add(l);
+        unique.push(v);
+      }
+
+      clearLAInlineError();
+      clearErrorSummary();
+      sessionStorage.setItem(KEY_LA_LIST, JSON.stringify(unique));
+    }
+
+    // Back to summary
+    window.location.href = 'create-pollutant.html';
+  });
+});
+</script>
+
+{% endblock %}
