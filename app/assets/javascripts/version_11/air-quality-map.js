@@ -36,7 +36,7 @@ const mockStations = [
   { id: 24, name: "Derby St Alkmund's Way", lat: 52.926, lng: -1.478, authority: "Derby City Council", pollutants: ["PM10","NO2"], status: "closed", daqi: null, siteType: "Urban traffic", startDate: "1996-01-01", endDate: "2024-12-31" },
   { id: 25, name: "Wolverhampton Centre", lat: 52.585, lng: -2.129, authority: "Wolverhampton City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 4, siteType: "Urban background", startDate: "2001-05-01" },
   { id: 26, name: "Stoke-on-Trent", lat: 53.002, lng: -2.179, authority: "Stoke-on-Trent City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2004-01-01" },
-  { id: 71, name: "Birmingham A4540 Roadside", lat: 52.476, lng: -1.874, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 3, siteType: "Urban traffic", startDate: "2016-09-09" },
+  { id: 71, name: "Birmingham A4540 Roadside", lat: 52.476, lng: -1.874, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 4, siteType: "Urban traffic", startDate: "2016-09-09" },
 
   // --- NORTH WEST / YORKS & HUMBER ---
   { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2003-08-01" },
