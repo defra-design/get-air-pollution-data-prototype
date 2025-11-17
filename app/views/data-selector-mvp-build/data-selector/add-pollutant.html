@@ -603,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!selectedMode) {
         // ensure any previous inline on the fieldset is removed, just in case
         clearInlineError({ containerSelector: '#mode-fieldset', inputSelector: '#mode-specific' });
-        showErrorSummary([{ text: 'Please select an option before continuing', href: '#mode-specific' }]);
+        showErrorSummary([{ text: 'Select an option before continuing', href: '#mode-specific' }]);
         return;
       } else {
         clearErrorSummary();
