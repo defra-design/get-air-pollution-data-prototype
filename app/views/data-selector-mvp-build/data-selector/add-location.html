@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!selectedRadio) {
       clearCountriesInlineError();
       clearLAInlineError();
-      showErrorSummary([{ text: 'Please select an option before continuing', href: '#location-2' }]);
+      showErrorSummary([{ text: 'Select an option before continuing', href: '#location-2' }]);
       const first = document.getElementById('location-2') || document.getElementById('location-4');
       if (first) first.focus();
       return;
