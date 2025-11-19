@@ -1,5 +1,7 @@
 {% extends "layouts/data-selector-mvp.html" %}
 
+{% set pageName="Add pollutant(s)" %}
+
 {% block beforeContent %}
 {{ govukPhaseBanner({
   tag: { text: "Beta" },
@@ -39,7 +41,7 @@
              <!--  <div class="govuk-hint">Add up to 10 pollutants</div> -->
 
               <!-- Autocomplete target + input -->
-              <div id="autocomplete-container-p" class="govuk-body"></div>
+              <div id="autocomplete-container-p" label="Enter a pollutant" class="govuk-body"></div>
 
               <div class="govuk-button-group govuk-!-margin-top-3">
                 {{ govukButton({
