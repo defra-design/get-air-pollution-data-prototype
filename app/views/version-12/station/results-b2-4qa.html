@@ -1,0 +1,144 @@
+{% extends "layouts/v11.html" %}
+
+{% set pageName="Monitoring stations within 5 miles of B2 4QA
+- Get air pollution data - GOV.UK" %}
+
+<!-- {% block head %}
+  {{ super() }}
+  <meta property="og:title" content="Monitoring stations within 5 miles of B2 4QA - Get air pollution data - GOV.UK">
+  <meta name="description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+  <meta name="og:description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
+{% endblock %}
+ -->
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
+  Back
+</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Monitoring stations within 50 miles of Birmingham
+    </h1>
+    <p class="govuk-body govuk-!-margin-top-3"><a href="search.html" class="govuk-link">Change search area</a></p>
+      <a href="../map.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
+                <span class="aq-button-secondary__icon">
+                  <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="aq-button-secondary__text">
+                  View map of nearby monitoring stations</span>
+                  <span class="govuk-visually-hidden">
+                  (Visual only)
+                </span>
+              </a>
+</div>
+</div>
+
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+       
+                <th class="govuk-table__header" scope="col" style="width: 50%;">Monitoring station</th>
+                 
+                  <th class="govuk-table__header" scope="col" style="width: 35%;">Site type</th>
+                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="width: 15%;">Pollutants</th>
+          
+                
+    
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body" >
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link">Birmingham A4540 Roadside</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">1.1 miles away</span>
+                  </th>
+                  <td class="govuk-table__cell">
+                    urban traffic
+                  </td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">1.2 miles away</span>
+            
+            
+                  </th>
+  
+              
+  
+                  <td class="govuk-table__cell">
+                    urban background
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide
+                    
+                  </td>
+                  
+                </tr>
+                <tr class="govuk-table__row">
+                
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">2.3 miles away</span>
+                 
+                
+                  </th>
+  
+                 
+  
+                  <td class="govuk-table__cell">
+                    urban background
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>ozone</td>
+
+                  
+                </tr>
+
+                
+                <tr class="govuk-table__row">
+               
+                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
+                    <span style="font-weight: normal; display: block; margin-top: 2px;">2.5 miles away</span>
+              
+              
+                  </th>
+  
+                  
+  
+                  <td class="govuk-table__cell">
+                    urban traffic
+                  </td>
+  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide</td>
+                 
+     
+                </tr>
+               
+                
+              </tbody>
+            </table>
+          
+
+      
+      
+     
+  
+      </div>
+    </div>
+
+  
+
+{% endblock %}

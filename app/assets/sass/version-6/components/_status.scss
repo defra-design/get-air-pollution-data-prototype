@@ -78,3 +78,15 @@
     @include govuk-responsive-margin(3, 'top');
     margin-bottom:5px;
 }
+
+.not-verified {
+border-left: 10px solid #f47738; background-color: #f9e2d7;
+}
+
+.half-verified {
+
+}
+
+.verified {
+    
+}

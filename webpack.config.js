@@ -42,7 +42,14 @@ module.exports = {
    autocomplete_la_11 :   './app/assets/javascripts/version_11/components/accessible-autocomplete.js',
 
     // Air Quality Map
-    AQ_map : './app/assets/javascripts/version_11/air-quality-map.js'
+    AQ_map : './app/assets/javascripts/version_11/air-quality-map.js',
+
+      // Version 12
+      autocomplete_p_12 :   './app/assets/javascripts/version_12/components/accessible-autocomplete-p-v8.js',
+      autocomplete_la_12 :   './app/assets/javascripts/version_12/components/accessible-autocomplete.js',
+
+      // Air Quality Map
+      AQ_map_12 : './app/assets/javascripts/version_12/air-quality-map.js'
    },
     // Adjust if your entry file has a different path
   output: {

@@ -1,0 +1,87 @@
+{% extends "layouts/v11.html" %}
+
+{% set pageName="Search by location" %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "Beta" },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
+  Back
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Search by location</h1>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+        <div id="location-hint" class="govuk-hint">Select one option</div>
+
+        <div class="govuk-radios" data-module="govuk-radios">
+          <!-- Countries -->
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="location-2"
+                   name="location"
+                   type="radio"
+                   value="countries"
+                   data-aria-controls="conditional-location-2">
+            <label class="govuk-label govuk-radios__label" for="location-2">Town or postcode</label>
+            <div class="govuk-hint govuk-radios__hint">
+            For locations in Northern Ireland, you can only search by postcode. 
+            </div>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+          <div class="govuk-form-group">
+          <label class="govuk-label" for="contact-by-email">
+          </label>
+          <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contactByEmail" type="email" spellcheck="false" autocomplete="email">
+        </div>
+          </div>
+
+          <!-- Local authority -->
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="location-4"
+                   name="location"
+                   type="radio"
+                   value="la"
+                   data-aria-controls="conditional-location-4">
+            <label class="govuk-label govuk-radios__label" for="location-4">Local authority</label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
+            <div class="govuk-form-group">
+              <!-- Inline error will be inserted just before this container -->
+              <div id="autocomplete-container" class="govuk-body"></div>
+
+            
+            </div>
+
+            <table class="govuk-table govuk-!-margin-top-4" id="location-table" hidden>
+              <caption class="govuk-table__caption govuk-table__caption--m">Added local authorities</caption>
+              <tbody class="govuk-table__body"></tbody>
+            </table>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Continue",
+        href: "results-b2-4qa.html"
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}
