@@ -1,4 +1,4 @@
-{% extends "layouts/v11.html" %}
+{% extends "layouts/v12.html" %}
 
 {% set pageName="Search by location" %}
 
@@ -7,7 +7,7 @@
   tag: { text: "Beta" },
   html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
 }) }}
-<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
+<a href="../hub.html" class="govuk-back-link">
   Back
 </a>
 {% endblock %}
@@ -73,15 +73,35 @@
       </fieldset>
     </div>
 
-    <div class="govuk-button-group">
-      {{ govukButton({
-        text: "Continue",
-        href: "results-b2-4qa.html"
-      }) }}
-    </div>
+<p class="govuk-body govuk-!-margin-bottom-6"><a href="../map.html" class="govuk-link">Skip to map</a></p>
+    
+  {{ govukButton({
+  text: "Continue",
+  classes: "govuk-button",
+  attributes: { id: "continue-button", type: "button" }
+}) }}
+
 
   </div>
 </div>
+
+<script>
+  document.getElementById("continue-button").addEventListener("click", function () {
+    const selected = document.querySelector('input[name="location"]:checked');
+
+    if (!selected) {
+      // Let GOV.UK validation handle this if needed
+      alert("Select a location option before continuing");
+      return;
+    }
+
+    if (selected.value === "countries") {
+      window.location.href = "results-b2-4qa.html";
+    } else if (selected.value === "la") {
+      window.location.href = "birmingham-la.html";
+    }
+  });
+</script>
 
 
 {% endblock %}

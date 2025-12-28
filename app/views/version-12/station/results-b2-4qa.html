@@ -1,15 +1,7 @@
-{% extends "layouts/v11.html" %}
+{% extends "layouts/v12.html" %}
 
 {% set pageName="Monitoring stations within 5 miles of B2 4QA
 - Get air pollution data - GOV.UK" %}
-
-<!-- {% block head %}
-  {{ super() }}
-  <meta property="og:title" content="Monitoring stations within 5 miles of B2 4QA - Get air pollution data - GOV.UK">
-  <meta name="description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
-  <meta name="og:description" content="Find monitoring stations by location. Enter a town or postcode and choose an approximate search area.">
-{% endblock %}
- -->
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -18,11 +10,9 @@
   },
   html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
 }) }}
-<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
-  Back
+<a href="search-by.html" class="govuk-back-link">Back</a> 
 </a>
 {% endblock %}
-
 
 {% block content %}
 
@@ -31,114 +21,683 @@
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
       Monitoring stations within 50 miles of Birmingham
     </h1>
-    <p class="govuk-body govuk-!-margin-top-3"><a href="search.html" class="govuk-link">Change search area</a></p>
-      <a href="../map.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
-                <span class="aq-button-secondary__icon">
-                  <svg focusable="false" width="15" height="20" viewBox="0 0 15 20"><path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
-                  </svg>
-                </span>
-                <span class="aq-button-secondary__text">
-                  View map of nearby monitoring stations</span>
-                  <span class="govuk-visually-hidden">
-                  (Visual only)
-                </span>
-              </a>
+
+<!--     <p class="govuk-body govuk-!-margin-top-3">
+      <a href="search.html" class="govuk-link">Change search area</a>
+    </p>
+ -->
+    <a href="../map.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
+      <span class="aq-button-secondary__icon">
+        <svg focusable="false" width="15" height="20" viewBox="0 0 15 20">
+          <path d="M15,7.5c0.009,3.778 -4.229,9.665 -7.5,12.5c-3.271,-2.835 -7.509,-8.722 -7.5,-12.5c0,-4.142 3.358,-7.5 7.5,-7.5c4.142,0 7.5,3.358 7.5,7.5Zm-7.5,5.461c3.016,0 5.461,-2.445 5.461,-5.461c0,-3.016 -2.445,-5.461 -5.461,-5.461c-3.016,0 -5.461,2.445 -5.461,5.461c0,3.016 2.445,5.461 5.461,5.461Z" fill="currentColor"></path>
+        </svg>
+      </span>
+      <span class="aq-button-secondary__text">
+        View map of nearby monitoring stations
+      </span>
+      <span class="govuk-visually-hidden">
+        (Visual only)
+      </span>
+    </a>
+  </div>
 </div>
-</div>
 
+{# --- Filters + results --- #}
 
-            <table class="govuk-table">
-              <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-       
-                <th class="govuk-table__header" scope="col" style="width: 50%;">Monitoring station</th>
-                 
-                  <th class="govuk-table__header" scope="col" style="width: 35%;">Site type</th>
-                  <th class="govuk-table__header govuk-table__header--numeric" scope="col" style="width: 15%;">Pollutants</th>
-          
-                
-    
-                </tr>
-              </thead>
-              <tbody class="govuk-table__body" >
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header"><strong><a href="station" class="govuk-link">Birmingham A4540 Roadside</a></strong>
-                    <span style="font-weight: normal; display: block; margin-top: 2px;">1.1 miles away</span>
-                  </th>
-                  <td class="govuk-table__cell">
-                    urban traffic
-                  </td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide</td>
-                </tr>
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
-                    <span style="font-weight: normal; display: block; margin-top: 2px;">1.2 miles away</span>
-            
-            
-                  </th>
-  
-              
-  
-                  <td class="govuk-table__cell">
-                    urban background
-                  </td>
-  
-                  <td class="govuk-table__cell govuk-table__cell--numeric">PM2.5<br> PM10<br> nitrogen dioxide<br> ozone<br> sulphur dioxide
-                    
-                  </td>
-                  
-                </tr>
-                <tr class="govuk-table__row">
-                
-                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">West Bromwich Kenrick Park</a></strong>
-                    <span style="font-weight: normal; display: block; margin-top: 2px;">2.3 miles away</span>
-                 
-                
-                  </th>
-  
-                 
-  
-                  <td class="govuk-table__cell">
-                    urban background
-                  </td>
-  
-                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide<br>ozone</td>
+<details class="govuk-details govuk-!-margin-top-6 govuk-!-margin-bottom-7" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Filter stations by pollutants
+    </span>
+  </summary>
+  <div class="govuk-details__text">
 
-                  
-                </tr>
+    <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Change pollutants</h4>
 
-                
-                <tr class="govuk-table__row">
-               
-                  <th scope="row" class="govuk-table__header"><strong><a href="#" class="govuk-link">Oldbury Birmingham Road</a></strong>
-                    <span style="font-weight: normal; display: block; margin-top: 2px;">2.5 miles away</span>
-              
-              
-                  </th>
-  
-                  
-  
-                  <td class="govuk-table__cell">
-                    urban traffic
-                  </td>
-  
-                  <td class="govuk-table__cell govuk-table__cell--numeric">nitrogen dioxide</td>
-                 
-     
-                </tr>
-               
-                
-              </tbody>
-            </table>
-          
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="pollutant-filter-hint">
+        <legend class="govuk-visually-hidden">
+          Choose which pollutants to show in the tables
+        </legend>
 
-      
-      
-     
-  
-      </div>
+        <div id="pollutant-filter-hint" class="govuk-hint">
+          Choose which pollutants the stations should monitor.
+        </div>
+
+        <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="pollutant-filter-all"
+                   name="pollutant-filter"
+                   type="radio"
+                   value="all"
+                   checked>
+            <label class="govuk-label govuk-radios__label" for="pollutant-filter-all">
+              All pollutants
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="pollutant-filter-daqi"
+                   name="pollutant-filter"
+                   type="radio"
+                   value="daqi">
+            <label class="govuk-label govuk-radios__label" for="pollutant-filter-daqi">
+              Daily Air Quality Index pollutants
+            </label>
+            <div class="govuk-hint govuk-radios__hint">
+              fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide (NO2), ozone (O3) and sulphur dioxide (SO2)
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="pollutant-filter-hydrocarbons"
+                   name="pollutant-filter"
+                   type="radio"
+                   value="hydrocarbons">
+            <label class="govuk-label govuk-radios__label" for="pollutant-filter-hydrocarbons">
+              Hydrocarbons
+            </label>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="pollutant-filter-heavy-metals"
+                   name="pollutant-filter"
+                   type="radio"
+                   value="heavy-metals">
+            <label class="govuk-label govuk-radios__label" for="pollutant-filter-heavy-metals">
+              Heavy metals
+            </label>
+          </div>
+
+        </div>
+      </fieldset>
     </div>
 
-  
+    <button class="govuk-button govuk-button--secondary"
+            data-module="govuk-button"
+            type="button"
+            id="pollutant-filter-apply">
+      Apply filter
+    </button>
+
+  </div>
+</details>
+
+<div id="no-stations-message" class="govuk-inset-text" hidden>
+  No monitoring stations match your current filter. Try selecting a different pollutant option.
+</div>
+
+<div class="govuk-tabs govuk-!-margin-top-3" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">Stations overview</h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#near-real-time">
+        Near real-time data (Defra)
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#other-defra">
+        Other data (Defra)
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#la-data">
+        Local authority data
+      </a>
+    </li>
+  </ul>
+
+  {# TAB 1: Near real-time data (Defra) #}
+  <div class="govuk-tabs__panel" id="near-real-time">
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
+      Near real-time data (Defra)
+    </h3>
+
+    <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+      <thead class="defra-aq-levels-table__head">
+        <tr class="defra-aq-levels-table__row">
+
+          <th scope="col"
+              class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title"
+              style="width: 30%;">
+            Station
+          </th>
+
+          <th scope="col"
+              class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title"
+              style="width: 20%;">
+            Site type
+          </th>
+
+          <th scope="col"
+              class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title"
+              style="width: 25%;">
+            Pollutants
+          </th>
+
+          <th scope="col"
+              class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title"
+              style="width: 15%;">
+            <div class="defra-toggletip"
+                 data-toggletip
+                 data-toggletip-label="More information about the Daily Air Quality Index (DAQI)"
+                 data-toggletip-content="The Daily Air Quality Index (DAQI) is a simple 10-point scale designed to help people understand the short-term risk of air pollution.">
+              DAQI
+            </div>
+          </th>
+
+        </tr>
+      </thead>
+
+      <tbody class="defra-aq-levels-table__body">
+
+        <!-- Birmingham A4540 Roadside – AURN (DAQI) -->
+        <tr class="defra-aq-levels-table__row js-pollutant-row"
+            data-pollutant-groups="daqi">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+            <a href="#" class="govuk-link">Birmingham A4540 Roadside</a>
+            <div class="govuk-hint defra-aq-levels-table__cell--data aq-network-meta">
+              Automatic Urban and Rural Network
+            </div>
+            <span style="display: block; margin-top: 2px;">
+              <strong class="govuk-tag govuk-tag--blue">Active</strong>
+            </span>
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+            Urban traffic
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+            PM2.5<br>
+            PM10<br>
+            nitrogen dioxide<br>
+            Nitrogen oxides as NO2<br>
+            ozone
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+            <strong class="govuk-tag govuk-tag--yellow">4 (moderate)</strong>
+          </td>
+        </tr>
+
+        <!-- Birmingham A4540 Roadside – Automatic Hydrocarbon Network (hydrocarbons) -->
+        <tr class="defra-aq-levels-table__row js-pollutant-row"
+            data-pollutant-groups="hydrocarbons">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+            <a href="#" class="govuk-link">Birmingham A4540 Roadside</a>
+            <div class="govuk-hint defra-aq-levels-table__cell--data aq-network-meta">
+              Automatic Hydrocarbon Network
+            </div>
+            <span style="display: block; margin-top: 2px;">
+              <strong class="govuk-tag govuk-tag--blue">Active</strong>
+            </span>
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+            Urban traffic
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+            benzene
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+            Not applicable
+          </td>
+        </tr>
+
+        <!-- Birmingham Hall Green – DAQI -->
+        <tr class="defra-aq-levels-table__row js-pollutant-row"
+            data-pollutant-groups="daqi">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+            <a href="#" class="govuk-link">Birmingham Hall Green</a>
+            <div class="govuk-hint defra-aq-levels-table__cell--data aq-network-meta">
+              Automatic Urban and Rural Network
+            </div>
+            <span style="display: block; margin-top: 2px;">
+              <strong class="govuk-tag govuk-tag--blue">Active</strong>
+            </span>
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+            Urban background
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+            PM2.5<br>
+            PM10<br>
+            nitrogen dioxide<br>
+            Nitrogen oxides as NO2<br>
+            ozone
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+            <strong class="govuk-tag govuk-tag--green">2 (low)</strong>
+          </td>
+        </tr>
+
+        <!-- Birmingham Ladywood – DAQI -->
+        <tr class="defra-aq-levels-table__row js-pollutant-row"
+            data-pollutant-groups="daqi">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+            <a href="#" class="govuk-link">Birmingham Ladywood</a>
+            <div class="govuk-hint defra-aq-levels-table__cell--data aq-network-meta">
+              Automatic Urban and Rural Network
+            </div>
+            <span style="display: block; margin-top: 2px;">
+              <strong class="govuk-tag govuk-tag--blue">Active</strong>
+            </span>
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+            Urban background
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+            PM2.5<br>
+            PM10<br>
+            nitrogen dioxide<br>
+            Nitrogen oxides as NO2<br>
+            ozone
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+            <strong class="govuk-tag govuk-tag--green">2 (low)</strong>
+          </td>
+        </tr>
+
+        <!-- Birmingham University – DAQI -->
+        <tr class="defra-aq-levels-table__row js-pollutant-row"
+            data-pollutant-groups="daqi">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+            <a href="#" class="govuk-link">Birmingham University</a>
+            <div class="govuk-hint defra-aq-levels-table__cell--data aq-network-meta">
+              Automatic Urban and Rural Network
+            </div>
+            <span style="display: block; margin-top: 2px;">
+              <strong class="govuk-tag govuk-tag--blue">Active</strong>
+            </span>
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+            Urban background
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+            PM2.5<br>
+            PM10
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+            <strong class="govuk-tag govuk-tag--green">1 (low)</strong>
+          </td>
+        </tr>
+
+        <!-- Birmingham East – Hydrocarbons -->
+        <tr class="defra-aq-levels-table__row js-pollutant-row"
+            data-pollutant-groups="hydrocarbons">
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+            <a href="#" class="govuk-link">Birmingham East</a>
+            <div class="govuk-hint defra-aq-levels-table__cell--data aq-network-meta">
+              Automatic Hydrocarbon Network
+            </div>
+            <span style="display: block; margin-top: 2px;">
+              <strong class="govuk-tag govuk-tag--blue">Active</strong>
+            </span>
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+            Urban background
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+            benzene
+          </td>
+
+          <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+            Not applicable
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  {# TAB 2: Other data (Defra) – Birmingham networks like hydrocarbons / black carbon / Partisol #}
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="other-defra">
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
+      Other data (Defra)
+    </h3>
+
+    <table id="other-defra-table"
+           class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+      <thead class="defra-aq-levels-table__head">
+        <tr class="defra-aq-levels-table__row">
+          <th class="defra-aq-levels-table__cell"
+              scope="col"
+              style="width: 50%;">Monitoring station</th>
+          <th class="defra-aq-levels-table__cell"
+              scope="col"
+              style="width: 35%;">Site type</th>
+          <th class="defra-aq-levels-table__cell defra-aq-levels-table__cell--numeric"
+              scope="col"
+              style="width: 15%;">Pollutants / networks</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+
+        <!-- Birmingham A4540 Roadside – Non-Automatic Hydrocarbon Network -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="hydrocarbons">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham A4540 Roadside</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban traffic – Non-Automatic Hydrocarbon Network
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban traffic
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            hydrocarbons (benzene)
+          </td>
+        </tr>
+
+        <!-- Birmingham A4540 Roadside – UK Black Carbon Network -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="black-carbon">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham A4540 Roadside</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban traffic – UK Black Carbon Network
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban traffic
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            black carbon and multi-wavelength particulate matter
+          </td>
+        </tr>
+
+        <!-- Birmingham Ladywood – Non-Automatic Hydrocarbon Network -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="hydrocarbons">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban background – Non-Automatic Hydrocarbon Network
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban background
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            hydrocarbons (benzene)
+          </td>
+        </tr>
+
+        <!-- Birmingham Ladywood – PAH Digitel (solid phase) -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="hydrocarbons">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban background – PAH Digitel (solid phase)
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban background
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            polycyclic aromatic hydrocarbons (for example benzo(a)pyrene, chrysene, fluoranthene)
+          </td>
+        </tr>
+
+        <!-- Birmingham Ladywood – UK Black Carbon Network -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="black-carbon">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban background – UK Black Carbon Network
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban background
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            black carbon and multi-wavelength particulate matter
+          </td>
+        </tr>
+
+        <!-- Birmingham Centre – Non-Automatic Hydrocarbon Network -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="hydrocarbons">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham Centre</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban background – Non-Automatic Hydrocarbon Network
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban background
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            hydrocarbons (benzene, 1,3-butadiene)
+          </td>
+        </tr>
+
+        <!-- Birmingham Centre – Partisol Research (PM10 / PM2.5, DAQI pollutants) -->
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="daqi">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham Centre</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">
+              Urban background – Partisol Research
+            </span>
+          </th>
+          <td class="govuk-table__cell">
+            urban background
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            PM10 and PM2.5 (particulate matter for DAQI assessment)
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  {# TAB 3: Local authority data #}
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="la-data">
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
+      Local authority data
+    </h3>
+
+    <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+      <thead class="defra-aq-levels-table__head">
+        <tr class="defra-aq-levels-table__row">
+          <th scope="col"
+              class="defra-aq-levels-table__cell"
+              style="width: 50%;">
+            Monitoring station
+          </th>
+          <th scope="col"
+              class="defra-aq-levels-table__cell"
+              style="width: 35%;">
+            Site type
+          </th>
+          <th scope="col"
+              class="defra-aq-levels-table__cell defra-aq-levels-table__cell--numeric"
+              style="width: 15%;">
+            Pollutants
+          </th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row js-pollutant-row"
+            data-pollutant-groups="daqi">
+          <th scope="row" class="govuk-table__header">
+            <strong><a href="#" class="govuk-link">Birmingham Ladywood</a></strong>
+            <span style="font-weight: normal; display: block; margin-top: 2px;">1.2 miles away</span>
+          </th>
+          <td class="govuk-table__cell">
+            urban background
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            PM2.5<br>
+            PM10<br>
+            nitrogen dioxide<br>
+            ozone<br>
+            sulphur dioxide
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // ======================
+    // Tabs + pollutant filtering
+    // ======================
+    const filterButton = document.getElementById('pollutant-filter-apply');
+    const allPollutantRows = document.querySelectorAll('.js-pollutant-row');
+    const tabListItems = document.querySelectorAll('.govuk-tabs__list-item');
+    const tabPanels = document.querySelectorAll('.govuk-tabs__panel');
+
+    function activateTab(tabLink) {
+      if (!tabLink) return;
+
+      const tabsElement = tabLink.closest('.govuk-tabs');
+      if (!tabsElement) return;
+
+      const links = tabsElement.querySelectorAll('.govuk-tabs__tab');
+      const panels = tabsElement.querySelectorAll('.govuk-tabs__panel');
+
+      // Clear all selections
+      links.forEach(function (link) {
+        const li = link.parentElement;
+        if (li) {
+          li.classList.remove('govuk-tabs__list-item--selected');
+        }
+        link.setAttribute('aria-selected', 'false');
+        link.setAttribute('tabindex', '-1');
+      });
+
+      panels.forEach(function (panel) {
+        panel.classList.add('govuk-tabs__panel--hidden');
+      });
+
+      // Activate the chosen tab
+      const li = tabLink.parentElement;
+      if (li) {
+        li.classList.add('govuk-tabs__list-item--selected');
+      }
+
+      tabLink.setAttribute('aria-selected', 'true');
+      tabLink.setAttribute('tabindex', '0');
+
+      const panelId = (tabLink.getAttribute('href') || '').replace('#', '');
+      const panel = document.getElementById(panelId);
+      if (panel) {
+        panel.classList.remove('govuk-tabs__panel--hidden');
+      }
+    }
+
+    function applyPollutantFilter() {
+      const selected = document.querySelector('input[name="pollutant-filter"]:checked');
+      const value = selected ? selected.value : 'all';
+
+      const noStationsMessage = document.getElementById('no-stations-message');
+      let anyVisibleRow = false;
+
+      // 1. Show/hide rows based on pollutant groups
+      allPollutantRows.forEach(function (row) {
+        const groups = (row.getAttribute('data-pollutant-groups') || '').split(/\s+/);
+        if (value === 'all' || groups.includes(value)) {
+          row.style.display = '';
+          anyVisibleRow = true;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // 2. Show/hide tab labels depending on whether their panel has visible rows
+      let firstVisibleTabLink = null;
+
+      tabListItems.forEach(function (li) {
+        const tabLink = li.querySelector('.govuk-tabs__tab');
+        if (!tabLink) return;
+
+        const panelId = (tabLink.getAttribute('href') || '').replace('#', '');
+        const panel = document.getElementById(panelId);
+        if (!panel) return;
+
+        const rowsInPanel = panel.querySelectorAll('.js-pollutant-row');
+        let hasVisible = false;
+
+        rowsInPanel.forEach(function (row) {
+          if (row.style.display !== 'none') {
+            hasVisible = true;
+          }
+        });
+
+        if (hasVisible) {
+          li.style.display = '';
+          if (!firstVisibleTabLink) {
+            firstVisibleTabLink = tabLink;
+          }
+        } else {
+          li.style.display = 'none';
+        }
+      });
+
+      // 3. If there are visible rows anywhere, make sure one visible tab is actually active
+      if (anyVisibleRow && firstVisibleTabLink) {
+        activateTab(firstVisibleTabLink);
+      } else {
+        // No visible rows at all: hide all panels
+        tabPanels.forEach(function (panel) {
+          panel.classList.add('govuk-tabs__panel--hidden');
+        });
+      }
+
+      // 4. Show or hide the inset "no stations" message
+      if (noStationsMessage) {
+        if (anyVisibleRow) {
+          noStationsMessage.setAttribute('hidden', 'hidden');
+        } else {
+          noStationsMessage.removeAttribute('hidden');
+        }
+      }
+    }
+
+    if (filterButton) {
+      filterButton.addEventListener('click', applyPollutantFilter);
+    }
+
+    // Initial state (default "all" shows everything, keeps tabs visible)
+    applyPollutantFilter();
+
+    // Ensure first visible tab is active on load
+    const firstVisibleTab = document.querySelector(
+      '.govuk-tabs__list-item:not([style*="display: none"]) .govuk-tabs__tab'
+    );
+    if (firstVisibleTab) {
+      activateTab(firstVisibleTab);
+    }
+  });
+</script>
 
 {% endblock %}
