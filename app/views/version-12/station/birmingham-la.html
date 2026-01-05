@@ -53,7 +53,7 @@
               </dl>
               <dl class="grid-item">
                   <dt class="number">1</dt>
-                  <dd class="description">Air Quality Management Areas (AQMA)</dd>
+                  <dd class="description">Air Quality Management Areas (AQMAs)</dd>
               </dl>
               <dl class="grid-item">
                   <dt class="number">0</dt>
@@ -64,7 +64,7 @@
                <div class="div govuk-divider"></div>
 
    <h2 class="govuk-heading-l">Download data</h2>
-   <p class="govuk-body">Select to <a href="" class="govuk-body">download data from this local authority</a>.</p>
+   <p class="govuk-body">Select to <a href="../data-selector/create-pollutant.html" class="govuk-body">download data from this local authority</a>.</p>
                 <div class="div govuk-divider"></div>
 
                       <h2 id="section-heading" class="govuk-heading-l govuk-!-margin-top-6">
@@ -577,7 +577,7 @@
   <p>This data is measured at air pollution hot spots across the UK. It varies in quality.</p>
 
   <h4 class="govuk-heading-s">
-    Station compliance
+    Nitrogen dioxide levels at stations: last year
   </h4>
 
        <div class="grid-container govuk-!-margin-bottom-3">
@@ -914,15 +914,142 @@
 
 
 <div id="aqma" class="js-subnav-section" hidden>
-  AQMA content
+  <table class="govuk-table defra-aq-daqi-stations-table govuk-!-margin-bottom-2">
+    <thead class="defra-aq-daqi-stations-table__head">
+      <tr class="defra-aq-daqi-stations-table__row">
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant defra-aq-daqi-stations-table__cell--pollutant-title">
+          Area
+        </th>
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average defra-aq-daqi-stations-table__cell--average-title">
+         Description
+        </th>
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--daily defra-aq-daqi-stations-table__cell--daily-title">
+          
+            Date
+        </th>
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--hourly defra-aq-daqi-stations-table__cell--hourly-title">
+          Pollutants
+        </th>
+
+      </tr>
+    </thead>
+
+   <tbody class="defra-aq-daqi-stations-table__body">
+
+  <tr class="defra-aq-daqi-stations-table__row js-pollutant-row"
+      data-pollutant-groups="daqi">
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
+      <a href="#" class="govuk-link">Birmingham AQMA</a>
+     <!--  <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
+        NO2 diffusion tube
+      </div> -->
+      <span style="display: block; margin-top: 10px;">
+        <strong class="govuk-tag govuk-tag--blue">Active</strong>
+      </span>
+    </td>
+
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">
+      The whole borough.
+    </td>
+
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--daily">
+      10/01/2003
+    </td>
+
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--hourly">
+      PM10<br>
+      nitrogen dioxide
+    </td>
+  </tr>
+
+ 
+
+
+
+
+</tbody>
+
+  </table>
 </div>
 
 <div id="sca" class="js-subnav-section" hidden>
-  SCA content
+   <table class="govuk-table defra-aq-daqi-stations-table govuk-!-margin-bottom-2">
+    <thead class="defra-aq-daqi-stations-table__head">
+      <tr class="defra-aq-daqi-stations-table__row">
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant defra-aq-daqi-stations-table__cell--pollutant-title">
+          Area
+        </th>
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average defra-aq-daqi-stations-table__cell--average-title">
+         Description
+        </th>
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--daily defra-aq-daqi-stations-table__cell--daily-title">
+          
+            Date
+        </th>
+
+        <th scope="col"
+            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--hourly defra-aq-daqi-stations-table__cell--hourly-title">
+          Fuel
+        </th>
+
+      </tr>
+    </thead>
+
+   <tbody class="defra-aq-daqi-stations-table__body">
+
+  <tr class="defra-aq-daqi-stations-table__row js-pollutant-row"
+      data-pollutant-groups="daqi">
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
+      <a href="#" class="govuk-link">Birmingham SCA</a>
+     <!--  <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
+        NO2 diffusion tube
+      </div> -->
+      <span style="display: block; margin-top: 10px;">
+        <strong class="govuk-tag govuk-tag--blue">Active</strong>
+      </span>
+    </td>
+
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">
+      The whole borough.
+    </td>
+
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--daily">
+      20/03/1985
+    </td>
+
+    <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--hourly">
+      X authorised fuel<br>
+      Y fuel  
+    </td>
+  </tr>
+
+ 
+
+
+
+
+</tbody>
+
+  </table>
 </div>
 
 <div id="actions" class="js-subnav-section" hidden>
-  Actions content
+  <p class="govuk-body"><a href="" class="govuk-link">Air Quality Action Plans</a></p>
+    <p class="govuk-body"><a href="" class="govuk-link">Annual Reports</a></p>
 </div>
 
 
