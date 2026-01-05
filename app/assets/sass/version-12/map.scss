@@ -375,22 +375,21 @@ body:has(.defra-map) {
 
 
 .panel {
-  @include mq ($from: 520px){
+  @include mq ($from: 520px) {
     position: absolute;
     top: 10px;
     right: 10px;
     width: 450px;
+    max-height: calc(100vh - 20px);
     display: block;
     pointer-events: auto;
-     z-index: 9;                 
+    z-index: 9;
   }
   display: none;
   border: 2px solid #0b0c0c;
-  &:focus-visible {
-        border: 2px solid #0b0c0c;
-        outline: 3px solid #ffdd00;
-  }
+  overflow: hidden; // keep scroll behaviour inside .panel-scroll
 }
+
 
 #mobile-key-panel {
   @include mq ($from: 520px){
@@ -411,6 +410,18 @@ body:has(.defra-map) {
   @include govuk-font($size: 16);
  
 }
+
+.panel-scroll {
+  margin-top: 2px;
+  max-height: 68vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  padding-left: 10px;
+  width: 100%;
+  display: block;
+}
+
 
 #mobile-key-panel-bottom {
   @include mq ($from: 520px){

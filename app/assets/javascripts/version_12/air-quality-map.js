@@ -39,6 +39,18 @@ const mockStations = [
   { id: 25, name: "Wolverhampton Centre", lat: 52.585, lng: -2.129, authority: "Wolverhampton City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 4, siteType: "Urban background", startDate: "2001-05-01" },
   { id: 26, name: "Stoke-on-Trent", lat: 53.002, lng: -2.179, authority: "Stoke-on-Trent City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2004-01-01" },
   { id: 71, name: "Birmingham A4540 Roadside", lat: 52.476, lng: -1.874, authority: "Birmingham City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 4, siteType: "Urban traffic", startDate: "2016-09-09" },
+  {
+  id: 66055,
+  name: "Birmingham Ladywood",
+  lat: 52.481346,
+  lng: -1.918235,
+  authority: "Birmingham City Council",
+  pollutants: ["O3","NO","NO2","NOx","SO2","PM10","PM2.5"],
+  status: "active",
+  daqi: 3,
+  siteType: "Urban background",
+  startDate: "2018-08-23"
+  },
 
   // --- NORTH WEST / YORKS & HUMBER ---
   { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2003-08-01" },
@@ -93,6 +105,18 @@ const mockStations = [
 
   // --- EASTERN / EAST MIDLANDS ---
   { id: 66, name: "Cambridge", lat: 52.205, lng: 0.119, authority: "Cambridge City Council", pollutants: ["PM2.5","PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "1997-01-01" },
+  {
+  id: 300362,
+  name: "Wicken Fen",
+  lat: 52.298500,
+  lng: 0.290917,
+  authority: "East Cambridgeshire District Council",
+  pollutants: ["O3","NO","NO2","NOx","SO2","PM10","PM2.5"],
+  status: "active",
+  daqi: 1,
+  siteType: "Rural background",
+  startDate: "1997-10-15"
+  },
   { id: 67, name: "Norwich Lakenfields", lat: 52.614, lng: 1.299, authority: "Norwich City Council", pollutants: ["PM2.5","PM10","NO2"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "1998-01-01" },
   { id: 68, name: "Ipswich", lat: 52.0567, lng: 1.1482, authority: "Ipswich Borough Council", pollutants: ["PM10","NO2","O3"], status: "closed", daqi: null, siteType: "Urban background", startDate: "1996-01-01", endDate: "2024-12-31" },
   { id: 69, name: "Peterborough", lat: 52.572, lng: -0.243, authority: "Peterborough City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2001-01-01" },
@@ -177,101 +201,437 @@ const POLLUTANT_GROUP_NETWORKS = {
   particles: [NETWORK.PARTICLE_NUMBER]
 };
 
-
-
-
-// Dummy datasets (AURN uses your existing mockStations)
+// Other datasets
 const NETWORK_DATASETS = {
   [NETWORK.AURN]: mockStations,
 
   [NETWORK.LOCAL]: [
-    { id: 1001, name: "Local Leeds Roadside", lat: 53.800, lng: -1.550, authority: "Leeds City Council", pollutants: ["NO2","PM10"], status: "active", daqi: 3, siteType: "Urban traffic", startDate: "2018-01-01" },
-    { id: 1002, name: "Local Brighton Centre", lat: 50.823, lng: -0.137, authority: "Brighton & Hove City Council", pollutants: ["PM2.5","PM10"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2019-05-01" }
+    { id: 1001, name: "Local Leeds Roadside", lat: 53.800, lng: -1.550, authority: "Leeds City Council", pollutants: ["NO2","PM10"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2018-01-01" },
+    { id: 1002, name: "Local Brighton Centre", lat: 50.823, lng: -0.137, authority: "Brighton & Hove City Council", pollutants: ["PM2.5","PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2019-05-01" }
   ],
 
   [NETWORK.URBAN_NO2]: [
-    { id: 2001, name: "Urban NO2 Birmingham Centre", lat: 52.479, lng: -1.902, authority: "Birmingham City Council", pollutants: ["NO2"], status: "active", daqi: 4, siteType: "Urban centre", startDate: "2017-01-01" },
-    { id: 2002, name: "Urban NO2 London Roadside", lat: 51.507, lng: -0.128, authority: "GLA", pollutants: ["NO2"], status: "active", daqi: 5, siteType: "Urban traffic", startDate: "2016-06-01" }
+    { id: 2001, name: "Urban NO2 Birmingham Centre", lat: 52.479, lng: -1.902, authority: "Birmingham City Council", pollutants: ["NO2"], status: "active", daqi: null, siteType: "Urban centre", startDate: "2017-01-01" },
+    { id: 2002, name: "Urban NO2 London Roadside", lat: 51.507, lng: -0.128, authority: "Westminster City Council", pollutants: ["NO2"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2016-06-01" }
   ],
 
   [NETWORK.RURAL_NO2]: [
-    { id: 3001, name: "Rural NO2 Northumberland", lat: 55.200, lng: -2.000, authority: "Northumberland Council", pollutants: ["NO2"], status: "active", daqi: 2, siteType: "Rural background", startDate: "2015-01-01" },
-    { id: 3002, name: "Rural NO2 Norfolk", lat: 52.700, lng: 1.300, authority: "Norfolk County Council", pollutants: ["NO2"], status: "active", daqi: 1, siteType: "Rural background", startDate: "2014-09-01" }
+    { id: 3001, name: "Rural NO2 Northumberland", lat: 55.200, lng: -2.000, authority: "Northumberland County Council", pollutants: ["NO2"], status: "active", daqi: null, siteType: "Rural background", startDate: "2015-01-01" },
+    { id: 3002, name: "Rural NO2 Norfolk", lat: 52.700, lng: 1.300, authority: "Norfolk County Council", pollutants: ["NO2"], status: "active", daqi: null, siteType: "Rural background", startDate: "2014-09-01" },
+
+    // ➕ Auchencorth Moss – UKEAP Rural NO2
+    {
+      id: 3003,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["NO2"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2023-12-27"
+    },
+
+    // ➕ Chilbolton Observatory – UKEAP Rural NO2
+    {
+      id: 3004,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["NO2"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-15"
+    }
   ],
 
   [NETWORK.ACID_GAS]: [
-    { id: 4001, name: "Acid Gas Newcastle", lat: 54.978, lng: -1.617, authority: "Newcastle City Council", pollutants: ["SO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2013-01-01" },
-    { id: 4002, name: "Acid Gas Swansea", lat: 51.621, lng: -3.943, authority: "Swansea Council", pollutants: ["SO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2012-04-01" }
+    { id: 4001, name: "Acid Gas Newcastle", lat: 54.978, lng: -1.617, authority: "Newcastle City Council", pollutants: ["SO2"], status: "active", daqi: null, siteType: "Urban background", startDate: "2013-01-01" },
+    { id: 4002, name: "Acid Gas Swansea", lat: 51.621, lng: -3.943, authority: "Swansea Council", pollutants: ["SO2"], status: "active", daqi: null, siteType: "Urban background", startDate: "2012-04-01" }
   ],
 
   [NETWORK.MARGA]: [
-    { id: 5001, name: "MARGA Bristol", lat: 51.455, lng: -2.588, authority: "Bristol City Council", pollutants: ["SO2"], status: "active", daqi: 3, siteType: "Urban background", startDate: "2020-01-01" },
-    { id: 5002, name: "MARGA Glasgow", lat: 55.864, lng: -4.251, authority: "Glasgow City Council", pollutants: ["SO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2021-06-01" }
+    { id: 5001, name: "MARGA Bristol", lat: 51.455, lng: -2.588, authority: "Bristol City Council", pollutants: ["SO2"], status: "active", daqi: null, siteType: "Urban background", startDate: "2020-01-01" },
+    { id: 5002, name: "MARGA Glasgow", lat: 55.864, lng: -4.251, authority: "Glasgow City Council", pollutants: ["SO2"], status: "active", daqi: null, siteType: "Urban background", startDate: "2021-06-01" },
+
+    // ➕ MARGA Auchencorth Moss
+    {
+      id: 5003,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["SO2"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2011-01-01"
+    },
+
+    // ➕ MARGA Chilbolton Observatory
+    {
+      id: 5004,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["SO2"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ],
 
   // NEW (VOCS) – dummy stations
   [NETWORK.AUTO_HC]: [
-    { id: 6001, name: "Auto HC London West", lat: 51.508, lng: -0.210, authority: "Defra", pollutants: ["VOCS"], status: "active", daqi: null, siteType: "Urban background", startDate: "2022-01-01" },
-    { id: 6002, name: "Auto HC Manchester Central", lat: 53.479, lng: -2.245, authority: "Defra", pollutants: ["VOCS"], status: "active", daqi: null, siteType: "Urban background", startDate: "2023-06-01" },
-     { id: 6001, name: "Auto HC London Marylebone", lat: 51.5225, lng: -0.1545, authority: "Defra", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2010-01-01" },
-    { id: 6002, name: "Auto HC Birmingham Centre", lat: 52.479, lng: -1.902, authority: "Defra", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Urban centre", startDate: "2012-06-01" }
+    { id: 6001, name: "Auto HC London West", lat: 51.508, lng: -0.210, authority: "Royal Borough of Kensington and Chelsea", pollutants: ["VOCS"], status: "active", daqi: null, siteType: "Urban background", startDate: "2022-01-01" },
+    { id: 6002, name: "Auto HC Manchester Central", lat: 53.479, lng: -2.245, authority: "Manchester City Council", pollutants: ["VOCS"], status: "active", daqi: null, siteType: "Urban background", startDate: "2023-06-01" },
+    { id: 6001, name: "Auto HC London Marylebone", lat: 51.5225, lng: -0.1545, authority: "Westminster City Council", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2010-01-01" },
+    { id: 6002, name: "Auto HC Birmingham Centre", lat: 52.479, lng: -1.902, authority: "Birmingham City Council", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Urban centre", startDate: "2012-06-01" },
+
+    // ➕ Auto HC Auchencorth Moss
+    {
+      id: 6003,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["VOCS"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2006-09-04"
+    },
+
+    // ➕ Auto HC Chilbolton Observatory
+    {
+      id: 6004,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["VOCS"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-19"
+    }
   ],
 
   [NETWORK.NONAUTO_HC]: [
-    { id: 7001, name: "Non-auto HC Bristol", lat: 51.454, lng: -2.600, authority: "Defra", pollutants: ["VOCS"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "2021-03-01" },
-    { id: 7002, name: "Non-auto HC Glasgow", lat: 55.864, lng: -4.270, authority: "Defra", pollutants: ["VOCS"], status: "active", daqi: null, siteType: "Urban background", startDate: "2020-09-01" },
-       { id: 6101, name: "Non-auto HC Harwell", lat: 51.571, lng: -1.319, authority: "Defra", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Rural background", startDate: "2008-01-01" },
-    { id: 6102, name: "Non-auto HC Glasgow", lat: 55.864, lng: -4.251, authority: "Defra", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Urban background", startDate: "2015-01-01" }
+    { id: 7001, name: "Non-auto HC Bristol", lat: 51.454, lng: -2.600, authority: "Bristol City Council", pollutants: ["VOCS"], status: "inactive", daqi: null, siteType: "Urban background", startDate: "2021-03-01" },
+    { id: 7002, name: "Non-auto HC Glasgow", lat: 55.864, lng: -4.270, authority: "Glasgow City Council", pollutants: ["VOCS"], status: "active", daqi: null, siteType: "Urban background", startDate: "2020-09-01" },
+    { id: 6101, name: "Non-auto HC Harwell", lat: 51.571, lng: -1.319, authority: "Oxfordshire County Council", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Rural background", startDate: "2008-01-01" },
+    { id: 6102, name: "Non-auto HC Glasgow", lat: 55.864, lng: -4.251, authority: "Glasgow City Council", pollutants: ["VOCs"], status: "active", daqi: null, siteType: "Urban background", startDate: "2015-01-01" },
+    {
+      id: 66055,
+      name: "Birmingham Ladywood",
+      lat: 52.481346,
+      lng: -1.918235,
+      authority: "Birmingham City Council",
+      pollutants: ["VOCS"],
+      status: "active",
+      daqi: null,
+      siteType: "Urban background",
+      startDate: "2018-08-23"
+    }
   ],
 
   // NEW: Heavy metals (PM10)
   [NETWORK.HEAVY_METALS]: [
-    { id: 6201, name: "Heavy metals Sheffield", lat: 53.378, lng: -1.477, authority: "Defra", pollutants: ["HM_PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2006-01-01" },
-    { id: 6202, name: "Heavy metals Swansea", lat: 51.621, lng: -3.943, authority: "Defra", pollutants: ["HM_PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2009-01-01" }
+    { id: 6201, name: "Heavy metals Sheffield", lat: 53.378, lng: -1.477, authority: "Sheffield City Council", pollutants: ["HM_PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2006-01-01" },
+    { id: 6202, name: "Heavy metals Swansea", lat: 51.621, lng: -3.943, authority: "Swansea Council", pollutants: ["HM_PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2009-01-01" },
+    {
+      id: 300481,
+      name: "Detling",
+      lat: 51.307938,
+      lng: 0.582650,
+      authority: "Maidstone Borough Council",
+      pollutants: ["Heavy metals"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2004-10-01"
+    },
+
+    // ➕ Heavy metals Auchencorth Moss
+    {
+      id: 6203,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["HM_PM10"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2003-01-23"
+    },
+
+    // ➕ Heavy metals Chilbolton Observatory
+    {
+      id: 6204,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["HM_PM10"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ],
 
   // NEW: PAHs
   [NETWORK.PAH]: [
-    { id: 6301, name: "PAH Leeds", lat: 53.8008, lng: -1.5491, authority: "Defra", pollutants: ["PAH"], status: "active", daqi: null, siteType: "Urban background", startDate: "2007-01-01" },
-    { id: 6302, name: "PAH Belfast", lat: 54.596, lng: -5.930, authority: "Defra", pollutants: ["PAH"], status: "active", daqi: null, siteType: "Urban background", startDate: "2011-01-01" }
+    { id: 6301, name: "PAH Leeds", lat: 53.8008, lng: -1.5491, authority: "Leeds City Council", pollutants: ["PAH"], status: "active", daqi: null, siteType: "Urban background", startDate: "2007-01-01" },
+    { id: 6302, name: "PAH Belfast", lat: 54.596, lng: -5.930, authority: "Belfast City Council", pollutants: ["PAH"], status: "active", daqi: null, siteType: "Urban background", startDate: "2011-01-01" },
+    {
+      id: 66055,
+      name: "Birmingham Ladywood",
+      lat: 52.481346,
+      lng: -1.918235,
+      authority: "Birmingham City Council",
+      pollutants: ["PAH"],
+      status: "active",
+      daqi: null,
+      siteType: "Urban background",
+      startDate: "2018-08-23"
+    },
+
+    // ➕ PAH Auchencorth Moss
+    {
+      id: 6303,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["PAH"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2003-01-01"
+    },
+
+    // ➕ PAH Chilbolton Observatory
+    {
+      id: 6304,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["PAH"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ],
 
   // NEW: Ammonia
   [NETWORK.NAMN]: [
-    { id: 6401, name: "NAMN Rural Cumbria", lat: 54.460, lng: -2.730, authority: "Defra", pollutants: ["NH3"], status: "active", daqi: null, siteType: "Rural", startDate: "2004-01-01" },
-    { id: 6402, name: "NAMN Rural Norfolk", lat: 52.700, lng: 1.300, authority: "Defra", pollutants: ["NH3"], status: "active", daqi: null, siteType: "Rural", startDate: "2008-01-01" }
+    { id: 6401, name: "NAMN Rural Cumbria", lat: 54.460, lng: -2.730, authority: "Westmorland and Furness Council", pollutants: ["NH3"], status: "active", daqi: null, siteType: "Rural", startDate: "2004-01-01" },
+    { id: 6402, name: "NAMN Rural Norfolk", lat: 52.700, lng: 1.300, authority: "Norfolk County Council", pollutants: ["NH3"], status: "active", daqi: null, siteType: "Rural", startDate: "2008-01-01" },
+    {
+      id: 300481,
+      name: "Detling",
+      lat: 51.307938,
+      lng: 0.582650,
+      authority: "Maidstone Borough Council",
+      pollutants: ["NH3"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2004-10-01"
+    },
+
+    // ➕ NAMN Auchencorth Moss
+    {
+      id: 6403,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["NH3"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "1999-01-01"
+    },
+
+    // ➕ NAMN Chilbolton Observatory
+    {
+      id: 6404,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["NH3"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ],
 
   // NEW: Particulate ions + acid gases (AGANet) + MARGA already exists
   [NETWORK.AGANET]: [
-    { id: 6501, name: "AGANet Harwell", lat: 51.571, lng: -1.319, authority: "Defra", pollutants: ["IONS_ACIDS"], status: "active", daqi: null, siteType: "Rural background", startDate: "2001-01-01" },
-    { id: 6502, name: "AGANet Auchencorth", lat: 55.793, lng: -3.243, authority: "Defra", pollutants: ["IONS_ACIDS"], status: "active", daqi: null, siteType: "Rural background", startDate: "2003-01-01" }
+    { id: 6501, name: "AGANet Harwell", lat: 51.571, lng: -1.319, authority: "Oxfordshire County Council", pollutants: ["IONS_ACIDS"], status: "active", daqi: null, siteType: "Rural background", startDate: "2001-01-01" },
+    { id: 6502, name: "Auchencorth Moss", lat: 55.793, lng: -3.243, authority: "Midlothian Council", pollutants: ["IONS_ACIDS"], status: "active", daqi: null, siteType: "Rural background", startDate: "2003-01-01" },
+    {
+      id: 300481,
+      name: "Detling",
+      lat: 51.307938,
+      lng: 0.582650,
+      authority: "Maidstone Borough Council",
+      pollutants: ["IONS_ACIDS"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2004-10-01"
+    },
+
+    // ➕ AGANet Chilbolton Observatory
+    {
+      id: 6503,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["IONS_ACIDS"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ],
 
   // NEW: Precipitation chemistry (Precip-Net)
   [NETWORK.PRECIPNET]: [
-    { id: 6601, name: "Precip-Net Eskdalemuir", lat: 55.316, lng: -3.207, authority: "Defra", pollutants: ["PRECIP_CHEM"], status: "active", daqi: null, siteType: "Rural", startDate: "1990-01-01" },
-    { id: 6602, name: "Precip-Net Rothamsted", lat: 51.809, lng: -0.354, authority: "Defra", pollutants: ["PRECIP_CHEM"], status: "active", daqi: null, siteType: "Rural", startDate: "1995-01-01" }
+    { id: 6601, name: "Precip-Net Eskdalemuir", lat: 55.316, lng: -3.207, authority: "Dumfries and Galloway Council", pollutants: ["PRECIP_CHEM"], status: "active", daqi: null, siteType: "Rural", startDate: "1990-01-01" },
+    { id: 6602, name: "Precip-Net Rothamsted", lat: 51.809, lng: -0.354, authority: "Hertfordshire County Council", pollutants: ["PRECIP_CHEM"], status: "active", daqi: null, siteType: "Rural", startDate: "1995-01-01" }
   ],
 
   // NEW: Mercury
   [NETWORK.RURAL_MERCURY]: [
-    { id: 6701, name: "Rural Mercury Auchencorth", lat: 55.793, lng: -3.243, authority: "Defra", pollutants: ["HG"], status: "active", daqi: null, siteType: "Rural", startDate: "2009-01-01" },
-    { id: 6702, name: "Rural Mercury Chilbolton", lat: 51.144, lng: -1.438, authority: "Defra", pollutants: ["HG"], status: "active", daqi: null, siteType: "Rural", startDate: "2012-01-01" }
+    { id: 6701, name: "Auchencorth Moss", lat: 55.793, lng: -3.243, authority: "Midlothian Council", pollutants: ["HG"], status: "active", daqi: null, siteType: "Rural", startDate: "2009-01-01" },
+    { id: 6702, name: "Chilbolton Observatory", lat: 51.144, lng: -1.438, authority: "Hampshire County Council", pollutants: ["HG"], status: "active", daqi: null, siteType: "Rural", startDate: "2012-01-01" }
   ],
 
   // NEW: Black carbon
   [NETWORK.BLACK_CARBON]: [
-    { id: 6801, name: "Black carbon London roadside", lat: 51.507, lng: -0.128, authority: "Defra", pollutants: ["BC"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2016-01-01" },
-    { id: 6802, name: "Black carbon Glasgow", lat: 55.864, lng: -4.251, authority: "Defra", pollutants: ["BC"], status: "active", daqi: null, siteType: "Urban background", startDate: "2018-01-01" }
+    // ➕ Birmingham Ladywood (BC)
+    {
+      id: 66055,
+      name: "Birmingham Ladywood",
+      lat: 52.481346,
+      lng: -1.918235,
+      authority: "Birmingham City Council",
+      pollutants: ["BC"],
+      status: "active",
+      daqi: null,
+      siteType: "Urban background",
+      startDate: "2018-08-23"
+    },
+
+    // ➕ Wicken Fen (BC)
+    {
+      id: 300362,
+      name: "Wicken Fen",
+      lat: 52.298500,
+      lng: 0.290917,
+      authority: "East Cambridgeshire District Council",
+      pollutants: ["BC"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "1997-10-15"
+    },
+
+    // ➕ Detling (BC)
+    {
+      id: 300481,
+      name: "Detling",
+      lat: 51.307938,
+      lng: 0.582650,
+      authority: "Maidstone Borough Council",
+      pollutants: ["BC"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2004-10-01"
+    },
+
+    // ➕ Auchencorth Moss (BC)
+    {
+      id: 6803,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["BC"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2011-01-01"
+    },
+
+    // ➕ Chilbolton Observatory (BC)
+    {
+      id: 6804,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["BC"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ],
 
   // NEW: Particles (number/size)
   [NETWORK.PARTICLE_NUMBER]: [
-    { id: 6901, name: "Particle number London", lat: 51.514, lng: -0.077, authority: "Defra", pollutants: ["PN"], status: "active", daqi: null, siteType: "Urban background", startDate: "2014-01-01" },
-    { id: 6902, name: "Particle number Manchester", lat: 53.4776, lng: -2.2374, authority: "Defra", pollutants: ["PN"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2017-01-01" }
+    { id: 6901, name: "Particle number London", lat: 51.514, lng: -0.077, authority: "City of London Corporation", pollutants: ["PN"], status: "active", daqi: null, siteType: "Urban background", startDate: "2014-01-01" },
+    { id: 6902, name: "Particle number Manchester", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PN"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2017-01-01" },
+
+    // ➕ Particle number Auchencorth Moss
+    {
+      id: 6903,
+      name: "Auchencorth Moss",
+      lat: 55.792160,
+      lng: -3.242900,
+      authority: "Midlothian Council",
+      pollutants: ["PN"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2011-01-01"
+    },
+
+    // ➕ Particle number Chilbolton Observatory
+    {
+      id: 6904,
+      name: "Chilbolton Observatory",
+      lat: 51.149617,
+      lng: -1.438228,
+      authority: "Hampshire County Council",
+      pollutants: ["PN"],
+      status: "active",
+      daqi: null,
+      siteType: "Rural background",
+      startDate: "2016-01-11"
+    }
   ]
 };
+
+
 
 
 // Current selected network (default AURN)
@@ -810,7 +1170,7 @@ function clearSelectedMarker() {
       </div>` : ''}
   </dl>
 
-  <p><a href="/version-11/station/station.html" class="govuk-link">View and download data for this station</a></p>
+  <p><a href="/version-12/station/station.html" class="govuk-link">View and download data for this station</a></p>
 `;
 
 
@@ -1010,8 +1370,13 @@ function buildMarkersFromStations(stations) {
       document.body.classList.remove('defra-map-active');
       if (govukTemplate) govukTemplate.classList.remove('defra-map-html');
       if (govukBody) govukBody.classList.remove('defra-map-body');
-      // Navigate away
-      window.location.href = 'hub.html';
+      // Go back to previous page if there is one
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      // Fallback if opened as a direct entry page
+       window.location.href = 'hub.html';
+    }
     });
   }
 });
@@ -1100,7 +1465,7 @@ function initPollutantPanels() {
     {
       key: 'regulation',
       title: 'Regulation pollutants',
-      hint: 'fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide (NO2), ozone (O3), sulphur dioxide (SO2), nitric oxide (NO), nitrogen oxides as nitrogen dioxide (NOx as NO2), carbon monoxide (CO)'
+      hint: 'PM2.5, PM10, NO2, O3, SO2, NO, NOx as NO2 and CO'
     },
     {
       key: 'vocs',
@@ -1120,7 +1485,7 @@ function initPollutantPanels() {
     {
       key: 'ammonia',
       title: 'Ammonia',
-      hint: 'gaseous ammonia (NH3), gaseous ammonia (active) (NH3), gaseous ammonia (passive) (NH3), gaseous ammonia (diffusion tube) (NH3), particulate ammonium (NH4)'
+      hint: 'gaseous ammonia NH3 (active, passive and diffusion tube) and particulate ammonium (NH4)'
     },
     {
       key: 'ions_acids',
@@ -1161,7 +1526,7 @@ function initPollutantPanels() {
           const checked = (filterState.groupKey === g.key) ? 'checked' : '';
           const hintId = `${id}-hint`;
           return `
-            <div class="govuk-radios__item" style="margin-bottom:10px;">
+            <div class="govuk-radios__item" style="margin-bottom:5px;">
               <input class="govuk-radios__input"
                      id="${id}"
                      name="${groupName}"
@@ -1326,40 +1691,43 @@ function initPollutantPanels() {
 
 
 function renderDataSources(root, mount, uiId) {
-  // Remove existing instances
-  root.querySelector(`#${uiId}-data-sources`)?.remove();
-  root.querySelector(`#${uiId}-map-features`)?.remove();
+  // NEW: scroll container – where all dynamic content will live
+  const scrollContainer =
+    root.querySelector('.panel-scroll') || mount.parentElement;
 
- 
+  // Remove existing instances from *inside* the scroll container
+  scrollContainer.querySelector(`#${uiId}-data-sources`)?.remove();
+  scrollContainer.querySelector(`#${uiId}-map-features`)?.remove();
 
+  // --- Determine which networks to show in the radios ---
   function getAvailableNetworksForUi() {
-  // VOCS group drives hydrocarbon networks only
-  if (filterState.mode === 'group' && filterState.groupKey === 'vocs') {
-    return [NETWORK.AUTO_HC, NETWORK.NONAUTO_HC];
+    // VOCs group: only hydrocarbon networks
+    if (filterState.mode === 'group' && filterState.groupKey === 'vocs') {
+      return [NETWORK.AUTO_HC, NETWORK.NONAUTO_HC];
+    }
+
+    // Regulation group: treat as “all DAQI pollutants selected”
+    if (filterState.mode === 'group' && filterState.groupKey === 'regulation') {
+      return getAvailableNetworks(new Set(DAQI_CODES));
+    }
+
+    // Pollutant mode: use actual selected checkboxes
+    return getAvailableNetworks(filterState.selected);
   }
 
-  // Regulation group: treat as “all DAQI pollutants selected”
-  if (filterState.mode === 'group' && filterState.groupKey === 'regulation') {
-    return getAvailableNetworks(new Set(DAQI_CODES));
-  }
+  const availableNetworks = getAvailableNetworksForUi();
 
-  // Pollutant mode: use actual selected checkboxes
-  return getAvailableNetworks(filterState.selected);
-}
-
- const availableNetworks = getAvailableNetworksForUi();
-
+  // Ensure selectedNetwork is valid for this view
   if (!availableNetworks.includes(selectedNetwork)) {
-  selectedNetwork =
-    (filterState.mode === 'group' && filterState.groupKey === 'vocs')
-      ? NETWORK.AUTO_HC
-      : NETWORK.AURN;
+    selectedNetwork =
+      (filterState.mode === 'group' && filterState.groupKey === 'vocs')
+        ? NETWORK.AUTO_HC
+        : NETWORK.AURN;
 
-  if (aqMapApi && typeof aqMapApi.setNetwork === 'function') {
-    aqMapApi.setNetwork(selectedNetwork);
+    if (aqMapApi && typeof aqMapApi.setNetwork === 'function') {
+      aqMapApi.setNetwork(selectedNetwork);
+    }
   }
-}
-
 
   // -------------------------
   // Data sources (details)
@@ -1378,13 +1746,16 @@ function renderDataSources(root, mount, uiId) {
     </div>
   `;
 
-  mount.insertAdjacentElement('afterend', details);
+  // Add into scroll area (⬅️ key change)
+  scrollContainer.appendChild(details);
+
+  const groupName = `${uiId}-networks`;
 
   // Bind radio change listener
-  const groupName = `${uiId}-networks`;
   details.querySelectorAll(`input[name="${groupName}"]`).forEach((r) => {
     r.addEventListener('change', () => {
       if (!r.checked) return;
+
       selectedNetwork = r.value;
 
       if (aqMapApi && typeof aqMapApi.setNetwork === 'function') {
@@ -1396,7 +1767,7 @@ function renderDataSources(root, mount, uiId) {
     });
   });
 
-  // Bind DAQI toggle IF present (only when AURN available)
+  // Bind DAQI toggle IF present (only when AURN available & selected)
   const daqiId = `${uiId}-show-daqi-aurn`;
   const daqiCb = details.querySelector(`#${daqiId}`);
   daqiCb?.addEventListener('change', () => {
@@ -1435,7 +1806,8 @@ function renderDataSources(root, mount, uiId) {
     </div>
   `;
 
-  details.insertAdjacentElement('afterend', features);
+  // Add into scroll area (⬅️ key change)
+  scrollContainer.appendChild(features);
 
   // Bind show/hide closed+inactive
   const statusCb = root.querySelector(`#${showStatusId}`);
@@ -1444,6 +1816,7 @@ function renderDataSources(root, mount, uiId) {
     applyFilter();
   });
 }
+
 
 function renderNetworkRadioGroupsHtml(uiId, availableNetworks) {
   const name = `${uiId}-networks`;
