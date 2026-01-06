@@ -1170,7 +1170,7 @@ function clearSelectedMarker() {
       </div>` : ''}
   </dl>
 
-  <p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3"><a href="/version-12/station/station.html" class="govuk-link">View and download data</a></p>
+  <p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3"><a href="/version-12/station/station.html" class="govuk-link">View station summary</a></p>
   <p class="govuk-!-margin-bottom-0">  <a href="/version-12/station/pm10-graph.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
                 <span class="aq-button-secondary__icon">
                   <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
@@ -1178,7 +1178,7 @@ function clearSelectedMarker() {
         </svg>
                 </span>
                 <span class="aq-button-secondary__text" style="padding-left: 5px;">
-                  View graph of pollution levels</span>
+                 View graph and pollutant summary</span>
                   <span class="govuk-visually-hidden">
                   (Visual only)
                 </span>

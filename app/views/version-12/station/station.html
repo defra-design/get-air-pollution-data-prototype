@@ -115,7 +115,12 @@
     </span>
   </summary>
   <div class="govuk-details__text">
-    We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+    <strong>Coordinates</strong>
+    <p class="govuk-body">52.476145, -1.874978</p>
+    <strong>Grid refernce</strong>
+    <p class="govuk-body">SP085864</p>
+    <strong>Photos</strong>
+    <p class="govuk-body"><a href="" class="govuk-link">View on data.gov</a></p>
   </div>
 </details>
 
@@ -189,334 +194,703 @@
 </details>
 
 
-            
-   <div class="div govuk-divider"></div>
+     <div class="div govuk-divider"></div>
              
 
-          <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution summary: last 24 hours</h2>
-          <p class="govuk-body govuk-!-margin-bottom-3">Add dynamic time</p>
-          <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
+          <h2 id="pollution-summary-heading" class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">
+            Air pollution summary: last 24 hours
+          </h2>
+         <p id="pollution-period-description" class="govuk-body govuk-!-margin-bottom-3">
+          Add dynamic time
+        </p>
 
+
+          <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Time period navigation">
             <ul class="moj-sub-navigation__list">
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" aria-current="page" href="#3">Last 24 hours</a>
+                <a class="moj-sub-navigation__link js-period-link"
+                   href="#period-24h"
+                   data-period="24h"
+                   aria-current="page">
+                  Last 24 hours
+                </a>
               </li>
-      
-        
-      
               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="">Last 7 days</a>
+                <a class="moj-sub-navigation__link js-period-link"
+                   href="#period-7d"
+                   data-period="7d">
+                  Last 7 days
+                </a>
               </li>
-
-                  <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link"  href="">This year</a>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link js-period-link"
+                   href="#period-this-year"
+                   data-period="thisYear">
+                  This year
+                </a>
               </li>
-
-               <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="">Last year</a>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link js-period-link"
+                   href="#period-last-year"
+                   data-period="lastYear">
+                  Last year
+                </a>
               </li>
-      
-      
-            
             </ul>
-          
           </nav>
 
-         
-
-             <div class="govuk-inset-text not-verified">
-      Data has not been checked and verified
+<div id="verification-banner"
+     class="govuk-inset-text not-verified js-verification-banner">
+  Data has not been checked and verified
 </div>
-     
-          
-         
-        
 
-            
-             
-             <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
-
-
+          {# ===========================
+             PERIOD PANEL: LAST 24 HOURS
+             =========================== #}
+          <div class="aq-period-panel" id="period-24h" data-period="24h">
+            <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
               <thead class="defra-aq-levels-table__head">
                 <tr class="defra-aq-levels-table__row">
-                
-                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">Pollutant</th>
-                
-                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the Daily Air Quality Index (DAQI)" data-toggletip-content="The Daily Air Quality Index (DAQI) is a simple 10-point scale designed to help people understand the short term risk of air pollution.">
-                        DAQI
-                         </div></th>
-                
-                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title">24 hour average</th>
-
-                  <th scope="col" class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title">Hourly exceedances</th>
-                 
-                
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">
+                    Pollutant
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the Daily Air Quality Index (DAQI)"
+                         data-toggletip-content="The Daily Air Quality Index (DAQI) is a simple 10-point scale designed to help people understand the short term risk of air pollution.">
+                      DAQI
+                    </div>
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title">
+                    24 hour average
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title">
+                    Hourly exceedances
+                  </th>
                 </tr>
               </thead>
-              
               <tbody class="defra-aq-levels-table__body">
-                    <tr class="defra-aq-levels-table__row">
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM2.5<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
-                   
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
-                        <strong class="govuk-tag govuk-tag--green">
-          2 (low)
-        </strong>
-                          </td>
-                      
-                    
-                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for PM2.5" data-toggletip-content="Annual average PM2.5 levels at any site must not go above 20 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
-                        12 µg/m3
-                         </div></td>
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">n/a</td>
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM2.5
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <strong class="govuk-tag govuk-tag--green">2 (low)</strong>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM2.5"
+                         data-toggletip-content="Annual average PM2.5 levels at any site must not go above 20 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      12 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    n/a
+                  </td>
+                </tr>
 
-                     
-                      
-                    
-                    </tr>
-                  
-                
-                  
-                    <tr class="defra-aq-levels-table__row">
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">PM10<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
-                      
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
-                        <strong class="govuk-tag govuk-tag--green">
-          2 (low)
-        </strong>
-                        </td>
-                      
-                    
-                         <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for PM10" data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number). ">
-                        18 µg/m3
-                         </div></td>
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">n/a</td>
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM10
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <strong class="govuk-tag govuk-tag--green">2 (low)</strong>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM10"
+                         data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      18 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    n/a
+                  </td>
+                </tr>
 
-                      
-                      
-                    
-                    </tr>
-                  
-                
-                  
-                    <tr class="defra-aq-levels-table__row">
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Nitrogen dioxide<span class="defra-aq-levels-table__cell--data">Data capture: 100%</span></td>
-                      
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
-                        <strong class="govuk-tag govuk-tag--yellow">
-          4 (moderate)
-        </strong>
-                        </td>
-                      
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Nitrogen dioxide
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <strong class="govuk-tag govuk-tag--yellow">4 (moderate)</strong>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide"
+                         data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      201 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about hourly exceedances for nitrogen dioxide"
+                         data-toggletip-content="Hourly nitrogen dioxide levels must not go above 200 micrograms per cubic metre (µg/m³) more than 18 times in a calendar year (when rounded to a whole number).">
+                      1
+                    </div>
+                  </td>
+                </tr>
 
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
-      <div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide" data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number). ">
-                        201 µg/m3
-                         </div></td>
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about hourly exceedances for nitrogen dioxide" data-toggletip-content="Hourly nitrogen dioxide levels must not go above 200 micrograms per cubic metre (µg/m³) more than 18 times in a calendar year (when rounded to a whole number).">
-                        1
-                         </div></td>
-                    </tr>
-                  
-                
-                  
-                    <tr class="defra-aq-levels-table__row">
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">Ozone<span class="defra-aq-levels-table__cell--data">
-                        Data capture: 100%
-                        </span>
-                      </td>
-                      
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average"><strong class="govuk-tag govuk-tag--green">
-          2 (low)
-        </strong></td>
-                   
-                      
-                    
-                      
-                      
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about the UK annual average limit value for ozone" data-toggletip-content="There is no annual average limit value for ozone.">
-                        41 µg/m3
-                         </div></td>
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Ozone
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <strong class="govuk-tag govuk-tag--green">2 (low)</strong>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for ozone"
+                         data-toggletip-content="There is no annual average limit value for ozone.">
+                      41 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    n/a
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-                      <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">n/a</td>
-                      
+          {# ===========================
+             PERIOD PANEL: LAST 7 DAYS
+             =========================== #}
+          <div class="aq-period-panel" id="period-7d" data-period="7d" hidden>
+            <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+              <thead class="defra-aq-levels-table__head">
+                <tr class="defra-aq-levels-table__row">
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">
+                    Pollutant
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title">
+                    Average
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title">
+                    Daily exceedances
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title">
+                    Hourly exceedances
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="defra-aq-levels-table__body">
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM2.5
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM2.5"
+                         data-toggletip-content="Annual average PM2.5 levels at any site must not go above 20 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      9 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM10
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM10"
+                         data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      15 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about daily exceedances for PM10"
+                         data-toggletip-content="Daily average PM10 levels must not go above 50 micrograms per cubic metre (µg/m³) more than 35 times in a calendar year (when rounded to a whole number).">
+                      1
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Nitrogen dioxide
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide"
+                         data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      48 µg/m3
+                    </div>
                     
-                    </tr>
-                 
-                  
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about hourly exceedances for nitrogen dioxide"
+                         data-toggletip-content="Hourly nitrogen dioxide levels must not go above 200 micrograms per cubic metre (µg/m³) more than 18 times in a calendar year (when rounded to a whole number).">
+                      0
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Ozone
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for ozone"
+                         data-toggletip-content="There is no annual average limit value for ozone.">
+                      30 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          {# ===========================
+             PERIOD PANEL: THIS YEAR
+             =========================== #}
+          <div class="aq-period-panel" id="period-this-year" data-period="thisYear" hidden>
+            <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+              <thead class="defra-aq-levels-table__head">
+                <tr class="defra-aq-levels-table__row">
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">
+                    Pollutant
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title">
+                    Average
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title">
+                    Daily exceedances
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title">
+                    Hourly exceedances
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="defra-aq-levels-table__body">
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM2.5
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM2.5"
+                         data-toggletip-content="Annual average PM2.5 levels at any site must not go above 20 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      8 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM10
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM10"
+                         data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      14 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about daily exceedances for PM10"
+                         data-toggletip-content="Daily average PM10 levels must not go above 50 micrograms per cubic metre (µg/m³) more than 35 times in a calendar year (when rounded to a whole number).">
+                      2
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Nitrogen dioxide
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide"
+                         data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      52 µg/m3
+                    </div>
+                     <strong class="govuk-tag govuk-tag--red govuk-!-font-size-16 govuk-!-margin-top-1">
+                      Above limit
+                    </strong>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about hourly exceedances for nitrogen dioxide"
+                         data-toggletip-content="Hourly nitrogen dioxide levels must not go above 200 micrograms per cubic metre (µg/m³) more than 18 times in a calendar year (when rounded to a whole number).">
+                      1
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Ozone
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for ozone"
+                         data-toggletip-content="There is no annual average limit value for ozone.">
+                      32 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+               
+              </tbody>
+            </table>
+          </div>
+
+          {# ===========================
+             PERIOD PANEL: LAST YEAR
+             =========================== #}
+          <div class="aq-period-panel" id="period-last-year" data-period="lastYear" hidden>
+            <table class="govuk-table defra-aq-levels-table govuk-!-margin-bottom-2">
+              <thead class="defra-aq-levels-table__head">
+                <tr class="defra-aq-levels-table__row">
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant defra-aq-levels-table__cell--pollutant-title">
+                    Pollutant
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average defra-aq-levels-table__cell--average-title">
+                    Average
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily defra-aq-levels-table__cell--daily-title">
+                    Daily exceedances
+                  </th>
+                  <th scope="col"
+                      class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly defra-aq-levels-table__cell--hourly-title">
+                    Hourly exceedances
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="defra-aq-levels-table__body">
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM2.5
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM2.5"
+                         data-toggletip-content="Annual average PM2.5 levels at any site must not go above 20 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      10 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    PM10
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for PM10"
+                         data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      16 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about daily exceedances for PM10"
+                         data-toggletip-content="Daily average PM10 levels must not go above 50 micrograms per cubic metre (µg/m³) more than 35 times in a calendar year (when rounded to a whole number).">
+                      3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Nitrogen dioxide
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide"
+                         data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+                      55 µg/m3
+                    </div>
+                     <strong class="govuk-tag govuk-tag--red govuk-!-font-size-16 govuk-!-margin-top-1">
+    Above limit
+  </strong>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about hourly exceedances for nitrogen dioxide"
+                         data-toggletip-content="Hourly nitrogen dioxide levels must not go above 200 micrograms per cubic metre (µg/m³) more than 18 times in a calendar year (when rounded to a whole number).">
+                      2
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="defra-aq-levels-table__row">
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--pollutant">
+                    Ozone
+                    <span class="defra-aq-levels-table__cell--data">Data capture: 100%</span>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--average">
+                    <div class="defra-toggletip"
+                         data-toggletip
+                         data-toggletip-label="More information about the UK annual average limit value for ozone"
+                         data-toggletip-content="There is no annual average limit value for ozone.">
+                      34 µg/m3
+                    </div>
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
+                    Not applicable
+                  </td>
+                  <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
+                    Not applicable
+                  </td>
+                </tr>
+
                 
               </tbody>
             </table>
-<p class="govuk-hint">The pollution levels shown are measured against <a href="https://uk-air.defra.gov.uk/compliance-data" class="govuk-link" target="_blank">UK legal limits</a>.</p>
+          </div>
 
-              
+          <p class="govuk-hint">
+            The pollution levels shown are measured against
+            <a href="https://draft-origin.publishing.service.gov.uk/guidance/air-pollution-uk-legal-limts?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMjc3ZmU0My03OGIyLTRjYTAtOTFhMy0xODU5OTI0OWQzZGQiLCJjb250ZW50X2lkIjoiMjMyYzJiZTgtMzkxNi00Mjg0LTk4MjItMThkYzExZmQyNDdhIiwiaWF0IjoxNzY3MzYyMTgyLCJleHAiOjE3NzAwNDA1ODJ9.8aMR0Y5jPqu4244UVDS7coMZo6x9DiO-DOgxFxCnUpk&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
+               class="govuk-link">
+              UK legal limits
+            </a>.
+          </p>
 
+          <h3 class="govuk-heading-m govuk-!-margin-top-6">View graph and pollutant summary</h3>
+          <a href="pm10-graph.html"
+             role="button"
+             id="map-btn"
+             class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
+            <span class="aq-button-secondary__icon">
+              <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
+                <path d="M2.75 14.443v2.791H18v1.5H1.25V1.984h1.5v7.967L6.789 4.91l5.016 4.013 5.056-5.899 2.278 1.952-6.944 8.101L7.211 9.09 2.75 14.443z"></path>
+              </svg>
+            </span>
+            <span class="aq-button-secondary__text" style="padding-left: 5px;">
+              View graph and pollutant summary
+            </span>
+            <span class="govuk-visually-hidden">
+              (Visual only)
+            </span>
+          </a>
 
-              <h3 class="govuk-heading-m govuk-!-margin-top-6">View graph of pollution levels</h3>
-             <a href="pm10-graph.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
-                <span class="aq-button-secondary__icon">
-                  <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
-          <path d="M2.75 14.443v2.791H18v1.5H1.25V1.984h1.5v7.967L6.789 4.91l5.016 4.013 5.056-5.899 2.278 1.952-6.944 8.101L7.211 9.09 2.75 14.443z"></path>
-        </svg>
-                </span>
-                <span class="aq-button-secondary__text" style="padding-left: 5px;">
-                  View graph of pollution levels</span>
-                  <span class="govuk-visually-hidden">
-                  (Visual only)
-                </span>
-              </a>
-          
-                
-              
- <div class="div govuk-divider"></div>
+          <div class="div govuk-divider"></div>
 
+          {# ===========================
+             DOWNLOAD DATA (CHECKBOXES)
+             =========================== #}
+          <div class="govuk-form-group govuk-!-margin-bottom-3">
+            <fieldset class="govuk-fieldset" aria-describedby="download-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 id="download-heading" class="govuk-fieldset__heading">
+                  Download data: last 24 hours
+                </h1>
+              </legend>
 
-      
-    
-              
+              <p id="download-hint" class="govuk-body">
+                You can also <a href="" class="govuk-link">customise data for this station</a>
+                if you need specific date ranges.
+              </p>
 
-                 
-          
+              <details class="govuk-details govuk-!-margin-top-3">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    File format and metadata
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <h3 class="govuk-heading-s">File format</h3>
+                  <p class="govuk-body">This data will download in a wide format.</p>
+                  <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
 
-   <div class="govuk-form-group govuk-!-margin-bottom-3">
-      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-         <h1 class="govuk-fieldset__heading">
-        Download data: last 24 hours
-      </h1>
-    </legend>
-    <p class="govuk-body">You can also <a href="" class="govuk-link">customise data for this station</a> if you need specific date ranges.</p>
-    <details class="govuk-details govuk-!-margin-top-3">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      File format and metadata
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-   <h3 class="govuk-heading-s">File format</h3>
-                             <p class="govuk-body">This data will download in a wide format.</p>
-              <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
+                  <h3 class="govuk-heading-s">Metadata</h3>
+                  <p class="govuk-body">These files could contain the following metadata:</p>
+                  <ul class="govuk-body govuk-list--bullet">
+                    <li>name of monitoring station</li>
+                    <li>map coordinates</li>
+                    <li>local authority</li>
+                    <li>region</li>
+                    <li>site ID</li>
+                    <li>instrument type</li>
+                    <li>inlet height</li>
+                  </ul>
+                </div>
+              </details>
 
-                 <h3 class="govuk-heading-s">Metadata</h3>
-                 <p class="govuk-body">These files could contain the following metadata:</p>
-                 <ul class="govuk-body govuk-list--bullet">
-                  <li>name of monitoring station</li>
-                  <li>map coordinates</li>
-                  <li>local authority</li>
-                  <li>region</li>
-                  <li>site ID</li>
-                  <li>instrument type</li>
-                  <li>inlet height</li>
-                 </ul>
-  </div>
-</details>
-        </legend>
-    <p class="govuk-body">Select pollutants</p>
-        <div class="govuk-radios" data-module="govuk-radios">
-           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-7" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-7" checked>
-            <label class="govuk-label govuk-radios__label" for="contact-7">
-              All pollutants
-            </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-7">
-          
-              </div>
-          
-          
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="contact-6" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-6" >
-            <label class="govuk-label govuk-radios__label" for="contact-6">
-              Specific pollutants
-            </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-6">
-          <!--     <div id="signIn-item-hint" class="govuk-hint">
-                Select all countries if you want to search in the UK.
-              </div> -->
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+              <p class="govuk-body govuk-!-margin-top-3">Select pollutants to include</p>
+
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                  <input class="govuk-checkboxes__input"
+                         id="pollutant-pm25"
+                         name="pollutants"
+                         type="checkbox"
+                         value="pm25"
+                         checked>
+                  <label class="govuk-label govuk-checkboxes__label" for="pollutant-pm25">
                     Fine particulate matter (PM2.5)
                   </label>
                 </div>
+
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                  <input class="govuk-checkboxes__input"
+                         id="pollutant-pm10"
+                         name="pollutants"
+                         type="checkbox"
+                         value="pm10"
+                         checked>
+                  <label class="govuk-label govuk-checkboxes__label" for="pollutant-pm10">
                     Particulate matter (PM10)
                   </label>
                 </div>
+
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-3" name="organisation" type="checkbox" value="MOD">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-3">
+                  <input class="govuk-checkboxes__input"
+                         id="pollutant-no2"
+                         name="pollutants"
+                         type="checkbox"
+                         value="no2"
+                         checked>
+                  <label class="govuk-label govuk-checkboxes__label" for="pollutant-no2">
                     Nitrogen dioxide (NO2)
                   </label>
                 </div>
+
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-4" name="organisation" type="checkbox" value="DfT">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-4">
+                  <input class="govuk-checkboxes__input"
+                         id="pollutant-o3"
+                         name="pollutants"
+                         type="checkbox"
+                         value="o3"
+                         checked>
+                  <label class="govuk-label govuk-checkboxes__label" for="pollutant-o3">
                     Ozone (O3)
                   </label>
                 </div>
-                   <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="organisation-5" name="organisation" type="checkbox" value="ss">
-                  <label class="govuk-label govuk-checkboxes__label" for="organisation-5">
-                   Sulphur dioxide (SO2)
-                  </label>
-                </div>
-               
-        
-            
-          </div> 
-        
-        </div>
-      </fieldset>
-          <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-top-3" data-module="govuk-button">
-  Change pollutants
-</button>
 
-    </div>
-       <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3 ">
-                      <span class="aq-button-secondary__icon">
-                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-                      </span>
-                      <span class="aq-button-secondary__text">
-                        Download hourly data (CSV)</span>
-                        
-                    </a>
-                    <br>
-                    <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3">
-                      <span class="aq-button-secondary__icon">
-                        <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
-                      </span>
-                      <span class="aq-button-secondary__text">
-                        Download daily average data (CSV)</span>
-                    </a>
+               
+              </div>
+
+            <button type="submit"
+                    id="download-submit"
+                    class="govuk-button govuk-button--secondary govuk-!-margin-top-3"
+                    data-module="govuk-button">
+                Continue
+              </button>
+
+              <p id="selected-pollutants-summary"
+                class="govuk-body govuk-!-margin-top-2">
+                <!-- This will be populated by JavaScript -->
+              </p>
+
+              <div id="download-buttons-container" class="govuk-!-margin-top-3"></div>
+
+
+            </fieldset>
+          </div>
+
+       
+   
                     
 
                  
@@ -529,6 +903,284 @@
                 </div>
                
                 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const periodLinks = document.querySelectorAll('.js-period-link');
+    const periodPanels = document.querySelectorAll('.aq-period-panel');
+    const summaryHeading = document.getElementById('pollution-summary-heading');
+    const downloadHeading = document.getElementById('download-heading');
+    const periodDescription = document.getElementById('pollution-period-description');
+
+    const downloadButton = document.getElementById('download-submit');
+    const downloadButtonsContainer = document.getElementById('download-buttons-container');
+    const pollutantCheckboxes = document.querySelectorAll('input[name="pollutants"]');
+    const pollutantsSummary = document.getElementById('selected-pollutants-summary');
+
+    const verificationBanner = document.getElementById('verification-banner'); // NEW
+
+
+    let currentPeriod = '24h';
+
+    const periodConfig = {
+      '24h': {
+        heading: 'last 24 hours',
+        download: 'last 24 hours'
+      },
+      '7d': {
+        heading: 'last 7 days',
+        download: 'last 7 days'
+      },
+      'thisYear': {
+        heading: 'this year',
+        download: 'this year'
+      },
+      'lastYear': {
+        heading: 'last year',
+        download: 'last year'
+      }
+    };
+
+    function formatDateLong(date) {
+  const day = date.getDate();
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  return day + ' ' + month + ' ' + year;
+}
+
+// day + month, no year (for start of a same-year range)
+function formatDayMonth(date) {
+  const day = date.getDate();
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[date.getMonth()];
+  return day + ' ' + month;
+}
+
+// full date with year (for end of range)
+function formatDayMonthYear(date) {
+  const day = date.getDate();
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  return day + ' ' + month + ' ' + year;
+}
+
+function updatePeriodDescription(period) {
+  if (!periodDescription) return;
+
+  const now = new Date();
+
+  if (period === '24h') {
+    // Single date – just "6 January 2026"
+    periodDescription.textContent = formatDateLong(now);
+
+  } else if (period === '7d') {
+    const to = now;
+    const from = new Date(now);
+    from.setDate(now.getDate() - 6);
+
+    if (from.getFullYear() === to.getFullYear()) {
+      // Same year: "1 January to 7 January 2026"
+      periodDescription.textContent =
+        formatDayMonth(from) + ' to ' + formatDayMonthYear(to);
+    } else {
+      // Different years: "28 December 2025 to 3 January 2026"
+      periodDescription.textContent =
+        formatDateLong(from) + ' to ' + formatDateLong(to);
+    }
+
+  } else if (period === 'thisYear') {
+    const year = now.getFullYear();
+    const from = new Date(year, 0, 1);
+
+    if (from.getFullYear() === now.getFullYear()) {
+      // "1 January to 6 January 2026"
+      periodDescription.textContent =
+        formatDayMonth(from) + ' to ' + formatDayMonthYear(now);
+    } else {
+      periodDescription.textContent =
+        formatDateLong(from) + ' to ' + formatDateLong(now);
+    }
+
+  } else if (period === 'lastYear') {
+    const year = now.getFullYear() - 1;
+    const from = new Date(year, 0, 1);
+    const to = new Date(year, 11, 31);
+
+    // Always same year here, so:
+    // "1 January to 31 December 2025"
+    periodDescription.textContent =
+      formatDayMonth(from) + ' to ' + formatDayMonthYear(to);
+  }
+}
+
+
+    // NEW – verification banner logic
+    function updateVerification(period) {
+      if (!verificationBanner) return;
+
+      if (period === 'lastYear') {
+        // Special case: verified up to 31 October 2025
+        verificationBanner.textContent =
+          'Data has been checked and verified until 31 October 2025';
+        verificationBanner.classList.remove('not-verified');
+        verificationBanner.classList.add('half-verified');
+      } else {
+        // Default for all other periods
+        verificationBanner.textContent =
+          'Data has not been checked and verified';
+        verificationBanner.classList.remove('half-verified');
+        verificationBanner.classList.add('not-verified');
+      }
+    }
+
+    function activatePeriod(period) {
+      currentPeriod = period;
+
+      // Show/hide panels
+      periodPanels.forEach(function (panel) {
+        const isActive = panel.dataset.period === period;
+        panel.toggleAttribute('hidden', !isActive);
+      });
+
+      // Update nav state
+      periodLinks.forEach(function (link) {
+        if (link.dataset.period === period) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+
+      // Update headings
+      const cfg = periodConfig[period];
+      if (cfg && summaryHeading && downloadHeading) {
+        summaryHeading.textContent = 'Air pollution summary: ' + cfg.heading;
+        downloadHeading.textContent = 'Download data: ' + cfg.download;
+      }
+
+      // Update descriptive date text
+      updatePeriodDescription(period);
+
+      // NEW – update verification banner
+      updateVerification(period);
+
+      // Clear any existing download buttons when period changes
+      if (downloadButtonsContainer) {
+        downloadButtonsContainer.innerHTML = '';
+      }
+    }
+
+    // ---------- Period nav wiring ----------
+    periodLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const period = this.dataset.period;
+        if (period) {
+          activatePeriod(period);
+        }
+      });
+    });
+
+    // ---------- Dynamic download buttons ----------
+    function getFrequenciesForPeriod(period) {
+      if (period === '24h') {
+        return ['hourly'];
+      }
+      if (period === '7d') {
+        return ['hourly', 'daily'];
+      }
+      if (period === 'thisYear' || period === 'lastYear') {
+        return ['hourly', 'daily', 'monthly', 'annual'];
+      }
+      return [];
+    }
+
+      function createDownloadButton(freq) {
+      const labels = {
+        hourly: 'Download hourly data (CSV)',
+        daily: 'Download daily average data (CSV)',
+        monthly: 'Download monthly average data (CSV)',
+        annual: 'Download annual average data (CSV)'
+      };
+
+      const a = document.createElement('a');
+      a.href = '#'; // hook up real URLs later if needed
+      a.setAttribute('role', 'button');
+      a.className = 'aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3';
+
+      a.innerHTML = `
+        <span class="aq-button-secondary__icon">
+          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"></path>
+          </svg>
+        </span>
+        <span class="aq-button-secondary__text">
+          ${labels[freq] || 'Download data (CSV)'}
+        </span>
+      `;
+
+      return a;
+    }
+
+
+   if (downloadButton && downloadButtonsContainer) {
+  downloadButton.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const checked = Array.prototype.slice
+      .call(pollutantCheckboxes)
+      .filter(function (cb) { return cb.checked; });
+
+    if (checked.length === 0) {
+      alert('Select at least one pollutant to download.');
+      if (pollutantsSummary) {
+        pollutantsSummary.textContent = '';
+      }
+      return;
+    }
+
+    // Build human-readable list of selected pollutants
+    if (pollutantsSummary) {
+      const labels = checked.map(function (cb) {
+        const label = document.querySelector('label[for="' + cb.id + '"]');
+        return label ? label.textContent.trim() : cb.value;
+      });
+
+      pollutantsSummary.textContent = 'Pollutants included: ' + labels.join(', ');
+    }
+
+    // Clear any existing download buttons
+    downloadButtonsContainer.innerHTML = '';
+
+    // Generate buttons based on current period
+    const freqs = getFrequenciesForPeriod(currentPeriod);
+    freqs.forEach(function (freq) {
+      const btn = createDownloadButton(freq);
+      downloadButtonsContainer.appendChild(btn);
+      downloadButtonsContainer.appendChild(document.createElement('br'));
+    });
+  });
+}
+
+
+    // Initial state
+    activatePeriod('24h');
+  });
+</script>
+
 
 
 
