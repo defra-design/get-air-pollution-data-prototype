@@ -10,7 +10,11 @@
   html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
 }) }}
 
-<a href="../hub" class="govuk-back-link">Back</a>
+<a href="#"
+   class="govuk-back-link"
+   onclick="history.back(); return false;">
+  Back
+</a>
 {% endblock %}
 
 {% block content %}
