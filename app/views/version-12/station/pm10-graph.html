@@ -1,11 +1,20 @@
-{% extends "layouts/v7.html" %}
+{% extends "layouts/v12.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - GOV.UK" %}
 
 
 {% block beforeContent %}
-<a href="station.html" class="govuk-back-link">Back</a>
-<!-- <a href="results-b2-4qa.html" style="display: none;" id="station-b2" class="govuk-back-link">Back</a> -->
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+<a href="#"
+   class="govuk-back-link"
+   onclick="history.back(); return false;">
+  Back
+</a>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +23,10 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">PM10 in 2024</h1>
-   <p class="govuk-body govuk-!-margin-bottom-6">1 January to 31 December at Birmingham A4540 Roadside
-    </p>
+
+          <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">PM10: last year</h1>   
+              
+   <p class="govuk-body">Birmingham A4540 Roadside</p>
 
  
 
@@ -24,72 +34,117 @@
 
       <ul class="moj-sub-navigation__list">
        
+
+
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="#3">2020</a>
+          <a class="moj-sub-navigation__link" href="">Last 24 hours</a>
         </li>
 
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="#3">2021</a>
+          <a class="moj-sub-navigation__link" href="">Last 7 days</a>
         </li>
+        <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link"   href="">This year</a>
+              </li>
 
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="">2022</a>
+          <a class="moj-sub-navigation__link" aria-current="page" href="">Last year</a>
         </li>
 
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="">2023</a>
-        </li>
 
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" aria-current="page"  href="">2024</a>
-        </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link"  href="">2025</a>
-        </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="/version-7/past-month/pm10-graph">Last 30 days</a>
-        </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="/version-7/past-week/pm10-graph">Last 7 days</a>
-        </li>
-
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="/version-7/24hours/pm10-graph">Last 24 hours</a>
-        </li>
+       
       </ul>
     
     </nav>
 
-         <div class="govuk-inset-text" style="border-left: 10px solid #00703c; background-color: #d4fae2;">
-              Data has been checked and verified
-        </div>
+  
      
     
 
     <nav aria-label="Pages with more detail on this service" class="gem-c-contents-list govuk-!-margin-bottom-3" role="navigation">
      
        <ol class="gem-c-contents-list__list">
-      
-           <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-             <a class="gem-c-contents-list__link govuk-link" href="nitrogen-graph.html">Nitrogen dioxide</a>
-           </li>
+       <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+            <a class="gem-c-contents-list__link govuk-link" href="">PM2.5</a>
+          </li>
+       
            <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed gem-c-contents-list__list-item--active" aria-current="true">
             <strong>PM10</strong>
            </li>
-           <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-            <a class="gem-c-contents-list__link govuk-link" href="pm2_5-graph.html">PM2.5</a>
-          </li>
+              <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
+             <a class="gem-c-contents-list__link govuk-link" href="">Nitrogen dioxide</a>
+           </li>
           <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--dashed">
-            <a class="gem-c-contents-list__link govuk-link" href="ozone-graph.html">Ozone</a>
+            <a class="gem-c-contents-list__link govuk-link" href="">Ozone</a>
           </li>
           
        </ol>
      </nav>
 
-     <div class="govuk-divider" style="margin-bottom: 15px;"></div>
+
+          <div class="div govuk-divider"></div>
+
+   <h2 class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">Air pollution summary</h2>
+
+    
+   <p class="govuk-body">1 January to 31 December 2025</p>
+   <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
+
+      <ul class="moj-sub-navigation__list">
+      
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" aria-current="page" href="">Year</a>
+        </li>
+
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="">Jan</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="">Feb</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Mar</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Apr</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">May</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Jun</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Jul</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Aug</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Sep</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Oct</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Nov</a>
+              </li>
+              <li class="moj-sub-navigation__item">
+                <a class="moj-sub-navigation__link" href="">Dec</a>
+              </li>
+
+
+       
+      </ul>
+    
+    </nav>
+
+           <div class="govuk-inset-text govuk-!-margin-bottom-2" style="border-left: 10px solid #00703c; background-color: #d4fae2;">
+              Data has been checked and verified
+        </div>
         
           <dl class="defra-aq-features-pollutants__list govuk-!-margin-top-0" style="gap: 0px;">
            <div class="defra-aq-features-pollutants__item" style="width: 25%">
@@ -110,8 +165,8 @@
              <dt class="defra-aq-features-pollutants__key govuk-caption-m">
                Daily exceedances
                 </dt>
-             <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="There must not be more than 35 daily exceedances over 50 micrograms per cubic metre (µg/m3) for nitrogen dioxide in a calendar year.">
-               1
+             <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 5px;"><div class="defra-toggletip" data-toggletip="" data-toggletip-label="More information about daily exceedances" data-toggletip-content="Annual average PM10 levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
+               3
                 </div></dd>
             <!--  <dd class="defra-aq-features-pollutants__value govuk-body" style="margin-top: 10px;">
                <strong class="govuk-tag govuk-tag--red">
@@ -137,22 +192,22 @@
            </div>
            
            </dl>
-                  <p class="govuk-hint">The pollution levels shown are measured against <a href="legal" class="govuk-link">UK legal limits (opens in new tab)</a></p>
+                  <p class="govuk-hint">The pollution levels shown are measured against <a href="legal" class="govuk-link">UK legal limits</a>.</p>
        
 
   
 
-  <h2 class="govuk-heading-m govuk-!-margin-top-6">Daily average data</h2>
-  <p class="govuk"><a href="pm10-graph-hourly.html" class="govuk-link">Change to hourly data</a></p>
+  <h2 class="govuk-heading-l govuk-!-margin-top-6">View graph: daily average data</h2>
+   
 
 
 
         <div class="graph-container">
       <div id="pm10-container-2024" tabindex="0" aria-label="PM10 levels chart. Use left and right arrows to explore data points."></div>
               <div id="chart-aria-live" class="govuk-visually-hidden" aria-live="polite" role="status"></div>
-          </div>
-        </div>
-        <h2 class="govuk-heading-m govuk-!-margin-top-3 govuk-margin-bottom-1">Download PM10 for 2024</h2>
+       
+        <h2 class="govuk-heading-m govuk-!-margin-top-3 govuk-margin-bottom-1">Download data</h2>
+            <p class="govuk-body">You can also <a href="" class="govuk-link">customise data for this station</a> if you need specific date ranges.</p>
         
         
         <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon  govuk-!-margin-bottom-1">
@@ -173,6 +228,15 @@
         
         </a>
         <br>
+        <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-1 govuk-!-margin-bottom-1">
+          <span class="aq-button-secondary__icon">
+            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+          </span>
+          <span class="aq-button-secondary__text">
+            Download monthly average data</span>
+        
+        </a>
+        <br>
           <a href="" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-1 govuk-!-margin-bottom-1">
             <span class="aq-button-secondary__icon">
               <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
@@ -184,7 +248,7 @@
 
       <nav class="govuk-pagination govuk-pagination--block govuk-!-margin-top-6" aria-label="Pagination">
         <div class="govuk-pagination__prev">
-          <a class="govuk-link govuk-pagination__link" href="nitrogen-graph.html" rel="prev">
+          <a class="govuk-link govuk-pagination__link" href="" rel="prev">
             <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
               <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
             </svg>
@@ -192,11 +256,11 @@
               Previous<span class="govuk-visually-hidden"> page</span>
             </span>
             <span class="govuk-visually-hidden">:</span>
-            <span class="govuk-pagination__link-label">Nitrogen dioxide</span>
+            <span class="govuk-pagination__link-label">PM2.5</span>
           </a>
         </div>
         <div class="govuk-pagination__next">
-          <a class="govuk-link govuk-pagination__link" href="pm2_5-graph.html" rel="next">
+          <a class="govuk-link govuk-pagination__link" href="" rel="next">
             <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
               <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
             </svg>
@@ -204,15 +268,11 @@
               Next<span class="govuk-visually-hidden"> page</span>
             </span>
             <span class="govuk-visually-hidden">:</span>
-            <span class="govuk-pagination__link-label">PM2.5</span>
+            <span class="govuk-pagination__link-label">Nitrogen dioxide</span>
           </a>
         </div>
       </nav>
-     <!--  <div class="govuk-divider"></div>
-      {{ govukButton({
-        text: "Download customised data for this station",
-        href: ""
-      }) }} -->
+
    </div>
  </div>
 

@@ -1170,7 +1170,20 @@ function clearSelectedMarker() {
       </div>` : ''}
   </dl>
 
-  <p><a href="/version-12/station/station.html" class="govuk-link">View and download data for this station</a></p>
+  <p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3"><a href="/version-12/station/station.html" class="govuk-link">View and download data</a></p>
+  <p class="govuk-!-margin-bottom-0">  <a href="/version-12/station/pm10-graph.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
+                <span class="aq-button-secondary__icon">
+                  <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
+          <path d="M2.75 14.443v2.791H18v1.5H1.25V1.984h1.5v7.967L6.789 4.91l5.016 4.013 5.056-5.899 2.278 1.952-6.944 8.101L7.211 9.09 2.75 14.443z"></path>
+        </svg>
+                </span>
+                <span class="aq-button-secondary__text" style="padding-left: 5px;">
+                  View graph of pollution levels</span>
+                  <span class="govuk-visually-hidden">
+                  (Visual only)
+                </span>
+              </a>
+              </p>
 `;
 
 
@@ -1575,27 +1588,30 @@ function initPollutantPanels() {
 
   // Bind change
   mount.querySelectorAll(`input[name="${groupName}"]`).forEach((r) => {
-    r.addEventListener('change', () => {
-      if (!r.checked) return;
+  r.addEventListener('change', () => {
+    if (!r.checked) return;
 
-      filterState.mode = 'group';
-      filterState.groupKey = r.value;
+    filterState.mode = 'group';
+    filterState.groupKey = r.value;
 
-          updateGroupHints();
+    updateGroupHints();
 
-      // If the previously selected network isn’t available for this group, reset to first available
-      const available = getAvailableNetworks();
-      selectedNetwork = available.includes(selectedNetwork) ? selectedNetwork : (available[0] || NETWORK.AURN);
+    const available = getAvailableNetworks();
+    selectedNetwork = available.includes(selectedNetwork) ? selectedNetwork : (available[0] || NETWORK.AURN);
 
-      if (aqMapApi && typeof aqMapApi.setNetwork === 'function') {
-        aqMapApi.setNetwork(selectedNetwork);
-      }
-        // after binding change handlers
-        requestAnimationFrame(updateGroupHints);
-      renderDataSources(root, mount, uiId);
-      applyFilter();
-    });
+    if (aqMapApi && typeof aqMapApi.setNetwork === 'function') {
+      aqMapApi.setNetwork(selectedNetwork);
+    }
+
+    // ✅ User has interacted with filters
+    hasUserInteractedWithFilters = true;
+
+    requestAnimationFrame(updateGroupHints);
+    renderDataSources(root, mount, uiId);
+    applyFilter();
   });
+});
+
 }
 
 
@@ -1636,24 +1652,24 @@ function initPollutantPanels() {
 
       // Bind once per mount element
       if (!mount.dataset.pollutantCheckboxBound) {
-        mount.addEventListener('change', (e) => {
-          const target = e.target;
-          if (!target || !target.matches('.govuk-checkboxes__input[type="checkbox"]')) return;
+       mount.addEventListener('change', (e) => {
+        const target = e.target;
+        if (!target || !target.matches('.govuk-checkboxes__input[type="checkbox"]')) return;
 
-          const selected = new Set(
-            Array.from(mount.querySelectorAll('.govuk-checkboxes__input[type="checkbox"]:checked'))
-              .map(cb => cb.value)
-          );
+        const selected = new Set(
+          Array.from(mount.querySelectorAll('.govuk-checkboxes__input[type="checkbox"]:checked'))
+            .map(cb => cb.value)
+        );
 
-          // IMPORTANT: update global state FIRST
-          setFilter('pollutant', selected);
+        setFilter('pollutant', selected);
 
-          // Now refresh data sources based on new selection
-          renderDataSources(root, mount, uiId);
+        // ✅ User has interacted with filters now
+        hasUserInteractedWithFilters = true;
 
-          // Sync other panel visually
-          syncAllPollutantCheckboxes();
-        });
+        renderDataSources(root, mount, uiId);
+        syncAllPollutantCheckboxes();
+      });
+
 
         mount.dataset.pollutantCheckboxBound = 'true';
       }
@@ -1664,19 +1680,25 @@ function initPollutantPanels() {
     }
 
     extBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        filterState.mode = 'group';
-        filterState.groupKey = 'regulation'; // ✅
+      filterState.mode = 'group';
+      filterState.groupKey = 'regulation';
 
-        showMode('groups');
-      });
+      hasUserInteractedWithFilters = true; // ✅
+      showMode('groups');
+    });
+
+    depthBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      hasUserInteractedWithFilters = true; // ✅
+      showMode('pollutant');
+    });
 
 
-    depthBtn.addEventListener('click', (e) => { e.preventDefault(); showMode('pollutant'); });
-
-    showMode('pollutant');
-  }
+        showMode('pollutant');
+      }
 
   function syncAllPollutantCheckboxes() {
     if (!filterState.selected) return;
@@ -1689,6 +1711,8 @@ function initPollutantPanels() {
   }
 }
 
+// Tracks whether the user has interacted with pollutant/group filters yet
+let hasUserInteractedWithFilters = false;
 
 function renderDataSources(root, mount, uiId) {
   // NEW: scroll container – where all dynamic content will live
@@ -1732,10 +1756,14 @@ function renderDataSources(root, mount, uiId) {
   // -------------------------
   // Data sources (details)
   // -------------------------
-  const details = document.createElement('details');
-  details.className = 'govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-3';
-  details.id = `${uiId}-data-sources`;
-  details.open = true;
+    const details = document.createElement('details');
+    details.className = 'govuk-details govuk-!-margin-top-3 govuk-!-margin-bottom-3';
+    details.id = `${uiId}-data-sources`;
+
+    // 👇 Start closed on page load; open after the user interacts
+    details.open = hasUserInteractedWithFilters;
+
+
 
   details.innerHTML = `
     <summary class="govuk-details__summary">

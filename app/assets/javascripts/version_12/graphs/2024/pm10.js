@@ -70,7 +70,7 @@ const svg = d3.select("#pm10-container-2024")
 
 
 // Load and process the data
-d3.csv("/public/javascripts/version_7/chart-data/2024/pm10-exceed.csv").then(function (data) {
+d3.csv("/public/javascripts/version_12/chart-data/2024/pm10-exceed.csv").then(function (data) {
   // Parse the date and convert the population to a number
   const parseDate = d3.timeParse("%d/%m/%Y");
   data.forEach(d => {
