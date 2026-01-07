@@ -207,7 +207,19 @@ const NETWORK_DATASETS = {
 
   [NETWORK.LOCAL]: [
     { id: 1001, name: "Local Leeds Roadside", lat: 53.800, lng: -1.550, authority: "Leeds City Council", pollutants: ["NO2","PM10"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2018-01-01" },
-    { id: 1002, name: "Local Brighton Centre", lat: 50.823, lng: -0.137, authority: "Brighton & Hove City Council", pollutants: ["PM2.5","PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2019-05-01" }
+    { id: 1002, name: "Local Brighton Centre", lat: 50.823, lng: -0.137, authority: "Brighton & Hove City Council", pollutants: ["PM2.5","PM10"], status: "active", daqi: null, siteType: "Urban background", startDate: "2019-05-01" },
+    {
+      id: 702, // unique ID you can adjust to fit your ID scheme
+      name: "Horsham - Park Way",
+      lat: 51.062593,
+      lng: -0.324818,
+      authority: "Horsham District Council",      // local authority for Horsham, West Sussex
+      pollutants: ["PM10", "NO2"],               // pollutants measured here (same as site page)
+      status: "active",                           // assumed active (no end date shown) :contentReference[oaicite:0]{index=0}
+      daqi: null,                                 // Sussex Air is not part of DAQI networks
+      siteType: "Urban traffic",                  // from “Environment Type: Urban Traffic” :contentReference[oaicite:1]{index=1}
+      startDate: "2016-01-01"
+    }
   ],
 
   [NETWORK.URBAN_NO2]: [
