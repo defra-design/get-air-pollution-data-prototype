@@ -299,7 +299,7 @@
     const selected = document.querySelector('input[name="time"]:checked');
     if (!selected) {
       // Show ONLY a page-level summary (no inline) when no radio is selected
-      showErrorSummary([{ text: 'Please select an option before continuing', href: '#time-ytd' }]);
+      showErrorSummary([{ text: 'Select an option before continuing', href: '#time-ytd' }]);
       const first = document.getElementById('time-ytd') || document.getElementById('time-any') || document.getElementById('time-range');
       if (first) first.focus();
       return;
