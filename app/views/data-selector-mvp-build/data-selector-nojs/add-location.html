@@ -28,7 +28,7 @@
                    name="location"
                    type="radio"
                    value="countries"
-                   data-aria-controls="conditional-location-2">
+                   data-aria-controls="conditional-location-2" checked>
             <label class="govuk-label govuk-radios__label" for="location-2">Countries</label>
             <div class="govuk-hint govuk-radios__hint">
               Choose one or more: England, Scotland, Wales or Northern Ireland
@@ -58,44 +58,7 @@
             </div>
           </div>
 
-       <!-- Local authority -->
-<div class="govuk-radios__item">
-  <input class="govuk-radios__input"
-         id="location-4"
-         name="location"
-         type="radio"
-         value="la"
-         data-aria-controls="conditional-location-4">
-  <label class="govuk-label govuk-radios__label" for="location-4">Local authority</label>
-  <div class="govuk-hint govuk-radios__hint">Add up to 10 local authorities</div>
-</div>
 
-<div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
-  <div class="govuk-form-group">
-    <!-- Inline error will be inserted just before this container -->
-    <select class="govuk-select" id="la-select" name="la">
-      <option value="">Select a local authority</option>
-      <!-- OPTION A (static): paste all your LA options here (same list you shared earlier) -->
-      <!-- e.g. <option>Cambridgeshire County Council</option> ... -->
-
-      <!-- OPTION B (dynamic): leave only the placeholder above and let the script
-           populate from window.ALL_LOCAL_AUTHORITIES if present. -->
-    </select>
-
-    <div class="govuk-button-group govuk-!-margin-top-3">
-      {{ govukButton({
-        text: "Add local authority",
-        classes: "govuk-button--secondary",
-        attributes: { id: "add-more-locations-button" }
-      }) }}
-    </div>
-  </div>
-
-  <table class="govuk-table govuk-!-margin-top-4" id="location-table" hidden>
-    <caption class="govuk-table__caption govuk-table__caption--m">Added local authorities</caption>
-    <tbody class="govuk-table__body"></tbody>
-  </table>
-</div>
 
         </div>
       </fieldset>
