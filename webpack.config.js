@@ -41,15 +41,22 @@ module.exports = {
    autocomplete_p_11 :   './app/assets/javascripts/version_11/components/accessible-autocomplete-p-v8.js',
    autocomplete_la_11 :   './app/assets/javascripts/version_11/components/accessible-autocomplete.js',
 
-    // Air Quality Map
+    // Air Quality Map V11
     AQ_map : './app/assets/javascripts/version_11/air-quality-map.js',
 
       // Version 12
       autocomplete_p_12 :   './app/assets/javascripts/version_12/components/accessible-autocomplete-p-v8.js',
       autocomplete_la_12 :   './app/assets/javascripts/version_12/components/accessible-autocomplete.js',
 
-      // Air Quality Map
-      AQ_map_12 : './app/assets/javascripts/version_12/air-quality-map.js'
+      // Air Quality Map V12
+      AQ_map_12 : './app/assets/javascripts/version_12/air-quality-map.js',
+
+      // Version 13
+      autocomplete_p_13 :   './app/assets/javascripts/version_13/components/accessible-autocomplete-p-v8.js',
+      autocomplete_la_13 :   './app/assets/javascripts/version_13/components/accessible-autocomplete.js',
+
+      // Air Quality Map V13
+      AQ_map_13 : './app/assets/javascripts/version_13/air-quality-map.js'
    },
     // Adjust if your entry file has a different path
   output: {
