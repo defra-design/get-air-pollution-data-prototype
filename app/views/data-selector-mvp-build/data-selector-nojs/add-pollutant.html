@@ -12,28 +12,53 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <!-- duplicate error (specific pollutants flow) -->
-  <!--   <div id="duplicate-error" class="govuk-error-summary" data-module="govuk-error-summary" hidden>
-      <div role="alert">
-        <h2 class="govuk-error-summary__title">There is a problem</h2>
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li><a href="#my-autocomplete">This pollutant has already been added</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
- -->
+   <div id="mode-fieldset"></div>
     <h1 class="govuk-heading-l">Add pollutant(s)</h1>
 
     <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" aria-describedby="mode-hint">
+      <fieldset class="govuk-fieldset" aria-describedby="mode-hint" id="mode-fieldset">
+
 
         <div id="mode-hint" class="govuk-hint">Select one option</div>
 
         <div class="govuk-radios" data-module="govuk-radios">
           <!-- MODE: specific -->
-         
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input"
+                   id="mode-specific"
+                   name="pollutant-mode"
+                   type="radio"
+                   value="specific"
+                   data-aria-controls="conditional-specific">
+            <label class="govuk-label govuk-radios__label" for="mode-specific">
+              Add a pollutant
+            </label>
+          </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-specific">
+            <div class="govuk-form-group" id="pollutant-form-group">
+             <!--  <div class="govuk-hint">Add up to 10 pollutants</div> -->
+
+              <select class="govuk-select" name="pollutants">
+      <option value="">Select a pollutant</option>
+       <option value="">Fine particulate matter (PM2.5)</option>
+        <option value="">Particulate matter (PM10)</option>
+         <option value="">Nitrogen dioxide (NO2)</option>
+          <option value="">Ozone (O3)</option>
+          <option value="">Sulphur dioxide (SO2)</option>
+          <option value="">Nitrogen oxides as nitrogen dioxide (NOx as NO2)</option>
+          <option value="">Nitric oxide (NO)</option>
+          <option value="">Carbon monoxide (CO)</option>
+     
+    </select>
+
+          
+
+              <table class="govuk-table govuk-!-margin-top-4" id="pollutant-table" hidden>
+                <caption class="govuk-table__caption govuk-table__caption--m">Added pollutants</caption>
+                <tbody class="govuk-table__body"></tbody>
+              </table>
+            </div>
+          </div>
 
 
         <!-- MODE: groups -->
@@ -50,7 +75,7 @@
 </div>
 
 <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-groups">
-  <div class="govuk-form-group">
+  <div class="govuk-form-group" id="pollutant-group-form-group">
     <fieldset class="govuk-fieldset" aria-describedby="pollutant-group-hint">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--s"></legend>
       <div id="pollutant-group-hint" class="govuk-hint">Select one option</div>
