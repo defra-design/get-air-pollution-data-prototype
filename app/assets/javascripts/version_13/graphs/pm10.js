@@ -320,6 +320,8 @@ drawChart();
 // Add an event listener for window resize
 window.addEventListener("resize", drawChart);
 
+window.drawSelectedGraph = window.drawSelectedGraph || {};
+window.drawSelectedGraph.pm10 = drawChart; // or whatever your function is called
 
 
 

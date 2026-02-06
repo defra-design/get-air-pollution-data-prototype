@@ -3,10 +3,6 @@
 {% set pageName="Birmingham A4540 Roadside monitoring station - Get air pollution data - GOV.UK" %}
 
 {% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: { text: "Beta" },
-  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-}) }}
 <a href="#"
    class="govuk-back-link"
    onclick="
@@ -168,7 +164,7 @@
     <div class="div govuk-divider"></div>
 
     <h2 id="pollution-summary-heading" class="govuk-heading-l govuk-!-margin-top-6 govuk-!-margin-bottom-2">
-      Air pollution summary: last 24 hours
+      last 24 hours
     </h2>
 
     <p id="pollution-period-description" class="govuk-body govuk-!-margin-bottom-3">
@@ -185,10 +181,10 @@
           <a class="moj-sub-navigation__link js-period-link" href="#period-24h" data-period="24h">Last 24 hours</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link js-period-link" href="#period-7d" data-period="7d">Past 7 days</a>
+          <a class="moj-sub-navigation__link js-period-link" href="#period-7d" data-period="7d">Last 7 days</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link js-period-link" href="#period-this-year" data-period="thisYear">Annual summary</a>
+          <a class="moj-sub-navigation__link js-period-link" href="#period-this-year" data-period="thisYear">Last 5 years</a>
         </li>
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link js-period-link" href="#period-last-year" data-period="lastYear">Choose date range</a>
@@ -375,7 +371,7 @@
                          data-toggletip
                          data-toggletip-label="More information about the UK annual average limit value for nitrogen dioxide"
                          data-toggletip-content="Annual average nitrogen dioxide levels at any site must not go above 40 micrograms per cubic metre (µg/m³) in a calendar year (when rounded to a whole number).">
-                      201 µg/m3
+                      150 µg/m3
                     </div>
                   </td>
                   <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--hourly">
@@ -399,7 +395,7 @@
                          data-toggletip
                          data-toggletip-label="More information about the UK annual average limit value for ozone"
                          data-toggletip-content="There is no annual average limit value for ozone.">
-                      41 µg/m3
+                      35 µg/m3
                     </div>
                   </td>
                   <td class="defra-aq-levels-table__cell defra-aq-levels-table__cell--daily">
@@ -695,6 +691,8 @@
     <div class="aq-period-panel" id="period-last-year" data-period="lastYear" hidden>
       <h3 class="govuk-heading-m">Choose a date range</h3>
       <p class="govuk-body">Placeholder: this tab will have a different layout (date picker and customised summary).</p>
+      <p id="cdr-selection-summary" class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-2" hidden></p>
+
     </div>
 
 <p id="post-table-hint" class="govuk-hint">
@@ -756,7 +754,7 @@
           </div>
         </details>
 
-        <p class="govuk-body govuk-!-margin-top-3">Select pollutants to include</p>
+        <h3 class="govuk-heading-s govuk-!-margin-top-3">Select pollutants</h3>
 
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
@@ -797,7 +795,7 @@
     const downloadHeading = document.getElementById('download-heading');
     const periodDescription = document.getElementById('pollution-period-description');
 
-    const downloadSection = document.querySelector('.govuk-form-group'); // your download block wrapper
+    const downloadSection = document.getElementById('download-section');
     const downloadButton = document.getElementById('download-submit');
     const downloadButtonsContainer = document.getElementById('download-buttons-container');
     const pollutantCheckboxes = document.querySelectorAll('input[name="pollutants"]');
@@ -806,21 +804,24 @@
     const postTableHint = document.getElementById('post-table-hint');
     const graphSection = document.getElementById('graph-section');
 
-    // If you still have the old generic verification banner in the page, this script doesn't use it.
-    // Annual has its own banner: #verification-banner-annual.
+    let currentPeriod = 'daqi';
+    let currentAnnualYear = '2026';
 
-    let currentPeriod = 'daqi';       // DEFAULT LOAD TAB
-    let currentAnnualYear = '2026';   // DEFAULT ANNUAL YEAR
-
-    const DAQI_INFO_URL = '#'; // keep as your DAQI link URL
+    const DAQI_INFO_URL = '#';
 
     const periodConfig = {
-      daqi: { heading: 'Daily Air Quality Index (DAQI)', download: 'Daily Air Quality Index (DAQI)' },
+      daqi: { heading: 'Daily Air Quality Index (DAQI)', download: '' },
       '24h': { heading: 'last 24 hours', download: 'last 24 hours' },
-      '7d': { heading: 'Past 7 days', download: 'Past 7 days' },
+      '7d': { heading: 'last 7 days', download: 'last 7 days' },
       'thisYear': { heading: 'annual summary', download: 'annual summary' },
       'lastYear': { heading: 'choose date range', download: 'choose date range' }
     };
+
+    // ---------- Utilities ----------
+    function clearDownloadsUI() {
+      if (downloadButtonsContainer) downloadButtonsContainer.innerHTML = '';
+      if (pollutantsSummary) pollutantsSummary.textContent = '';
+    }
 
     function formatDateLong(date) {
       const day = date.getDate();
@@ -857,8 +858,10 @@
       else el.setAttribute('hidden', '');
     }
 
-    // --- Annual data (demo values; replace with real data) ---
-    // Add aboveLimit: true|false for 2025-2022 (full years) where relevant.
+    // Save original “legal limits” hint HTML so we can restore it cleanly
+    const originalPostTableHintHTML = postTableHint ? postTableHint.innerHTML : '';
+
+    // ---------- Annual data demo ----------
     const annualDataByYear = {
       "2026": {
         verified: "none",
@@ -912,7 +915,6 @@
       const el = document.getElementById('verification-banner-annual');
       if (!el) return;
 
-      // Clear all states first
       el.classList.remove('not-verified', 'half-verified', 'verified');
 
       if (state.verified === 'partial') {
@@ -936,35 +938,30 @@
 
       const v = state.values;
 
-      // PM2.5
       setText('annual-pm25-avg', v.pm25.avg);
       setText('annual-pm25-daily', v.pm25.daily);
       setText('annual-pm25-hourly', v.pm25.hourly);
       setText('annual-pm25-capture', v.pm25.capture);
       setAboveLimit('annual-pm25-above', !!v.pm25.aboveLimit);
 
-      // PM10
       setText('annual-pm10-avg', v.pm10.avg);
       setText('annual-pm10-daily', v.pm10.daily);
       setText('annual-pm10-hourly', v.pm10.hourly);
       setText('annual-pm10-capture', v.pm10.capture);
       setAboveLimit('annual-pm10-above', !!v.pm10.aboveLimit);
 
-      // NO2
       setText('annual-no2-avg', v.no2.avg);
       setText('annual-no2-daily', v.no2.daily);
       setText('annual-no2-hourly', v.no2.hourly);
       setText('annual-no2-capture', v.no2.capture);
       setAboveLimit('annual-no2-above', !!v.no2.aboveLimit);
 
-      // O3
       setText('annual-o3-avg', v.o3.avg);
       setText('annual-o3-daily', v.o3.daily);
       setText('annual-o3-hourly', v.o3.hourly);
       setText('annual-o3-capture', v.o3.capture);
       setAboveLimit('annual-o3-above', !!v.o3.aboveLimit);
 
-      // If currently on annual tab, refresh headings/date line
       if (currentPeriod === 'thisYear') {
         updateHeadingsForPeriod('thisYear');
         updatePeriodDescription('thisYear');
@@ -979,7 +976,6 @@
           const year = this.dataset.year;
           if (!year) return;
 
-          // Update active state styling
           links.forEach(function (l) {
             l.removeAttribute('aria-current');
             const li = l.closest('li');
@@ -991,10 +987,401 @@
           if (li) li.classList.add('moj-side-navigation__item--active');
 
           updateAnnualTableForYear(year);
+
+          // wipe global downloads if user changes year
+          clearDownloadsUI();
         });
       });
     }
 
+    // ---------- Choose date range UI injection ----------
+    function ensureChooseDateRangeUI() {
+      const panel = document.getElementById('period-last-year');
+      if (!panel) return;
+      if (panel.querySelector('#cdr-form')) return;
+
+      panel.innerHTML = `
+
+        <form id="cdr-form" class="govuk-!-margin-top-3" novalidate>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="cdr-hint">
+                  <h3 class="govuk-heading-s">Select a time period</h3>
+          
+
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="cdr-any-year" name="cdr-period" type="radio" value="anyYear" data-aria-controls="cdr-any-year-conditional">
+                  <label class="govuk-label govuk-radios__label" for="cdr-any-year">Any year</label>
+                  <div id="time-any-hint" class="govuk-hint govuk-radios__hint">Choose a single whole year</div>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="cdr-any-year-conditional">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="cdr-year">Year</label>
+                    <div class="govuk-hint">For example, 2023</div>
+                    <input class="govuk-input govuk-input--width-4" id="cdr-year" name="cdr-year" type="text" inputmode="numeric">
+                  </div>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="cdr-year-range" name="cdr-period" type="radio" value="yearRange" data-aria-controls="cdr-year-range-conditional">
+                  <label class="govuk-label govuk-radios__label" for="cdr-year-range">Range of years</label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="cdr-year-range-conditional">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="cdr-year-from">Enter start year</label>
+                    <div class="govuk-hint">For example, 2023</div>
+                    <input class="govuk-input govuk-input--width-4" id="cdr-year-from" name="cdr-year-from" type="text" inputmode="numeric">
+                  </div>
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="cdr-year-to">Enter end year</label>
+                    <div class="govuk-hint">For example, 2024</div>
+                    <input class="govuk-input govuk-input--width-4" id="cdr-year-to" name="cdr-year-to" type="text" inputmode="numeric">
+                  </div>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="cdr-date-range" name="cdr-period" type="radio" value="dateRange" data-aria-controls="cdr-date-range-conditional">
+                  <label class="govuk-label govuk-radios__label" for="cdr-date-range">Specific date range</label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="cdr-date-range-conditional">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" role="group" aria-describedby="cdr-start-hint">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Start date</legend>
+                      <div id="cdr-start-hint" class="govuk-hint">For example, 25 11 2024</div>
+                      <div class="govuk-date-input" id="cdr-start-date">
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="cdr-start-day">Day</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="cdr-start-day" name="cdr-start-day" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="cdr-start-month">Month</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="cdr-start-month" name="cdr-start-month" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="cdr-start-year">Year</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="cdr-start-year" name="cdr-start-year" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" role="group" aria-describedby="cdr-end-hint">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">End date</legend>
+                      <div id="cdr-end-hint" class="govuk-hint">For example, 30 11 2024</div>
+                      <div class="govuk-date-input" id="cdr-end-date">
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="cdr-end-day">Day</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="cdr-end-day" name="cdr-end-day" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="cdr-end-month">Month</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="cdr-end-month" name="cdr-end-month" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="cdr-end-year">Year</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="cdr-end-year" name="cdr-end-year" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+              </div>
+            </fieldset>
+          </div>
+
+
+          <h3 class="govuk-heading-s">Select pollutants</h3>
+
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes" id="cdr-pollutants">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="cdr-pm25" name="cdr-pollutants" type="checkbox" value="pm25" checked>
+              <label class="govuk-label govuk-checkboxes__label" for="cdr-pm25">Fine particulate matter (PM2.5)</label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="cdr-pm10" name="cdr-pollutants" type="checkbox" value="pm10" checked>
+              <label class="govuk-label govuk-checkboxes__label" for="cdr-pm10">Particulate matter (PM10)</label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="cdr-no2" name="cdr-pollutants" type="checkbox" value="no2" checked>
+              <label class="govuk-label govuk-checkboxes__label" for="cdr-no2">Nitrogen dioxide (NO2)</label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="cdr-o3" name="cdr-pollutants" type="checkbox" value="o3" checked>
+              <label class="govuk-label govuk-checkboxes__label" for="cdr-o3">Ozone (O3)</label>
+            </div>
+          </div>
+
+          <button type="button" id="cdr-continue" class="govuk-button govuk-button--secondary govuk-!-margin-top-3" data-module="govuk-button">
+            Continue
+          </button>
+
+          <p id="cdr-selected-summary" class="govuk-body govuk-!-margin-top-2"></p>
+          <div id="cdr-download-buttons" class="govuk-!-margin-top-3"></div>
+
+        </form>
+      `;
+
+      if (window.GOVUKFrontend && GOVUKFrontend.initAll) {
+        GOVUKFrontend.initAll();
+      }
+
+      wireChooseDateRangeForm();
+    }
+
+    function getChooseDateRangeSelection() {
+      const form = document.getElementById('cdr-form');
+      if (!form) return null;
+
+      const periodRadio = form.querySelector('input[name="cdr-period"]:checked');
+      if (!periodRadio) return { error: 'Select a time period.' };
+
+      const mode = periodRadio.value;
+
+      function getInt(id) {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        const v = (el.value || '').trim();
+        if (!v) return null;
+        const n = parseInt(v, 10);
+        return Number.isFinite(n) ? n : null;
+      }
+
+      let timeLabel = '';
+      let timeSpec = {};
+
+
+
+      const now = new Date();
+
+        function formatDate(d) {
+          const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        }
+
+        function yearToText(year) {
+          if (year === now.getFullYear()) {
+            return '1 January to ' + formatDate(now); // year-to-date for 2026
+          }
+          return '1 January to 31 December ' + year;  // full year for <= 2025
+        }
+
+                    function formatDateRangeSmart(start, end) {
+              const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+              const sd = start.getDate();
+              const sm = months[start.getMonth()];
+              const sy = start.getFullYear();
+
+              const ed = end.getDate();
+              const em = months[end.getMonth()];
+              const ey = end.getFullYear();
+
+              // Same day
+              if (sd === ed && sm === em && sy === ey) {
+                return sd + ' ' + sm + ' ' + sy;
+              }
+
+              // Same month & year
+              if (sm === em && sy === ey) {
+                return sd + ' to ' + ed + ' ' + sm + ' ' + sy;
+              }
+
+              // Same year
+              if (sy === ey) {
+                return sd + ' ' + sm + ' to ' + ed + ' ' + em + ' ' + sy;
+              }
+
+              // Different years
+              return sd + ' ' + sm + ' ' + sy + ' to ' + ed + ' ' + em + ' ' + ey;
+            }
+
+
+            if (mode === 'anyYear') {
+            const y = getInt('cdr-year');
+            if (!y) return { error: 'Enter a year.' };
+
+            timeLabel = yearToText(y);
+            timeSpec = { mode: 'anyYear', year: y, rangeText: yearToText(y) };
+          }
+
+
+          if (mode === 'yearRange') {
+            const fromY = getInt('cdr-year-from');
+            const toY = getInt('cdr-year-to');
+
+            if (!fromY || !toY || fromY > toY) {
+              return { error: 'Enter a valid year range (from year must be before to year).' };
+            }
+
+            timeLabel = yearToText(fromY) + ' to ' + yearToText(toY);
+
+            timeSpec = {
+              mode: 'yearRange',
+              fromYear: fromY,
+              toYear: toY,
+              fromText: yearToText(fromY),
+              toText: yearToText(toY)
+            };
+}
+
+
+
+              if (mode === 'dateRange') {
+          const sd = getInt('cdr-start-day');
+          const sm = getInt('cdr-start-month');
+          const sy = getInt('cdr-start-year');
+          const ed = getInt('cdr-end-day');
+          const em = getInt('cdr-end-month');
+          const ey = getInt('cdr-end-year');
+
+          if (!sd || !sm || !sy || !ed || !em || !ey) {
+            return { error: 'Enter a valid start and end date.' };
+          }
+
+          const start = new Date(sy, sm - 1, sd);
+          const end = new Date(ey, em - 1, ed);
+
+          if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+            return { error: 'Enter valid dates.' };
+          }
+          if (end < start) {
+            return { error: 'End date must be the same as or after the start date.' };
+          }
+
+          timeLabel = formatDateRangeSmart(start, end);
+
+          timeSpec = {
+            mode: 'dateRange',
+            start: { d: sd, m: sm, y: sy },
+            end: { d: ed, m: em, y: ey }
+          };
+        }
+
+
+      const checkedPollutants = Array.prototype.slice
+        .call(form.querySelectorAll('input[name="cdr-pollutants"]:checked'))
+        .map(cb => cb.value);
+
+      if (checkedPollutants.length === 0) return { error: 'Select at least one pollutant.' };
+
+      return { mode, timeLabel, timeSpec, pollutants: checkedPollutants };
+    }
+
+    function getFrequenciesForTimeSpec(timeSpec) {
+      if (!timeSpec) return [];
+      if (timeSpec.mode === 'anyYear' || timeSpec.mode === 'yearRange') return ['hourly', 'daily', 'monthly', 'annual'];
+
+      if (timeSpec.mode === 'dateRange') {
+        const s = new Date(timeSpec.start.y, timeSpec.start.m - 1, timeSpec.start.d);
+        const e = new Date(timeSpec.end.y, timeSpec.end.m - 1, timeSpec.end.d);
+        const diffDays = Math.round((e - s) / (1000 * 60 * 60 * 24)) + 1;
+        if (diffDays >= 31) return ['hourly', 'daily', 'monthly'];
+        return ['hourly', 'daily'];
+      }
+      return [];
+    }
+
+    function createDownloadButton(freq, contextLabel) {
+      const labels = {
+        hourly: 'Download hourly data (CSV)',
+        daily: 'Download daily average data (CSV)',
+        monthly: 'Download monthly average data (CSV)',
+        annual: 'Download annual average data (CSV)'
+      };
+
+      const a = document.createElement('a');
+      a.href = '#';
+      a.setAttribute('role', 'button');
+      a.className = 'aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-3';
+      a.innerHTML = `
+        <span class="aq-button-secondary__icon">
+          <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
+            <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"></path>
+          </svg>
+        </span>
+        <span class="aq-button-secondary__text">
+          ${labels[freq] || 'Download data (CSV)'}
+        </span>
+      `;
+      a.dataset.context = contextLabel || '';
+      return a;
+    }
+
+    function wireChooseDateRangeForm() {
+      const btn = document.getElementById('cdr-continue');
+      const out = document.getElementById('cdr-download-buttons');
+      const summary = document.getElementById('cdr-selected-summary');
+
+      if (!btn || !out || !summary) return;
+
+      btn.addEventListener('click', function () {
+        const selection = getChooseDateRangeSelection();
+
+        out.innerHTML = '';
+        summary.textContent = '';
+
+        if (!selection) return;
+        if (selection.error) {
+          alert(selection.error);
+          return;
+        }
+
+        const pollutantLabels = {
+          pm25: 'PM2.5',
+          pm10: 'PM10',
+          no2: 'Nitrogen dioxide (NO2)',
+          o3: 'Ozone (O3)'
+        };
+
+        const polText = selection.pollutants.map(p => pollutantLabels[p] || p).join(', ');
+                summary.innerHTML = `
+          <p class="govuk-body">
+            <strong>Time period:</strong> ${selection.timeLabel}
+          </p>
+          <p class="govuk-body">
+            <strong>Pollutants included:</strong> ${polText}
+          </p>
+        `;
+
+
+        const freqs = getFrequenciesForTimeSpec(selection.timeSpec);
+        freqs.forEach(function (freq) {
+          const b = createDownloadButton(freq, selection.timeLabel);
+          out.appendChild(b);
+          out.appendChild(document.createElement('br'));
+        });
+      });
+
+      const form = document.getElementById('cdr-form');
+      if (form) {
+        form.addEventListener('change', function () {
+          const out = document.getElementById('cdr-download-buttons');
+          const summary = document.getElementById('cdr-selected-summary');
+          if (out) out.innerHTML = '';
+          if (summary) summary.textContent = '';
+        });
+      }
+    }
+
+    // ---------- Headings / descriptions / footer behaviour ----------
     function updatePeriodDescription(period) {
       if (!periodDescription) return;
 
@@ -1004,12 +1391,10 @@
         periodDescription.textContent = formatDateLong(now);
         return;
       }
-
       if (period === '24h') {
         periodDescription.textContent = formatDateLong(now);
         return;
       }
-
       if (period === '7d') {
         const to = now;
         const from = new Date(now);
@@ -1022,31 +1407,27 @@
         }
         return;
       }
-
       if (period === 'thisYear') {
         const yearNum = parseInt(currentAnnualYear, 10);
         const from = new Date(yearNum, 0, 1);
 
-        let to;
-        if (yearNum === now.getFullYear()) {
-          to = now;
-          periodDescription.textContent = formatDayMonth(from) + ' to ' + formatDayMonthYear(to);
+        const nowYear = now.getFullYear();
+        if (yearNum === nowYear) {
+          periodDescription.textContent = formatDayMonth(from) + ' to ' + formatDayMonthYear(now);
         } else {
-          to = new Date(yearNum, 11, 31);
+          const to = new Date(yearNum, 11, 31);
           periodDescription.textContent = formatDayMonth(from) + ' to ' + formatDayMonthYear(to);
         }
         return;
       }
-
       if (period === 'lastYear') {
-        periodDescription.textContent = 'Select a date range';
+        periodDescription.textContent = 'Select a time period to download data';
       }
     }
 
     function updateHeadingsForPeriod(period) {
       if (!summaryHeading || !downloadHeading) return;
 
-      // Annual: show selected year in BOTH headings
       if (period === 'thisYear') {
         summaryHeading.textContent = 'Air pollution summary: ' + currentAnnualYear;
         downloadHeading.textContent = 'Download data: ' + currentAnnualYear;
@@ -1056,15 +1437,23 @@
       const cfg = periodConfig[period];
       if (cfg) {
         summaryHeading.textContent = 'Air pollution summary: ' + cfg.heading;
-        downloadHeading.textContent = 'Download data: ' + cfg.download;
+        downloadHeading.textContent = cfg.download ? ('Download data: ' + cfg.download) : 'Download data';
       }
     }
 
     function updateFooterContentForPeriod(period) {
-      // DAQI: hide graph, swap hint to DAQI learn-more
+      // CHOOSE DATE RANGE: no hint swap, no graph section
+      if (period === 'lastYear') {
+        if (graphSection) graphSection.setAttribute('hidden', '');
+        if (postTableHint) postTableHint.setAttribute('hidden', '');
+        return;
+      }
+
+      // DAQI: swap hint to “learn more”, hide graph
       if (period === 'daqi') {
         if (graphSection) graphSection.setAttribute('hidden', '');
         if (postTableHint) {
+          postTableHint.removeAttribute('hidden');
           postTableHint.innerHTML =
             'Learn more about the ' +
             '<a href="' + DAQI_INFO_URL + '" class="govuk-link">Daily Air Quality Index (DAQI)</a>.';
@@ -1072,12 +1461,11 @@
         return;
       }
 
-      // Non-DAQI: show graph, restore legal limits hint (your original)
+      // Everything else: show graph + restore legal limits hint
       if (graphSection) graphSection.removeAttribute('hidden');
       if (postTableHint) {
-        postTableHint.innerHTML =
-          'The pollution levels shown are measured against ' +
-          '<a href="https://draft-origin.publishing.service.gov.uk/guidance/air-pollution-uk-legal-limts?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMjc3ZmU0My03OGIyLTRjYTAtOTFhMy0xODU5OTI0OWQzZGQiLCJjb250ZW50X2lkIjoiMjMyYzJiZTgtMzkxNi00Mjg0LTk4MjItMThkYzExZmQyNDdhIiwiaWF0IjoxNzY3MzYyMTgyLCJleHAiOjE3NzAwNDA1ODJ9.8aMR0Y5jPqu4244UVDS7coMZo6x9DiO-DOgxFxCnUpk&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share" class="govuk-link">UK legal limits</a>.';
+        postTableHint.removeAttribute('hidden');
+        postTableHint.innerHTML = originalPostTableHintHTML;
       }
     }
 
@@ -1089,18 +1477,18 @@
       });
     }
 
-
-    
     function activatePeriod(period) {
       currentPeriod = period;
 
       if (period === 'thisYear') {
         updateAnnualTableForYear(currentAnnualYear || '2026');
       }
+      if (period === 'lastYear') {
+        ensureChooseDateRangeUI();
+      }
 
       showOnlyActivePanel(period);
 
-      // Update nav aria-current state
       periodLinks.forEach(function (link) {
         if (link.dataset.period === period) link.setAttribute('aria-current', 'page');
         else link.removeAttribute('aria-current');
@@ -1110,35 +1498,24 @@
       updatePeriodDescription(period);
       updateFooterContentForPeriod(period);
 
-      // Hide download section for DAQI
+      // Hide global download section for DAQI and Choose date range (CDR has its own)
       if (downloadSection) {
-        if (period === 'daqi') downloadSection.setAttribute('hidden', '');
+        if (period === 'daqi' || period === 'lastYear') downloadSection.setAttribute('hidden', '');
         else downloadSection.removeAttribute('hidden');
       }
 
-      // clear download outputs on tab change
-      if (downloadButtonsContainer) downloadButtonsContainer.innerHTML = '';
-      if (pollutantsSummary) pollutantsSummary.textContent = '';
+      clearDownloadsUI();
     }
 
-    // ---------- Period nav wiring ----------
-    periodLinks.forEach(function (link) {
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        const period = this.dataset.period;
-        if (period) activatePeriod(period);
-      });
-    });
-
-    // ---------- Dynamic download buttons ----------
+    // ---------- Global download buttons (existing) ----------
     function getFrequenciesForPeriod(period) {
       if (period === '24h') return ['hourly'];
       if (period === '7d') return ['hourly', 'daily'];
-      if (period === 'thisYear' || period === 'lastYear') return ['hourly', 'daily', 'monthly', 'annual'];
+      if (period === 'thisYear') return ['hourly', 'daily', 'monthly', 'annual'];
       return [];
     }
 
-    function createDownloadButton(freq) {
+    function createGlobalDownloadButton(freq) {
       const labels = {
         hourly: 'Download hourly data (CSV)',
         daily: 'Download daily average data (CSV)',
@@ -1170,8 +1547,7 @@
       downloadButton.addEventListener('click', function (event) {
         event.preventDefault();
 
-        // Guard: DAQI has no downloads
-        if (currentPeriod === 'daqi') return;
+        if (currentPeriod === 'daqi' || currentPeriod === 'lastYear') return;
 
         const checked = Array.prototype.slice
           .call(pollutantCheckboxes)
@@ -1188,26 +1564,37 @@
             const label = document.querySelector('label[for="' + cb.id + '"]');
             return label ? label.textContent.trim() : cb.value;
           });
-
           pollutantsSummary.textContent = 'Pollutants included: ' + labels.join(', ');
         }
 
         downloadButtonsContainer.innerHTML = '';
+
         const freqs = getFrequenciesForPeriod(currentPeriod);
         freqs.forEach(function (freq) {
-          const btn = createDownloadButton(freq);
+          const btn = createGlobalDownloadButton(freq);
           downloadButtonsContainer.appendChild(btn);
           downloadButtonsContainer.appendChild(document.createElement('br'));
         });
       });
     }
 
-    // Init
+    // ---------- Period nav wiring ----------
+    periodLinks.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const period = this.dataset.period;
+        if (period) activatePeriod(period);
+      });
+    });
+
+    // ---------- Init ----------
     wireAnnualYearNav();
     updateAnnualTableForYear(currentAnnualYear);
-    activatePeriod('daqi'); // PAGE LOADS ON DAQI
+    activatePeriod('daqi');
   });
 </script>
+
+
 
 
 {% endblock %}

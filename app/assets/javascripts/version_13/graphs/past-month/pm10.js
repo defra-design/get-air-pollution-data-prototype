@@ -8,6 +8,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
 // Set dimensions and margins for the pm10
   function drawChart() {
+    d3.selectAll("body > .graph-tooltip").remove();
     // Clear previous pm10 elements if any
     d3.select("#pm10-container-month").selectAll("*").remove();
   
@@ -361,12 +362,17 @@ tooltip.html(`<strong style="font-size:22px;">${d.population === 0 ? 'No data' :
   });
 }
 
-// Initial pm10 rendering
-drawChart();
+// Expose a global redraw hook so your page can re-render after swapping HTML
+window.AQGraphs = window.AQGraphs || {};
+window.AQGraphs.pm10_month = drawChart;
 
-// Add an event listener for window resize
+// Initial render (only if the container exists right now)
+if (document.getElementById("pm10-container-month")) {
+  drawChart();
+}
+
+// Avoid stacking resize listeners if you redraw multiple times
+window.removeEventListener("resize", drawChart);
 window.addEventListener("resize", drawChart);
-
-
 
 

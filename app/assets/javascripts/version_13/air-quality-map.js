@@ -153,7 +153,7 @@ const NETWORK = {
 const NETWORK_META = {
   [NETWORK.AURN]:        { label: 'Automatic Urban and Rural Network', group: 'near' },
   [NETWORK.URBAN_NO2]:   { label: 'UK Urban NO2 Network', group: 'other_defra' },
-  [NETWORK.RURAL_NO2]:   { label: 'Rural NO2', group: 'other_defra' },
+  [NETWORK.RURAL_NO2]:   { label: 'Rural NO2 Network', group: 'other_defra' },
   [NETWORK.ACID_GAS]:    { label: 'Acid Gas and Aerosol Network', group: 'other_defra' },
   [NETWORK.MARGA]:       { label: 'MARGA Network', group: 'other_defra' },
   [NETWORK.LOCAL]:       { label: 'locally-managed automatic monitoring', group: 'non_defra' },
@@ -215,9 +215,9 @@ const NETWORK_DATASETS = {
       lng: -0.324818,
       authority: "Horsham District Council",      // local authority for Horsham, West Sussex
       pollutants: ["PM10", "NO2"],               // pollutants measured here (same as site page)
-      status: "active",                           // assumed active (no end date shown) :contentReference[oaicite:0]{index=0}
+      status: "active",                           // assumed active (no end date shown)
       daqi: null,                                 // Sussex Air is not part of DAQI networks
-      siteType: "Urban traffic",                  // from “Environment Type: Urban Traffic” :contentReference[oaicite:1]{index=1}
+      siteType: "Urban traffic",                  // from “Environment Type: Urban Traffic” 
       startDate: "2016-01-01"
     }
   ],
@@ -1489,7 +1489,7 @@ function initPollutantPanels() {
   const GROUPS = [
     {
       key: 'regulation',
-      title: 'Regulation pollutants',
+      title: 'Regulated pollutants',
       hint: 'PM2.5, PM10, NO2, O3, SO2, NO, NOx as NO2 and CO'
     },
     {
@@ -1500,12 +1500,12 @@ function initPollutantPanels() {
     {
       key: 'heavy_metals',
       title: 'Heavy metals in air (PM10)',
-      hint: 'arsenic (As), cadmium (Cd), chromium (Cr), cobalt (Co), copper (Cu), iron (Fe), lead (Pb), manganese (Mn), nickel (Ni), selenium (Se), vanadium (V), zinc (Zn)'
+      hint: ''
     },
     {
       key: 'pahs',
       title: 'Polycyclic aromatic hydrocarbons (PAHs)',
-      hint: 'benzo(a)pyrene, benzo(a)anthracene, benzo(b)-/benzo(j)-/benzo(k)fluoranthene, indeno(1,2,3-cd)pyrene, dibenzo(ah)-/dibenzo(ac)anthracene, benzo(b+j)fluoranthene, 1-/2-methyl naphthalene, 1-/2-methyl anthracene, 1-methyl phenanthrene, 2-methyl phenanthrene, 4,5-methylene phenanthrene, 5-methyl chrysene, 9-methyl anthracene'
+      hint: ''
     },
     {
       key: 'ammonia',
@@ -1514,13 +1514,13 @@ function initPollutantPanels() {
     },
     {
       key: 'ions_acids',
-      title: 'Particulate ions and acid gases',
-      hint: 'particulates'
+      title: 'Particulates and acid gases',
+      hint: ''
     },
     {
       key: 'precipitation',
       title: 'Precipitation chemistry',
-      hint: 'aluminium (Al), antimony (Sb), arsenic (As), barium (Ba), beryllium (Be), cadmium (Cd), caesium (Cs), chromium (Cr), cobalt (Co), copper (Cu), iron (Fe), lead (Pb), lithium (Li), manganese (Mn), mercury (Hg), molybdenum (Mo), nickel (Ni), rubidium (Rb), selenium (Se), strontium (Sr), tin (Sn), titanium (Ti), tungsten (W), uranium (U), vanadium (V), zinc (Zn)'
+      hint: 'particles and heavy metals in rainfall'
     },
     {
       key: 'mercury',
@@ -1530,12 +1530,12 @@ function initPollutantPanels() {
     {
       key: 'black_carbon',
       title: 'Black carbon',
-      hint: 'black carbon (BC)'
+      hint: ''
     },
     {
       key: 'particles',
       title: 'Particles',
-      hint: 'particle number / size (PN)'
+      hint: 'particle count 10.18 to 791.48 nm and particles in particulate matter'
     }
   ];
 

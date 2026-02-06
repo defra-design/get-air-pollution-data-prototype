@@ -607,11 +607,17 @@ tooltip
   });
 }
 
+// Expose a global redraw hook so your page can re-render after swapping HTML
+window.AQGraphs = window.AQGraphs || {};
+window.AQGraphs.pm10_2024 = drawChart; // name it whatever you like
 
-// Initial chart rendering
-drawChart();
+// Initial chart rendering (only runs if the container exists)
+if (document.getElementById("pm10-container-2024")) {
+  drawChart();
+}
 
-// Add an event listener for window resize
+// Avoid stacking resize listeners if you redraw multiple times
+window.removeEventListener("resize", drawChart);
 window.addEventListener("resize", drawChart);
 
 

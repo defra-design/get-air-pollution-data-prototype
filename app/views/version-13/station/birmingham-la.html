@@ -4,12 +4,6 @@
 
 
 {% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: {
-    text: "Beta"
-  },
-  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-}) }}
 <a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='results-b2-4qa.html'; } return false;">
   Back
 </a>
@@ -45,156 +39,35 @@
                 </span>
               </a>
    <div class="div govuk-divider"></div>
-           <h2 class="govuk-heading-l">Overview</h2>
-             <div class="grid-container govuk-!-margin-bottom-3">
-              <dl class="grid-item">
-                  <dt class="number">30</dt>
-                  <dd class="description">Monitoring stations</dd>
-              </dl>
-              <dl class="grid-item">
-                  <dt class="number">1</dt>
-                  <dd class="description">Air Quality Management Areas (AQMAs)</dd>
-              </dl>
-              <dl class="grid-item">
-                  <dt class="number">1</dt>
-                  <dd class="description">Smoke Control Areas (SCAs)</dd>
-              </dl>
-            
-          </div>
-               <div class="div govuk-divider"></div>
+      <h2 class="govuk-heading-l">Related information</h2>
+   <p class="govuk-body"><a href="" class="govuk-body">Air Quality Management Areas (AQMAs)</a></p>
+      <p class="govuk-body"><a href="" class="govuk-body">Smoke Control Areas (SCAs)</a></p>
+         <p class="govuk-body"><a href="" class="govuk-body">Background maps</a></p>
+            <p class="govuk-body"><a href="" class="govuk-body">Reports</a></p>
+                <div class="div govuk-divider"></div>
 
    <h2 class="govuk-heading-l">Download data</h2>
    <p class="govuk-body">Select to <a href="../data-selector/create-pollutant.html" class="govuk-body">download data from this local authority</a>.</p>
                 <div class="div govuk-divider"></div>
 
                       <h2 id="section-heading" class="govuk-heading-l govuk-!-margin-top-6">
-                          Stations overview
+                         Monitoring stations
                         </h2>
 
-                <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Sub navigation">
-            <ul class="moj-sub-navigation__list">
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" aria-current="page" href="#stations">
-                  Monitoring stations overview
-                </a>
-              </li>
-
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="#aqma">
-                  Air Quality Management Areas
-                </a>
-              </li>
-
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="#sca">
-                  Smoke Control Areas
-                </a>
-              </li>
-
-              <li class="moj-sub-navigation__item">
-                <a class="moj-sub-navigation__link" href="#actions">
-                  Actions and reports
-                </a>
-              </li>
-            </ul>
-          </nav>
+               
 
 
 
          
 <div id="stations" class="js-subnav-section">
 
-  <details class="govuk-details govuk-!-margin-bottom-7" data-module="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Filter stations by pollutants
-    </span>
-  </summary>
-  <div class="govuk-details__text">
+  
 
-    <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Change pollutants</h4>
-
-    <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" aria-describedby="pollutant-filter-hint">
-        <legend class="govuk-visually-hidden">
-          Choose which pollutants to show in the tables
-        </legend>
-
-        <div id="pollutant-filter-hint" class="govuk-hint">
-          Choose which pollutants the stations in the tabs should monitor.
-        </div>
-
-        <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="pollutant-filter-all"
-                   name="pollutant-filter"
-                   type="radio"
-                   value="all"
-                   checked>
-            <label class="govuk-label govuk-radios__label" for="pollutant-filter-all">
-              All pollutants
-            </label>
-          </div>
-
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="pollutant-filter-daqi"
-                   name="pollutant-filter"
-                   type="radio"
-                   value="daqi">
-            <label class="govuk-label govuk-radios__label" for="pollutant-filter-daqi">
-              Daily Air Quality Index pollutants
-            </label>
-            <div class="govuk-hint govuk-radios__hint">
-              fine particulate matter (PM2.5), particulate matter (PM10), nitrogen dioxide (NO2), ozone (O3) and sulphur dioxide (SO2)
-            </div>
-          </div>
-
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="pollutant-filter-hydrocarbons"
-                   name="pollutant-filter"
-                   type="radio"
-                   value="hydrocarbons">
-            <label class="govuk-label govuk-radios__label" for="pollutant-filter-hydrocarbons">
-              Hydrocarbons
-            </label>
-          </div>
-
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input"
-                   id="pollutant-filter-heavy-metals"
-                   name="pollutant-filter"
-                   type="radio"
-                   value="heavy-metals">
-            <label class="govuk-label govuk-radios__label" for="pollutant-filter-heavy-metals">
-              Heavy metals
-            </label>
-          </div>
-
-        </div>
-      </fieldset>
-    </div>
-
-    <button class="govuk-button govuk-button--secondary"
-            data-module="govuk-button"
-            type="button"
-            id="pollutant-filter-apply">
-      Apply filter
-    </button>
-
-  </div>
-</details>
-
-<div id="no-stations-message" class="govuk-inset-text" hidden>
-  No monitoring stations match your current filter. Try selecting a different pollutant option.
-</div>
+   
 
 
   <div class="govuk-tabs" data-module="govuk-tabs">
-    <h3 class="govuk-tabs__title">Stations overview</h3>
+    <h3 class="govuk-tabs__title">Monitoring stations=</h3>
 
     <ul class="govuk-tabs__list">
       <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">

@@ -3,10 +3,6 @@
 {% set pageName="Search by location" %}
 
 {% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: { text: "Beta" },
-  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-}) }}
 <a href="../hub.html" class="govuk-back-link">
   Back
 </a>
@@ -16,7 +12,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">Search by location</h1>
+    <h1 class="govuk-heading-l">Search by town, postcode or local authority</h1>
 
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset" aria-describedby="location-hint">
@@ -81,7 +77,7 @@
   attributes: { id: "continue-button", type: "button" }
 }) }}
 
-
+<p class="govuk-body govuk-!-margin-bottom-6"><a href="https://www.gov.uk/find-local-council" class="govuk-link">Find your local authority (local council)</a></p>
   </div>
 </div>
 
