@@ -705,7 +705,8 @@
 
 <div id="graph-section">
     <h3 class="govuk-heading-m govuk-!-margin-top-6">View graph and pollutant summary</h3>
-    <a href="pm10-graph.html" role="button" class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
+  <a href="pm10-graph.html" id="js-view-graph" role="button"
+   class="aq-button-secondary aq-button-secondary--icon govuk-!-margin-top-2">
       <span class="aq-button-secondary__icon">
         <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
           <path d="M2.75 14.443v2.791H18v1.5H1.25V1.984h1.5v7.967L6.789 4.91l5.016 4.013 5.056-5.899 2.278 1.952-6.944 8.101L7.211 9.09 2.75 14.443z"></path>
@@ -861,6 +862,44 @@
     // Save original “legal limits” hint HTML so we can restore it cleanly
     const originalPostTableHintHTML = postTableHint ? postTableHint.innerHTML : '';
 
+    const viewGraphBtn = document.getElementById('js-view-graph');
+
+function updateViewGraphLink() {
+  if (!viewGraphBtn) return;
+
+  // No graph link on DAQI or Choose date range
+  if (currentPeriod === 'daqi' || currentPeriod === 'lastYear') {
+    viewGraphBtn.setAttribute('hidden', '');
+    return;
+  }
+
+  viewGraphBtn.removeAttribute('hidden');
+
+  let qs = new URLSearchParams();
+  qs.set('pollutant', 'pm25');
+
+  if (currentPeriod === '24h') {
+    qs.set('mode', 'rolling');
+    qs.set('period', '24h');
+  } else if (currentPeriod === '7d') {
+    qs.set('mode', 'rolling');
+    qs.set('period', '7d');
+  } else if (currentPeriod === 'thisYear') {
+    qs.set('mode', 'year');
+    qs.set('year', String(currentAnnualYear || '2026'));
+  } else {
+    qs.set('mode', 'rolling');
+    qs.set('period', '24h');
+  }
+
+  viewGraphBtn.href = `pm10-graph.html?${qs.toString()}`;
+
+  // ✅ DEBUG: confirm final link
+  console.log('Graph href set to:', viewGraphBtn.href);
+}
+
+
+
     // ---------- Annual data demo ----------
     const annualDataByYear = {
       "2026": {
@@ -874,7 +913,7 @@
       },
       "2025": {
         verified: "partial",
-        verifiedUntil: "31 October 2025",
+        verifiedUntil: "30 September 2025",
         values: {
           pm25: { avg: "10 µg/m3", daily: "no legal limit", hourly: "no legal limit", capture: "97%", aboveLimit: false },
           pm10: { avg: "16 µg/m3", daily: "3",             hourly: "no legal limit", capture: "95%", aboveLimit: false },
@@ -987,9 +1026,9 @@
           if (li) li.classList.add('moj-side-navigation__item--active');
 
           updateAnnualTableForYear(year);
-
-          // wipe global downloads if user changes year
+          updateViewGraphLink(); // ✅ add this so graph link matches the selected year
           clearDownloadsUI();
+
         });
       });
     }
@@ -1497,6 +1536,7 @@
       updateHeadingsForPeriod(period);
       updatePeriodDescription(period);
       updateFooterContentForPeriod(period);
+      updateViewGraphLink();
 
       // Hide global download section for DAQI and Choose date range (CDR has its own)
       if (downloadSection) {
@@ -1590,6 +1630,7 @@
     // ---------- Init ----------
     wireAnnualYearNav();
     updateAnnualTableForYear(currentAnnualYear);
+    updateViewGraphLink();
     activatePeriod('daqi');
   });
 </script>

@@ -3,9 +3,25 @@
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
+(() => {
+
 window.GOVUKPrototypeKit.documentReady(() => {
 });
 
+let focusPointsCreated = false;
+let keyboardNavigation = false;
+
+// Listen globally for keyboard usage
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Tab') {
+    keyboardNavigation = true;
+  }
+});
+
+// Reset the flag on mouse click
+document.addEventListener('mousedown', function () {
+  keyboardNavigation = false;
+});
 
 
 // Set dimensions and margins for the chart
@@ -56,7 +72,7 @@ const svg = d3.select("#pm10-container-2024")
 
 
 // Load and process the data
-d3.csv("/public/javascripts/version_7/chart-data/2024/pm10-exceed.csv").then(function (data) {
+d3.csv("/public/javascripts/version_13/chart-data/2024/pm10-exceed.csv").then(function (data) {
   // Parse the date and convert the population to a number
   const parseDate = d3.timeParse("%d/%m/%Y");
   data.forEach(d => {
@@ -239,7 +255,6 @@ segments.forEach(segment => {
       .attr("fill", "none")
       .attr("stroke", color)
       .attr("stroke-width", 2)
-      .attr("stroke-dasharray", isVerified ? null : "4,4")
       .attr("d", line);
   });
 });
@@ -248,15 +263,119 @@ segments.forEach(segment => {
 
 let focusPointsCreated = false;
 
+function handleFocus(event, d) {
+  const xPos = x(d.date);
+  const yPos = y(d.population);
+  const circleColor = d.exceedance === 'Y' ? '#d4351c' : '#1d70b8';
+  const innerFocusColor = d.exceedance === 'Y' ? '#7d1a1a' : '#144e8c';
+
+  outerCircle
+    .attr("cx", xPos)
+    .attr("cy", yPos)
+    .attr("fill", circleColor)
+    .style("stroke", circleColor)
+    .attr("r", 6)
+    .style("opacity", 1);
+
+  innerCircle
+    .attr("cx", xPos)
+    .attr("cy", yPos)
+    .attr("r", 3)
+    .style("opacity", 1);
+
+  focusRing
+    .attr("cx", xPos)
+    .attr("cy", yPos)
+    .style("opacity", 1);
+
+  focusInnerCircle
+    .attr("cx", xPos)
+    .attr("cy", yPos)
+    .attr("fill", innerFocusColor)
+    .style("opacity", 1);
+
+  verticalLine
+    .attr("x1", xPos)
+    .attr("x2", xPos)
+    .attr("y1", 0)
+    .attr("y2", height)
+    .style("opacity", 1);
+
+  const tooltipDate = d3.timeFormat("%e %B %Y")(d.date);
+
+  tooltip
+    .style("display", "block")
+    .html(`
+      <strong style="font-size:22px;">${d.population.toFixed(0)} μg/m3</strong>
+      ${d.exceedance === 'Y' ? `
+        <div style="margin-top: 8px; margin-bottom: 8px;">
+          <strong class="govuk-tag govuk-tag--red">Above limit</strong>
+        </div>` : ''}
+      <div style="margin-top: 4px; font-size: 19px;">${tooltipDate}</div>
+      <div style="margin-top: 4px; font-size: 19px; color: #505a5f;">${d.status === 'V' ? 'Verified' : 'Unverified'}</div>
+    `);
+
+  const tooltipWidth = tooltip.node().offsetWidth;
+  const container = document.getElementById("pm10-container-2024");
+  const containerRect = container.getBoundingClientRect();
+  const pointOffset = xPos + containerRect.left;
+
+  let tooltipLeft;
+  if (xPos < width * 0.45) {
+    tooltipLeft = pointOffset + 60;
+  } else if (xPos > width * 0.40) {
+    tooltipLeft = pointOffset - tooltipWidth + 30;
+  } else {
+    tooltipLeft = pointOffset - tooltipWidth / 2;
+  }
+
+  tooltip
+    .style("left", `${tooltipLeft}px`)
+    .style("top", `${containerRect.top + window.scrollY + 20}px`);
+
+  d3.select("#chart-aria-live").text(
+    `${d.population.toFixed(0)} micrograms per cubic metre on ${tooltipDate}.`
+  );
+}
+
+function handleBlur() {
+  outerCircle.attr("r", 0).style("opacity", 0);
+  innerCircle.attr("r", 0).style("opacity", 0);
+  verticalLine.style("opacity", 0);
+  tooltip.style("display", "none");
+  d3.select("#chart-aria-live").text('');
+  focusRing.style("opacity", 0);
+  focusInnerCircle.style("opacity", 0);
+}
+
+function handleKeydown(event, d) {
+  const circles = document.querySelectorAll("#pm10-container-2024 .focus-points circle");
+  const currentIndex = Array.prototype.indexOf.call(circles, this);
+
+  if (event.key === "ArrowRight" && currentIndex < circles.length - 1) {
+    circles[currentIndex + 1].focus();
+    event.preventDefault();
+  } else if (event.key === "ArrowLeft" && currentIndex > 0) {
+    circles[currentIndex - 1].focus();
+    event.preventDefault();
+  }
+}
+
+//  Keyboard-accessible focus mode on tabbing into chart
 d3.select("#pm10-container-2024").on("focus", function () {
-  if (focusPointsCreated) return; // Prevent duplication
+  if (!keyboardNavigation || focusPointsCreated) return;
   focusPointsCreated = true;
 
-  const focusGroup = svg.append("g")
-    .attr("class", "focus-points");
+  outerCircle.attr("r", 0).style("opacity", 0);
+  innerCircle.attr("r", 0).style("opacity", 0);
+  verticalLine.style("opacity", 0);
+  tooltip.style("display", "none");
+  focusRing.style("opacity", 0);
+  focusInnerCircle.style("opacity", 0);
+
+  const focusGroup = svg.append("g").attr("class", "focus-points");
 
   focusGroup.selectAll("circle")
-/*     .data(data.filter((d, i) => i % 2 === 0)) // every second point */
     .data(data)
     .enter()
     .append("circle")
@@ -273,131 +392,41 @@ d3.select("#pm10-container-2024").on("focus", function () {
       return `${d.population.toFixed(0)} micrograms per cubic metre on ${date}, ` +
              `${d.status === 'V' ? 'Verified' : 'Unverified'}${d.exceedance === 'Y' ? ', above limit' : ''}`;
     })
-    .on("focus", function(event, d) {
-      const xPos = x(d.date);
-      const yPos = y(d.population);
-      const circleColor = d.exceedance === 'Y' ? '#d4351c' : '#1d70b8';
-      focusInnerCircle.raise(); // brings it to the front
-      focusRing.raise(); // brings it to the front
+    .on("focus", handleFocus)
+    .on("blur", handleBlur)
+    .on("keydown", handleKeydown);
 
-      outerCircle
-        .attr("cx", xPos)
-        .attr("cy", yPos)
-        .attr("fill", circleColor)
-        .style("stroke", circleColor)
-        .attr("r", 6)
-        .style("opacity", 1);
-
-      innerCircle
-        .attr("cx", xPos)
-        .attr("cy", yPos)
-        .attr("r", 3)
-        .style("opacity", 1);
-
-        focusRing
-          .attr("cx", xPos)
-          .attr("cy", yPos)
-          .style("opacity", 1);
-
-          const innerFocusColor = d.exceedance === 'Y' ? '#7d1a1a' : '#144e8c'; // Dark red or dark blue
-        
-       focusInnerCircle
-          .attr("cx", xPos)
-          .attr("cy", yPos)
-          .attr("fill", innerFocusColor)
-          .style("opacity", 1);
+  const allCircles = document.querySelectorAll("#pm10-container-2024 .focus-points circle");
+  if (allCircles.length > 0) {
+    allCircles[allCircles.length - 1].focus();
+  }
+  
+  outerCircle.raise();
+  verticalLine.raise();
+  innerCircle.raise();
+  focusRing.raise();
+  focusInnerCircle.raise();
+});
 
 
-      verticalLine
-        .attr("x1", xPos)
-        .attr("x2", xPos)
-        .attr("y1", 0)
-        .attr("y2", height)
-        .style("opacity", 1);
+//  On click inside chart: remove focus visuals and reset state
+document.addEventListener("click", function (event) {
+  // Only remove focus visuals on wider screens
+  // This could cause accessibility issues as I couldn't get a function to work for mobile clicking by itself, without disabling this at mobile screen widths
+  // Possibly as it's only arrow and tab button related this is fine to disable below 768px
+  if (window.innerWidth > 768) {
+    outerCircle.attr("r", 0).style("opacity", 0);
+    innerCircle.attr("r", 0).style("opacity", 0);
+    verticalLine.style("opacity", 0);
+    tooltip.style("display", "none");
+    focusRing.style("opacity", 0);
+    focusInnerCircle.style("opacity", 0);
+    d3.select("#chart-aria-live").text('');
 
-     
-            // First set tooltip content so we can measure its width
-        // Set the tooltip content first so we can measure it
-tooltip
-  .style("display", "block")
-  .html(`
-    <strong style="font-size:22px;">${d.population.toFixed(0)} μg/m3</strong>
-    ${d.exceedance === 'Y' ? `
-      <div style="margin-top: 8px; margin-bottom: 8px;">
-        <strong class="govuk-tag govuk-tag--red">Above limit</strong>
-      </div>` : ''}
-    <div style="margin-top: 4px; font-size: 19px;">${d3.timeFormat("%e %B %Y")(d.date)}</div>
-    <div style="margin-top: 4px; font-size: 19px; color: #505a5f ">${d.status === 'V' ? 'Verified' : 'Unverified'}</div>
-  `);
-
-const tooltipWidth = tooltip.node().offsetWidth;
-
-// Get position of chart container
-const container = document.getElementById("pm10-container-2024");
-const containerRect = container.getBoundingClientRect();
-
-let tooltipLeft;
-const pointOffset = xPos + containerRect.left;
-
-if (xPos < width * 0.45) {
-  // Point is on far left, push tooltip slightly right
-  tooltipLeft = pointOffset + 60;
-} else if (xPos > width * 0.40) {
-  // Point is on far right, push tooltip left
-  tooltipLeft = pointOffset - tooltipWidth + 30;
-} else {
-  // Centered, avoid direct overlap by shifting slightly
-  tooltipLeft = pointOffset - tooltipWidth / 2;
-}
-
-// Set the final tooltip position
-tooltip
-  .style("left", `${tooltipLeft}px`)
-  .style("top", `${containerRect.top + window.scrollY + 20}px`);
-
-
-
-      d3.select("#chart-aria-live").text(
-        `${d.population.toFixed(0)} micrograms per cubic metre on ${d3.timeFormat("%e %B %Y")(d.date)}.`
-      );
-    })
-    
-    .on("blur", () => {
-      outerCircle.attr("r", 0).style("opacity", 0);
-      innerCircle.attr("r", 0).style("opacity", 0);
-      verticalLine.style("opacity", 0);
-      tooltip.style("display", "none");
-      d3.select("#chart-aria-live").text('');
-      focusRing.style("opacity", 0);
-      focusInnerCircle.style("opacity", 0);
-    })
-    .on("keydown", function(event, d) {
-  const circles = document.querySelectorAll("#pm10-container-2024 .focus-points circle");
-  const currentIndex = Array.prototype.indexOf.call(circles, this);
-
-  if (event.key === "ArrowRight" && currentIndex < circles.length - 1) {
-    circles[currentIndex + 1].focus();
-    event.preventDefault();
-  } else if (event.key === "ArrowLeft" && currentIndex > 0) {
-    circles[currentIndex - 1].focus();
-    event.preventDefault();
+    d3.select("#pm10-container-2024").select(".focus-points").remove();
+    focusPointsCreated = false;
   }
 });
-
-
-
-// 👉 Focus the last point by default
-const allCircles = document.querySelectorAll("#pm10-container-2024 .focus-points circle");
-if (allCircles.length > 0) {
-  allCircles[allCircles.length - 1].focus();
-}
-
-});
-
-
-
-
-
 
 
   const listeningRect = svg.append("rect")
@@ -573,42 +602,25 @@ tooltip
 
 
   
-});
+    });
+
    
-  
   });
 }
 
+// Expose a global redraw hook so your page can re-render after swapping HTML
+window.AQGraphs = window.AQGraphs || {};
+window.AQGraphs.pm10_2024 = drawChart; // name it whatever you like
 
-// Initial chart rendering
-drawChart();
+// Initial chart rendering (only runs if the container exists)
+if (document.getElementById("pm10-container-2024")) {
+  drawChart();
+}
 
-// Add an event listener for window resize
+// Avoid stacking resize listeners if you redraw multiple times
+window.removeEventListener("resize", drawChart);
 window.addEventListener("resize", drawChart);
 
 
-// Remove focus visuals and reset focus state when clicking outside
-/* document.addEventListener("click", function (event) {
-  const container = document.getElementById("pm10-container-2024");
-
-  if (!container.contains(event.target)) {
-    // Hide visuals
-    d3.select("#pm10-container-2024").selectAll(".focus-points circle")
-      .attr("r", 0);
-
-    outerCircle.attr("r", 0).style("opacity", 0);
-    innerCircle.attr("r", 0).style("opacity", 0);
-    verticalLine.style("opacity", 0);
-    focusRing.style("opacity", 0);
-    tooltip.style("display", "none");
-    d3.select("#chart-aria-live").text('');
-
-    // Remove focus group so it can be recreated on re-entry
-    d3.select("#pm10-container-2024").select(".focus-points").remove();
-
-    // Reset the flag so focus points get re-added when refocusing
-    focusPointsCreated = false;
-  }
-}); */
-
+})();
 

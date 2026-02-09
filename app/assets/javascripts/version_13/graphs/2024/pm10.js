@@ -3,6 +3,8 @@
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
+(() => {
+
 window.GOVUKPrototypeKit.documentReady(() => {
 });
 
@@ -70,7 +72,7 @@ const svg = d3.select("#pm10-container-2024")
 
 
 // Load and process the data
-d3.csv("/public/javascripts/version_12/chart-data/2024/pm10-exceed.csv").then(function (data) {
+d3.csv("/public/javascripts/version_13/chart-data/2024/pm10-exceed.csv").then(function (data) {
   // Parse the date and convert the population to a number
   const parseDate = d3.timeParse("%d/%m/%Y");
   data.forEach(d => {
@@ -253,7 +255,6 @@ segments.forEach(segment => {
       .attr("fill", "none")
       .attr("stroke", color)
       .attr("stroke-width", 2)
-      .attr("stroke-dasharray", isVerified ? null : "4,4")
       .attr("d", line);
   });
 });
@@ -621,5 +622,5 @@ window.removeEventListener("resize", drawChart);
 window.addEventListener("resize", drawChart);
 
 
-
+})();
 

@@ -4,369 +4,617 @@
 //
 
 window.GOVUKPrototypeKit.documentReady(() => {
+  // no-op
 });
 
-// Set dimensions and margins for the chart
-  function drawChart() {
-    // Clear previous chart elements if any
-    d3.select("#pm10-container-week").selectAll("*").remove();
-  
-    // Set dimensions and margins for the chart
-    const margin = { top: 20, right: 10, bottom: 50, left: 40 };
-    
-    // Use the full width of the container
-    const width = document.getElementById("pm10-container-week").clientWidth - margin.left - margin.right; // Use container's width
-    const height = 400 - margin.top - margin.bottom; // Fixed height
+/**
+ * Monthly PM10 chart (limit = 50 μg/m3) with:
+ * - Uses CSV columns: date,population,status,exceedance
+ * - status: 'V' = Verified (solid), anything else = Unverified (dotted)
+ * - exceedance: 'Y'/'N' (if missing/blank, computed from limit=50)
+ * - red segments + filled area when exceedance=Y
+ * - tooltip + vertical cursor line + hover point
+ * - aria-live announcements
+ * - keyboard “focus points” mode (Tab into chart, then ArrowLeft/ArrowRight)
+ *
+ * NOTE: Supports timestamps like 2024-10-29T24:00:00 (rolled to next day 00:00:00)
+ */
 
-// Set up the x and y scales
-const x = d3.scaleTime()
-  .range([0, width]);
+(function () {
+  const CONTAINER_ID = "pm10-container-week";
+  const CSV_PATH = "/public/javascripts/version_13/chart-data/past-week/pm10.csv";
+  const LIMIT = 50; // μg/m3 (threshold line + exceedance computation fallback)
 
-const y = d3.scaleLinear()
-  .range([height, 0]);
+  let focusPointsCreated = false;
+  let keyboardNavigation = false;
 
-/* // Set up the line generator
-  const line = d3.line()
-  .defined(d => d.population !== 0) // Only include data points where the value is not 0
-  .x(d => x(d.date))
-  .y(d => y(d.population)); */
+  // Avoid stacking global listeners if this file is loaded more than once
+  if (!window.__AQ_PM10_WEEK_LISTENERS__) {
+    window.__AQ_PM10_WEEK_LISTENERS__ = true;
 
-    // Set up the line generator with smoothing
-const line = d3.line()
-.defined(d => d.population !== 0)  // Only include data points where the value is not 0
-.curve(d3.curveCardinal)           // Apply Cardinal curve for smoothness
-.x(d => x(d.date))                 // Define the x position based on the date
-.y(d => y(d.population));          // Define the y position based on population
-
-
-
-// Create the SVG element and append it to the chart container
-const svg = d3.select("#pm10-container-week")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
-
-
-
-
-
-
-//Load data
-  d3.csv("/public/javascripts/version_7/chart-data/past-week/pm10.csv").then(function (data) {
-    // Adjusted date parsing to match your timestamp format
-    const parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S");
-
-    data.forEach(d => {
-      // Parse the date and population values
-      d.date = parseTime(d.date);
-      d.population = +d.population; // Convert population to a number
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Tab") keyboardNavigation = true;
     });
 
-    // Set the domains for the x and y scales
-    x.domain(d3.extent(data, d => d.date));
-    y.domain([0, 150]);
+    document.addEventListener("mousedown", function () {
+      keyboardNavigation = false;
+    });
+  }
 
+  function parseISOish(ts) {
+    // Handles "YYYY-MM-DDTHH:mm:ss" and fixes "24:00:00" -> next day 00:00:00
+    if (!ts || typeof ts !== "string") return null;
 
-// Add a thin black line at the top of the graph
-svg.append("line")
-  .attr("x1", 0)
-  .attr("y1", 0)
-  .attr("x2", width)
-  .attr("y2", 0)
-  .attr("stroke", "#505a5f") // Black color
-  .attr("stroke-width", 1) // Thin line
-  .attr("opacity", 0.5);
-// Add a thin black line at the bottom of the graph
-svg.append("line")
-  .attr("x1", 0)
-  .attr("y1", height)
-  .attr("x2", width)
-  .attr("y2", height)
-  .attr("stroke", "#505a5f") // Black color
-  .attr("stroke-width", 1) // Thin line
-  .attr("opacity", 0.5);
+    const m = ts.match(
+      /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/
+    );
+    if (!m) return null;
 
+    let year = +m[1];
+    let month = +m[2] - 1;
+    let day = +m[3];
+    let hour = +m[4];
+    let minute = +m[5];
+    let second = +m[6];
 
-// Add the x-axis
-svg.append("g")
-   .attr("transform", `translate(0,${height})`)
-   .style("font-size", "16px")
-   .call(d3.axisBottom(x)
-     .ticks(d3.timeHour.every(24)) // Display ticks every 6 hours
-     .tickFormat(d => {
-       const time = d3.timeFormat("")(d).replace(/^0/, '').toLowerCase(); // Format time (am/pm)
-       const date = d3.timeFormat("")(d); // Format day and month
-       return `${time}\n${date}`; // Add a line break between time and date
-     })
-   )
-   .call(g => g.select(".domain").remove()) // Remove the x-axis line
-   .selectAll(".tick line") // Select all tick lines
-   .style("stroke-opacity", 0);
+    if (hour === 24) {
+      hour = 0;
+      const d = new Date(year, month, day, hour, minute, second);
+      d.setDate(d.getDate() + 1);
+      return d;
+    }
 
-// Adjust tick text
-svg.selectAll(".tick text")
-   .each(function(d) {
-     const time = d3.timeFormat("%I%p")(d).replace(/^0/, '').toLowerCase();
-     const date = d3.timeFormat("%e %b")(d);
+    return new Date(year, month, day, hour, minute, second);
+  }
 
-     d3.select(this)
-       .append("tspan")
-       .attr("x", 0)
-       .attr("dy", 10)
-       .text(time); // Add time as the first line
+  function normaliseStatus(s) {
+    // Accept V/v as verified; anything else treat as unverified
+    if (!s) return "U";
+    return String(s).trim().toUpperCase() === "V" ? "V" : "U";
+  }
 
-     d3.select(this)
-       .append("tspan")
-       .attr("x", 0)
-       .attr("dy", "1.2em")
-       .text(date); // Add date as the second line
-   });
+  function normaliseExceedance(ex, population) {
+    // Use provided exceedance if valid, else compute from LIMIT
+    const v = (ex ?? "").toString().trim().toUpperCase();
+    if (v === "Y" || v === "N") return v;
+    return population > LIMIT ? "Y" : "N";
+  }
 
+  function splitByStatusAndExceedance(data) {
+    // First split by status, then within each segment split by exceedance (with continuity point)
+    const statusSegments = [];
+    let current = [];
+    let currentStatus = data[0]?.status;
 
-
-
-
-
-
-   
-
-
-  // Add vertical gridlines
-  svg.selectAll("xGrid")
-    .data(x.ticks().slice(1))
-    .join("line")
-    .attr("x1", d => x(d))
-    .attr("x2", d => x(d))
-    .attr("y1", 0)
-    .attr("y2", height)
-    .attr("stroke", "#e0e0e0")
-    .attr("stroke-width", .5);
-
-  // Add the y-axis
-      svg.append("g")
-    .style("font-size", "16px")
-    .call(d3.axisLeft(y)
-    .ticks(4) // Adjust the number of ticks as needed
-    .tickFormat(d => d) // Divide by 1000 to show the values in thousands
-    .tickSize(0)
-    .tickPadding(10))
-
-
-    .call(g => g.select(".domain").remove()) // Remove the y-axis line
-    .selectAll(".tick text")
-    .style("fill", "#000000") // Make the font color grayer
-    .style("visibility", (d, i, nodes) => {
-      if (i === 0) {
-        return "hidden"; // Hide the first and last tick labels
+    data.forEach((d, i) => {
+      if (d.status === currentStatus) {
+        current.push(d);
       } else {
-        return "visible"; // Show the remaining tick labels
+        statusSegments.push({ data: current, status: currentStatus });
+        current = [d];
+        currentStatus = d.status;
+      }
+      if (i === data.length - 1) {
+        statusSegments.push({ data: current, status: currentStatus });
       }
     });
 
-  
-    svg.selectAll("yGrid")
-  .data(y.ticks(12).slice(1)) // Adjust to match the tick intervals
-  .join("line")
-  .attr("x1", 0)
-  .attr("x2", width)
-  .attr("y1", d => y(d))
-  .attr("y2", d => y(d))
-  .attr("stroke", "#e0e0e0")
-  .attr("stroke-width", .5);
+    function splitByExceedance(seg) {
+      const chunks = [];
+      let sub = [];
+      let currentEx = seg.data[0]?.exceedance;
 
-// Add the thin black line at the y-value of 200,000
-svg.append("line")
-  .attr("x1", 0)
-  .attr("y1", y(200000))
-  .attr("x2", width)
-  .attr("y2", y(200000))
-  .attr("stroke", "#505a5f") // Black color
-  .attr("stroke-width", 3) // Thin line
-  .attr("opacity", 1); // Adjust the opacity as needed
+      seg.data.forEach((d, i) => {
+        if (d.exceedance === currentEx) {
+          sub.push(d);
+        } else {
+          if (sub.length > 0) {
+            // continuity point
+            sub.push(d);
+            chunks.push({ data: sub, status: seg.status, exceedance: currentEx });
+          }
+          sub = [d];
+          currentEx = d.exceedance;
+        }
+        if (i === seg.data.length - 1) {
+          chunks.push({ data: sub, status: seg.status, exceedance: currentEx });
+        }
+      });
 
-// Create a group element to hold the text label and background
-const labelGroup = svg.append("g")
-  .attr("class", "exceedance-label")
-  .style("display", "block"); // Initially display the label
+      return chunks;
+    }
 
-// Add a foreignObject to act as the container for HTML content
-labelGroup.append("foreignObject")
-  .attr("x", width / 2 - 140) // Center the container horizontally
-  .attr("y", y(200000) - 65) // Position it slightly above the line
-  .attr("width", 260) // Width of the container
-  .attr("height", 80) // Height of the container
-  .append("xhtml:div") // Append a div inside the foreignObject
-  .attr("class", "exceedance-label-container") // Apply CSS class for styling
-  .html("Exceedance over 200 µg/m3"); // Set the text inside the div
-
-
-    // Set up the area generator
-const area = d3.area()
-  .defined(d => d.population !== 0) // Only include data points where the value is not 0
-  .x(d => x(d.date))
-  .y1(d => y(d.population))
-  .y0(height); // The lower boundary goes down to the x-axis (bottom of the chart)
-
-
-// Add the area path to the SVG
-svg.append("path")
-.datum(data)
-.attr("fill", "#1d70b8") // Light blue color for the filled area
-.attr("opacity", .1)
-.attr("stroke", "none")
-.attr("d", area);
-
-  // Add the line path
-  const path = svg.append("path")
-    .datum(data)
-    .attr("fill", "none")
-    .attr("stroke", "#1d70b8")
-    .attr("stroke-width", 3)
-    .attr("d", line);
-
-
-
-  const listeningRect = svg.append("rect")
-    .attr("width", width)
-    .attr("height", height);
-
-
-// Create the vertical line element
-const verticalLine = svg.append("line")
-.attr("stroke", "#000000")
-.attr("stroke-width", 0.5); // Start with the line hidden
-
-
-
-// create tooltip
-    const tooltip = d3.select("body")
-    .append("div")
-    .attr("class", "graph-tooltip") // Adds the initial class
-    .classed("tooltip-bg tooltip-text", true) // Adds multiple classes
-    .style("position", "absolute") // Ensure it is absolutely positioned
-    .style("display", "none") // Start hidden
-    /* .attr("x", width / 2 - 140) 
-    .attr("y", y(200000) - 25); */
-
-// Add the circle element for the data point hover effect (outer blue circle)
-const outerCircle = svg.append("circle")
-  .attr("r", 0) // Start with a radius of 0
-  .attr("fill", "#1d70b8") // Blue color
-  .style("stroke", "#1d70b8") // Stroke same as fill
-  .attr("opacity", 100)
-  .style("pointer-events", "none");
-
-// Add the inner circle for the white circle effect
-const innerCircle = svg.append("circle")
-  .attr("r", 0) // Start with a radius of 0
-  .attr("fill", "#ffffff") // White color
-  .attr("opacity", 1) // Slightly transparent white
-  .style("pointer-events", "none");
-
-
-// Create event listeners for the pm10-container-week to show/hide elements
-d3.select("#pm10-container-week")
-  .on("mouseover", function () {
-    // Show the elements when the mouse enters the chart container
-    tooltip.style("display", "block");
-    verticalLine.style("opacity", 1);
-    outerCircle.style("opacity", 1);
-    innerCircle.style("opacity", 1);
-    labelGroup.style("display", "none"); // Hide the label when mouse enters
-  })
-  .on("mouseout", function () {
-    // Hide the elements when the mouse leaves the chart container
-    tooltip.style("display", "none");
-    verticalLine.style("opacity", 0);
-    outerCircle.attr("r", 0); // Hide the outer circle
-    innerCircle.attr("r", 0); // Hide the inner circle
-    labelGroup.style("display", "block");
-  });
-
-listeningRect.on("mousemove", function (event) {
-  const [xCoord, yCoord] = d3.pointer(event, this);
-  const bisectDate = d3.bisector(d => d.date).left;
-  const x0 = x.invert(xCoord);
-  const i = bisectDate(data, x0, 1);
-  const d0 = data[i - 1];
-  const d1 = data[i];
-  const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-  const xPos = x(d.date);
-  const yPos = y(d.population);
-
-  // Update the positions of both circles
-  outerCircle.attr("cx", xPos)
-    .attr("cy", yPos);
-  innerCircle.attr("cx", xPos)
-    .attr("cy", yPos);
-
-  // Add transition for both circle radii
-  outerCircle.transition()
-    .duration(50)
-    .attr("r", 6); // Outer circle radius
-  innerCircle.transition()
-    .duration(50)
-    .attr("r", 3); // Inner circle radius
-
-  // Update the vertical line position and make it visible
-  verticalLine
-    .attr("x1", xPos)
-    .attr("x2", xPos)
-    .attr("y1", 0)
-    .attr("y2", height);
-
-// Create a date formatter for time and day
-const formatDateTime = d => {
-  const time = d3.timeFormat("%I:%M%p")(d).replace(/^0/, '').toLowerCase(); // Format time (e.g., 12:30am)
-  const date = d3.timeFormat("%e %b")(d); // Format day and abbreviated month (e.g., 28 Nov)
-  return `${time}, ${date}`; // Combine time and date
-};
-
-// Update the tooltip content and position
-tooltip.html(`<strong style="font-size:22px;">${d.population === 0 ? 'No data' : (d.population).toFixed(0) + ' μg/m3'}</strong><div style="display: block; margin-top: 2px; font-size: 19px;">${formatDateTime(d.date)}</div>`);
-
-
-
-
-  // Get tooltip width to adjust its position
-  const tooltipWidth = tooltip.node().offsetWidth;
-
-// As you add more content to page, you need to adjust the pixels here to make sure the tooltip is in the right place.
-  // Adjust tooltip position based on window width
-   if (window.innerWidth >= 1800) {
-    tooltip.style("left", `${xCoord - (tooltipWidth - 600)}px`)
-           .style("top", `${yCoord + 540}px`);
-  } else if (window.innerWidth >= 1400){
-    tooltip.style("left", `${xCoord - (tooltipWidth - 400)}px`)
-           .style("top", `${yCoord + 560}px`);
-  } 
-  else if (window.innerWidth >= 1200){
-    tooltip.style("left", `${xCoord - (tooltipWidth - 300)}px`)
-           .style("top", `${yCoord + 560}px`);
-  } 
-  else if (window.innerWidth >= 900){
-    tooltip.style("left", `${xCoord - (tooltipWidth - 200)}px`)
-           .style("top", `${yCoord + 560}px`);
+    return statusSegments.flatMap(splitByExceedance);
   }
-  else if (window.innerWidth >= 200){
-    tooltip.style("left", `${xCoord - (tooltipWidth - 120)}px`)
-           .style("top", `${yCoord + 600}px`);
+
+  function drawChart() {
+    // Remove any previous tooltip (avoid duplicates)
+    d3.selectAll("body > .graph-tooltip").remove();
+
+    // Clear previous chart
+    d3.select(`#${CONTAINER_ID}`).selectAll("*").remove();
+
+    const containerEl = document.getElementById(CONTAINER_ID);
+    if (!containerEl) return;
+
+    const margin = { top: 20, right: 10, bottom: 50, left: 40 };
+    const width = containerEl.clientWidth - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    const x = d3.scaleTime().range([0, width]);
+    const y = d3.scaleLinear().range([height, 0]);
+
+    const line = d3
+      .line()
+      .defined((d) => d.population !== 0 && d.date)
+      .curve(d3.curveMonotoneX)
+
+      .x((d) => x(d.date))
+      .y((d) => y(d.population));
+
+    const area = d3
+      .area()
+      .defined((d) => d.population !== 0 && d.date)
+      .x((d) => x(d.date))
+      .y1((d) => y(d.population))
+      .y0(height);
+
+    const svg = d3
+      .select(`#${CONTAINER_ID}`)
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    d3.csv(CSV_PATH).then(function (raw) {
+      const data = raw
+        .map((d) => {
+          const dt = parseISOish(d.date);
+          const pop = +d.population;
+          const population = Number.isFinite(pop) ? pop : 0;
+
+          const status = normaliseStatus(d.status); // 'V' or 'U'
+          const exceedance = normaliseExceedance(d.exceedance, population); // 'Y'/'N'
+
+          return { date: dt, population, status, exceedance };
+        })
+        .filter((d) => d.date)
+        .sort((a, b) => a.date - b.date);
+
+      if (!data.length) return;
+
+      x.domain(d3.extent(data, (d) => d.date));
+
+      const maxPop = d3.max(data, (d) => d.population) || 0;
+      const yMax = Math.max(150, LIMIT * 1.25, maxPop * 1.1);
+      y.domain([0, yMax]);
+
+      // Top/bottom borders
+      svg
+        .append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", width)
+        .attr("y2", 0)
+        .attr("stroke", "#505a5f")
+        .attr("stroke-width", 3)
+        .attr("opacity", 0.5);
+
+      svg
+        .append("line")
+        .attr("x1", 0)
+        .attr("y1", height)
+        .attr("x2", width)
+        .attr("y2", height)
+        .attr("stroke", "#505a5f")
+        .attr("stroke-width", 1)
+        .attr("opacity", 0.5);
+
+      // X axis (same stacked tick style you had)
+      const xAxis = svg
+        .append("g")
+        .attr("transform", `translate(0,${height})`)
+        .style("font-size", "16px")
+        .call(
+          d3
+            .axisBottom(x)
+            .ticks(d3.timeDay.every(3))
+            .tickFormat(() => "")
+        );
+
+      xAxis.call((g) => g.select(".domain").remove());
+      xAxis.selectAll(".tick line").style("stroke-opacity", 0);
+
+      xAxis.selectAll(".tick text").each(function (d) {
+        const time = d3.timeFormat("%I%p")(d).replace(/^0/, "").toLowerCase();
+        const date = d3.timeFormat("%e %b")(d);
+
+        const text = d3.select(this);
+        text.text("");
+
+        text.append("tspan").attr("x", 0).attr("dy", 10).text(time);
+        text.append("tspan").attr("x", 0).attr("dy", "1.2em").text(date);
+      });
+
+      // Gridlines
+      svg
+        .selectAll("xGrid")
+        .data(x.ticks().slice(1))
+        .join("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", (d) => x(d))
+        .attr("y1", 0)
+        .attr("y2", height)
+        .attr("stroke", "#e0e0e0")
+        .attr("stroke-width", 0.5);
+
+      svg
+        .append("g")
+        .style("font-size", "16px")
+        .call(
+          d3
+            .axisLeft(y)
+            .ticks(4)
+            .tickFormat((d) => d)
+            .tickSize(0)
+            .tickPadding(10)
+        )
+        .call((g) => g.select(".domain").remove())
+        .selectAll(".tick text")
+        .style("fill", "#000000")
+        .style("visibility", (d, i) => (i === 0 ? "hidden" : "visible"));
+
+      svg
+        .selectAll("yGrid")
+        .data(y.ticks(12).slice(1))
+        .join("line")
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", (d) => y(d))
+        .attr("y2", (d) => y(d))
+        .attr("stroke", "#e0e0e0")
+        .attr("stroke-width", 0.5);
+
+     
+
+      // Tooltip + cursor visuals
+      const tooltip = d3
+        .select("body")
+        .append("div")
+        .attr("class", "graph-tooltip")
+        .classed("tooltip-bg tooltip-text", true)
+        .style("position", "absolute")
+        .style("display", "none");
+
+      const verticalLine = svg
+        .append("line")
+        .attr("stroke", "#000000")
+        .attr("stroke-width", 0.5)
+        .style("opacity", 0);
+
+     
+      // Draw segmented line/area:
+      // - red when exceedance=Y
+      // - dotted when status != V
+      const segments = splitByStatusAndExceedance(data);
+
+      segments.forEach((seg) => {
+        if (!seg.data || seg.data.length < 2) return;
+
+        const isVerified = seg.status === "V";
+        const isExceedance = seg.exceedance === "Y";
+        const color = isExceedance ? "#d4351c" : "#1d70b8";
+
+        if (isVerified) {
+          svg
+            .append("path")
+            .datum(seg.data)
+            .attr("fill", color)
+            .attr("opacity", 0.1)
+            .attr("stroke", "none")
+            .attr("d", area);
+        }
+
+        svg
+          .append("path")
+          .datum(seg.data)
+          .attr("fill", "none")
+          .attr("stroke", color)
+          .attr("stroke-width", 3)
+          .attr("d", line);
+      });
+
+       const outerCircle = svg
+        .append("circle")
+        .attr("r", 0)
+        .attr("fill", "#1d70b8")
+        .style("stroke", "#1d70b8")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+      const innerCircle = svg
+        .append("circle")
+        .attr("r", 0)
+        .attr("fill", "#ffffff")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+      const focusRing = svg
+        .append("circle")
+        .attr("r", 8)
+        .attr("fill", "none")
+        .attr("stroke", "#ffdd00")
+        .attr("stroke-width", 3)
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+      const focusInnerCircle = svg
+        .append("circle")
+        .attr("r", 6)
+        .attr("fill", "#003078")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+
+      // Listening rect
+      const listeningRect = svg
+        .append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .style("fill", "transparent");
+
+      function positionTooltip(xPos) {
+        const tooltipWidth = tooltip.node().offsetWidth;
+        const containerRect = containerEl.getBoundingClientRect();
+        const pointOffset = xPos + containerRect.left;
+
+        let left;
+        if (xPos < width * 0.45) {
+          left = pointOffset + 60;
+        } else if (xPos > width * 0.55) {
+          left = pointOffset - tooltipWidth + 30;
+        } else {
+          left = pointOffset - tooltipWidth / 2;
+        }
+
+        tooltip
+          .style("left", `${left}px`)
+          .style("top", `${containerRect.top + window.scrollY + 20}px`);
+      }
+
+      function formatDateTime(d) {
+        const time = d3
+          .timeFormat("%I:%M%p")(d)
+          .replace(/^0/, "")
+          .toLowerCase();
+        const date = d3.timeFormat("%e %b")(d);
+        return `${time}, ${date}`;
+      }
+
+      function tooltipHtml(d) {
+        return `
+          <strong style="font-size:22px;">
+            ${d.population === 0 ? "No data" : `${d.population.toFixed(0)} μg/m3`}
+          </strong>
+          ${
+            d.exceedance === "Y"
+              ? `<div style="margin-top: 8px; margin-bottom: 8px;">
+                   <strong class="govuk-tag govuk-tag--red">Above limit</strong>
+                 </div>`
+              : ""
+          }
+          <div style="margin-top: 4px; font-size: 19px;">${formatDateTime(d.date)}</div>
+          <div style="margin-top: 4px; font-size: 19px; color: #505a5f;">
+            ${d.status === "V" ? "Verified" : "Unverified"}
+          </div>
+        `;
+      }
+
+      // Hover show/hide
+      d3.select(`#${CONTAINER_ID}`)
+        .attr("tabindex", 0)
+        .on("mouseover", function () {
+          tooltip.style("display", "block");
+          verticalLine.style("opacity", 1);
+          outerCircle.style("opacity", 1);
+          innerCircle.style("opacity", 1);
+          labelGroup.style("display", "none");
+        })
+        .on("mouseout", function () {
+          tooltip.style("display", "none");
+          verticalLine.style("opacity", 0);
+          outerCircle.attr("r", 0).style("opacity", 0);
+          innerCircle.attr("r", 0).style("opacity", 0);
+          labelGroup.style("display", "block");
+          d3.select("#chart-aria-live").text("");
+        });
+
+      listeningRect.on("mousemove", function (event) {
+        const [xCoord] = d3.pointer(event, this);
+        const bisectDate = d3.bisector((d) => d.date).left;
+        const x0 = x.invert(xCoord);
+        const i = bisectDate(data, x0, 1);
+        const d0 = data[i - 1];
+        const d1 = data[i];
+        const d = !d1 ? d0 : x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+        const xPos = x(d.date);
+        const yPos = y(d.population);
+
+        const circleColor = d.exceedance === "Y" ? "#d4351c" : "#1d70b8";
+
+        outerCircle
+          .attr("cx", xPos)
+          .attr("cy", yPos)
+          .attr("fill", circleColor)
+          .style("stroke", circleColor)
+          .transition()
+          .duration(50)
+          .attr("r", 6);
+
+        innerCircle
+          .attr("cx", xPos)
+          .attr("cy", yPos)
+          .transition()
+          .duration(50)
+          .attr("r", 3);
+
+        verticalLine
+          .attr("x1", xPos)
+          .attr("x2", xPos)
+          .attr("y1", 0)
+          .attr("y2", height);
+
+        tooltip.style("display", "block").html(tooltipHtml(d));
+        positionTooltip(xPos);
+
+        const screenReaderText =
+          `${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`}, ` +
+          `${d.exceedance === "Y" ? "Above limit. " : ""}` +
+          `${formatDateTime(d.date)}, ` +
+          `${d.status === "V" ? "Verified" : "Unverified"}`;
+
+        d3.select("#chart-aria-live").text(screenReaderText);
+      });
+
+      // Keyboard focus mode
+      function handleFocus(event, d) {
+        const xPos = x(d.date);
+        const yPos = y(d.population);
+        const circleColor = d.exceedance === "Y" ? "#d4351c" : "#1d70b8";
+        const innerFocusColor = d.exceedance === "Y" ? "#7d1a1a" : "#144e8c";
+
+        outerCircle
+          .attr("cx", xPos)
+          .attr("cy", yPos)
+          .attr("fill", circleColor)
+          .style("stroke", circleColor)
+          .attr("r", 6)
+          .style("opacity", 1);
+
+        innerCircle.attr("cx", xPos).attr("cy", yPos).attr("r", 3).style("opacity", 1);
+
+        focusRing.attr("cx", xPos).attr("cy", yPos).style("opacity", 1);
+
+        focusInnerCircle
+          .attr("cx", xPos)
+          .attr("cy", yPos)
+          .attr("fill", innerFocusColor)
+          .style("opacity", 1);
+
+        verticalLine
+          .attr("x1", xPos)
+          .attr("x2", xPos)
+          .attr("y1", 0)
+          .attr("y2", height)
+          .style("opacity", 1);
+
+        tooltip.style("display", "block").html(tooltipHtml(d));
+        positionTooltip(xPos);
+
+        d3.select("#chart-aria-live").text(
+          `${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`} on ${formatDateTime(d.date)}.`
+        );
+      }
+
+      function handleBlur() {
+        outerCircle.attr("r", 0).style("opacity", 0);
+        innerCircle.attr("r", 0).style("opacity", 0);
+        verticalLine.style("opacity", 0);
+        tooltip.style("display", "none");
+        focusRing.style("opacity", 0);
+        focusInnerCircle.style("opacity", 0);
+        d3.select("#chart-aria-live").text("");
+      }
+
+      function handleKeydown(event) {
+        const circles = document.querySelectorAll(
+          `#${CONTAINER_ID} .focus-points circle`
+        );
+        const currentIndex = Array.prototype.indexOf.call(circles, this);
+
+        if (event.key === "ArrowRight" && currentIndex < circles.length - 1) {
+          circles[currentIndex + 1].focus();
+          event.preventDefault();
+        } else if (event.key === "ArrowLeft" && currentIndex > 0) {
+          circles[currentIndex - 1].focus();
+          event.preventDefault();
+        }
+      }
+
+      d3.select(`#${CONTAINER_ID}`).on("focus", function () {
+        if (!keyboardNavigation || focusPointsCreated) return;
+        focusPointsCreated = true;
+
+        handleBlur();
+
+        const focusGroup = svg.append("g").attr("class", "focus-points");
+
+        focusGroup
+          .selectAll("circle")
+          .data(data)
+          .enter()
+          .append("circle")
+          .attr("cx", (d) => x(d.date))
+          .attr("cy", (d) => y(d.population))
+          .attr("r", 6)
+          .attr("fill", (d) => (d.exceedance === "Y" ? "#d4351c" : "#1d70b8"))
+          .attr("stroke", "#ffffff")
+          .attr("stroke-width", 1)
+          .attr("tabindex", 0)
+          .attr("role", "button")
+          .attr("aria-label", (d) => {
+            const date = formatDateTime(d.date);
+            return (
+              `${d.population === 0 ? "No data" : d.population.toFixed(0)} micrograms per cubic metre on ${date}, ` +
+              `${d.status === "V" ? "Verified" : "Unverified"}` +
+              `${d.exceedance === "Y" ? ", above limit" : ""}`
+            );
+          })
+          .on("focus", handleFocus)
+          .on("blur", handleBlur)
+          .on("keydown", handleKeydown);
+
+        const allCircles = document.querySelectorAll(
+          `#${CONTAINER_ID} .focus-points circle`
+        );
+        if (allCircles.length > 0) {
+          allCircles[allCircles.length - 1].focus();
+        }
+
+        outerCircle.raise();
+        verticalLine.raise();
+        innerCircle.raise();
+        focusRing.raise();
+        focusInnerCircle.raise();
+      });
+
+      // Optional: click clears keyboard focus visuals on desktop
+      if (!window.__AQ_PM10_WEEK_CLEAR_CLICK__) {
+        window.__AQ_PM10_WEEK_CLEAR_CLICK__ = true;
+
+        document.addEventListener("click", function () {
+          if (window.innerWidth <= 768) return;
+
+          handleBlur();
+          d3.select(`#${CONTAINER_ID}`).select(".focus-points").remove();
+          focusPointsCreated = false;
+        });
+      }
+    });
   }
-  
-});
-   
-  
-  });
-}
 
-// Initial chart rendering
-drawChart();
+  // Expose redraw hook
+  window.AQGraphs = window.AQGraphs || {};
+  window.AQGraphs.pm10_week = drawChart;
 
-// Add an event listener for window resize
-window.addEventListener("resize", drawChart);
+  // Initial render
+  if (document.getElementById(CONTAINER_ID)) {
+    drawChart();
+  }
 
-
-
-
+  // Avoid stacking resize listeners if you redraw multiple times
+  window.removeEventListener("resize", drawChart);
+  window.addEventListener("resize", drawChart);
+})();

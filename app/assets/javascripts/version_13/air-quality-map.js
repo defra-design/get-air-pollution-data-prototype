@@ -778,7 +778,7 @@ function setFilter(mode, value) {
 let colourByDaqi = false; // default = use status colours
 
 function getDaqiColor(daqi) {
-  if (daqi == null) return '#505a5f';             // fallback grey if unknown
+  if (daqi == null) return '#1D70B8';             // fallback grey if unknown
   if (daqi <= 3) return '#00703c';                // green: Low (1-3)
   if (daqi <= 6) return '#ffdd00';                // yellow: Moderate (4-6)
   if (daqi <= 9) return '#d4351c';                // red: High (7-9)
