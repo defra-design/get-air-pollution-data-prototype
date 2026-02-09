@@ -53,7 +53,7 @@ const mockStations = [
   },
 
   // --- NORTH WEST / YORKS & HUMBER ---
-  { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: null, siteType: "Urban traffic", startDate: "2003-08-01" },
+  { id: 27, name: "Manchester Piccadilly", lat: 53.4776, lng: -2.2374, authority: "Manchester City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban traffic", startDate: "2003-08-01" },
   { id: 28, name: "Salford Eccles", lat: 53.484, lng: -2.337, authority: "Salford City Council", pollutants: ["PM10","NO2","O3"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2005-01-01" },
   { id: 29, name: "Liverpool Speke", lat: 53.340, lng: -2.855, authority: "Liverpool City Council", pollutants: ["PM2.5","PM10","NO2","O3","SO2"], status: "active", daqi: 3, siteType: "Suburban", startDate: "2000-01-01" },
   { id: 30, name: "Preston", lat: 53.763, lng: -2.704, authority: "Preston City Council", pollutants: ["PM2.5","PM10","NO2"], status: "active", daqi: 2, siteType: "Urban background", startDate: "2008-01-01" },
@@ -1865,15 +1865,15 @@ function renderNetworkRadioGroupsHtml(uiId, availableNetworks) {
 
 const groups = {
   near: {
-    heading: isVocs ? 'Near real-time data' : 'Near real-time data (Defra)',
+    heading: isVocs ? 'Near real-time data' : 'Near real-time Defra data',
     items: []
   },
   other_defra: {
-    heading: isVocs ? 'Other data' : 'Other data (Defra)',
+    heading: isVocs ? 'Other data' : 'Other Defra data',
     items: []
   },
   non_defra: {
-    heading: 'Non-Defra data',
+    heading: 'Local authority data',
     items: []
   }
 };

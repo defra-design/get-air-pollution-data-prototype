@@ -603,9 +603,14 @@ function getGraphIdForSelection() {
   else if (mode === 'rolling' && rollingPeriod === '7d') suffix = 'week';
   else if (mode === 'year' && selectedMonth !== 'all') suffix = 'month';
 
-  // Build the container id: e.g. "pm10-container-year", "no2-container-week"
+  // ✅ Only special-case 2026 year view
+  if (mode === 'year' && selectedMonth === 'all' && selectedYear === '2026') {
+    suffix = '2026';
+  }
+
   return `${currentPollutant}-container-${suffix}`;
 }
+
 
 
 function renderGraphBlock() {
@@ -936,8 +941,8 @@ const data = {
           metrics: { avg: '8 µg/m3', daily: 'no legal limit', hourly: 'no legal limit', capture: '100%' }
         },
         months: {
-          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } },
-          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } }
+          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '8 µg/m3', daily: 'no legal limit', hourly: 'no legal limit', capture: '100%' } },
+          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '8 µg/m3', daily: 'no legal limit', hourly: 'no legal limit', capture: '100%' } }
         }
       },
       '2025': {
@@ -985,7 +990,7 @@ const data = {
       '7d': {
         range: last7DaysLabel(),
         verified: { state: 'none', text: 'Data has not been checked and verified' },
-        metrics: { avg: '14 µg/m3', daily: '2', hourly: 'no legal limit', capture: '100%' }
+        metrics: { avg: '14 µg/m3', daily: '0', hourly: 'no legal limit', capture: '100%' }
       }
     },
     years: {
@@ -993,11 +998,11 @@ const data = {
         year: {
           range: yearRangeLabel('2026'),
           verified: { state: 'none', text: 'Data has not been checked and verified' },
-          metrics: { avg: '14 µg/m3', daily: '2', hourly: 'no legal limit', capture: '100%' }
+          metrics: { avg: '14 µg/m3', daily: '0', hourly: 'no legal limit', capture: '100%' }
         },
         months: {
-          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } },
-          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } }
+          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '14 µg/m3', daily: '0', hourly: 'no legal limit', capture: '100%' } },
+          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '14 µg/m3', daily: '0', hourly: 'no legal limit', capture: '100%' } }
         }
       },
       '2025': {
@@ -1056,8 +1061,8 @@ const data = {
           metrics: { avg: '52 µg/m3', daily: 'no legal limit', hourly: '1', capture: '100%' }
         },
         months: {
-          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } },
-          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } }
+          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '52 µg/m3', daily: 'no legal limit', hourly: '1', capture: '100%' } },
+          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '52 µg/m3', daily: 'no legal limit', hourly: '0', capture: '100%' } }
         }
       },
       '2025': {
@@ -1116,8 +1121,8 @@ const data = {
           metrics: { avg: '32 µg/m3', daily: 'no legal limit', hourly: 'no legal limit', capture: '100%' }
         },
         months: {
-          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } },
-          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '–', daily: '–', hourly: '–', capture: '–' } }
+          '1': { range: monthRangeLabel('2026', 1), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '32 µg/m3', daily: 'no legal limit', hourly: 'no legal limit', capture: '100%' } },
+          '2': { range: monthRangeLabel('2026', 2), verified: { state: 'none', text: 'Data has not been checked and verified' }, metrics: { avg: '32 µg/m3', daily: 'no legal limit', hourly: 'no legal limit', capture: '100%' } }
         }
       },
       '2025': {

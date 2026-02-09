@@ -27,13 +27,13 @@ document.addEventListener('mousedown', function () {
 // Set dimensions and margins for the chart
   function drawChart() {
     // Clear previous chart elements if any
-    d3.select("#o3-container-2024").selectAll("*").remove();
+    d3.select("#o3-container-2026").selectAll("*").remove();
   
     // Set dimensions and margins for the chart
     const margin = { top: 20, right: 10, bottom: 40, left: 40 };
     
     // Use the full width of the container
-    const width = document.getElementById("o3-container-2024").clientWidth - margin.left - margin.right; // Use container's width
+    const width = document.getElementById("o3-container-2026").clientWidth - margin.left - margin.right; // Use container's width
     const height = 400 - margin.top - margin.bottom; // Fixed height
 
 // Set up the x and y scales
@@ -60,7 +60,7 @@ const y = d3.scaleLinear()
 
 
 // Create the SVG element and append it to the chart container
-const svg = d3.select("#o3-container-2024")
+const svg = d3.select("#o3-container-2026")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -72,7 +72,7 @@ const svg = d3.select("#o3-container-2024")
 
 
 // Load and process the data
-d3.csv("/public/javascripts/version_13/chart-data/2024/o3.csv").then(function (data) {
+d3.csv("/public/javascripts/version_13/chart-data/2026/o3.csv").then(function (data) {
   // Parse the date and convert the population to a number
   const parseDate = d3.timeParse("%d/%m/%Y");
   data.forEach(d => {
@@ -309,7 +309,7 @@ function handleFocus(event, d) {
     `);
 
   const tooltipWidth = tooltip.node().offsetWidth;
-  const container = document.getElementById("o3-container-2024");
+  const container = document.getElementById("o3-container-2026");
   const containerRect = container.getBoundingClientRect();
   const pointOffset = xPos + containerRect.left;
 
@@ -342,7 +342,7 @@ function handleBlur() {
 }
 
 function handleKeydown(event, d) {
-  const circles = document.querySelectorAll("#o3-container-2024 .focus-points circle");
+  const circles = document.querySelectorAll("#o3-container-2026 .focus-points circle");
   const currentIndex = Array.prototype.indexOf.call(circles, this);
 
   if (event.key === "ArrowRight" && currentIndex < circles.length - 1) {
@@ -355,7 +355,7 @@ function handleKeydown(event, d) {
 }
 
 //  Keyboard-accessible focus mode on tabbing into chart
-d3.select("#o3-container-2024").on("focus", function () {
+d3.select("#o3-container-2026").on("focus", function () {
   if (!keyboardNavigation || focusPointsCreated) return;
   focusPointsCreated = true;
 
@@ -389,7 +389,7 @@ d3.select("#o3-container-2024").on("focus", function () {
     .on("blur", handleBlur)
     .on("keydown", handleKeydown);
 
-  const allCircles = document.querySelectorAll("#o3-container-2024 .focus-points circle");
+  const allCircles = document.querySelectorAll("#o3-container-2026 .focus-points circle");
   if (allCircles.length > 0) {
     allCircles[allCircles.length - 1].focus();
   }
@@ -416,7 +416,7 @@ document.addEventListener("click", function (event) {
     focusInnerCircle.style("opacity", 0);
     d3.select("#chart-aria-live").text('');
 
-    d3.select("#o3-container-2024").select(".focus-points").remove();
+    d3.select("#o3-container-2026").select(".focus-points").remove();
     focusPointsCreated = false;
   }
 });
@@ -475,8 +475,8 @@ const focusInnerCircle = svg.append("circle")
   .style("pointer-events", "none")
   .style("opacity", 0); // Initially hidden
 
-// Create event listeners for the o3-container-2024 to show/hide elements
-d3.select("#o3-container-2024")
+// Create event listeners for the o3-container-2026 to show/hide elements
+d3.select("#o3-container-2026")
   .on("mouseover", function () {
     // Show the elements when the mouse enters the chart container
     tooltip.style("display", "block");
@@ -570,7 +570,7 @@ d3.select("#chart-aria-live").text(screenReaderText);
 const tooltipWidth = tooltip.node().offsetWidth;
 
 // Get position of chart container
-const container = document.getElementById("o3-container-2024");
+const container = document.getElementById("o3-container-2026");
 const containerRect = container.getBoundingClientRect();
 
 let tooltipLeft;
@@ -603,10 +603,10 @@ tooltip
 
 // Expose a global redraw hook so your page can re-render after swapping HTML
 window.AQGraphs = window.AQGraphs || {};
-window.AQGraphs.o3_2024 = drawChart; // name it whatever you like
+window.AQGraphs.o3_2026 = drawChart; // name it whatever you like
 
 // Initial chart rendering (only runs if the container exists)
-if (document.getElementById("o3-container-2024")) {
+if (document.getElementById("o3-container-2026")) {
   drawChart();
 }
 
