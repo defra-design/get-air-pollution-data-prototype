@@ -3,12 +3,6 @@
 {% set pageName="Home" %}
 
 {% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: {
-    text: "Beta"
-  },
-  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
-}) }}
 <a href="create-pollutant.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
@@ -749,8 +743,11 @@ function renderHourlyBlock(networkName, tm) {
   const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
 
   if (tm.mode === 'range') {
+    
     const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
     const end   = Math.min(tm.endYear, CURRENT_YEAR);
+    
+
     if (start > end) {
       return `${headingAndDesc}${inset}
               <p class="govuk-body">No data available for the selected range. Data for this network starts in ${getNetworkStartYear(networkName)}.</p>`;
@@ -760,12 +757,14 @@ function renderHourlyBlock(networkName, tm) {
     }
 
     const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+    const showAnnual = ANNUAL_AVG_NETWORKS.has(networkName);
 
     // Build rows with "Download all years" row first
     let rows = '';
     if (isSimple) {
       rows += `<tr class="govuk-table__row">
                  <th scope="row" class="govuk-table__header">Download all years</th>
+                 <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
                  <td class="govuk-table__cell"><a href="#" class="govuk-link">Request data</a></td>
                </tr>`;
     } else {
@@ -779,11 +778,12 @@ function renderHourlyBlock(networkName, tm) {
 
     for (let y = end; y >= start; y--) {
       if (isSimple) {
-        rows += `<tr class="govuk-table__row">
-                   <th scope="row" class="govuk-table__header">${y}</th>
-                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
-                 </tr>`;
-      } else {
+  rows += `<tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">${y}</th>
+            <td class="govuk-table__cell"><a href="#" class="govuk-link">Download data</a></td>
+            ${showAnnual ? `<td class="govuk-table__cell"><a href="#" class="govuk-link">Download annual average data</a></td>` : ``}
+          </tr>`;
+} else {
         rows += `<tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">${y}</th>
                   <td class="govuk-table__cell"><a href="#" class="govuk-link">Download hourly data</a></td>
@@ -793,13 +793,23 @@ function renderHourlyBlock(networkName, tm) {
       }
     }
 
-    const headSimple = `
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Year</th>
-          <th scope="col" class="govuk-table__header">Hourly data</th>
-        </tr>
-      </thead>`;
+    const headSimple2 = `
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Year</th>
+      <th scope="col" class="govuk-table__header">Hourly data</th>
+    </tr>
+  </thead>`;
+
+const headSimple3 = `
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Year</th>
+      <th scope="col" class="govuk-table__header">Hourly data</th>
+      <th scope="col" class="govuk-table__header">Annual average data</th>
+    </tr>
+  </thead>`;
+
 
     const headFull = `
       <thead class="govuk-table__head">
@@ -812,10 +822,11 @@ function renderHourlyBlock(networkName, tm) {
       </thead>`;
 
     return `${headingAndDesc}${inset}${cta}
-            <table class="govuk-table">
-              ${isSimple ? headSimple : headFull}
-              <tbody class="govuk-table__body">${rows}</tbody>
-            </table>`;
+  <table class="govuk-table">
+    ${isSimple ? (showAnnual ? headSimple3 : headSimple2) : headFull}
+    <tbody class="govuk-table__body">${rows}</tbody>
+  </table>`;
+
   }
 
   if (tm.mode === 'invalid') return `${headingAndDesc}${inset}
@@ -832,11 +843,18 @@ function renderHourlyBlock(networkName, tm) {
     return `${headingAndDesc}${inset}${NO_STATIONS_MSG}`;
   }
 
-  // Single-year (no metadata button)
-  const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
-  return `${headingAndDesc}${inset}${cta}
-          ${buttonHtml('Download hourly data')}
-          ${isSimple ? '' : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')}`;
+
+      // Single-year (no metadata button)
+      const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+      const showAnnual = ANNUAL_AVG_NETWORKS.has(networkName);
+
+      return `${headingAndDesc}${inset}${cta}
+              ${buttonHtml('Download hourly data')}
+              ${isSimple
+                ? (showAnnual ? '<br>' + buttonHtml('Download annual average data') : '')
+                : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')
+              }`;
+
 }
 
 
@@ -932,10 +950,16 @@ function renderNonDefraBlock(networkName, tm) {
   }
 
   // Single-year (no metadata button)
-  const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
-  return `${headingAndDesc}${inset}${cta}
-          ${buttonHtml('Download hourly data')}
-          ${isSimple ? '' : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')}`;
+const isSimple = SIMPLE_HOURLY_NETWORKS.has(networkName);
+const showAnnual = ANNUAL_AVG_NETWORKS.has(networkName);
+
+return `${headingAndDesc}${inset}${cta}
+        ${buttonHtml('Download hourly data')}
+        ${isSimple
+          ? (showAnnual ? '<br>' + buttonHtml('Download annual average data') : '')
+          : '<br>' + buttonHtml('Download daily average data') + '<br>' + buttonHtml('Download annual average data')
+        }`;
+
 }
 
 
@@ -947,7 +971,7 @@ function renderNonDefraBlock(networkName, tm) {
   const sources = [];
   if (finalBuckets.hourly.length)   sources.push('Near real-time data from Defra');
   if (finalBuckets.monthly.length)  sources.push('Other data from Defra');
-  if (finalBuckets.nonDefra.length) sources.push('Non-Defra data');
+  if (finalBuckets.nonDefra.length) sources.push('Local authority data');
   if (!sources.length) sources.push('Other data from Defra');
 
   const slugify = t => t.toLowerCase().replace(/\s+/g,'-').replace(/[^\w-]+/g,'');
@@ -1001,7 +1025,15 @@ const SIMPLE_HOURLY_NETWORKS = new Set([
   'Automatic Hydrocarbon Network',
   'Locally managed automatic monitoring'
 ]);
+
+const ANNUAL_AVG_NETWORKS = new Set([
+  'Automatic Urban and Rural Network (AURN)',
+  'Automatic Hydrocarbon Network',
+  'Locally managed automatic monitoring'
+]);
+
 </script>
+
 
 
 

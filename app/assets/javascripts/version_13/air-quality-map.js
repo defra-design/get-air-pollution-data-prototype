@@ -720,7 +720,7 @@ let filterState = {
 let aqMapApi = null;
 
 // Map feature: show/hide closed + inactive stations (default = show them)
-let showClosedAndInactiveStations = true;
+let showClosedAndInactiveStations = false;
 
 
 const markerRegistry = []; // [{ station, marker, inner, label }]
@@ -775,7 +775,7 @@ function setFilter(mode, value) {
 // ---------------------------
 
 // --- DAQI colouring toggle + helpers ---
-let colourByDaqi = false; // default = use status colours
+let colourByDaqi = true; // default = use status colours
 
 function getDaqiColor(daqi) {
   if (daqi == null) return '#1D70B8';             // fallback grey if unknown
