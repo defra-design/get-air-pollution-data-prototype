@@ -720,7 +720,7 @@ let filterState = {
 let aqMapApi = null;
 
 // Map feature: show/hide closed + inactive stations (default = show them)
-let showClosedAndInactiveStations = false;
+let showClosedAndInactiveStations = true;
 
 
 const markerRegistry = []; // [{ station, marker, inner, label }]
@@ -778,7 +778,7 @@ function setFilter(mode, value) {
 let colourByDaqi = true; // default = use status colours
 
 function getDaqiColor(daqi) {
-  if (daqi == null) return '#1D70B8';             // fallback grey if unknown
+  if (daqi == null) return '#646464';             // fallback grey if unknown
   if (daqi <= 3) return '#00703c';                // green: Low (1-3)
   if (daqi <= 6) return '#ffdd00';                // yellow: Moderate (4-6)
   if (daqi <= 9) return '#d4351c';                // red: High (7-9)
@@ -930,7 +930,9 @@ function createKeyOverlay() {
       <span class="govuk-visually-hidden">Close</span>
     </button>
     <div class="defra-map-info__container">
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Key</h2>
+    <h1 class="govuk-heading-m govuk-!-margin-bottom-2">Monitoring station map</h1>
+    <p class="govuk-body">Automatic Urban and Rural Network (AURN)</p>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Daily Air Quality Index (DAQI)</h2>
       <div class="aq-legend" id="aq-legend-body" role="list"></div>
     </div>
   `;
@@ -1182,20 +1184,9 @@ function clearSelectedMarker() {
       </div>` : ''}
   </dl>
 
-  <p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3"><a href="/version-13/station/station.html" class="govuk-link">View station summary</a></p>
-  <p class="govuk-!-margin-bottom-0">  <a href="/version-13/station/pm10-graph.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon">
-                <span class="aq-button-secondary__icon">
-                  <svg focusable="false" width="20" height="20" viewBox="0 0 20 20">
-          <path d="M2.75 14.443v2.791H18v1.5H1.25V1.984h1.5v7.967L6.789 4.91l5.016 4.013 5.056-5.899 2.278 1.952-6.944 8.101L7.211 9.09 2.75 14.443z"></path>
-        </svg>
-                </span>
-                <span class="aq-button-secondary__text" style="padding-left: 5px;">
-                 View graph and pollutant summary</span>
-                  <span class="govuk-visually-hidden">
-                  (Visual only)
-                </span>
-              </a>
-              </p>
+  <p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3"><a href="/version-14/station/station.html" class="govuk-link">View station summary</a></p>
+ 
+               
 `;
 
 

@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============== 3) Network availability from pollutants ===============
   const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Other data from Defra</strong>';
-  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+  const NONDEF_HDR = '<strong>Local authority data</strong>';
 
   // ---- mapping function (top-level, not nested) ----
 // ---- mapping function (top-level, not nested) ----
@@ -200,7 +200,7 @@ function buildNetworksForPollutant(rawName) {
   // Headings (must match elsewhere on the page)
   const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Other data from Defra</strong>';
-  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+  const NONDEF_HDR = '<strong>Local authority data</strong>';
 
   // helpers (preserve headings; avoid duplicates)
   const sections = [];
@@ -672,7 +672,7 @@ function buildNetworksForPollutant(rawName) {
   // Headings (must match elsewhere on the page)
   const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Other data from Defra</strong>';
-  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+  const NONDEF_HDR = '<strong>Local authority data</strong>';
 
   // helpers (preserve headings; avoid duplicates)
   const sections = [];
@@ -848,7 +848,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function bucketsFromPollutants(polls) {
   const H = '<strong>Near real-time data from Defra</strong>';
   const M = '<strong>Other data from Defra</strong>';
-  const L = '<strong>Non-Defra data</strong>';
+  const L = '<strong>Local authority data</strong>';
 
   const out = { hourly: [], monthly: [], nonDefra: [] };
   const seenH = new Set(), seenM = new Set();
@@ -923,7 +923,7 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
 (function () {
   const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Other data from Defra</strong>';
-  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+  const NONDEF_HDR = '<strong>Local authority data</strong>';
 
   const pollutants = JSON.parse(sessionStorage.getItem('selectedPollutants') || '[]');
   if (!Array.isArray(pollutants) || !pollutants.length) {
@@ -967,13 +967,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // headings we use in the summary
   const HOUR_HDR   = '<strong>Near real-time data from Defra</strong>';
   const MONTH_HDR  = '<strong>Other data from Defra</strong>';
-  const NONDEF_HDR = '<strong>Non-Defra data</strong>';
+  const NONDEF_HDR = '<strong>Local authority data</strong>';
 
   // Renders one line in the "Data source" cell, adding 3px top margin
   // to the two header rows you specified.
   function dsRowDivHtml(x) {
     const isMonthlyHdr = x === '<strong>Other data from Defra</strong>';
-    const isNonDefraHdr = x === '<strong>Non-Defra data</strong>';
+    const isNonDefraHdr = x === '<strong>Local authority data</strong>';
     const mt = (isMonthlyHdr || isNonDefraHdr) ? ' style="margin-top:6px;"' : '';
     return `<div${mt}>${x}</div>`;
   }
