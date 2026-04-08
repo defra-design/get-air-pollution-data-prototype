@@ -1,4 +1,4 @@
-{% extends "layouts/phase-2.html" %}
+{% extends "layouts/v14.html" %}
 
 {% set pageName="Birmingham A4540 Roadside monitoring station - Get air pollution data - GOV.UK" %}
 
@@ -69,7 +69,7 @@
       <div class="defra-aq-features__item">
         <dt class="defra-aq-features__key govuk-caption-m">Local authority</dt>
         <dd class="defra-aq-features__value govuk-body">Birmingham City Council</dd>
-        <p class="defra-aq-features__link govuk-body govuk-!-margin-top-1"><a href="birmingham-la.html" class="govuk-link">View local authority data</a></p>
+       <!--  <p class="defra-aq-features__link govuk-body govuk-!-margin-top-1"><a href="birmingham-la.html" class="govuk-link">View local authority data</a></p> -->
       </div>
 
       <div class="defra-aq-features__item">
@@ -186,9 +186,7 @@
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link js-period-link" href="#period-this-year" data-period="thisYear">Last 5 years</a>
         </li>
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link js-period-link" href="#period-last-year" data-period="lastYear">Choose date range</a>
-        </li>
+  
       </ul>
     </nav>
 
@@ -685,15 +683,6 @@
 </div>
 
 
-    {# ===========================
-       PERIOD PANEL: CHOOSE DATE RANGE
-       =========================== #}
-    <div class="aq-period-panel" id="period-last-year" data-period="lastYear" hidden>
-      <h3 class="govuk-heading-m">Choose a date range</h3>
-      <p class="govuk-body">Placeholder: this tab will have a different layout (date picker and customised summary).</p>
-      <p id="cdr-selection-summary" class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-2" hidden></p>
-
-    </div>
 
 <p id="post-table-hint" class="govuk-hint">
   The pollution levels shown are measured against
@@ -724,36 +713,15 @@
     {# ===========================
        DOWNLOAD DATA (CHECKBOXES)
        =========================== #}
-    <div class="govuk-form-group govuk-!-margin-bottom-3" id="download-section">
+    <div class="govuk-form-group govuk-!-margin-bottom-3" id="download-section" hidden>
       <fieldset class="govuk-fieldset" aria-describedby="download-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 id="download-heading" class="govuk-fieldset__heading">
+          <h2 id="download-heading" class="govuk-fieldset__heading">
             Download data: last 24 hours
-          </h1>
+          </h2>
         </legend>
 
-        <details class="govuk-details govuk-!-margin-top-3">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">File format and metadata</span>
-          </summary>
-          <div class="govuk-details__text">
-            <h3 class="govuk-heading-s">File format</h3>
-            <p class="govuk-body">This data will download in a wide format.</p>
-            <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
-
-            <h3 class="govuk-heading-s">Metadata</h3>
-            <p class="govuk-body">These files could contain the following metadata:</p>
-            <ul class="govuk-body govuk-list--bullet">
-              <li>name of monitoring station</li>
-              <li>map coordinates</li>
-              <li>local authority</li>
-              <li>region</li>
-              <li>site ID</li>
-              <li>instrument type</li>
-              <li>inlet height</li>
-            </ul>
-          </div>
-        </details>
+       
 
         <h3 class="govuk-heading-s govuk-!-margin-top-3">Select pollutants</h3>
 
@@ -785,6 +753,15 @@
       </fieldset>
     </div>
 
+    {# ===========================
+       PERIOD PANEL: CHOOSE DATE RANGE
+       =========================== #}
+    <div class="aq-period-panel" id="period-last-year" data-period="lastYear" hidden>
+      <h3 class="govuk-heading-m">Choose a date range</h3>
+      <p class="govuk-body">Placeholder: this tab will have a different layout (date picker and customised summary).</p>
+      <p id="cdr-selection-summary" class="govuk-body govuk-!-margin-top-2 govuk-!-margin-bottom-2" hidden></p>
+
+    </div>
   </div>
 </div>
 
@@ -808,7 +785,7 @@
     let currentPeriod = 'daqi';
     let currentAnnualYear = '2026';
 
-    const DAQI_INFO_URL = 'https://www.gov.uk/government/publications/health-effects-of-air-pollution';
+    const DAQI_INFO_URL = 'https://www.gov.uk/government/publications/health-effects-of-air-pollution/using-the-daily-air-quality-index-daqi';
 
     const periodConfig = {
       daqi: { heading: 'Daily Air Quality Index (DAQI)', download: '' },
@@ -1041,14 +1018,49 @@ function updateViewGraphLink() {
 
       panel.innerHTML = `
 
-        <form id="cdr-form" class="govuk-!-margin-top-3" novalidate>
+        <form id="cdr-form" class="govuk-!-margin-top-7" novalidate>
+         
+            <h2 class="govuk-heading-l">
+                        Download data
+                      </h2>
+           <details class="govuk-details govuk-!-margin-top-3">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">File format and metadata</span>
+          </summary>
+          <div class="govuk-details__text">
+            <h3 class="govuk-heading-s">File format</h3>
+            <p class="govuk-body">This data will download in a wide format.</p>
+            <p class="govuk-body">Data in a wide format puts each variable in a separate column.</p>
 
+            <h3 class="govuk-heading-s">Metadata</h3>
+            <p class="govuk-body">These files could contain the following metadata:</p>
+            <ul class="govuk-body govuk-list--bullet">
+              <li>name of monitoring station</li>
+              <li>map coordinates</li>
+              <li>local authority</li>
+              <li>region</li>
+              <li>site ID</li>
+              <li>instrument type</li>
+              <li>inlet height</li>
+            </ul>
+          </div>
+        </details>
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="cdr-hint">
+             
                   <h3 class="govuk-heading-s">Select a time period</h3>
           
 
               <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="cdr-24h" name="cdr-period" type="radio" value="24h">
+                  <label class="govuk-label govuk-radios__label" for="cdr-24h">Last 24 hours</label>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="cdr-7d" name="cdr-period" type="radio" value="7d">
+                  <label class="govuk-label govuk-radios__label" for="cdr-7d">Last 7 days</label>
+                </div>
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="cdr-any-year" name="cdr-period" type="radio" value="anyYear" data-aria-controls="cdr-any-year-conditional">
                   <label class="govuk-label govuk-radios__label" for="cdr-any-year">Any year</label>
@@ -1165,7 +1177,7 @@ function updateViewGraphLink() {
             </div>
           </div>
 
-          <button type="button" id="cdr-continue" class="govuk-button govuk-button--secondary govuk-!-margin-top-3" data-module="govuk-button">
+          <button type="button" id="cdr-continue" class="govuk-button govuk-button--secondary govuk-!-margin-top-6" data-module="govuk-button">
             Continue
           </button>
 
@@ -1248,7 +1260,17 @@ function updateViewGraphLink() {
               // Different years
               return sd + ' ' + sm + ' ' + sy + ' to ' + ed + ' ' + em + ' ' + ey;
             }
+                if (mode === '24h') {
+                  timeLabel = formatDate(now);
+                  timeSpec = { mode: '24h' };
+                }
 
+                if (mode === '7d') {
+                  const from = new Date(now);
+                  from.setDate(now.getDate() - 6);
+                  timeLabel = formatDateRangeSmart(from, now);
+                  timeSpec = { mode: '7d' };
+                }
 
             if (mode === 'anyYear') {
             const y = getInt('cdr-year');
@@ -1324,6 +1346,8 @@ function updateViewGraphLink() {
     function getFrequenciesForTimeSpec(timeSpec) {
       if (!timeSpec) return [];
       if (timeSpec.mode === 'anyYear' || timeSpec.mode === 'yearRange') return ['hourly', 'daily', 'monthly', 'annual'];
+      if (timeSpec.mode === '24h') return ['hourly'];
+      if (timeSpec.mode === '7d') return ['hourly', 'daily'];
 
       if (timeSpec.mode === 'dateRange') {
         const s = new Date(timeSpec.start.y, timeSpec.start.m - 1, timeSpec.start.d);
@@ -1508,13 +1532,18 @@ function updateViewGraphLink() {
       }
     }
 
-    function showOnlyActivePanel(period) {
-      periodPanels.forEach(function (panel) {
-        const isActive = panel.dataset.period === period;
-        if (isActive) panel.removeAttribute('hidden');
-        else panel.setAttribute('hidden', '');
-      });
-    }
+   function showOnlyActivePanel(period) {
+  periodPanels.forEach(function (panel) {
+    if (panel.dataset.period === 'lastYear') return; // skip CDR — handled separately
+    const isActive = panel.dataset.period === period;
+    if (isActive) panel.removeAttribute('hidden');
+    else panel.setAttribute('hidden', '');
+  });
+
+  // CDR panel always visible, sits below whatever is active
+  const cdrPanel = document.getElementById('period-last-year');
+  if (cdrPanel) cdrPanel.removeAttribute('hidden');
+}
 
     function activatePeriod(period) {
       currentPeriod = period;
@@ -1540,7 +1569,7 @@ function updateViewGraphLink() {
 
       // Hide global download section for DAQI and Choose date range (CDR has its own)
       if (downloadSection) {
-        if (period === 'daqi' || period === 'lastYear') downloadSection.setAttribute('hidden', '');
+        if (period === 'daqi' || period === 'lastYear' || period === 'thisYear' || period === '24h' || period === '7d') downloadSection.setAttribute('hidden', '');
         else downloadSection.removeAttribute('hidden');
       }
 
@@ -1631,6 +1660,7 @@ function updateViewGraphLink() {
     wireAnnualYearNav();
     updateAnnualTableForYear(currentAnnualYear);
     updateViewGraphLink();
+    ensureChooseDateRangeUI(); // add this
     activatePeriod('daqi');
   });
 </script>

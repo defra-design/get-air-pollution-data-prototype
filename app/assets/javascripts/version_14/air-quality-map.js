@@ -860,16 +860,79 @@ function legendItem(label, fill) {
   `;
 }
 
+
+
 function ensureLegendStylesOnce() {
   if (document.getElementById('aq-legend-styles')) return;
   const style = document.createElement('style');
   style.id = 'aq-legend-styles';
   style.textContent = `
+    /* DAQI band scale */
+    .aq-daqi-scale {
+      font-family: "GDS Transport", Arial, sans-serif;
+      width: 100%;
+    }
+
+    .aq-daqi-scale__bands {
+      display: flex;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 36px;
+    }
+
+    .aq-daqi-scale__band {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .aq-daqi-scale__band--green  { background-color: #00703c; }
+    .aq-daqi-scale__band--yellow { background-color: #ffdd00; color: #0b0c0c; }
+    .aq-daqi-scale__band--amber  { background-color: #f47738; }
+    .aq-daqi-scale__band--red    { background-color: #d4351c; }
+    .aq-daqi-scale__band--black  { background-color: #0b0c0c; }
+
+    .aq-daqi-scale__labels {
+      display: flex;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .aq-daqi-scale__label-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .aq-daqi-scale__label-group--low      { flex: 3; }
+    .aq-daqi-scale__label-group--moderate { flex: 3; }
+    .aq-daqi-scale__label-group--high     { flex: 3; }
+    .aq-daqi-scale__label-group--veryhigh { flex: 1; }
+
+    .aq-daqi-scale__level {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0b0c0c;
+      line-height: 1.2;
+    }
+
+    .aq-daqi-scale__range {
+      font-size: 15px;
+      color: #505a5f;
+      line-height: 1.2;
+    }
+
+    /* Status legend (when DAQI is off) */
     .aq-legend {
       display: flex;
-      gap: 20px;
-      justify-content: space-between;
-      flex-wrap: nowrap; /* NEW: keep one row on wider view */
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .aq-legend__item {
@@ -877,31 +940,23 @@ function ensureLegendStylesOnce() {
       flex-direction: column;
       align-items: center;
       text-align: center;
-      min-width: 100px; /* NEW: enough for “Very high” at 19px */
-      flex: 0 0 auto;   /* NEW: don’t shrink; size to content */
+      min-width: 64px;
+      flex: 0 0 auto;
     }
 
     .aq-legend__item svg {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
     }
 
     .aq-legend__text {
       font-family: "GDS Transport", Arial, sans-serif;
       font-weight: 400;
-      font-size: 19px;
+      font-size: 16px;
       line-height: 1.3;
       color: #0b0c0c;
       margin-top: 4px;
-      text-align: center;
-      white-space: nowrap; /* NEW: keep label on one line */
-    }
-
-    @media (max-width: 640px) {
-      .aq-legend { 
-        gap: 12px;
-        flex-wrap: wrap; /* NEW: allow wrapping on narrow screens */
-      }
+      white-space: nowrap;
     }
   `;
   document.head.appendChild(style);
@@ -930,8 +985,8 @@ function createKeyOverlay() {
       <span class="govuk-visually-hidden">Close</span>
     </button>
     <div class="defra-map-info__container">
-    <h1 class="govuk-heading-m govuk-!-margin-bottom-2">Monitoring station map</h1>
-    <p class="govuk-body">Automatic Urban and Rural Network (AURN)</p>
+    <h1 class="govuk-heading-m govuk-!-margin-bottom-2">Monitoring stations map</h1>
+    <p class="govuk-body">Automatic Urban and Rural Network (AURN).</p>
       <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Daily Air Quality Index (DAQI)</h2>
       <div class="aq-legend" id="aq-legend-body" role="list"></div>
     </div>
@@ -947,7 +1002,7 @@ function createKeyOverlay() {
   });
 }
 
-function renderKeyOverlay() {
+/* function renderKeyOverlay() {
   const body = document.getElementById('aq-legend-body');
   if (!body) return;
 
@@ -958,6 +1013,54 @@ function renderKeyOverlay() {
       legendItem('High',      '#d4351c'),
       legendItem('Very high', '#0b0c0c'),
     ].join('');
+  } else {
+    body.innerHTML = [
+      legendItem('Active',   '#1D70B8'),
+      legendItem('Inactive', '#505A5F'),
+      legendItem('Closed',   '#0B0C0C'),
+    ].join('');
+  }
+} */
+
+  function renderKeyOverlay() {
+  const body = document.getElementById('aq-legend-body');
+  if (!body) return;
+
+  if (colourByDaqi) {
+    body.innerHTML = `
+      <div class="aq-daqi-scale">
+        <div class="aq-daqi-scale__bands">
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--green">1</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--green">2</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--green">3</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--yellow">4</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--yellow">5</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--yellow">6</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--red">7</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--red">8</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--red">9</div>
+          <div class="aq-daqi-scale__band aq-daqi-scale__band--black">10</div>
+        </div>
+        <div class="aq-daqi-scale__labels">
+          <div class="aq-daqi-scale__label-group aq-daqi-scale__label-group--low">
+            <span class="aq-daqi-scale__level">Low</span>
+            <span class="aq-daqi-scale__range">1 to 3</span>
+          </div>
+          <div class="aq-daqi-scale__label-group aq-daqi-scale__label-group--moderate">
+            <span class="aq-daqi-scale__level">Moderate</span>
+            <span class="aq-daqi-scale__range">4 to 6</span>
+          </div>
+          <div class="aq-daqi-scale__label-group aq-daqi-scale__label-group--high">
+            <span class="aq-daqi-scale__level">High</span>
+            <span class="aq-daqi-scale__range">7 to 9</span>
+          </div>
+          <div class="aq-daqi-scale__label-group aq-daqi-scale__label-group--veryhigh">
+            <span class="aq-daqi-scale__level">Very high</span>
+            <span class="aq-daqi-scale__range">10</span>
+          </div>
+        </div>
+      </div>
+    `;
   } else {
     body.innerHTML = [
       legendItem('Active',   '#1D70B8'),
