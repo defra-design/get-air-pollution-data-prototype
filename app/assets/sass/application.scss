@@ -308,3 +308,33 @@
   @import "version-14/components/autocomplete";
 
 }
+
+.version-15 {
+    // map
+  @import "version-15/map";
+
+    // Tools
+  @import "version-15/tools/mixins";
+
+  // Components
+  @import "version-15/components/aq-buttons";
+  @import "version-15/components/aq-charts";
+  @import "version-15/components/aq-features";
+  @import "version-15/components/aq-levels-list";
+  @import "version-15/components/status";
+  @import "version-15/components/aq-levels-table";
+  @import "version-15/components/aq-stations-table";
+  @import "version-15/components/aq-daqi-stations-table";
+  @import "version-15/components/govuk-cards";
+
+
+  
+  // Other
+  @import "version-15/other/fixes";
+
+  // Settings
+  @import "version-15/settings";
+
+  @import "version-15/components/autocomplete";
+
+}
