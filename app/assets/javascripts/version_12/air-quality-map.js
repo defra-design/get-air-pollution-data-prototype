@@ -215,9 +215,9 @@ const NETWORK_DATASETS = {
       lng: -0.324818,
       authority: "Horsham District Council",      // local authority for Horsham, West Sussex
       pollutants: ["PM10", "NO2"],               // pollutants measured here (same as site page)
-      status: "active",                           // assumed active (no end date shown) :contentReference[oaicite:0]{index=0}
+      status: "active",                           // assumed active (no end date shown)
       daqi: null,                                 // Sussex Air is not part of DAQI networks
-      siteType: "Urban traffic",                  // from “Environment Type: Urban Traffic” :contentReference[oaicite:1]{index=1}
+      siteType: "Urban traffic",                  // from “Environment Type: Urban Traffic” 
       startDate: "2016-01-01"
     }
   ],

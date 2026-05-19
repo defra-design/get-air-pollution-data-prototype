@@ -12,7 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // NOx family
     'Nitrogen dioxide (NO2)',
     'Nitrogen oxides as nitrogen dioxide (NOx as NO2)',
-    'Nitric oxide (NO)'
+    'Nitric oxide (NO)',
+
+    // Aganet (SO2 in list above)
+    'Particulate calcium (Ca)',
+    'Particulate chloride (Cl)',
+    'Particulate magnesium (Mg)',
+    'Particulate sodium (Na)',
+    'Particulate nitrite',
+    'Particulate nitrate (NO3)',
+    'Particulate sulphate (SO4)',
+     // Acid gases
+    'Hydrochloric acid (HCl)',
+    'Nitrous acid (HNO2)',
+    'Nitric acid (HNO3)',
 
   
   ];

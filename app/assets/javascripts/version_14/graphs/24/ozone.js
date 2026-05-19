@@ -29,8 +29,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
   let keyboardNavigation = false;
 
   // Avoid stacking global listeners if this file is loaded more than once
-  if (!window.__AQ_O3_24_LISTENERS__) {
-    window.__AQ_O3_24_LISTENERS__ = true;
+  if (!window.__AQ_PM10_24_LISTENERS__) {
+    window.__AQ_PM10_24_LISTENERS__ = true;
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Tab") keyboardNavigation = true;
@@ -591,8 +591,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
       });
 
       // Optional: click clears keyboard focus visuals on desktop
-      if (!window.__AQ_O3_24_CLEAR_CLICK__) {
-        window.__AQ_O3_24_CLEAR_CLICK__ = true;
+      if (!window.__AQ_PM10_24_CLEAR_CLICK__) {
+        window.__AQ_PM10_24_CLEAR_CLICK__ = true;
 
         document.addEventListener("click", function () {
           if (window.innerWidth <= 768) return;

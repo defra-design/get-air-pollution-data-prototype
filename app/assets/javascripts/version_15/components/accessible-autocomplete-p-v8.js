@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Particulate sulphate (SO4)',
 
     // Acid gases
-    'Gaseous nitric acid (HNO3)',
-    'Gaseous nitrous acid (HNO2)',
+    'Hydrochloric acid (HCl)',
+    'Nitrous acid (HNO2)',
+    'Nitric acid (HNO3)',
+    'Ammonia (NH3)',
 
     // VOCs (left as names only)
     'Ethane',
@@ -122,11 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Nitrate in PM2.5 (NO3)',
     'Sulphate in PM2.5 (SO4)',
 
-    // More acid gases & ammonia
-    'Gaseous hydrochloric acid (HCl)',
-    'Gaseous nitrous acid (HNO2)',
-    'Gaseous nitric acid (HNO3)',
-    'Gaseous ammonia (NH3)',
+
 
     // PAHs (left as names only)
     'Benzo(a)pyrene',
