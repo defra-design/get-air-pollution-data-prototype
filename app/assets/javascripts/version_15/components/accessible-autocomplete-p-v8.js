@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Particulate chloride (Cl)',
     'Particulate magnesium (Mg)',
     'Particulate sodium (Na)',
-    'Particulate nitrite',
+    'Particulate nitrite (NO2)',
     'Particulate nitrate (NO3)',
     'Particulate sulphate (SO4)',
 
