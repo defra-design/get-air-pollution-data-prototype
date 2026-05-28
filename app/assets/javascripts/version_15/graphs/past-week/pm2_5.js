@@ -22,11 +22,19 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
 (function () {
   const CONTAINER_ID = "pm25-container-week";
-  const CSV_PATH = "/public/javascripts/version_13/chart-data/past-week/pm2_5.csv";
-  const LIMIT = 50; // μg/m3 (threshold line + exceedance computation fallback)
+  const CSV_PM25_PATH = "/public/javascripts/version_13/chart-data/past-week/pm2_5.csv";
+  const CSV_PM10_PATH = "/public/javascripts/version_13/chart-data/past-week/pm10.csv";
+  const CSV_O3_PATH = "/public/javascripts/version_13/chart-data/past-week/o3.csv";
+  const CSV_NO2_PATH = "/public/javascripts/version_13/chart-data/past-week/no2.csv";
+  const LIMIT_PM25 = 50; // μg/m3
+  const LIMIT_PM10 = 50; // μg/m3
+  const LIMIT_O3 = 50; // μg/m3
+  const LIMIT_NO2 = 200; // μg/m3
 
   let focusPointsCreated = false;
   let keyboardNavigation = false;
+  let kbPollutantIdx = 0;
+  let kbPointIdx = 0;
 
   // Avoid stacking global listeners if this file is loaded more than once
   if (!window.__AQ_PM25_WEEK_LISTENERS__) {
@@ -73,11 +81,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
     return String(s).trim().toUpperCase() === "V" ? "V" : "U";
   }
 
-  function normaliseExceedance(ex, population) {
-    // Use provided exceedance if valid, else compute from LIMIT
+  function normaliseExceedance(ex, population, limit) {
+    // Use provided exceedance if valid, else compute from limit
     const v = (ex ?? "").toString().trim().toUpperCase();
     if (v === "Y" || v === "N") return v;
-    return population > LIMIT ? "Y" : "N";
+    return population > limit ? "Y" : "N";
   }
 
   function splitByStatusAndExceedance(data) {
@@ -127,6 +135,16 @@ window.GOVUKPrototypeKit.documentReady(() => {
     return statusSegments.flatMap(splitByExceedance);
   }
 
+  function findNearestIndex(data, date) {
+    let minDiff = Infinity;
+    let idx = 0;
+    data.forEach(function (d, i) {
+      const diff = Math.abs(d.date - date);
+      if (diff < minDiff) { minDiff = diff; idx = i; }
+    });
+    return idx;
+  }
+
   function drawChart() {
     // Remove any previous tooltip (avoid duplicates)
     d3.selectAll("body > .graph-tooltip").remove();
@@ -139,7 +157,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
     const margin = { top: 20, right: 10, bottom: 50, left: 40 };
     const width = containerEl.clientWidth - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 480 - margin.top - margin.bottom;
 
     const x = d3.scaleTime().range([0, width]);
     const y = d3.scaleLinear().range([height, 0]);
@@ -167,27 +185,97 @@ window.GOVUKPrototypeKit.documentReady(() => {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    d3.csv(CSV_PATH).then(function (raw) {
-      const data = raw
+    d3.csv(CSV_PM25_PATH).then(function (rawPM25) {
+      // Load all pollutant data in parallel
+      return Promise.all([
+        Promise.resolve(rawPM25),
+        d3.csv(CSV_PM10_PATH),
+        d3.csv(CSV_O3_PATH),
+        d3.csv(CSV_NO2_PATH)
+      ]);
+    }).then(function ([rawPM25, rawPM10, rawO3, rawNo2]) {
+      // Parse PM2.5 data
+      const dataPM25 = rawPM25
         .map((d) => {
           const dt = parseISOish(d.date);
           const pop = +d.population;
           const population = Number.isFinite(pop) ? pop : 0;
 
-          const status = normaliseStatus(d.status); // 'V' or 'U'
-          const exceedance = normaliseExceedance(d.exceedance, population); // 'Y'/'N'
+          const status = normaliseStatus(d.status);
+          const exceedance = normaliseExceedance(d.exceedance, population, LIMIT_PM25);
 
-          return { date: dt, population, status, exceedance };
+          return { date: dt, population, status, exceedance, pollutant: "PM2.5" };
         })
         .filter((d) => d.date)
         .sort((a, b) => a.date - b.date);
 
-      if (!data.length) return;
+      // Parse PM10 data
+      const dataPM10 = rawPM10
+        .map((d) => {
+          const dt = parseISOish(d.date);
+          const pop = +d.population;
+          const population = Number.isFinite(pop) ? pop : 0;
 
-      x.domain(d3.extent(data, (d) => d.date));
+          const status = normaliseStatus(d.status);
+          const exceedance = normaliseExceedance(d.exceedance, population, LIMIT_PM10);
 
-      const maxPop = d3.max(data, (d) => d.population) || 0;
-      const yMax = Math.max(150, LIMIT * 1.25, maxPop * 1.1);
+          return { date: dt, population, status, exceedance, pollutant: "PM10" };
+        })
+        .filter((d) => d.date)
+        .sort((a, b) => a.date - b.date);
+
+      // Parse O3 data
+      const dataO3 = rawO3
+        .map((d) => {
+          const dt = parseISOish(d.date);
+          const pop = +d.population;
+          const population = Number.isFinite(pop) ? pop : 0;
+
+          const status = normaliseStatus(d.status);
+          const exceedance = normaliseExceedance(d.exceedance, population, LIMIT_O3);
+
+          return { date: dt, population, status, exceedance, pollutant: "O3" };
+        })
+        .filter((d) => d.date)
+        .sort((a, b) => a.date - b.date);
+
+      // Parse NO2 data
+      const dataNo2 = rawNo2
+        .map((d) => {
+          const dt = parseISOish(d.date);
+          const pop = +d.population;
+          const population = Number.isFinite(pop) ? pop : 0;
+
+          const status = normaliseStatus(d.status);
+          const exceedance = normaliseExceedance(d.exceedance, population, LIMIT_NO2);
+
+          return { date: dt, population, status, exceedance, pollutant: "NO2" };
+        })
+        .filter((d) => d.date)
+        .sort((a, b) => a.date - b.date);
+
+      if (!dataPM25.length || !dataPM10.length || !dataO3.length || !dataNo2.length) return;
+
+      // Merge data by date for domain calculations
+      const dateSet = new Set();
+      dataPM25.forEach((d) => dateSet.add(d.date.getTime()));
+      dataPM10.forEach((d) => dateSet.add(d.date.getTime()));
+      dataO3.forEach((d) => dateSet.add(d.date.getTime()));
+      dataNo2.forEach((d) => dateSet.add(d.date.getTime()));
+
+      const dates = Array.from(dateSet)
+        .map((t) => new Date(t))
+        .sort((a, b) => a - b);
+
+      x.domain([dates[0], dates[dates.length - 1]]);
+
+      const maxPM25 = d3.max(dataPM25, (d) => d.population) || 0;
+      const maxPM10 = d3.max(dataPM10, (d) => d.population) || 0;
+      const maxO3 = d3.max(dataO3, (d) => d.population) || 0;
+      const maxNo2 = d3.max(dataNo2, (d) => d.population) || 0;
+      const maxValue = Math.max(maxPM25, maxPM10, maxO3, maxNo2);
+      // Keep the domain tight to observed values so points are easier to distinguish/hover.
+      const yMax = Math.max(20, Math.ceil((maxValue * 1.15) / 10) * 10);
       y.domain([0, yMax]);
 
       // Top/bottom borders
@@ -219,7 +307,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
         .call(
           d3
             .axisBottom(x)
-            .ticks(d3.timeDay.every(3))
+            .ticks(d3.timeDay.every(1))
             .tickFormat(() => "")
         );
 
@@ -294,35 +382,43 @@ window.GOVUKPrototypeKit.documentReady(() => {
         .style("opacity", 0);
 
      
-      // Draw segmented line/area:
+      // Draw segmented lines for all four pollutants
       // - red when exceedance=Y
-      // - dotted when status != V
-      const segments = splitByStatusAndExceedance(data);
+      // - blue otherwise (by default)
+      const segmentsPM25 = splitByStatusAndExceedance(dataPM25);
+      const segmentsPM10 = splitByStatusAndExceedance(dataPM10);
+      const segmentsO3 = splitByStatusAndExceedance(dataO3);
+      const segmentsNo2 = splitByStatusAndExceedance(dataNo2);
 
-      segments.forEach((seg) => {
-        if (!seg.data || seg.data.length < 2) return;
+      [segmentsPM25, segmentsPM10, segmentsO3, segmentsNo2].forEach((segments) => {
+        segments.forEach((seg) => {
+          if (!seg.data || seg.data.length < 2) return;
 
-        const isVerified = seg.status === "V";
-        const isExceedance = seg.exceedance === "Y";
-        const color = isExceedance ? "#d4351c" : "#1d70b8";
+          const isVerified = seg.status === "V";
+          const isExceedance = seg.exceedance === "Y";
+          const color = isExceedance ? "#d4351c" : "#1d70b8";
 
-        if (isVerified) {
+          if (isVerified) {
+            svg
+              .append("path")
+              .datum(seg.data)
+              .attr("fill", color)
+              .attr("opacity", 0.1)
+              .attr("stroke", "none")
+              .attr("d", area)
+              .attr("class", `pollutant-path-${seg.data[0].pollutant}`);
+          }
+
           svg
             .append("path")
             .datum(seg.data)
-            .attr("fill", color)
-            .attr("opacity", 0.1)
-            .attr("stroke", "none")
-            .attr("d", area);
-        }
-
-        svg
-          .append("path")
-          .datum(seg.data)
-          .attr("fill", "none")
-          .attr("stroke", color)
-          .attr("stroke-width", 3)
-          .attr("d", line);
+            .attr("fill", "none")
+            .attr("stroke", color)
+            .attr("stroke-width", 3)
+            .attr("d", line)
+            .attr("class", `pollutant-line-${seg.data[0].pollutant}`)
+            .attr("data-pollutant", seg.data[0].pollutant);
+        });
       });
 
        const outerCircle = svg
@@ -364,6 +460,10 @@ window.GOVUKPrototypeKit.documentReady(() => {
         .attr("height", height)
         .style("fill", "transparent");
 
+      // Keep hover selection stable unless another line is clearly closer.
+      const HOVER_SWITCH_MARGIN_PX = 5;
+      let lastHoveredPollutant = null;
+
       function positionTooltip(xPos) {
         const tooltipWidth = tooltip.node().offsetWidth;
         const containerRect = containerEl.getBoundingClientRect();
@@ -392,11 +492,18 @@ window.GOVUKPrototypeKit.documentReady(() => {
         return `${time}, ${date}`;
       }
 
+      const POLLUTANT_FULL_NAMES = {
+        "PM2.5": "PM2.5",
+        "PM10": "PM10",
+        "O3": "Ozone",
+        "NO2": "Nitrogen dioxide"
+      };
+
       function tooltipHtml(d) {
+        const fullName = POLLUTANT_FULL_NAMES[d.pollutant] || d.pollutant;
+        const valueStr = d.population === 0 ? "No data" : `${d.population.toFixed(0)} μg/m3`;
         return `
-          <strong style="font-size:22px;">
-            ${d.population === 0 ? "No data" : `${d.population.toFixed(0)} μg/m3`}
-          </strong>
+          <div style="font-size:22px;"><strong>${fullName}</strong> | ${valueStr}</div>
           ${
             d.exceedance === "Y"
               ? `<div style="margin-top: 8px; margin-bottom: 8px;">
@@ -414,6 +521,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
       // Hover show/hide
       d3.select(`#${CONTAINER_ID}`)
         .attr("tabindex", 0)
+        .style("outline", "none")
         .on("mouseover", function () {
           tooltip.style("display", "block");
           verticalLine.style("opacity", 1);
@@ -428,20 +536,82 @@ window.GOVUKPrototypeKit.documentReady(() => {
           innerCircle.attr("r", 0).style("opacity", 0);
           labelGroup.style("display", "block");
           d3.select("#chart-aria-live").text("");
+          lastHoveredPollutant = null;
+          // Restore all lines to full opacity
+          svg.selectAll("path[data-pollutant]").style("opacity", 1);
         });
 
       listeningRect.on("mousemove", function (event) {
         const [xCoord] = d3.pointer(event, this);
         const bisectDate = d3.bisector((d) => d.date).left;
         const x0 = x.invert(xCoord);
-        const i = bisectDate(data, x0, 1);
-        const d0 = data[i - 1];
-        const d1 = data[i];
-        const d = !d1 ? d0 : x0 - d0.date > d1.date - x0 ? d1 : d0;
+        
+        // Find closest points for all four pollutants
+        const i25 = bisectDate(dataPM25, x0, 1);
+        const d25_0 = dataPM25[i25 - 1];
+        const d25_1 = dataPM25[i25];
+        const d25 = !d25_1 ? d25_0 : x0 - d25_0.date > d25_1.date - x0 ? d25_1 : d25_0;
 
-        const xPos = x(d.date);
-        const yPos = y(d.population);
+        const i10 = bisectDate(dataPM10, x0, 1);
+        const d10_0 = dataPM10[i10 - 1];
+        const d10_1 = dataPM10[i10];
+        const d10 = !d10_1 ? d10_0 : x0 - d10_0.date > d10_1.date - x0 ? d10_1 : d10_0;
 
+        const iO3 = bisectDate(dataO3, x0, 1);
+        const dO3_0 = dataO3[iO3 - 1];
+        const dO3_1 = dataO3[iO3];
+        const dO3 = !dO3_1 ? dO3_0 : x0 - dO3_0.date > dO3_1.date - x0 ? dO3_1 : dO3_0;
+
+        const iNo2 = bisectDate(dataNo2, x0, 1);
+        const dNo2_0 = dataNo2[iNo2 - 1];
+        const dNo2_1 = dataNo2[iNo2];
+        const dNo2 = !dNo2_1 ? dNo2_0 : x0 - dNo2_0.date > dNo2_1.date - x0 ? dNo2_1 : dNo2_0;
+
+        // Calculate pixel distances to determine which is closest
+        const yPos25 = y(d25.population);
+        const yPos10 = y(d10.population);
+        const yPosO3 = y(dO3.population);
+        const yPosNo2 = y(dNo2.population);
+
+        const xPos25 = x(d25.date);
+        const xPos10 = x(d10.date);
+        const xPosO3 = x(dO3.date);
+        const xPosNo2 = x(dNo2.date);
+
+        const dist25 = Math.sqrt((xCoord - xPos25) ** 2 + (event.offsetY - yPos25) ** 2);
+        const dist10 = Math.sqrt((xCoord - xPos10) ** 2 + (event.offsetY - yPos10) ** 2);
+        const distO3 = Math.sqrt((xCoord - xPosO3) ** 2 + (event.offsetY - yPosO3) ** 2);
+        const distNo2 = Math.sqrt((xCoord - xPosNo2) ** 2 + (event.offsetY - yPosNo2) ** 2);
+
+        // Find which is closest
+        const distances = [
+          { dist: dist25, data: d25, pollutant: "PM2.5", xPos: xPos25, yPos: yPos25 },
+          { dist: dist10, data: d10, pollutant: "PM10", xPos: xPos10, yPos: yPos10 },
+          { dist: distO3, data: dO3, pollutant: "O3", xPos: xPosO3, yPos: yPosO3 },
+          { dist: distNo2, data: dNo2, pollutant: "NO2", xPos: xPosNo2, yPos: yPosNo2 }
+        ];
+
+        const closest = distances.reduce((min, curr) => curr.dist < min.dist ? curr : min);
+        const previous = distances.find((entry) => entry.pollutant === lastHoveredPollutant);
+
+        let active = closest;
+        if (previous && closest.pollutant !== previous.pollutant) {
+          const improvement = previous.dist - closest.dist;
+          if (improvement < HOVER_SWITCH_MARGIN_PX) {
+            active = previous;
+          }
+        }
+        lastHoveredPollutant = active.pollutant;
+
+        // Highlight active pollutant, grey out others
+        svg.selectAll("path[data-pollutant]").style("opacity", function () {
+          const pollutant = d3.select(this).attr("data-pollutant");
+          return pollutant === active.pollutant ? 1 : 0.2;
+        });
+
+        const d = active.data;
+        const xPos = active.xPos;
+        const yPos = active.yPos;
         const circleColor = d.exceedance === "Y" ? "#d4351c" : "#1d70b8";
 
         outerCircle
@@ -470,6 +640,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
         positionTooltip(xPos);
 
         const screenReaderText =
+          `${d.pollutant}: ` +
           `${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`}, ` +
           `${d.exceedance === "Y" ? "Above limit. " : ""}` +
           `${formatDateTime(d.date)}, ` +
@@ -484,6 +655,12 @@ window.GOVUKPrototypeKit.documentReady(() => {
         const yPos = y(d.population);
         const circleColor = d.exceedance === "Y" ? "#d4351c" : "#1d70b8";
         const innerFocusColor = d.exceedance === "Y" ? "#7d1a1a" : "#144e8c";
+
+        // Grey out other pollutants' lines
+        svg.selectAll("path[data-pollutant]").style("opacity", function () {
+          const pollutant = d3.select(this).attr("data-pollutant");
+          return pollutant === d.pollutant ? 1 : 0.2;
+        });
 
         outerCircle
           .attr("cx", xPos)
@@ -514,7 +691,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
         positionTooltip(xPos);
 
         d3.select("#chart-aria-live").text(
-          `${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`} on ${formatDateTime(d.date)}.`
+          `${d.pollutant}: ${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`} on ${formatDateTime(d.date)}.`
         );
       }
 
@@ -526,69 +703,102 @@ window.GOVUKPrototypeKit.documentReady(() => {
         focusRing.style("opacity", 0);
         focusInnerCircle.style("opacity", 0);
         d3.select("#chart-aria-live").text("");
+        // Restore all lines to full opacity
+        svg.selectAll("path[data-pollutant]").style("opacity", 1);
+        // Remove data point dots
+        svg.select(".kb-data-points").selectAll("circle").remove();
       }
 
-      function handleKeydown(event) {
-        const circles = document.querySelectorAll(
-          `#${CONTAINER_ID} .focus-points circle`
-        );
-        const currentIndex = Array.prototype.indexOf.call(circles, this);
+      const kbPollutants = [
+        { name: "PM2.5", data: dataPM25 },
+        { name: "PM10",  data: dataPM10 },
+        { name: "O3",    data: dataO3 },
+        { name: "NO2",   data: dataNo2 }
+      ];
 
-        if (event.key === "ArrowRight" && currentIndex < circles.length - 1) {
-          circles[currentIndex + 1].focus();
-          event.preventDefault();
-        } else if (event.key === "ArrowLeft" && currentIndex > 0) {
-          circles[currentIndex - 1].focus();
-          event.preventDefault();
-        }
-      }
+      const dataPointsGroup = svg.append("g").attr("class", "kb-data-points");
 
-      d3.select(`#${CONTAINER_ID}`).on("focus", function () {
-        if (!keyboardNavigation || focusPointsCreated) return;
-        focusPointsCreated = true;
+      function updateKeyboardFocus() {
+        const activePoll = kbPollutants[kbPollutantIdx];
+        const d = activePoll.data[kbPointIdx];
+        if (!d) return;
 
-        handleBlur();
+        // Render dots at every point on the active pollutant's line
+        dataPointsGroup.selectAll("circle").remove();
+        activePoll.data.forEach(function (pt) {
+          if (!pt.date || pt.population === 0) return;
+          dataPointsGroup
+            .append("circle")
+            .attr("cx", x(pt.date))
+            .attr("cy", y(pt.population))
+            .attr("r", 6)
+            .attr("fill", pt.exceedance === "Y" ? "#d4351c" : "#1d70b8")
+            .attr("stroke", "#ffffff")
+            .attr("stroke-width", 1)
+            .style("pointer-events", "none");
+        });
 
-        const focusGroup = svg.append("g").attr("class", "focus-points");
-
-        focusGroup
-          .selectAll("circle")
-          .data(data)
-          .enter()
-          .append("circle")
-          .attr("cx", (d) => x(d.date))
-          .attr("cy", (d) => y(d.population))
-          .attr("r", 6)
-          .attr("fill", (d) => (d.exceedance === "Y" ? "#d4351c" : "#1d70b8"))
-          .attr("stroke", "#ffffff")
-          .attr("stroke-width", 1)
-          .attr("tabindex", 0)
-          .attr("role", "button")
-          .attr("aria-label", (d) => {
-            const date = formatDateTime(d.date);
-            return (
-              `${d.population === 0 ? "No data" : d.population.toFixed(0)} micrograms per cubic metre on ${date}, ` +
-              `${d.status === "V" ? "Verified" : "Unverified"}` +
-              `${d.exceedance === "Y" ? ", above limit" : ""}`
-            );
-          })
-          .on("focus", handleFocus)
-          .on("blur", handleBlur)
-          .on("keydown", handleKeydown);
-
-        const allCircles = document.querySelectorAll(
-          `#${CONTAINER_ID} .focus-points circle`
-        );
-        if (allCircles.length > 0) {
-          allCircles[allCircles.length - 1].focus();
-        }
-
+        handleFocus(null, d);
+        // Ensure focus indicators sit above the data point dots
         outerCircle.raise();
-        verticalLine.raise();
         innerCircle.raise();
         focusRing.raise();
         focusInnerCircle.raise();
-      });
+        verticalLine.raise();
+      }
+
+      d3.select(`#${CONTAINER_ID}`)
+        .attr("aria-label", "Air quality chart. Use arrow keys to navigate data points. Left and Right move along the current pollutant. Up and Down switch between pollutants.")
+        .on("focus", function () {
+          if (!keyboardNavigation) return;
+          if (!focusPointsCreated) {
+            focusPointsCreated = true;
+            kbPollutantIdx = 0;
+            kbPointIdx = 0;
+          }
+          updateKeyboardFocus();
+        })
+        .on("blur", function () {
+          if (focusPointsCreated) {
+            focusPointsCreated = false;
+            handleBlur();
+          }
+        })
+        .on("keydown", function (event) {
+          if (!focusPointsCreated) return;
+
+          const poll = kbPollutants[kbPollutantIdx];
+
+          if (event.key === "ArrowRight") {
+            if (kbPointIdx < poll.data.length - 1) {
+              kbPointIdx++;
+              updateKeyboardFocus();
+            }
+            event.preventDefault();
+          } else if (event.key === "ArrowLeft") {
+            if (kbPointIdx > 0) {
+              kbPointIdx--;
+              updateKeyboardFocus();
+            }
+            event.preventDefault();
+          } else if (event.key === "ArrowDown") {
+            if (kbPollutantIdx > 0) {
+              const currentDate = poll.data[kbPointIdx].date;
+              kbPollutantIdx--;
+              kbPointIdx = findNearestIndex(kbPollutants[kbPollutantIdx].data, currentDate);
+              updateKeyboardFocus();
+            }
+            event.preventDefault();
+          } else if (event.key === "ArrowUp") {
+            if (kbPollutantIdx < kbPollutants.length - 1) {
+              const currentDate = poll.data[kbPointIdx].date;
+              kbPollutantIdx++;
+              kbPointIdx = findNearestIndex(kbPollutants[kbPollutantIdx].data, currentDate);
+              updateKeyboardFocus();
+            }
+            event.preventDefault();
+          }
+        });
 
       // Optional: click clears keyboard focus visuals on desktop
       if (!window.__AQ_PM25_WEEK_CLEAR_CLICK__) {
@@ -597,9 +807,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
         document.addEventListener("click", function () {
           if (window.innerWidth <= 768) return;
 
-          handleBlur();
-          d3.select(`#${CONTAINER_ID}`).select(".focus-points").remove();
           focusPointsCreated = false;
+          handleBlur();
         });
       }
     });

@@ -174,10 +174,6 @@
     <nav class="moj-sub-navigation govuk-!-margin-bottom-6" aria-label="Time period navigation">
       <ul class="moj-sub-navigation__list">
         <li class="moj-sub-navigation__item">
-         <a class="moj-sub-navigation__link js-period-link" href="#period-daqi" data-period="daqi">
-          DAQI
-        </a> </li>
-        <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link js-period-link" href="#period-24h" data-period="24h">Last 24 hours</a>
         </li>
         <li class="moj-sub-navigation__item">
@@ -186,7 +182,10 @@
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link js-period-link" href="#period-this-year" data-period="thisYear">Last 5 years</a>
         </li>
-  
+        <li class="moj-sub-navigation__item">
+         <a class="moj-sub-navigation__link js-period-link" href="#period-daqi" data-period="daqi">
+          Daily Air Quality Index
+        </a> </li>
       </ul>
     </nav>
 
@@ -782,7 +781,7 @@
     const postTableHint = document.getElementById('post-table-hint');
     const graphSection = document.getElementById('graph-section');
 
-    let currentPeriod = 'daqi';
+    let currentPeriod = '24h';
     let currentAnnualYear = '2026';
 
     const DAQI_INFO_URL = 'https://www.gov.uk/government/publications/health-effects-of-air-pollution/using-the-daily-air-quality-index-daqi';
@@ -842,37 +841,45 @@
     const viewGraphBtn = document.getElementById('js-view-graph');
 
 function updateViewGraphLink() {
-  if (!viewGraphBtn) return;
+  if (!viewGraphBtn) {
+    console.warn('[updateViewGraphLink] viewGraphBtn element not found');
+    return;
+  }
+
+  console.log('[updateViewGraphLink] Current period:', currentPeriod);
 
   // No graph link on DAQI or Choose date range
   if (currentPeriod === 'daqi' || currentPeriod === 'lastYear') {
     viewGraphBtn.setAttribute('hidden', '');
+    console.log('[updateViewGraphLink] Hidden button for period:', currentPeriod);
     return;
   }
 
   viewGraphBtn.removeAttribute('hidden');
 
-  let qs = new URLSearchParams();
-  qs.set('pollutant', 'pm25');
+  const qs = new URLSearchParams();
 
   if (currentPeriod === '24h') {
-    qs.set('mode', 'rolling');
-    qs.set('period', '24h');
+    qs.append('mode', 'rolling');
+    qs.append('period', '24h');
   } else if (currentPeriod === '7d') {
-    qs.set('mode', 'rolling');
-    qs.set('period', '7d');
+    qs.append('mode', 'rolling');
+    qs.append('period', '7d');
   } else if (currentPeriod === 'thisYear') {
-    qs.set('mode', 'year');
-    qs.set('year', String(currentAnnualYear || '2026'));
+    qs.append('mode', 'year');
+    qs.append('year', String(currentAnnualYear || '2026'));
   } else {
-    qs.set('mode', 'rolling');
-    qs.set('period', '24h');
+    qs.append('mode', 'rolling');
+    qs.append('period', '24h');
   }
 
-  viewGraphBtn.href = `pm10-graph.html?${qs.toString()}`;
+  const queryString = qs.toString();
+  const newHref = 'pm10-graph.html?' + queryString;
+  
+  viewGraphBtn.setAttribute('href', newHref);
 
-  // ✅ DEBUG: confirm final link
-  console.log('Graph href set to:', viewGraphBtn.href);
+  console.log('[updateViewGraphLink] Set href to:', newHref);
+  console.log('[updateViewGraphLink] Actual href attribute:', viewGraphBtn.getAttribute('href'));
 }
 
 
@@ -1546,6 +1553,7 @@ function updateViewGraphLink() {
 }
 
     function activatePeriod(period) {
+      console.log('[activatePeriod] Activating period:', period);
       currentPeriod = period;
 
       if (period === 'thisYear') {
@@ -1650,9 +1658,13 @@ function updateViewGraphLink() {
     // ---------- Period nav wiring ----------
     periodLinks.forEach(function (link) {
       link.addEventListener('click', function (event) {
+        console.log('[period link click] Clicked on:', this.dataset.period);
         event.preventDefault();
         const period = this.dataset.period;
-        if (period) activatePeriod(period);
+        if (period) {
+          console.log('[period link click] Calling activatePeriod with:', period);
+          activatePeriod(period);
+        }
       });
     });
 
@@ -1661,7 +1673,7 @@ function updateViewGraphLink() {
     updateAnnualTableForYear(currentAnnualYear);
     updateViewGraphLink();
     ensureChooseDateRangeUI(); // add this
-    activatePeriod('daqi');
+    activatePeriod('24h');
   });
 </script>
 
