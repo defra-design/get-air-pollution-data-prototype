@@ -635,6 +635,9 @@ function renderGraphBlock() {
 
   const downloadSvg = `<svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>`;
   const btnClass = 'aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-1';
+  const legalLimitsUrl = (legalHint && legalHint.querySelector('a'))
+    ? legalHint.querySelector('a').getAttribute('href')
+    : 'https://www.gov.uk/guidance/air-pollution-uk-legal-limits';
 
   const is24h = mode === 'rolling' && rollingPeriod === '24h';
 
@@ -659,6 +662,10 @@ function renderGraphBlock() {
            aria-label="PM10 levels chart. Use left and right arrows to explore data points."></div>
       <div id="chart-aria-live" class="govuk-visually-hidden" aria-live="polite" role="status"></div>
     </div>
+    <p class="govuk-hint govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+      Pollution levels are measured against
+      <a href="${legalLimitsUrl}" class="govuk-link">UK legal limits</a>.
+    </p>
     ${downloadHtml}
   `;
 
