@@ -22,14 +22,22 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
 (function () {
   const CONTAINER_ID = "pm25-container-week";
-  const CSV_PM25_PATH = "/public/javascripts/version_13/chart-data/past-week/pm2_5.csv";
-  const CSV_PM10_PATH = "/public/javascripts/version_13/chart-data/past-week/pm10.csv";
-  const CSV_O3_PATH = "/public/javascripts/version_13/chart-data/past-week/o3.csv";
-  const CSV_NO2_PATH = "/public/javascripts/version_13/chart-data/past-week/no2.csv";
+  const CSV_PM25_PATH = "/public/javascripts/version_15/chart-data/past-week/pm2_5.csv";
+  const CSV_PM10_PATH = "/public/javascripts/version_15/chart-data/past-week/pm10.csv";
+  const CSV_O3_PATH = "/public/javascripts/version_15/chart-data/past-week/o3.csv";
+  const CSV_NO2_PATH = "/public/javascripts/version_15/chart-data/past-week/no2.csv";
   const LIMIT_PM25 = 50; // μg/m3
   const LIMIT_PM10 = 50; // μg/m3
   const LIMIT_O3 = 50; // μg/m3
   const LIMIT_NO2 = 200; // μg/m3
+
+  // GOV.UK accessible colours per pollutant (no reds/oranges - those are reserved for exceedance)
+  const POLLUTANT_COLOURS = {
+    "PM2.5": "#1d70b8",  // GOV.UK blue
+    "PM10":  "#00703c",  // GOV.UK green
+    "O3":    "#4c2c92",  // GOV.UK purple
+    "NO2":   "#28a197"   // GOV.UK turquoise
+  };
 
   let focusPointsCreated = false;
   let keyboardNavigation = false;
@@ -384,7 +392,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
      
       // Draw segmented lines for all four pollutants
       // - red when exceedance=Y
-      // - blue otherwise (by default)
+      // - pollutant-specific colour otherwise
       const segmentsPM25 = splitByStatusAndExceedance(dataPM25);
       const segmentsPM10 = splitByStatusAndExceedance(dataPM10);
       const segmentsO3 = splitByStatusAndExceedance(dataO3);
@@ -396,7 +404,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
           const isVerified = seg.status === "V";
           const isExceedance = seg.exceedance === "Y";
-          const color = isExceedance ? "#d4351c" : "#1d70b8";
+          const baseColor = POLLUTANT_COLOURS[seg.data[0].pollutant] || "#1d70b8";
+          const color = isExceedance ? "#d4351c" : baseColor;
 
           if (isVerified) {
             svg
@@ -421,20 +430,19 @@ window.GOVUKPrototypeKit.documentReady(() => {
         });
       });
 
-       const outerCircle = svg
-        .append("circle")
-        .attr("r", 0)
-        .attr("fill", "#1d70b8")
-        .style("stroke", "#1d70b8")
-        .style("pointer-events", "none")
-        .style("opacity", 0);
-
-      const innerCircle = svg
-        .append("circle")
-        .attr("r", 0)
-        .attr("fill", "#ffffff")
-        .style("pointer-events", "none")
-        .style("opacity", 0);
+       // One hover circle per pollutant
+      const POLLUTANT_KEYS = ["PM2.5", "PM10", "O3", "NO2"];
+      const hoverCircles = {};
+      POLLUTANT_KEYS.forEach(function (key) {
+        hoverCircles[key] = svg
+          .append("circle")
+          .attr("r", 0)
+          .attr("fill", POLLUTANT_COLOURS[key])
+          .attr("stroke", "#ffffff")
+          .attr("stroke-width", 1.5)
+          .style("pointer-events", "none")
+          .style("opacity", 0);
+      });
 
       const focusRing = svg
         .append("circle")
@@ -461,8 +469,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
         .style("fill", "transparent");
 
       // Keep hover selection stable unless another line is clearly closer.
-      const HOVER_SWITCH_MARGIN_PX = 5;
-      let lastHoveredPollutant = null;
+      // (Not used for multi-pollutant mode but kept for potential future single-line mode)
 
       function positionTooltip(xPos) {
         const tooltipWidth = tooltip.node().offsetWidth;
@@ -499,23 +506,26 @@ window.GOVUKPrototypeKit.documentReady(() => {
         "NO2": "Nitrogen dioxide"
       };
 
-      function tooltipHtml(d) {
-        const fullName = POLLUTANT_FULL_NAMES[d.pollutant] || d.pollutant;
-        const valueStr = d.population === 0 ? "No data" : `${d.population.toFixed(0)} μg/m3`;
-        return `
-          <div style="font-size:22px;"><strong>${fullName}</strong> | ${valueStr}</div>
-          ${
-            d.exceedance === "Y"
-              ? `<div style="margin-top: 8px; margin-bottom: 8px;">
-                   <strong class="govuk-tag govuk-tag--red">Above limit</strong>
-                 </div>`
-              : ""
-          }
-          <div style="margin-top: 4px; font-size: 19px;">${formatDateTime(d.date)}</div>
-          <div style="margin-top: 4px; font-size: 19px; color: #505a5f;">
-            ${d.status === "V" ? "Verified" : "Unverified"}
-          </div>
-        `;
+      function tooltipHtml(dataMap, datePoint) {
+        const rows = [
+          { key: "PM2.5", d: dataMap["PM2.5"] },
+          { key: "PM10",  d: dataMap["PM10"] },
+          { key: "NO2",   d: dataMap["NO2"] },
+          { key: "O3",    d: dataMap["O3"] }
+        ];
+        let html = '';
+        rows.forEach(function (row) {
+          const label = POLLUTANT_FULL_NAMES[row.key];
+          const val = row.d.population === 0 ? "No data" : `${row.d.population.toFixed(0)} μg/m³`;
+          const excTag = row.d.exceedance === "Y"
+            ? ' <strong class="govuk-tag govuk-tag--red govuk-!-font-size-14">Above limit</strong>'
+            : '';
+          html += `<div style="font-size:19px; margin-bottom:4px;"><strong>${label}</strong> | ${val}${excTag}</div>`;
+        });
+        const anyUnverified = rows.some(function (r) { return r.d.status !== "V"; });
+        html += `<div style="margin-top:8px; font-size:19px;">${formatDateTime(datePoint)}</div>`;
+        html += `<div style="margin-top:4px; font-size:19px; color:#505a5f;">${anyUnverified ? "Unverified" : "Verified"}</div>`;
+        return html;
       }
 
       // Hover show/hide
@@ -525,159 +535,110 @@ window.GOVUKPrototypeKit.documentReady(() => {
         .on("mouseover", function () {
           tooltip.style("display", "block");
           verticalLine.style("opacity", 1);
-          outerCircle.style("opacity", 1);
-          innerCircle.style("opacity", 1);
+          POLLUTANT_KEYS.forEach(function (key) { hoverCircles[key].style("opacity", 1); });
           labelGroup.style("display", "none");
         })
         .on("mouseout", function () {
           tooltip.style("display", "none");
           verticalLine.style("opacity", 0);
-          outerCircle.attr("r", 0).style("opacity", 0);
-          innerCircle.attr("r", 0).style("opacity", 0);
+          POLLUTANT_KEYS.forEach(function (key) { hoverCircles[key].attr("r", 0).style("opacity", 0); });
           labelGroup.style("display", "block");
           d3.select("#chart-aria-live").text("");
-          lastHoveredPollutant = null;
-          // Restore all lines to full opacity
-          svg.selectAll("path[data-pollutant]").style("opacity", 1);
         });
 
       listeningRect.on("mousemove", function (event) {
         const [xCoord] = d3.pointer(event, this);
         const bisectDate = d3.bisector((d) => d.date).left;
         const x0 = x.invert(xCoord);
-        
-        // Find closest points for all four pollutants
-        const i25 = bisectDate(dataPM25, x0, 1);
-        const d25_0 = dataPM25[i25 - 1];
-        const d25_1 = dataPM25[i25];
-        const d25 = !d25_1 ? d25_0 : x0 - d25_0.date > d25_1.date - x0 ? d25_1 : d25_0;
 
-        const i10 = bisectDate(dataPM10, x0, 1);
-        const d10_0 = dataPM10[i10 - 1];
-        const d10_1 = dataPM10[i10];
-        const d10 = !d10_1 ? d10_0 : x0 - d10_0.date > d10_1.date - x0 ? d10_1 : d10_0;
-
-        const iO3 = bisectDate(dataO3, x0, 1);
-        const dO3_0 = dataO3[iO3 - 1];
-        const dO3_1 = dataO3[iO3];
-        const dO3 = !dO3_1 ? dO3_0 : x0 - dO3_0.date > dO3_1.date - x0 ? dO3_1 : dO3_0;
-
-        const iNo2 = bisectDate(dataNo2, x0, 1);
-        const dNo2_0 = dataNo2[iNo2 - 1];
-        const dNo2_1 = dataNo2[iNo2];
-        const dNo2 = !dNo2_1 ? dNo2_0 : x0 - dNo2_0.date > dNo2_1.date - x0 ? dNo2_1 : dNo2_0;
-
-        // Calculate pixel distances to determine which is closest
-        const yPos25 = y(d25.population);
-        const yPos10 = y(d10.population);
-        const yPosO3 = y(dO3.population);
-        const yPosNo2 = y(dNo2.population);
-
-        const xPos25 = x(d25.date);
-        const xPos10 = x(d10.date);
-        const xPosO3 = x(dO3.date);
-        const xPosNo2 = x(dNo2.date);
-
-        const dist25 = Math.sqrt((xCoord - xPos25) ** 2 + (event.offsetY - yPos25) ** 2);
-        const dist10 = Math.sqrt((xCoord - xPos10) ** 2 + (event.offsetY - yPos10) ** 2);
-        const distO3 = Math.sqrt((xCoord - xPosO3) ** 2 + (event.offsetY - yPosO3) ** 2);
-        const distNo2 = Math.sqrt((xCoord - xPosNo2) ** 2 + (event.offsetY - yPosNo2) ** 2);
-
-        // Find which is closest
-        const distances = [
-          { dist: dist25, data: d25, pollutant: "PM2.5", xPos: xPos25, yPos: yPos25 },
-          { dist: dist10, data: d10, pollutant: "PM10", xPos: xPos10, yPos: yPos10 },
-          { dist: distO3, data: dO3, pollutant: "O3", xPos: xPosO3, yPos: yPosO3 },
-          { dist: distNo2, data: dNo2, pollutant: "NO2", xPos: xPosNo2, yPos: yPosNo2 }
-        ];
-
-        const closest = distances.reduce((min, curr) => curr.dist < min.dist ? curr : min);
-        const previous = distances.find((entry) => entry.pollutant === lastHoveredPollutant);
-
-        let active = closest;
-        if (previous && closest.pollutant !== previous.pollutant) {
-          const improvement = previous.dist - closest.dist;
-          if (improvement < HOVER_SWITCH_MARGIN_PX) {
-            active = previous;
-          }
+        // Find nearest point for each pollutant by x position
+        function nearestPoint(data) {
+          const i = bisectDate(data, x0, 1);
+          const d0 = data[i - 1];
+          const d1 = data[i];
+          return !d1 ? d0 : x0 - d0.date > d1.date - x0 ? d1 : d0;
         }
-        lastHoveredPollutant = active.pollutant;
 
-        // Highlight active pollutant, grey out others
-        svg.selectAll("path[data-pollutant]").style("opacity", function () {
-          const pollutant = d3.select(this).attr("data-pollutant");
-          return pollutant === active.pollutant ? 1 : 0.2;
+        const d25  = nearestPoint(dataPM25);
+        const d10  = nearestPoint(dataPM10);
+        const dO3  = nearestPoint(dataO3);
+        const dNo2 = nearestPoint(dataNo2);
+
+        const dataMap = { "PM2.5": d25, "PM10": d10, "O3": dO3, "NO2": dNo2 };
+
+        // Position a circle on each pollutant line
+        POLLUTANT_KEYS.forEach(function (key) {
+          const d = dataMap[key];
+          const xPos = x(d.date);
+          const yPos = y(d.population);
+          const color = d.exceedance === "Y" ? "#d4351c" : POLLUTANT_COLOURS[key];
+          hoverCircles[key]
+            .attr("cx", xPos)
+            .attr("cy", yPos)
+            .attr("fill", color)
+            .attr("r", 6)
+            .style("opacity", 1);
         });
 
-        const d = active.data;
-        const xPos = active.xPos;
-        const yPos = active.yPos;
-        const circleColor = d.exceedance === "Y" ? "#d4351c" : "#1d70b8";
-
-        outerCircle
-          .attr("cx", xPos)
-          .attr("cy", yPos)
-          .attr("fill", circleColor)
-          .style("stroke", circleColor)
-          .transition()
-          .duration(50)
-          .attr("r", 6);
-
-        innerCircle
-          .attr("cx", xPos)
-          .attr("cy", yPos)
-          .transition()
-          .duration(50)
-          .attr("r", 3);
-
+        // Vertical line at x of PM2.5 (all pollutants share same timestamps)
+        const xPos = x(d25.date);
         verticalLine
           .attr("x1", xPos)
           .attr("x2", xPos)
           .attr("y1", 0)
           .attr("y2", height);
 
-        tooltip.style("display", "block").html(tooltipHtml(d));
+        tooltip.style("display", "block").html(tooltipHtml(dataMap, d25.date));
         positionTooltip(xPos);
 
         const screenReaderText =
-          `${d.pollutant}: ` +
-          `${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`}, ` +
-          `${d.exceedance === "Y" ? "Above limit. " : ""}` +
-          `${formatDateTime(d.date)}, ` +
-          `${d.status === "V" ? "Verified" : "Unverified"}`;
+          `PM2.5: ${d25.population === 0 ? "No data" : `${d25.population.toFixed(0)} μg/m³`}, ` +
+          `PM10: ${d10.population === 0 ? "No data" : `${d10.population.toFixed(0)} μg/m³`}, ` +
+          `Nitrogen dioxide: ${dNo2.population === 0 ? "No data" : `${dNo2.population.toFixed(0)} μg/m³`}, ` +
+          `Ozone: ${dO3.population === 0 ? "No data" : `${dO3.population.toFixed(0)} μg/m³`}. ` +
+          `${formatDateTime(d25.date)}.`;
 
         d3.select("#chart-aria-live").text(screenReaderText);
       });
 
       // Keyboard focus mode
       function handleFocus(event, d) {
-        const xPos = x(d.date);
-        const yPos = y(d.population);
-        const circleColor = d.exceedance === "Y" ? "#d4351c" : "#1d70b8";
-        const innerFocusColor = d.exceedance === "Y" ? "#7d1a1a" : "#144e8c";
+        // d is the active pollutant's data point; show all circles at current x
+        const bisectDate = d3.bisector((pt) => pt.date).left;
+        const allData = {
+          "PM2.5": dataPM25,
+          "PM10":  dataPM10,
+          "O3":    dataO3,
+          "NO2":   dataNo2
+        };
 
-        // Grey out other pollutants' lines
-        svg.selectAll("path[data-pollutant]").style("opacity", function () {
-          const pollutant = d3.select(this).attr("data-pollutant");
-          return pollutant === d.pollutant ? 1 : 0.2;
+        POLLUTANT_KEYS.forEach(function (key) {
+          const data = allData[key];
+          const i = bisectDate(data, d.date, 1);
+          const d0 = data[i - 1];
+          const d1 = data[i];
+          const pt = !d1 ? d0 : Math.abs(d.date - d0.date) <= Math.abs(d.date - d1.date) ? d0 : d1;
+          if (!pt) return;
+          const xPos = x(pt.date);
+          const yPos = y(pt.population);
+          const color = pt.exceedance === "Y" ? "#d4351c" : POLLUTANT_COLOURS[key];
+          hoverCircles[key]
+            .attr("cx", xPos)
+            .attr("cy", yPos)
+            .attr("fill", color)
+            .attr("r", 6)
+            .style("opacity", 1);
         });
 
-        outerCircle
-          .attr("cx", xPos)
-          .attr("cy", yPos)
-          .attr("fill", circleColor)
-          .style("stroke", circleColor)
-          .attr("r", 6)
-          .style("opacity", 1);
-
-        innerCircle.attr("cx", xPos).attr("cy", yPos).attr("r", 3).style("opacity", 1);
+        const xPos = x(d.date);
+        const yPos = y(d.population);
+        const activePollutant = kbPollutants[kbPollutantIdx].name;
 
         focusRing.attr("cx", xPos).attr("cy", yPos).style("opacity", 1);
-
         focusInnerCircle
           .attr("cx", xPos)
           .attr("cy", yPos)
-          .attr("fill", innerFocusColor)
+          .attr("fill", d.exceedance === "Y" ? "#7d1a1a" : POLLUTANT_COLOURS[activePollutant] || "#144e8c")
           .style("opacity", 1);
 
         verticalLine
@@ -687,24 +648,32 @@ window.GOVUKPrototypeKit.documentReady(() => {
           .attr("y2", height)
           .style("opacity", 1);
 
-        tooltip.style("display", "block").html(tooltipHtml(d));
+        // Build dataMap for all-pollutant tooltip
+        const dataMap = {};
+        POLLUTANT_KEYS.forEach(function (key) {
+          const data = allData[key];
+          const i = bisectDate(data, d.date, 1);
+          const d0 = data[i - 1];
+          const d1 = data[i];
+          dataMap[key] = !d1 ? d0 : Math.abs(d.date - d0.date) <= Math.abs(d.date - d1.date) ? d0 : d1;
+        });
+
+        tooltip.style("display", "block").html(tooltipHtml(dataMap, d.date));
         positionTooltip(xPos);
 
         d3.select("#chart-aria-live").text(
-          `${d.pollutant}: ${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`} on ${formatDateTime(d.date)}.`
+          `${POLLUTANT_FULL_NAMES[activePollutant] || activePollutant}: ` +
+          `${d.population === 0 ? "No data" : `${d.population.toFixed(0)} micrograms per cubic metre`} on ${formatDateTime(d.date)}.`
         );
       }
 
       function handleBlur() {
-        outerCircle.attr("r", 0).style("opacity", 0);
-        innerCircle.attr("r", 0).style("opacity", 0);
+        POLLUTANT_KEYS.forEach(function (key) { hoverCircles[key].attr("r", 0).style("opacity", 0); });
         verticalLine.style("opacity", 0);
         tooltip.style("display", "none");
         focusRing.style("opacity", 0);
         focusInnerCircle.style("opacity", 0);
         d3.select("#chart-aria-live").text("");
-        // Restore all lines to full opacity
-        svg.selectAll("path[data-pollutant]").style("opacity", 1);
         // Remove data point dots
         svg.select(".kb-data-points").selectAll("circle").remove();
       }

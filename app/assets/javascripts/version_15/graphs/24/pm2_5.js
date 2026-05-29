@@ -22,10 +22,10 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
 (function () {
   const CONTAINER_ID = "pm25-container-24";
-  const CSV_PM25_PATH = "/public/javascripts/version_13/chart-data/24/pm2_5.csv";
-  const CSV_PM10_PATH = "/public/javascripts/version_13/chart-data/24/pm10.csv";
-  const CSV_O3_PATH = "/public/javascripts/version_13/chart-data/24/o3.csv";
-  const CSV_NO2_PATH = "/public/javascripts/version_13/chart-data/24/no2.csv";
+  const CSV_PM25_PATH = "/public/javascripts/version_15/chart-data/24/pm2_5.csv";
+  const CSV_PM10_PATH = "/public/javascripts/version_15/chart-data/24/pm10.csv";
+  const CSV_O3_PATH = "/public/javascripts/version_15/chart-data/24/o3.csv";
+  const CSV_NO2_PATH = "/public/javascripts/version_15/chart-data/24/no2.csv";
   const LIMIT_PM25 = 50; // μg/m3
   const LIMIT_PM10 = 50; // μg/m3
   const LIMIT_O3 = 50; // μg/m3

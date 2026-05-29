@@ -158,19 +158,6 @@
               <div id="chart-aria-live" class="govuk-visually-hidden" aria-live="polite" role="status"></div>
               </div>
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-3 govuk-margin-bottom-1">Download data</h2>
-
-      <div id="js-download-area">
-        <!-- placeholder buttons (JS can replace later) -->
-        <a href="" role="button" class="aq-button-secondary aq-button-secondary--icon  govuk-!-margin-bottom-1">
-          <span class="aq-button-secondary__icon">
-            <svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20">
-              <path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </span>
-          <span class="aq-button-secondary__text">Download hourly data</span>
-        </a>
-      </div>
     </div>
 
   </div>
@@ -618,14 +605,61 @@ function getGraphIdForSelection() {
 function renderGraphBlock() {
   if (!graphSlot) return;
 
-  const id = getGraphIdForSelection(); 
+  const id = getGraphIdForSelection();
+
+  const isWeek = mode === 'rolling' && rollingPeriod === '7d';
+  const keyHtml = isWeek ? `
+    <ul class="aq-chart-key" role="list" aria-label="Chart colour key">
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#1d70b8"/></svg>
+        <span class="govuk-body govuk-!-margin-bottom-0">PM2.5</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#00703c"/></svg>
+        <span class="govuk-body govuk-!-margin-bottom-0">PM10</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#28a197"/></svg>
+        <span class="govuk-body govuk-!-margin-bottom-0">Nitrogen dioxide</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#4c2c92"/></svg>
+        <span class="govuk-body govuk-!-margin-bottom-0">Ozone</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#d4351c"/></svg>
+        <span class="govuk-body govuk-!-margin-bottom-0">Above legal limit</span>
+      </li>
+    </ul>
+  ` : '';
+
+  const downloadSvg = `<svg focusable="false" aria-hidden="true" width="14" height="20" viewBox="0 0 14 20"><path d="M1.929 9L7 14.071 12.071 9M7 14.071V1M1 18h12" fill="none" stroke="currentColor" stroke-width="2"></path></svg>`;
+  const btnClass = 'aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-1';
+
+  const is24h = mode === 'rolling' && rollingPeriod === '24h';
+
+  const downloadHtml = (mode === 'rolling') ? `
+    <h2 class="govuk-heading-m ${isWeek ? 'govuk-!-margin-top-6' : 'govuk-!-margin-top-3'} govuk-!-margin-bottom-4">Download data</h2>
+    <a href="" role="button" class="${btnClass}">
+      <span class="aq-button-secondary__icon">${downloadSvg}</span>
+      <span class="aq-button-secondary__text">Download hourly data (CSV)</span>
+    </a>
+    ${isWeek ? `
+    <br>
+    <a href="" role="button" class="${btnClass} govuk-!-margin-top-2">
+      <span class="aq-button-secondary__icon">${downloadSvg}</span>
+      <span class="aq-button-secondary__text">Download daily average data (CSV)</span>
+    </a>` : ''}
+  ` : '';
 
   graphSlot.innerHTML = `
+    ${keyHtml}
     <div class="graph-container">
       <div id="${id}" tabindex="0"
            aria-label="PM10 levels chart. Use left and right arrows to explore data points."></div>
       <div id="chart-aria-live" class="govuk-visually-hidden" aria-live="polite" role="status"></div>
     </div>
+    ${downloadHtml}
   `;
 
   // ✅ IMPORTANT: after the new container exists, redraw the relevant graph
@@ -745,7 +779,34 @@ function swapChartHtml() {
 
   const id = getContainerIdForSelection();
 
+  const isRolling = mode === 'rolling';
+  const keyHtml = isRolling ? `
+    <ul class="aq-chart-key" role="list" aria-label="Chart colour key">
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#1d70b8"/></svg>
+        <span>PM2.5</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#00703c"/></svg>
+        <span>PM10</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#28a197"/></svg>
+        <span>Nitrogen dioxide</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#4c2c92"/></svg>
+        <span>Ozone</span>
+      </li>
+      <li class="aq-chart-key__item">
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#d4351c"/></svg>
+        <span>Above legal limit</span>
+      </li>
+    </ul>
+  ` : '';
+
   graphContainer.innerHTML = `
+    ${keyHtml}
     <div class="graph-container">
       <div id="${id}"
            tabindex="0"

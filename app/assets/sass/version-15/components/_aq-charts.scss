@@ -22,7 +22,26 @@ rect {
 
 .graph-container {
     margin-top: 0px;
+    overflow-x: hidden;
 }
+
+.aq-chart-key {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 0;
+  margin: 0 0 16px 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 19px;
+    line-height: 1;
+  }
+}
+
 
 // Nitrogen dioxide graphs
 #chart-container {
