@@ -70,7 +70,10 @@ module.exports = {
       autocomplete_la_15 :   './app/assets/javascripts/version_15/components/accessible-autocomplete.js',
 
       // Air Quality Map V15
-      AQ_map_15 : './app/assets/javascripts/version_15/air-quality-map.js'
+      AQ_map_15 : './app/assets/javascripts/version_15/air-quality-map.js',
+
+      // Forecast Map V15
+      forecast_map_15 : './app/assets/javascripts/version_15/forecast-map.js'
    },
     // Adjust if your entry file has a different path
   output: {

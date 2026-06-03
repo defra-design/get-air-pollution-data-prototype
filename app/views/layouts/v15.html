@@ -41,8 +41,8 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
       text: "Search by location"
     },
     {
-      href: "/version-15/map",
-      text: "Search on a map"
+      href: "/version-15/maps",
+      text: "Maps"
     },
     {
       href: "/version-15/data-selector/create-pollutant",
@@ -184,9 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
         navHref: '/version-15/station/search-by'
       },
       {
-        key: 'map',
-        match: (p) => p === '/version-15/map' || p.startsWith('/version-15/map/'),
-        navHref: '/version-15/map'
+        key: 'maps',
+        match: (p) =>
+          p === '/version-15/maps' ||
+          p === '/version-15/maps.html' ||
+          p.startsWith('/version-15/maps/'),
+        navHref: '/version-15/maps'
       },
       {
         key: 'data-selector',
