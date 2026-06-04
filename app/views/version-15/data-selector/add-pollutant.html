@@ -104,6 +104,22 @@
           </div>
         </div>
 
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="pg-black-carbon" name="pollutant-group" type="radio" value="black-carbon" aria-describedby="pg-black-carbon-hint">
+          <label class="govuk-label govuk-radios__label" for="pg-black-carbon">Black carbon</label>
+          <div id="pg-black-carbon-hint" class="govuk-hint govuk-radios__hint">
+            black carbon (BC)
+          </div>
+        </div>
+
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="pg-tomps" name="pollutant-group" type="radio" value="tomps" aria-describedby="pg-tomps-hint">
+          <label class="govuk-label govuk-radios__label" for="pg-tomps">Toxic organic micro-pollutants (TOMPs)</label>
+          <div id="pg-tomps-hint" class="govuk-hint govuk-radios__hint">
+            PCBs, co-planar PCBs, PCDDs (dioxins), PCDFs (furans), PBDEs, decaBDE, HBCDD
+          </div>
+        </div>
+
         <!-- VOCs -->
         <div class="govuk-radios__item">
           <input class="govuk-radios__input" id="pg-hydrocarbon" name="pollutant-group" type="radio" value="hydrocarbon" aria-describedby="pg-hydrocarbon-hint">
@@ -259,6 +275,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Compliance (we’ll fill below)
     compliance: [],
+
+    'black-carbon': [
+      'Black carbon (BC)'
+    ],
+
+    tomps: [
+      'PCBs',
+      'Co-planar PCBs',
+      'PCDDs (dioxins)',
+      'PCDFs (furans)',
+      'PBDEs',
+      'decaBDE',
+      'HBCDD'
+    ],
 
     // VOCs (names only)
     hydrocarbon: [

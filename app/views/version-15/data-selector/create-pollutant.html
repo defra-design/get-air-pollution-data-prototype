@@ -213,6 +213,17 @@ function buildNetworksForPollutant(rawName) {
   const isNO2      = baseName === 'nitrogen dioxide';
   const isNOxAsNO2 = baseName === 'nitrogen oxides as nitrogen dioxide';
   const isNO       = baseName === 'nitric oxide';
+  const isBlackCarbon = baseName === 'black carbon';
+  const tompsName = baseName.replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+  const isTOMPs = new Set([
+    'pcbs',
+    'co planar pcbs',
+    'pcdds',
+    'pcdfs',
+    'pbdes',
+    'decabde',
+    'hbcdd'
+  ]).has(tompsName);
 
   // PM mass (keep exact names including PM10/PM2.5; users can pick both wordings)
   const pmMass =
@@ -277,7 +288,10 @@ function buildNetworksForPollutant(rawName) {
   if (isNO2) {
     addMonthly('UK Urban NO2 Network');
     addMonthly('UKEAP: Rural NO2 Network');
-    addNonDefra();
+    add(NONDEF_HDR);
+    add('Locally managed automatic monitoring');
+    add('Automatic nitrogen dioxide data');
+    add('Nitrogen dioxide (NO2) diffusion tubes');
   }
 
   if (vocs.has(baseName)) {
@@ -287,6 +301,14 @@ function buildNetworksForPollutant(rawName) {
 
   if (paHs.includes(baseName)) {
     addMonthly('PAH Network');
+  }
+
+  if (isBlackCarbon) {
+    addMonthly('Black Carbon Network');
+  }
+
+  if (isTOMPs) {
+    addMonthly('Toxic Organic Micro-Pollutants (TOMPs)');
   }
 
   const looksLikeParticulateIon =
@@ -378,6 +400,8 @@ function buildNetworksForPollutant(rawName) {
     'Automatic Urban and Rural Network (AURN)': 180,
     'Automatic Hydrocarbon Network': 40,
     'Non-Automatic Hydrocarbon Network': 35,
+    'Toxic Organic Micro-Pollutants (TOMPs)': 6,
+    'Black Carbon Network': 15,
     'PAH Network': 30,
     'Heavy Metals Network': 30,
     'UKEAP: Acid Gas & Aerosol Network': 30,
@@ -419,6 +443,17 @@ function buildNetworksForPollutant(rawName) {
       'Urban background': 0.60,
       'Urban traffic': 0.30,
       'Rural background': 0.10
+    },
+    'Toxic Organic Micro-Pollutants (TOMPs)': {
+      'Urban background': 0.34,
+      'Urban traffic': 0.33,
+      'Rural background': 0.33
+    },
+    'Black Carbon Network': {
+      'Urban background': 0.40,
+      'Urban traffic': 0.50,
+      'Suburban background': 0.05,
+      'Rural background': 0.05
     },
     'Non-Automatic Hydrocarbon Network': {
       'Urban background': 0.70,
@@ -558,10 +593,12 @@ function buildNetworksForPollutant(rawName) {
   const COUNTRY_WEIGHTS = { 'England': 0.75, 'Scotland': 0.15, 'Wales': 0.06, 'Northern Ireland': 0.04 };
 
   const countriesRaw = sessionStorage.getItem('selectedCountries');
+  const zonesAggRaw  = sessionStorage.getItem('selectedZonesAgglomerations');
   const lasRaw       = sessionStorage.getItem('selectedLocations');
   const singleLegacy = sessionStorage.getItem('selectedLocation');
 
   let countries = []; try { countries = countriesRaw ? JSON.parse(countriesRaw) : []; } catch { countries = []; }
+  let zonesAgg = [];  try { zonesAgg = zonesAggRaw ? JSON.parse(zonesAggRaw) : []; } catch { zonesAgg = []; }
   let las = [];       try { las = lasRaw ? JSON.parse(lasRaw) : []; } catch { las = []; }
 
   let countryScale = 0;
@@ -579,6 +616,7 @@ function buildNetworksForPollutant(rawName) {
     'Automatic Urban and Rural Network (AURN)': 'core',
     'Automatic Hydrocarbon Network': 'hydrocarbon',
     'Non-Automatic Hydrocarbon Network': 'hydrocarbon',
+    'Toxic Organic Micro-Pollutants (TOMPs)': 'tomps',
     'PAH Network': 'pah',
     'Heavy Metals Network': 'heavy-metals',
     'UKEAP: Acid Gas & Aerosol Network': 'aganet',
@@ -591,7 +629,7 @@ function buildNetworksForPollutant(rawName) {
     'Locally managed automatic monitoring': 'core'
   };
   const LA_SHARE_BY_TAG = {
-    'core': 0.012, 'hydrocarbon': 0.006, 'aganet': 0.006, 'heavy-metals': 0.004,
+    'core': 0.012, 'hydrocarbon': 0.006, 'tomps': 0.006, 'aganet': 0.006, 'heavy-metals': 0.004,
     'pah': 0.004, 'namn': 0.008, 'precipnet': 0.003, 'ruralmercury': 0.002
   };
   const DEFAULT_LA_SHARE = 0.006;
@@ -607,11 +645,26 @@ function buildNetworksForPollutant(rawName) {
   let laScale = 0;
   if (Array.isArray(las) && las.length) laScale = las.length * effLaShare;
 
+  const ZONE_SHARE = 0.075;
+  const AGGLOMERATION_SHARE = 0.03;
+  let zonesAggScale = 0;
+  if (Array.isArray(zonesAgg) && zonesAgg.length) {
+    zonesAggScale = zonesAgg.reduce((acc, item) => {
+      const label = String(item || '').toLowerCase();
+      return acc + (label.includes('agglomeration') ? AGGLOMERATION_SHARE : ZONE_SHARE);
+    }, 0);
+  }
+
   let locationScale = 1;
   const hasCountry = countryScale > 0;
+  const hasZonesAgg = zonesAggScale > 0;
   const hasLA = laScale > 0;
-  if (hasCountry && hasLA) locationScale = Math.min(countryScale, laScale);
+  if (hasCountry && hasZonesAgg && hasLA) locationScale = Math.min(countryScale, zonesAggScale, laScale);
+  else if (hasCountry && hasZonesAgg) locationScale = Math.min(countryScale, zonesAggScale);
+  else if (hasCountry && hasLA) locationScale = Math.min(countryScale, laScale);
+  else if (hasZonesAgg && hasLA) locationScale = Math.min(zonesAggScale, laScale);
   else if (hasCountry) locationScale = countryScale;
+  else if (hasZonesAgg) locationScale = Math.min(zonesAggScale, 1);
   else if (hasLA) locationScale = Math.min(laScale, 1);
 
   // =============== 9) Combine, scale, render ===============
@@ -684,6 +737,17 @@ function buildNetworksForPollutant(rawName) {
   const isNO2      = baseName === 'nitrogen dioxide';
   const isNOxAsNO2 = baseName === 'nitrogen oxides as nitrogen dioxide';
   const isNO       = baseName === 'nitric oxide';
+  const isBlackCarbon = baseName === 'black carbon';
+  const tompsName = baseName.replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+  const isTOMPs = new Set([
+    'pcbs',
+    'co planar pcbs',
+    'pcdds',
+    'pcdfs',
+    'pbdes',
+    'decabde',
+    'hbcdd'
+  ]).has(tompsName);
 
   // PM mass (keep exact names including PM10/PM2.5; users can pick both wordings)
   const pmMass =
@@ -740,15 +804,19 @@ function buildNetworksForPollutant(rawName) {
   const mercuryBase = new Set(['reactive mercury','elemental mercury','mercury in pm2.5']);
 
   // === Rules → networks ===
-  if (isSO2 || isO3 || isCO || isNO2 || isNOxAsNO2 || isNO || pmMass) {
+  if (isSO2 || isO3 || isCO || isNOxAsNO2 || isNO || pmMass) {
     addHourly('Automatic Urban and Rural Network (AURN)');
     addNonDefra();
   }
 
   if (isNO2) {
+    addHourly('Automatic Urban and Rural Network (AURN)');
+    add(NONDEF_HDR);
+    add('Locally managed automatic monitoring');
+    add('Automatic nitrogen dioxide data');
+    add('Nitrogen dioxide (NO2) diffusion tubes');
     addMonthly('UK Urban NO2 Network');
     addMonthly('UKEAP: Rural NO2 Network');
-    addNonDefra();
   }
 
   if (vocs.has(baseName)) {
@@ -760,6 +828,14 @@ function buildNetworksForPollutant(rawName) {
     addMonthly('PAH Network');
   }
 
+  if (isBlackCarbon) {
+    addMonthly('Black Carbon Network');
+  }
+
+  if (isTOMPs) {
+    addMonthly('Toxic Organic Micro-Pollutants (TOMPs)');
+  }
+
   const looksLikeParticulateIon =
     particulateIonKeywords.some(k => baseName.includes(k)) && !pmMass;
 
@@ -769,7 +845,7 @@ function buildNetworksForPollutant(rawName) {
   }
 
   if (gaseousAcids.has(baseName)) {
-    if (baseName.includes('nitric')) addHourly('UKEAP: MARGA Network'); // nitric acid has hourly via MARGA
+    if (baseName.includes('nitric')) addHourly('UKEAP: MARGA Network');
     addMonthly('UKEAP: Acid Gas & Aerosol Network');
   }
 
@@ -856,8 +932,13 @@ function bucketsFromPollutants(polls) {
       else if (item === L) cur = 'l';
       else if (cur === 'h' && !seenH.has(item)) { seenH.add(item); out.hourly.push(item); }
       else if (cur === 'm' && !seenM.has(item)) { seenM.add(item); out.monthly.push(item); }
-      else if (cur === 'l' && out.nonDefra.length === 0) {
-        out.nonDefra.push('Locally managed automatic monitoring');
+      else if (cur === 'l') {
+        if (out.nonDefra.length === 0) {
+          out.nonDefra.push('Locally managed automatic monitoring');
+        }
+        if (item !== 'Locally managed automatic monitoring' && !out.nonDefra.includes(item)) {
+          out.nonDefra.push(item);
+        }
       }
     });
   });
@@ -875,7 +956,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const timeCell = document.getElementById('time-period-value');
   const timeActionCell = document.getElementById('time-period-action');
   if (timePeriod && timeCell && timeActionCell) {
-    timeCell.textContent = timePeriod;
+    let cleanedTime = timePeriod.replace(/^Last 7 days\s*/, '').trim();
+    if (cleanedTime.startsWith('(') && cleanedTime.endsWith(')')) {
+      cleanedTime = cleanedTime.slice(1, -1);
+    }
+    timeCell.textContent = cleanedTime;
     timeActionCell.innerHTML = '<a class="govuk-link" href="add-time.html">Change<span class="govuk-visually-hidden"> time period</span></a>';
   }
 
@@ -896,10 +981,15 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
 
   const singleLocation = sessionStorage.getItem('selectedLocation');      // legacy
   const countries = sessionStorage.getItem('selectedCountries');          // NEW
+  const zonesAgg = sessionStorage.getItem('selectedZonesAgglomerations'); // NEW
   const laList = sessionStorage.getItem('selectedLocations');
 
   if (countries && locationCell && locationActionCell) {
     const list = JSON.parse(countries);
+    locationCell.innerHTML = list.join('<br>');
+    locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
+  } else if (zonesAgg && locationCell && locationActionCell) {
+    const list = JSON.parse(zonesAgg);
     locationCell.innerHTML = list.join('<br>');
     locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
   } else if (laList && locationCell && locationActionCell) {
@@ -1103,12 +1193,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const hasLocation = () => {
     const countriesRaw = sessionStorage.getItem('selectedCountries');
+    const zonesAggRaw  = sessionStorage.getItem('selectedZonesAgglomerations');
     const lasRaw       = sessionStorage.getItem('selectedLocations');
     const single       = sessionStorage.getItem('selectedLocation');
-    let countries = [], las = [];
+    let countries = [], zonesAgg = [], las = [];
     try { countries = countriesRaw ? JSON.parse(countriesRaw) : []; } catch {}
+    try { zonesAgg  = zonesAggRaw ? JSON.parse(zonesAggRaw) : []; } catch {}
     try { las       = lasRaw ? JSON.parse(lasRaw) : []; } catch {}
     if (Array.isArray(countries) && countries.length) return true;
+    if (Array.isArray(zonesAgg) && zonesAgg.length) return true;
     if (Array.isArray(las) && las.length) return true;
     if (single && single.trim() && single.trim().toLowerCase() !== 'none selected') return true;
     return false;

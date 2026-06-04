@@ -62,6 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
     'Nitrogen oxides as nitrogen dioxide (NOx as NO2)',
     'Nitric oxide (NO)',
 
+    // Black carbon
+    'Black carbon (BC)',
+
+    // TOMPs classes
+    'PCBs',
+    'Co-planar PCBs',
+    'PCDDs (dioxins)',
+    'PCDFs (furans)',
+    'PBDEs',
+    'decaBDE',
+    'HBCDD',
+
     // Metals (air)
     'Arsenic (As)',
     'Cadmium (Cd)',

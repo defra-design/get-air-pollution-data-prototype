@@ -19,11 +19,19 @@
       <fieldset class="govuk-fieldset" aria-describedby="time-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-heading-l">
-            Add year(s)
+            Add time period
           </h1>
          <!--  <p class="govuk-body">Data is available in hourly, daily average or annual average format.</p> -->
            
        <div class="govuk-radios govuk-!-margin-top-0" data-module="govuk-radios">
+  <!-- Last 7 days -->
+  <div class="govuk-radios__item">
+    <input class="govuk-radios__input" id="time-7d" name="time" type="radio" value="7d">
+    <label class="govuk-label govuk-radios__label" for="time-7d">
+      Last 7 days
+    </label>
+  </div>
+
   <!-- Year to date -->
   <div class="govuk-radios__item">
     <input class="govuk-radios__input" id="time-ytd" name="time" type="radio" value="ytd">
@@ -99,6 +107,109 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Specific date range -->
+<div class="govuk-radios__item">
+  <input class="govuk-radios__input" id="time-date-range" name="time" type="radio" value="dateRange" data-aria-controls="conditional-time-date-range">
+  <label class="govuk-label govuk-radios__label" for="time-date-range">Specific date range</label>
+</div>
+<div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-time-date-range">
+  <div class="govuk-form-group" id="date-start-group">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="date-start-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Start date</legend>
+      <div id="date-start-hint" class="govuk-hint">For example: 25 11 2024</div>
+      <div class="govuk-date-input" id="date-start-input">
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="date-start-day">Day</label>
+            <input
+              class="govuk-input govuk-date-input__input govuk-input--width-2"
+              id="date-start-day"
+              name="date-start-day"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="2">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="date-start-month">Month</label>
+            <input
+              class="govuk-input govuk-date-input__input govuk-input--width-2"
+              id="date-start-month"
+              name="date-start-month"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="2">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="date-start-year">Year</label>
+            <input
+              class="govuk-input govuk-date-input__input govuk-input--width-4"
+              id="date-start-year"
+              name="date-start-year"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="4">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group" id="date-end-group">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="date-end-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">End date</legend>
+      <div id="date-end-hint" class="govuk-hint">For example: 30 11 2024</div>
+      <div class="govuk-date-input" id="date-end-input">
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="date-end-day">Day</label>
+            <input
+              class="govuk-input govuk-date-input__input govuk-input--width-2"
+              id="date-end-day"
+              name="date-end-day"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="2">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="date-end-month">Month</label>
+            <input
+              class="govuk-input govuk-date-input__input govuk-input--width-2"
+              id="date-end-month"
+              name="date-end-month"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="2">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="date-end-year">Year</label>
+            <input
+              class="govuk-input govuk-date-input__input govuk-input--width-4"
+              id="date-end-year"
+              name="date-end-year"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="4">
+          </div>
+        </div>
+      </div>
+    </fieldset>
   </div>
 </div>
 
@@ -197,6 +308,32 @@
     const n = Number(year);
     return n >= MIN_YEAR && n <= MAX_YEAR;
   }
+  function toDateParts(prefix) {
+    const day = (document.getElementById(prefix + '-day').value || '').trim();
+    const month = (document.getElementById(prefix + '-month').value || '').trim();
+    const year = (document.getElementById(prefix + '-year').value || '').trim();
+    return { day, month, year };
+  }
+  function parseValidDate(parts) {
+    if (!parts.day || !parts.month || !parts.year) return null;
+    if (!/^\d{1,2}$/.test(parts.day) || !/^\d{1,2}$/.test(parts.month) || !/^\d{4}$/.test(parts.year)) {
+      return null;
+    }
+    const d = Number(parts.day);
+    const m = Number(parts.month);
+    const y = Number(parts.year);
+    if (y < MIN_YEAR || y > MAX_YEAR) return null;
+    if (m < 1 || m > 12) return null;
+    if (d < 1 || d > 31) return null;
+    const date = new Date(y, m - 1, d);
+    if (date.getFullYear() !== y || date.getMonth() !== (m - 1) || date.getDate() !== d) return null;
+    return date;
+  }
+  function formatLongDate(date) {
+    return new Intl.DateTimeFormat('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    }).format(date);
+  }
 
   // ===== Validations that produce BOTH inline + summary =====
   function validateAnyYear() {
@@ -286,6 +423,65 @@
     }
   }
 
+  function validateSpecificDateRange() {
+    const startParts = toDateParts('date-start');
+    const endParts = toDateParts('date-end');
+    const items = [];
+    let ok = true;
+
+    if (!startParts.day || !startParts.month || !startParts.year) {
+      showError('date-start-group', 'date-start-day', 'Enter a start date.');
+      items.push({ text: 'Enter a start date.', href: '#date-start-day' });
+      ok = false;
+    }
+
+    if (!endParts.day || !endParts.month || !endParts.year) {
+      showError('date-end-group', 'date-end-day', 'Enter an end date.');
+      items.push({ text: 'Enter an end date.', href: '#date-end-day' });
+      ok = false;
+    }
+
+    const startDate = parseValidDate(startParts);
+    const endDate = parseValidDate(endParts);
+
+    if (ok && !startDate) {
+      showError('date-start-group', 'date-start-day', `Enter a valid start date between 1 January ${MIN_YEAR} and 31 December ${MAX_YEAR}.`);
+      items.push({ text: `Enter a valid start date between 1 January ${MIN_YEAR} and 31 December ${MAX_YEAR}.`, href: '#date-start-day' });
+      ok = false;
+    }
+
+    if (ok && !endDate) {
+      showError('date-end-group', 'date-end-day', `Enter a valid end date between 1 January ${MIN_YEAR} and 31 December ${MAX_YEAR}.`);
+      items.push({ text: `Enter a valid end date between 1 January ${MIN_YEAR} and 31 December ${MAX_YEAR}.`, href: '#date-end-day' });
+      ok = false;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (ok && startDate > endDate) {
+      showError('date-start-group', 'date-start-day', 'Start date must be the same as or before the end date.');
+      showError('date-end-group', 'date-end-day', 'End date must be the same as or after the start date.');
+      items.push({ text: 'Start date must be the same as or before the end date.', href: '#date-start-day' });
+      items.push({ text: 'End date must be the same as or after the start date.', href: '#date-end-day' });
+      ok = false;
+    }
+
+    if (ok && endDate > today) {
+      showError('date-end-group', 'date-end-day', 'End date must be today or earlier.');
+      items.push({ text: 'End date must be today or earlier.', href: '#date-end-day' });
+      ok = false;
+    }
+
+    if (!ok) {
+      showErrorSummary(items);
+      return null;
+    }
+
+    clearErrorSummary();
+    return { startDate, endDate };
+  }
+
   // ===== Continue button handler =====
   document.querySelector('.govuk-button').addEventListener('click', function (e) {
     e.preventDefault();
@@ -294,8 +490,8 @@
     const selected = document.querySelector('input[name="time"]:checked');
     if (!selected) {
       // Show ONLY a page-level summary (no inline) when no radio is selected
-      showErrorSummary([{ text: 'Select an option before continuing', href: '#time-ytd' }]);
-      const first = document.getElementById('time-ytd') || document.getElementById('time-any') || document.getElementById('time-range');
+      showErrorSummary([{ text: 'Select an option before continuing', href: '#time-7d' }]);
+      const first = document.getElementById('time-7d') || document.getElementById('time-ytd') || document.getElementById('time-any') || document.getElementById('time-range') || document.getElementById('time-date-range');
       if (first) first.focus();
       return;
     } else {
@@ -310,7 +506,12 @@
 
     let timePeriod = 'None selected';
 
-    if (selected.id === 'time-ytd') {
+    if (selected.id === 'time-7d') {
+      const start = new Date(today);
+      start.setDate(start.getDate() - 6);
+      timePeriod = `Last 7 days (${formatLongDate(start)} to ${formattedToday})`;
+    }
+    else if (selected.id === 'time-ytd') {
       timePeriod = `1 January to ${formattedToday}`;
     }
     else if (selected.id === 'time-any') {
@@ -331,6 +532,11 @@
         timePeriod = `1 January ${range.start} to 31 December ${range.end}`;
       }
     }
+    else if (selected.id === 'time-date-range') {
+      const range = validateSpecificDateRange();
+      if (range === null) return;
+      timePeriod = `${formatLongDate(range.startDate)} to ${formatLongDate(range.endDate)}`;
+    }
 
     // Store for summary page and redirect
     sessionStorage.setItem('selectedTimePeriod', timePeriod);
@@ -338,11 +544,19 @@
   });
 
   // Limit to 4 digits while typing (kept)
-  ['any-year-input','range-start-year','range-end-year'].forEach(id => {
+  ['any-year-input','range-start-year','range-end-year','date-start-year','date-end-year'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', () => {
       el.value = el.value.replace(/\D/g, '').slice(0, 4);
+    });
+  });
+
+  ['date-start-day','date-start-month','date-end-day','date-end-month'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      el.value = el.value.replace(/\D/g, '').slice(0, 2);
     });
   });
 
@@ -369,6 +583,12 @@
   attachClearOnChange('any-year-input', 'any-year-group');
   attachClearOnChange('range-start-year', 'range-start-group');
   attachClearOnChange('range-end-year', 'range-end-group');
+  attachClearOnChange('date-start-day', 'date-start-group');
+  attachClearOnChange('date-start-month', 'date-start-group');
+  attachClearOnChange('date-start-year', 'date-start-group');
+  attachClearOnChange('date-end-day', 'date-end-group');
+  attachClearOnChange('date-end-month', 'date-end-group');
+  attachClearOnChange('date-end-year', 'date-end-group');
 
   // Clear summary when picking a top-level radio
   document.querySelectorAll('input[name="time"]').forEach(r => {
