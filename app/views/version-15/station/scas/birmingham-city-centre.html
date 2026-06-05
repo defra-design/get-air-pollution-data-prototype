@@ -3,7 +3,7 @@
 {% set pageName="Birmingham City Centre - Smoke control area - GOV.UK" %}
 
 {% block beforeContent %}
-<a href="index.html" class="govuk-back-link">Back to Smoke control areas</a>
+<a href="#" class="govuk-back-link" onclick="if (document.referrer) { window.history.back(); } else { window.location.href='index.html'; } return false;">Back to Smoke control areas</a>
 {% endblock %}
 
 {% block content %}
