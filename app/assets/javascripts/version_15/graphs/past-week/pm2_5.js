@@ -520,7 +520,9 @@ window.GOVUKPrototypeKit.documentReady(() => {
           const excTag = row.d.exceedance === "Y"
             ? ' <strong class="govuk-tag govuk-tag--red govuk-!-font-size-14">Above limit</strong>'
             : '';
-          html += `<div style="font-size:19px; margin-bottom:4px;"><strong>${label}</strong> | ${val}${excTag}</div>`;
+          const dotColour = row.d.exceedance === "Y" ? "#d4351c" : POLLUTANT_COLOURS[row.key];
+          const dot = `<svg width="18" height="18" viewBox="-1 -1 18 18" style="flex-shrink:0; margin-right:6px;" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="${dotColour}" stroke="none"/></svg>`;
+          html += `<div style="font-size:19px; margin-bottom:4px; display:flex; align-items:center;">${dot}<span><strong>${label}</strong> | ${val}${excTag}</span></div>`;
         });
         const anyUnverified = rows.some(function (r) { return r.d.status !== "V"; });
         html += `<div style="margin-top:8px; font-size:19px;">${formatDateTime(datePoint)}</div>`;
