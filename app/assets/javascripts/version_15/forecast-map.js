@@ -375,7 +375,6 @@ function updateNationalForecastDisplay(dateIndex) {
 
   const forecastHTML = `
     <div>
-      <p class="govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Outlook</p>
       <p class="govuk-body govuk-!-margin-bottom-0">${forecast.text}</p>
     </div>
   `;

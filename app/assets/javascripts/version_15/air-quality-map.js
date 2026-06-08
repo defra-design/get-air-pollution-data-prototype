@@ -301,8 +301,8 @@ const NETWORK_META = {
   [NETWORK.PARTICLE_NUMBER]: { label: 'Particle Concentrations and Numbers Network', group: 'other_defra' },
 
   // LA NO2 Networks
-  [NETWORK.LA_AUTO_NO2]:    { label: 'LA automatic stations', group: 'non_defra' },
-  [NETWORK.LA_DIFFUSION_NO2]: { label: 'Diffusion tubes (NO2)', group: 'non_defra' }
+  [NETWORK.LA_AUTO_NO2]:    { label: 'Automatic NO2 data', group: 'non_defra' },
+  [NETWORK.LA_DIFFUSION_NO2]: { label: 'Diffusion tube NO2 data', group: 'non_defra' }
 };
 
 
