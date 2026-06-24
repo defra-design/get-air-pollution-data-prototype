@@ -83,7 +83,10 @@ module.exports = {
       AQ_map_16 : './app/assets/javascripts/version_16/air-quality-map.js',
 
       // Forecast Map V16
-      forecast_map_16 : './app/assets/javascripts/version_16/forecast-map.js'
+      forecast_map_16 : './app/assets/javascripts/version_16/forecast-map.js',
+
+      // Management Areas Map V16
+      management_areas_map_16 : './app/assets/javascripts/version_16/management-areas-map.js'
    },
     // Adjust if your entry file has a different path
   output: {

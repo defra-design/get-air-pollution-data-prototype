@@ -28,3 +28,13 @@ router.get('/version-16/data/local-authority-districts.geojson', (req, res) => {
 
 	res.sendFile(geojsonPath)
 })
+
+router.get('/version-16/data/air-quality-management-areas.geojson', (req, res) => {
+	const geojsonPath = path.join(
+		__dirname,
+		'data',
+		'air-quality-management-area.geojson'
+	)
+
+	res.sendFile(geojsonPath)
+})
