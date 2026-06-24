@@ -73,7 +73,17 @@ module.exports = {
       AQ_map_15 : './app/assets/javascripts/version_15/air-quality-map.js',
 
       // Forecast Map V15
-      forecast_map_15 : './app/assets/javascripts/version_15/forecast-map.js'
+      forecast_map_15 : './app/assets/javascripts/version_15/forecast-map.js',
+
+      // Version 16
+      autocomplete_p_16 :   './app/assets/javascripts/version_16/components/accessible-autocomplete-p-v8.js',
+      autocomplete_la_16 :   './app/assets/javascripts/version_16/components/accessible-autocomplete.js',
+
+      // Air Quality Map V16
+      AQ_map_16 : './app/assets/javascripts/version_16/air-quality-map.js',
+
+      // Forecast Map V16
+      forecast_map_16 : './app/assets/javascripts/version_16/forecast-map.js'
    },
     // Adjust if your entry file has a different path
   output: {

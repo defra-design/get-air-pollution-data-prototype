@@ -18,3 +18,13 @@ router.get('/version-15/data/local-authority-districts.geojson', (req, res) => {
 
 	res.sendFile(geojsonPath)
 })
+
+router.get('/version-16/data/local-authority-districts.geojson', (req, res) => {
+	const geojsonPath = path.join(
+		__dirname,
+		'data',
+		'Local_Authority_Districts_May_2023_UK_BGC_V2_-612691324625764623.geojson'
+	)
+
+	res.sendFile(geojsonPath)
+})
