@@ -38,3 +38,7 @@ router.get('/version-16/data/air-quality-management-areas.geojson', (req, res) =
 
 	res.sendFile(geojsonPath)
 })
+
+router.get('/version-16/data/aqma-lookup.json', (req, res) => {
+	res.sendFile(path.join(__dirname, 'data', 'aqma-lookup.json'))
+})

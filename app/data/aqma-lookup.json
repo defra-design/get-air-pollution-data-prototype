@@ -1,0 +1,3440 @@
+{
+  "Aberdeen City Centre AQMA": {
+    "localAuthority": "Aberdeen City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 June 2001",
+    "amendmentDate": "1 February 2025",
+    "status": "active"
+  },
+  "AQMA No.3 (Elmfield)": {
+    "localAuthority": "Antrim and Newtownabbey District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 January 2008",
+    "amendmentDate": "29 June 2009",
+    "status": "active"
+  },
+  "Armagh City, Banbridge and Craigavon Borough Council AQMA": {
+    "localAuthority": "Armagh Banbridge and Craigavon District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Barking and Dagenham AQMA": {
+    "localAuthority": "Barking and Dagenham - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 December 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Barnet AQMA": {
+    "localAuthority": "Barnet - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "18 April 2001",
+    "amendmentDate": "1 July 2010",
+    "status": "active"
+  },
+  "Barnsley AQMA No.1": {
+    "localAuthority": "Barnsley Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 October 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Barnsley AQMA No.2A": {
+    "localAuthority": "Barnsley Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 June 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Barnsley AQMA No.4": {
+    "localAuthority": "Barnsley Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "7 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Barnsley AQMA No.6": {
+    "localAuthority": "Barnsley Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 August 2012",
+    "amendmentDate": "27 October 2016",
+    "status": "active"
+  },
+  "Barnsley AQMA No.7": {
+    "localAuthority": "Barnsley Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 August 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bath AQMA": {
+    "localAuthority": "Bath and North East Somerset Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2002",
+    "amendmentDate": "18 July 2013",
+    "status": "active"
+  },
+  "Temple Cloud Air Quality Management Area Order 2018": {
+    "localAuthority": "Bath and North East Somerset Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "20 August 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Farrington Gurney Air Quality Mangement Area Order 2018": {
+    "localAuthority": "Bath and North East Somerset Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "20 August 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bedford Town Centre AQMA": {
+    "localAuthority": "Bedford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "6 November 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Belfast AQMA No.1": {
+    "localAuthority": "Belfast City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2004",
+    "amendmentDate": "25 September 2015",
+    "status": "active"
+  },
+  "Belfast AQMA No.2": {
+    "localAuthority": "Belfast City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Belfast AQMA No.3": {
+    "localAuthority": "Belfast City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Belfast AQMA No.4": {
+    "localAuthority": "Belfast City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bexley AQMA": {
+    "localAuthority": "Bexley - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Birmingham AQMA": {
+    "localAuthority": "Birmingham City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 January 2003",
+    "amendmentDate": "1 December 2010",
+    "status": "active"
+  },
+  "AQMA 6": {
+    "localAuthority": "Blaby District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 October 2018",
+    "amendmentDate": "17 March 2025",
+    "status": "active"
+  },
+  "AQMA No 6 Blackamoor": {
+    "localAuthority": "Blackburn with Darwen Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 February 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Blackpool AQMA": {
+    "localAuthority": "Blackpool Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Haven Bridge AQMA": {
+    "localAuthority": "Boston Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 September 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA Crowthorne": {
+    "localAuthority": "Bracknell Forest Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 February 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.1": {
+    "localAuthority": "Peterborough Council",
+    "pollutants": [
+      "Sulphur dioxide (SO2)"
+    ],
+    "declarationDate": "1 May 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.2": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA No.3": {
+    "localAuthority": "Shropshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 May 2003",
+    "amendmentDate": "1 March 2006",
+    "status": "active"
+  },
+  "AQMA No.4": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "Brent AQMA": {
+    "localAuthority": "Brent - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 December 2006",
+    "amendmentDate": "25 January 2024",
+    "status": "active"
+  },
+  "Brentwood AQMA No.2": {
+    "localAuthority": "Brentwood Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 January 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Brentwood AQMA No.4": {
+    "localAuthority": "Brentwood Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 January 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Brentwood AQMA No.7": {
+    "localAuthority": "Brentwood Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 January 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Park Street, Bridgend AQMA (Bridgend County Borough Council)": {
+    "localAuthority": "Bridgend County Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Brighton and Hove AQMA 1": {
+    "localAuthority": "Brighton and Hove Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 August 2013",
+    "amendmentDate": "4 November 2020",
+    "status": "active"
+  },
+  "Brighton and Hove AQMA 2": {
+    "localAuthority": "Brighton and Hove Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 August 2013",
+    "amendmentDate": "4 November 2020",
+    "status": "active"
+  },
+  "Brighton &amp; Hove AQMA5": {
+    "localAuthority": "Brighton and Hove Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 November 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Brighton &amp; Hove AQMA6": {
+    "localAuthority": "Brighton and Hove Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 November 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Brighton &amp; Hove AQMA3": {
+    "localAuthority": "Brighton and Hove Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 November 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Brighton &amp; Hove AQMA4": {
+    "localAuthority": "Brighton and Hove Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 November 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bristol AQMA": {
+    "localAuthority": "Bristol City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 May 2001",
+    "amendmentDate": "26 October 2011",
+    "status": "active"
+  },
+  "Bromley AQMA": {
+    "localAuthority": "Bromley Council - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 March 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No 4 Worcester Road": {
+    "localAuthority": "Bromsgrove District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 October 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Broxbourne AQMA No. 1": {
+    "localAuthority": "Broxbourne Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2001",
+    "amendmentDate": "10 March 2016",
+    "status": "active"
+  },
+  "AQMA No.4 Eleanor Cross Road / Monarchs Way": {
+    "localAuthority": "Broxbourne Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 March 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 6 Great Cambridge Road (A10)": {
+    "localAuthority": "Broxbourne Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 May 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Friarage Road AQMA": {
+    "localAuthority": "Buckinghamshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Stoke Road AQMA": {
+    "localAuthority": "Buckinghamshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.2 (High Wycombe)": {
+    "localAuthority": "Buckinghamshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 December 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.3 (Marlow)": {
+    "localAuthority": "Buckinghamshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 December 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "South Bucks District Council AQMA No 2": {
+    "localAuthority": "Buckinghamshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Caerphilly Town Centre Air Quality Management Area": {
+    "localAuthority": "Caerphilly County Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2008",
+    "amendmentDate": "22 November 2013",
+    "status": "active"
+  },
+  "Hafod-yr-ynys Road Air Quality Management Area": {
+    "localAuthority": "Caerphilly County Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 November 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Calderdale AQMA No.1": {
+    "localAuthority": "Calderdale Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2005",
+    "amendmentDate": "1 April 2014",
+    "status": "active"
+  },
+  "Calderdale AQMA No.3 (Hebden Bridge)": {
+    "localAuthority": "Calderdale Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Calderdale AQMA No.6 (Brighouse)": {
+    "localAuthority": "Calderdale Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Calderdale Air Quality management Area No. 7": {
+    "localAuthority": "Calderdale Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2014",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Calderdale AQMA No.2": {
+    "localAuthority": "Calderdale Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Calderdale No. 8 New Bank": {
+    "localAuthority": "Calderdale Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 February 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Camden AQMA": {
+    "localAuthority": "Camden - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "20 September 2002",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Canterbury City Council AQMA No2": {
+    "localAuthority": "Canterbury City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "21 November 2011",
+    "amendmentDate": "9 April 2018",
+    "status": "active"
+  },
+  "Canterbury AQMA Herne No 1": {
+    "localAuthority": "Canterbury City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 April 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Ely Bridge AQMA": {
+    "localAuthority": "Cardiff County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 December 2000",
+    "amendmentDate": "1 January 2007",
+    "status": "active"
+  },
+  "Stephenson Court AQMA": {
+    "localAuthority": "Cardiff County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 November 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Llandaff AQMA": {
+    "localAuthority": "Cardiff County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Cardiff City Centre AQMA": {
+    "localAuthority": "Cardiff County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Carmarthenshire Llandeilo AQMA": {
+    "localAuthority": "Carmarthenshire County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 November 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Llanelli AQMA": {
+    "localAuthority": "Carmarthenshire County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "2 August 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Carmarthen AQMA": {
+    "localAuthority": "Carmarthenshire County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "2 August 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dungiven AQMA": {
+    "localAuthority": "Causeway Coast and Glens",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "18 November 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Air Quality Management Area No 4 Sandy": {
+    "localAuthority": "Central Bedfordshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 August 2015",
+    "amendmentDate": "7 October 2024",
+    "status": "active"
+  },
+  "Cherwell District Council Air Quality Management Area No. 1": {
+    "localAuthority": "Cherwell District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 January 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Air Quality Management Area No.4": {
+    "localAuthority": "Cherwell District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 October 2015",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Lewin Street, Middlewich": {
+    "localAuthority": "Cheshire East",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Thornton le Moors AQMA No. 4": {
+    "localAuthority": "Cheshire West and Chester Council",
+    "pollutants": [
+      "Sulphur dioxide (SO2)"
+    ],
+    "declarationDate": "30 September 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chester City Centre AQMA (No.5)": {
+    "localAuthority": "Cheshire West and Chester Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 May 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "No 1 Air Quality Management Area": {
+    "localAuthority": "Chesterfield Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2015",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chichester St Pancras AQMA": {
+    "localAuthority": "Chichester District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 May 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Rumbolds Hill Midhurst West Sussex": {
+    "localAuthority": "Chichester District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 January 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Edinburgh AQMA No.1 City Centre": {
+    "localAuthority": "Edinburgh City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2000",
+    "amendmentDate": "7 September 2015",
+    "status": "active"
+  },
+  "Edinburgh AQMA No.2 St Johns Road": {
+    "localAuthority": "Edinburgh City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2006",
+    "amendmentDate": "11 March 2024",
+    "status": "active"
+  },
+  "Great Junction Street": {
+    "localAuthority": "Edinburgh City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 March 2009",
+    "amendmentDate": "26 April 2013",
+    "status": "active"
+  },
+  "Air Quality Management Area Glasgow Road 2013": {
+    "localAuthority": "Edinburgh City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 April 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Salamander Street AQMA": {
+    "localAuthority": "Edinburgh City Council",
+    "pollutants": [],
+    "declarationDate": "20 January 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "City of London AQMA": {
+    "localAuthority": "Corporation of the City of London",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 January 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Tideford AQMA": {
+    "localAuthority": "Cornwall County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 May 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA Area 4 - Gunnislake": {
+    "localAuthority": "Cornwall County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 March 2014",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Launceston AQMA": {
+    "localAuthority": "Cornwall County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 February 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Birdlip AQMA": {
+    "localAuthority": "Cotswold District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 April 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Air Quality Management Area Durham City No. 1": {
+    "localAuthority": "Durham",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 May 2011",
+    "amendmentDate": "29 July 2022",
+    "status": "active"
+  },
+  "Coventry City-Wide AQMA": {
+    "localAuthority": "Coventry City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hazelwick Air Quality Management Area": {
+    "localAuthority": "Crawley Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 July 2015",
+    "amendmentDate": "11 March 2021",
+    "status": "active"
+  },
+  "Croydon AQMA": {
+    "localAuthority": "Croydon - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 April 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No 1 Hemel Hempstead": {
+    "localAuthority": "Dacorum Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 June 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No 2 Apsley": {
+    "localAuthority": "Dacorum Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 June 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dartford AQMA No.1": {
+    "localAuthority": "Dartford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 October 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dartford AQMA No.2": {
+    "localAuthority": "Dartford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dartford AQMA No.3": {
+    "localAuthority": "Dartford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Derby NO2 Aqma No.1 Ring Roads": {
+    "localAuthority": "Derby City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2001",
+    "amendmentDate": "23 October 2006",
+    "status": "active"
+  },
+  "Buxton Road AQMA": {
+    "localAuthority": "Derbyshire Dales District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 May 2021",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Derry AQMA": {
+    "localAuthority": "Derry City and Strabane District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 February 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dales Corner AQMA": {
+    "localAuthority": "Derry City and Strabane District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 December 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Buncrana Rd/Racecourse Rd AQMA": {
+    "localAuthority": "Derry City and Strabane District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 December 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Spencer Road": {
+    "localAuthority": "Derry City and Strabane District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "7 February 2013",
+    "amendmentDate": "16 October 2018",
+    "status": "active"
+  },
+  "AQMA No 5": {
+    "localAuthority": "Doncaster Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 6": {
+    "localAuthority": "Doncaster Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 September 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 7": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA No. 7A": {
+    "localAuthority": "Doncaster Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 August 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chideock AQMA": {
+    "localAuthority": "Dorset Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "2 May 2007",
+    "amendmentDate": "28 March 2012",
+    "status": "active"
+  },
+  "High Street/Ladywell AQMA": {
+    "localAuthority": "Dover District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "12 November 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dudley AQMA": {
+    "localAuthority": "Dudley Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "6 December 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Dundee AQMA": {
+    "localAuthority": "Dundee City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 July 2006",
+    "amendmentDate": "4 March 2013",
+    "status": "active"
+  },
+  "Ealing AQMA": {
+    "localAuthority": "Ealing - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "14 December 2000",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kirkintilloch Road AQMA": {
+    "localAuthority": "East Dunbartonshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 December 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bishops Stortford AQMA": {
+    "localAuthority": "East Hertfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "14 February 2007",
+    "amendmentDate": "14 July 2007",
+    "status": "active"
+  },
+  "Hertford AQMA": {
+    "localAuthority": "East Hertfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 May 2010",
+    "amendmentDate": "11 July 2019",
+    "status": "active"
+  },
+  "AQMA Sawbridgeworth": {
+    "localAuthority": "East Hertfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 February 2015",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "High Street, Musselburgh": {
+    "localAuthority": "East Lothian Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2014",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Burton-Upon-Trent AQMA No.1": {
+    "localAuthority": "East Staffordshire Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 May 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Eastleigh AQMA No.1 (A335)": {
+    "localAuthority": "Eastleigh Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 February 2005",
+    "amendmentDate": "3 February 2015",
+    "status": "active"
+  },
+  "Eastleigh AQMA No.3": {
+    "localAuthority": "Eastleigh Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 July 2006",
+    "amendmentDate": "30 August 2019",
+    "status": "active"
+  },
+  "Enfield AQMA": {
+    "localAuthority": "Enfield - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 March 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA Epping Forest District Council no2": {
+    "localAuthority": "Epping Forest District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2010",
+    "amendmentDate": "31 January 2025",
+    "status": "active"
+  },
+  "Exeter AQMA Order 2010": {
+    "localAuthority": "Exeter City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 March 2005",
+    "amendmentDate": "20 May 2011",
+    "status": "active"
+  },
+  "Falkirk AQMA (Annual Mean)": {
+    "localAuthority": "Falkirk Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "18 March 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Falkirk Town Centre": {
+    "localAuthority": "Falkirk Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 January 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wisbech AQMA No.1 (SO2)": {
+    "localAuthority": "Fenland District Council",
+    "pollutants": [
+      "Sulphur dioxide (SO2)"
+    ],
+    "declarationDate": "1 May 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wisbech AQMA No.2 (PM10)": {
+    "localAuthority": "Fenland District Council",
+    "pollutants": [],
+    "declarationDate": "1 May 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wisbech AQMA No.3 (NO2)": {
+    "localAuthority": "Fenland District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Whittlesey AQMA No.1 (SO2)": {
+    "localAuthority": "Fenland District Council",
+    "pollutants": [
+      "Sulphur dioxide (SO2)"
+    ],
+    "declarationDate": "1 September 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Glasgow City Centre AQMA": {
+    "localAuthority": "Glasgow City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2002",
+    "amendmentDate": "1 July 2007",
+    "status": "active"
+  },
+  "Byres Rd/Dumbarton Rd AQMA": {
+    "localAuthority": "Glasgow City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2007",
+    "amendmentDate": "1 October 2020",
+    "status": "active"
+  },
+  "Gravesham A2 AQMA": {
+    "localAuthority": "Gravesham Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2002",
+    "amendmentDate": "1 February 2012",
+    "status": "active"
+  },
+  "Gravesham A227 Wrotham Road/ B261 Old Road West AQMA": {
+    "localAuthority": "Gravesham Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Gravesham A226 One-way system AQMA": {
+    "localAuthority": "Gravesham Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Greenwich AQMA": {
+    "localAuthority": "Greenwich - Royal Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "The Street, Compton, Surrey": {
+    "localAuthority": "Guildford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "A281, The Street, Shalford, Guildford, Surrey": {
+    "localAuthority": "Guildford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 July 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Guildford Town Centre": {
+    "localAuthority": "Guildford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 October 2021",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hackney AQMA": {
+    "localAuthority": "Hackney - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 June 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hammersmith and Fulham AQMA": {
+    "localAuthority": "Hammersmith &amp; Fulham - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 November 2000",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kibworth AQMA": {
+    "localAuthority": "Harborough District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 November 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Haringey AQMA": {
+    "localAuthority": "Haringey - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Harrow AQMA": {
+    "localAuthority": "Harrow - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "14 January 2002",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Havering AQMA": {
+    "localAuthority": "Havering - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 September 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hereford AQMA": {
+    "localAuthority": "Herefordshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 November 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bargates Leominster AQMA": {
+    "localAuthority": "Herefordshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "HPBC AQMA No.1: Tintwistle": {
+    "localAuthority": "High Peak Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 September 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "HPBC AQMA No. 2 Dinting Vale": {
+    "localAuthority": "High Peak Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 December 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hillingdon AQMA": {
+    "localAuthority": "Hillingdon - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Horsham AQMA No1": {
+    "localAuthority": "Horsham District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 December 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hounslow AQMA": {
+    "localAuthority": "Hounslow - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "7 March 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Ipswich AQMA No.2": {
+    "localAuthority": "Ipswich Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2006",
+    "amendmentDate": "12 September 2017",
+    "status": "active"
+  },
+  "Ipswich AQMA No.3": {
+    "localAuthority": "Ipswich Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2006",
+    "amendmentDate": "19 August 2021",
+    "status": "active"
+  },
+  "Ipswich AQMA No.5": {
+    "localAuthority": "Ipswich Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "12 September 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Islington AQMA": {
+    "localAuthority": "Islington - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "19 January 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kensington and Chelsea AQMA": {
+    "localAuthority": "Kensington &amp; Chelsea - Royal Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2000",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Railway Road AQMA": {
+    "localAuthority": "Kings Lynn and West Norfolk Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hull AQMA No.1(A)": {
+    "localAuthority": "Kingston-upon-Hull City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kingston upon Thames AQMA": {
+    "localAuthority": "Kingston upon Thames - Royal Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "2 January 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kirklees AQMA 3": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "11 November 2025",
+    "status": "active"
+  },
+  "Kirklees AQMA 5": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kirklees AQMA 6": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kirklees AQMA 7": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "11 November 2025",
+    "status": "active"
+  },
+  "Kirklees AQMA 8": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kirklees AQMA 9": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 10": {
+    "localAuthority": "Kirklees Metropolitan Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 June 2019",
+    "amendmentDate": "11 November 2025",
+    "status": "active"
+  },
+  "Lambeth AQMA": {
+    "localAuthority": "Lambeth - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "City of Lancaster AQMA": {
+    "localAuthority": "Lancaster City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "12 March 2004",
+    "amendmentDate": "10 March 2026",
+    "status": "active"
+  },
+  "Leeds AQMAs 2017": {
+    "localAuthority": "Leeds City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2017",
+    "amendmentDate": "25 July 2024",
+    "status": "active"
+  },
+  "Leicester AQMA": {
+    "localAuthority": "Leicester City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 December 2000",
+    "amendmentDate": "25 April 2007",
+    "status": "active"
+  },
+  "Lewes Town Centre AQMA": {
+    "localAuthority": "Lewes District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 June 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "A259 Newhaven ring road and Town Centre No 1": {
+    "localAuthority": "Lewes District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 July 2014",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Lewisham AQMA": {
+    "localAuthority": "Lewisham - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Crofton Park and Honor Oak Park Air Quality Management Area": {
+    "localAuthority": "Lewisham - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 August 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "A5 Muckley Corner AQMA no.1": {
+    "localAuthority": "Lichfield District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Normandy Court, Dundonald": {
+    "localAuthority": "Lisburn City and Castlereagh District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 January 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Liverpool City AQMA": {
+    "localAuthority": "Liverpool City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Luton AQMA No.1": {
+    "localAuthority": "Luton Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 November 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Luton AQMA No.2": {
+    "localAuthority": "Luton Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 March 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Luton AQMA No.3": {
+    "localAuthority": "Luton Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 May 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "MDC Air Quality Management Area number 1": {
+    "localAuthority": "Maldon District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 December 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Central Medway AQMA": {
+    "localAuthority": "Medway Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 June 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Four Elms Hill AQMA": {
+    "localAuthority": "Medway Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Twynyrodyn Road AQMA": {
+    "localAuthority": "Merthyr Tydfil County Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 January 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Merton AQMA": {
+    "localAuthority": "Merton - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 November 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Ballykeel AQMA": {
+    "localAuthority": "Mid and East Antrim District Council",
+    "pollutants": [],
+    "declarationDate": "1 November 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Linenhall Street (Ballymena AQMA No.3)": {
+    "localAuthority": "Mid and East Antrim District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 February 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Crediton AQMA": {
+    "localAuthority": "Mid Devon District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 November 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Cullompton AQMA": {
+    "localAuthority": "Mid Devon District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 December 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "The Moy AQMA": {
+    "localAuthority": "Mid Ulster District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 October 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "The Newell Road Dungannon AQMA": {
+    "localAuthority": "Mid Ulster District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 October 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Olney AQMA": {
+    "localAuthority": "Milton Keynes Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 December 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Usk AQMA": {
+    "localAuthority": "Monmouthshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "21 November 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chepstow AQMA": {
+    "localAuthority": "Monmouthshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Neath Port Talbot AQMA Taibach/Margam": {
+    "localAuthority": "Neath &amp; Port Talbot County Borough Council",
+    "pollutants": [],
+    "declarationDate": "1 July 2000",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.1b (City Centre)": {
+    "localAuthority": "Newcastle City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.5 (Gosforth)": {
+    "localAuthority": "Newcastle City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newcastle-under-Lyme Town - Number 2": {
+    "localAuthority": "Newcastle-under-Lyme Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 January 2015",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newham AQMA (No. 2)": {
+    "localAuthority": "Newham - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 December 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Glasllwch AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Shaftesbury/Crindau AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "St Julians AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Malpas Road AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 May 2005",
+    "amendmentDate": "1 July 2018",
+    "status": "active"
+  },
+  "Caerleon Road AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 May 2005",
+    "amendmentDate": "1 July 2018",
+    "status": "active"
+  },
+  "Royal Oak Hill AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 May 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Caerleon High Street AQMA": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 May 2005",
+    "amendmentDate": "1 July 2018",
+    "status": "active"
+  },
+  "Newport - George Street AQMA 2018": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newport - HighCross AQMA 2018": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newport - Cefn Road AQMA 2018": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newport - Caerphilly Road AQMA 2018": {
+    "localAuthority": "Newport City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newry (Urban Centre) AQMA": {
+    "localAuthority": "Newry Mourne and Down District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 August 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newry Canal Street Air Quality Management Area": {
+    "localAuthority": "Newry Mourne and Down District Council",
+    "pollutants": [],
+    "declarationDate": "18 April 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "North Hertfordshire District Council Air Quality Management Order No.1 2012": {
+    "localAuthority": "North Hertfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 June 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "NHDC AQMA Order No.2 2016 - Paynes Park Roundabout, Hitchin": {
+    "localAuthority": "North Hertfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 January 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Motherwell AQMA": {
+    "localAuthority": "North Lanarkshire Council",
+    "pollutants": [],
+    "declarationDate": "12 December 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Scunthorpe AQMA": {
+    "localAuthority": "North Lincolnshire Council",
+    "pollutants": [],
+    "declarationDate": "1 November 2005",
+    "amendmentDate": "19 March 2018",
+    "status": "active"
+  },
+  "Castle Donnington AQMA": {
+    "localAuthority": "North West Leicestershire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 January 2008",
+    "amendmentDate": "22 January 2013",
+    "status": "active"
+  },
+  "Scarborough AQMA": {
+    "localAuthority": "North Yorkshire Council",
+    "pollutants": [
+      "Sulphur dioxide (SO2)"
+    ],
+    "declarationDate": "1 August 2004",
+    "amendmentDate": "29 August 2018",
+    "status": "active"
+  },
+  "Knaresborough AQMA No1": {
+    "localAuthority": "North Yorkshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 November 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Harrogate Air Quality Management No 1 Order 2017": {
+    "localAuthority": "North Yorkshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 October 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Central Norwich AQMA": {
+    "localAuthority": "Norwich City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "The City of Oxford": {
+    "localAuthority": "Oxford City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 September 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 1 2012": {
+    "localAuthority": "Pembrokeshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "6 July 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 2 2012": {
+    "localAuthority": "Pembrokeshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "6 July 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Air Quality Management Area Colne": {
+    "localAuthority": "Pendle Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Perth AQMA": {
+    "localAuthority": "Perth &amp; Kinross Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 May 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Portsmouth AQMA No.6": {
+    "localAuthority": "Portsmouth City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Portsmouth AQMA No.7": {
+    "localAuthority": "Portsmouth City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Portsmouth AQMA No.9": {
+    "localAuthority": "Portsmouth City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Portsmouth AQMA No.11": {
+    "localAuthority": "Portsmouth City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Portsmouth AQMA No.12": {
+    "localAuthority": "Portsmouth City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 1": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA No. 3": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA No. 4": {
+    "localAuthority": "Preston Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 May 2012",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 5": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "Reading AQMA": {
+    "localAuthority": "Reading Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "19 August 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Redbridge AQMA": {
+    "localAuthority": "Redbridge - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.3 (Horley)": {
+    "localAuthority": "Reigate and Banstead Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 April 2002",
+    "amendmentDate": "23 December 2003",
+    "status": "active"
+  },
+  "Hooley Air Quality Management Area": {
+    "localAuthority": "Reigate and Banstead Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 September 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Pontypridd Town Centre AQMA": {
+    "localAuthority": "Rhondda-Cynon-Taff Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2007",
+    "amendmentDate": "1 June 2025",
+    "status": "active"
+  },
+  "Tylorstown AQMA": {
+    "localAuthority": "Rhondda-Cynon-Taff Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Ferndale AQMA": {
+    "localAuthority": "Rhondda-Cynon-Taff Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Mountain Ash Town Centre AQMA": {
+    "localAuthority": "Rhondda-Cynon-Taff Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Nightingales Bush AQMA": {
+    "localAuthority": "Rhondda-Cynon-Taff Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Cymmer AQMA": {
+    "localAuthority": "Rhondda-Cynon-Taff Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2009",
+    "amendmentDate": "6 May 2016",
+    "status": "active"
+  },
+  "Whalley Road, Clitheroe No 1": {
+    "localAuthority": "Ribble Valley Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 May 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Richmond AQMA": {
+    "localAuthority": "Richmond - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 December 2000",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Rotherham AQMA 1 - Part1 (NO2)": {
+    "localAuthority": "Rotherham Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2002",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Rotherham AQMA 1 - Part 2 (NO2)": {
+    "localAuthority": "Rotherham Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2002",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Fitzwilliam Road NO2 AQMA": {
+    "localAuthority": "Rotherham Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "19 November 2004",
+    "amendmentDate": "13 May 2024",
+    "status": "active"
+  },
+  "Rotherham AQMA No.1 (Part 4)": {
+    "localAuthority": "Rotherham Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 April 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "The Rotherham Borough Council Air Quality Management Area 1 Rawmarsh 2016": {
+    "localAuthority": "Rotherham Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 December 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Rugby AQMA (NO2)": {
+    "localAuthority": "Rugby Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 December 2004",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "M25 AQMA": {
+    "localAuthority": "Runnymede Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 December 2001",
+    "amendmentDate": "20 October 2015",
+    "status": "active"
+  },
+  "Addlestone AQMA": {
+    "localAuthority": "Runnymede Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Sandwell AQMA": {
+    "localAuthority": "Sandwell Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 July 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 2": {
+    "localAuthority": "Sefton Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 January 2009",
+    "amendmentDate": "1 August 2016",
+    "status": "active"
+  },
+  "AQMA 3": {
+    "localAuthority": "Sefton Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 January 2009",
+    "amendmentDate": "1 August 2016",
+    "status": "active"
+  },
+  "AQMA 4": {
+    "localAuthority": "Sefton Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2012",
+    "amendmentDate": "1 August 2016",
+    "status": "active"
+  },
+  "AQMA 5": {
+    "localAuthority": "Sefton Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2012",
+    "amendmentDate": "1 August 2016",
+    "status": "active"
+  },
+  "Sheffield Citywide AQMA": {
+    "localAuthority": "Sheffield City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "10 March 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bridgnorth AQMA": {
+    "localAuthority": "Shropshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Slough AQMA No.1": {
+    "localAuthority": "Slough Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 June 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Slough AQMA No.2:": {
+    "localAuthority": "Slough Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 June 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Slough AQMA No. 4": {
+    "localAuthority": "Slough Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 January 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Slough AQMA No. 3": {
+    "localAuthority": "Slough Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "24 January 2011",
+    "amendmentDate": "10 May 2018",
+    "status": "active"
+  },
+  "Yeovil AQMA": {
+    "localAuthority": "Somerset Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2002",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kingswood AQMA": {
+    "localAuthority": "South Gloucestershire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "14 April 2010",
+    "amendmentDate": "16 December 2015",
+    "status": "active"
+  },
+  "Staple Hill AQMA": {
+    "localAuthority": "South Gloucestershire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "14 April 2010",
+    "amendmentDate": "25 May 2012",
+    "status": "active"
+  },
+  "A38 AQMA": {
+    "localAuthority": "South Hams District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "3 March 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Ivybridge AQMA": {
+    "localAuthority": "South Hams District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "13 July 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Totnes AQMA": {
+    "localAuthority": "South Hams District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "13 July 2009",
+    "amendmentDate": "8 June 2016",
+    "status": "active"
+  },
+  "South Kesteven District Council No 6": {
+    "localAuthority": "South Kesteven District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 August 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kendal AQMA": {
+    "localAuthority": "South Lakeland District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 May 2001",
+    "amendmentDate": "23 November 2010",
+    "status": "active"
+  },
+  "Henley AQMA": {
+    "localAuthority": "South Oxfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Watlington AQMA": {
+    "localAuthority": "South Oxfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 March 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 3 Lostock Hall": {
+    "localAuthority": "South Ribble Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 August 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 4 - Bamber Bridge": {
+    "localAuthority": "South Ribble Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 August 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA Order 5 Leyland": {
+    "localAuthority": "South Ribble Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No 5 Oak Farm": {
+    "localAuthority": "South Staffordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.1 (Bevois Valley)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 August 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.2 Bitterne Road West": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 August 2005",
+    "amendmentDate": "1 March 2013",
+    "status": "active"
+  },
+  "AQMA No.3 (Winchester Road)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 August 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.4 (Town Quay)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 August 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.5 (Redbridge Road)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 August 2005",
+    "amendmentDate": "1 March 2013",
+    "status": "active"
+  },
+  "AQMA No.6 (Romsey Road)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 August 2005",
+    "amendmentDate": "1 March 2013",
+    "status": "active"
+  },
+  "AQMA No.8 (Commercial Road)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 9 - Burgess Road": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.10 (New Road)": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 11 - Victoria Road": {
+    "localAuthority": "Southampton Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Air Quality Management Area Southend on Sea Borough Council No 1 Order 2016": {
+    "localAuthority": "Southend Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "7 November 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Southwark AQMA": {
+    "localAuthority": "Southwark - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 June 2003",
+    "amendmentDate": "8 June 2023",
+    "status": "active"
+  },
+  "Spelthorne AQMA": {
+    "localAuthority": "Spelthorne Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2003",
+    "amendmentDate": "1 April 2024",
+    "status": "active"
+  },
+  "St Albans AQMA No. 1": {
+    "localAuthority": "St Albans District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "2 November 2004",
+    "amendmentDate": "8 July 2009",
+    "status": "active"
+  },
+  "M6 AQMA No.1": {
+    "localAuthority": "St Helens Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 April 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newton High Street AQMA (No.2)": {
+    "localAuthority": "St Helens Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 April 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 3 Borough Rd": {
+    "localAuthority": "St Helens Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 November 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.4 (Reflection Court)": {
+    "localAuthority": "St Helens Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 November 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "SMDC AQMA No.1 : Leek": {
+    "localAuthority": "Staffordshire Moorlands District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 July 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "SMDC AQMA No.2 : Cellarhead": {
+    "localAuthority": "Staffordshire Moorlands District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 July 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Stoke On Trent Air Quality Management Area 2011": {
+    "localAuthority": "Stoke-on-Trent City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "4 April 2006",
+    "amendmentDate": "9 May 2011",
+    "status": "active"
+  },
+  "Studley AQMA": {
+    "localAuthority": "Stratford on Avon District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 March 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Stratford upon Avon District Council no 1 2010": {
+    "localAuthority": "Stratford on Avon District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 January 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Sutton AQMA": {
+    "localAuthority": "Sutton - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 June 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newington AQMA": {
+    "localAuthority": "Swale Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 May 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No 2/6 Ospringe extended": {
+    "localAuthority": "Swale Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "19 May 2011",
+    "amendmentDate": "3 May 2016",
+    "status": "active"
+  },
+  "AQMA No 4 - St Pauls Street, Sittingbourne": {
+    "localAuthority": "Swale Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "25 January 2013",
+    "amendmentDate": "22 October 2020",
+    "status": "active"
+  },
+  "AQMA No7 Keycol Hill, Sittingbourne, Kent": {
+    "localAuthority": "Swale Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 October 2020",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Swansea AQMA": {
+    "localAuthority": "Swansea City and County Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 September 2001",
+    "amendmentDate": "19 August 2010",
+    "status": "active"
+  },
+  "Kingshill Road, Swindon AQMA": {
+    "localAuthority": "Swindon Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "2 May 2018",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Teignmouth AQMA": {
+    "localAuthority": "Teignbridge District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 November 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Newton Abbot AQMA": {
+    "localAuthority": "Teignbridge District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 November 2005",
+    "amendmentDate": "5 November 2009",
+    "status": "active"
+  },
+  "Chorleywood NO2 AQMA": {
+    "localAuthority": "Three Rivers District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chorleywood PM10 AQMA": {
+    "localAuthority": "Three Rivers District Council",
+    "pollutants": [],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 12": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA 24": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "5 November 2014",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 25": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "13 July 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 26": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "13 July 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No. 8": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA No.10": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA No.9": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA 13": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA 15": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA 16": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2001",
+    "amendmentDate": "1 February 2005",
+    "status": "active"
+  },
+  "AQMA 21": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA 23": {
+    "localAuthority": "Thurrock Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 February 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Tonbridge and Malling - Tonbridge High Street AQMA": {
+    "localAuthority": "Tonbridge and Malling Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 June 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Tonbridge and Malling - Wateringbury AQMA": {
+    "localAuthority": "Tonbridge and Malling Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 June 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Tonbridge and Malling - Aylesford AQMA": {
+    "localAuthority": "Tonbridge and Malling Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 October 2008",
+    "amendmentDate": "30 October 2020",
+    "status": "active"
+  },
+  "Tonbridge and Malling - Larkfield AQMA": {
+    "localAuthority": "Tonbridge and Malling Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 October 2008",
+    "amendmentDate": "30 October 2020",
+    "status": "active"
+  },
+  "Tonbridge and Malling Borough Council Air Quality Management Area No 7 Borough Green": {
+    "localAuthority": "Tonbridge and Malling Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2013",
+    "amendmentDate": "30 October 2020",
+    "status": "active"
+  },
+  "Tower Hamlets AQMA": {
+    "localAuthority": "Tower Hamlets - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "6 December 2000",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Hawkhurst Air Quality Management Area": {
+    "localAuthority": "Tunbridge Wells Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 December 2021",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Botley AQMA": {
+    "localAuthority": "Vale of White Horse District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "29 April 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Marcham AQMA": {
+    "localAuthority": "Vale of White Horse District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 June 2015",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "M1 AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 March 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "A1 AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 March 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wakefield City AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 March 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Castleford AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 June 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Featherstone AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 June 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Pontefract AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 June 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Knottingley AQMA": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 June 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "City of Wakefield Hemsworth Air quality Management Area 2012": {
+    "localAuthority": "Wakefield Metropolitan District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "28 May 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Walsall AQMA": {
+    "localAuthority": "Walsall Metropolitan Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2006",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chuckery AQMA (PM10)": {
+    "localAuthority": "Walsall Metropolitan Borough Council",
+    "pollutants": [],
+    "declarationDate": "1 March 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Waltham Forest AQMA": {
+    "localAuthority": "Waltham Forest - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "31 October 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wandsworth AQMA": {
+    "localAuthority": "Wandsworth - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 January 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Warrington AQMA No.1": {
+    "localAuthority": "Warrington Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 November 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Warrington AQMA 4 2016": {
+    "localAuthority": "Warrington Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 November 2016",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Leamington Spa AQMA": {
+    "localAuthority": "Warwick District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Warwick AQMA (Amended 2008)": {
+    "localAuthority": "Warwick District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 July 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.2 (Vicarage Rd)": {
+    "localAuthority": "Watford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 February 2006",
+    "amendmentDate": "10 April 2019",
+    "status": "active"
+  },
+  "AQMA 3A Chalk Hill and Pinner Road": {
+    "localAuthority": "Watford Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "25 June 2015",
+    "amendmentDate": "10 April 2019",
+    "status": "active"
+  },
+  "Waverley AQMA No.1 - Farnham": {
+    "localAuthority": "Waverley Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 July 2005",
+    "amendmentDate": "23 August 2007",
+    "status": "active"
+  },
+  "Waverley AQMA No.2 - Godalming": {
+    "localAuthority": "Waverley Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "8 July 2005",
+    "amendmentDate": "23 August 2007",
+    "status": "active"
+  },
+  "Ormskirk AQMA": {
+    "localAuthority": "West Lancashire Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "20 January 2010",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Northampton AQMA No. 2": {
+    "localAuthority": "West Northamptonshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "25 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Northampton AQMA No.3": {
+    "localAuthority": "West Northamptonshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "25 April 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Towcester AQMA": {
+    "localAuthority": "West Northamptonshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 October 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Northampton AQMA No.4": {
+    "localAuthority": "West Northamptonshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 April 2008",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Northampton AQMA No.6": {
+    "localAuthority": "West Northamptonshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 April 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Northampton AQMA No.8": {
+    "localAuthority": "West Northamptonshire",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "16 April 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Chipping Norton AQMA": {
+    "localAuthority": "West Oxfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Witney AQMA": {
+    "localAuthority": "West Oxfordshire District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 March 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Westminster AQMA": {
+    "localAuthority": "Westminster - London Borough of",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 March 1999",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Westbury AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 November 2001",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Bradford-on-Avon AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "26 November 2001",
+    "amendmentDate": "30 April 2021",
+    "status": "active"
+  },
+  "Salisbury City Centre AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 November 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Salisbury Wilton Road AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "19 October 2007",
+    "amendmentDate": "3 March 2016",
+    "status": "active"
+  },
+  "Salisbury London Road AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "19 October 2007",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Marlborough Air Quality Management Area": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "13 May 2011",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Devizes Shanes Castle AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "23 November 2009",
+    "amendmentDate": "4 January 2013",
+    "status": "active"
+  },
+  "Calne AQMA": {
+    "localAuthority": "Wiltshire Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "25 February 2013",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Winchester Town Centre AQMA": {
+    "localAuthority": "Winchester City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "14 November 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA Order 2": {
+    "localAuthority": "Woking Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "15 May 2017",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wokingham Town Centre": {
+    "localAuthority": "Wokingham District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "9 December 2015",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Wolverhampton Air Quality Management Area 2005": {
+    "localAuthority": "Wolverhampton City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "22 March 2005",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Worcester City (Political Boundary)": {
+    "localAuthority": "Worcester City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "11 June 2019",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Worthing AQMA": {
+    "localAuthority": "Worthing Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "13 July 2010",
+    "amendmentDate": "15 December 2014",
+    "status": "active"
+  },
+  "Chapel Street AQMA": {
+    "localAuthority": "Wyre Borough Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "1 August 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Welch Gate AQMA": {
+    "localAuthority": "Wyre Forest District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "6 January 2003",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "Kidderminster Ring Road AQMA": {
+    "localAuthority": "Wyre Forest District Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "30 July 2009",
+    "amendmentDate": "",
+    "status": "active"
+  },
+  "AQMA No.5": {
+    "localAuthority": "York City Council",
+    "pollutants": [
+      "Nitrogen dioxide (NO2)"
+    ],
+    "declarationDate": "17 December 2018",
+    "amendmentDate": "",
+    "status": "active"
+  }
+}

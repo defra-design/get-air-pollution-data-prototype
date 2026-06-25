@@ -14,22 +14,45 @@
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Pollutants</dt>
-        <dd class="govuk-summary-list__value">Nitrogen dioxide (NO2), Particulate matter (PM10)</dd>
-      </div>
-      <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Start date</dt>
         <dd class="govuk-summary-list__value">10 January 2003</dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Status</dt>
-        <dd class="govuk-summary-list__value"><strong class="govuk-tag govuk-tag--red">Revoked</strong></dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Date revoked</dt>
-        <dd class="govuk-summary-list__value">1 December 2010</dd>
+        <dd class="govuk-summary-list__value"><strong class="govuk-tag govuk-tag--green">Active</strong></dd>
       </div>
     </dl>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">Amendment history</h2>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Date</th>
+          <th scope="col" class="govuk-table__header">Action</th>
+          <th scope="col" class="govuk-table__header">Pollutant</th>
+          <th scope="col" class="govuk-table__header">Objective</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" rowspan="2">10 January 2003</td>
+          <td class="govuk-table__cell" rowspan="2">Declared</td>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2)</td>
+          <td class="govuk-table__cell">Annual mean</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Particulate matter (PM10)</td>
+          <td class="govuk-table__cell">24-hour mean</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">1 December 2010</td>
+          <td class="govuk-table__cell">Amended</td>
+          <td class="govuk-table__cell">Nitrogen dioxide (NO2)</td>
+          <td class="govuk-table__cell">Annual mean</td>
+        </tr>
+      </tbody>
+    </table>
 
     <a href="../../map.html" role="button" id="map-btn" class="aq-button-secondary aq-button-secondary--icon" onclick="sessionStorage.setItem('mapFlyTo', JSON.stringify({lat:52.48,lng:-1.90,zoom:12}))">
       <span class="aq-button-secondary__icon">

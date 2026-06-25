@@ -314,6 +314,10 @@ body:has(.defra-map) {
 .station-info-row {
   margin-bottom: 10px;
 
+  dt {
+    margin-bottom: 5px;
+  }
+
   &:after {
     content: "";
     display: block;

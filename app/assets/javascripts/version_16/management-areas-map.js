@@ -6,9 +6,20 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 (function () {
   const AQMA_GEOJSON_URL = '/version-16/data/air-quality-management-areas.geojson';
+  const AQMA_LOOKUP_URL  = '/version-16/data/aqma-lookup.json';
   const AQMA_SOURCE_ID   = 'aqma-polygons';
-  const AQMA_FILL_LAYER  = 'aqma-fill';
-  const AQMA_LINE_LAYER  = 'aqma-line';
+  const AQMA_FILL_LAYER      = 'aqma-fill';
+  const AQMA_LINE_LAYER      = 'aqma-line';
+  const AQMA_HIGHLIGHT_LAYER = 'aqma-highlight';
+
+  let selectedFeatureId = null;
+  let aqmaLookup = {};
+
+  // Load AQMA metadata lookup (local authority, pollutants, dates)
+  fetch(AQMA_LOOKUP_URL, { cache: 'no-cache' })
+    .then(function (r) { return r.ok ? r.json() : {}; })
+    .then(function (data) { aqmaLookup = data; })
+    .catch(function () {});
 
   // --- Map initialisation ---
   const map = new maplibregl.Map({
@@ -52,7 +63,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     fetch(AQMA_GEOJSON_URL, { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (geojson) {
-        map.addSource(AQMA_SOURCE_ID, { type: 'geojson', data: geojson });
+        map.addSource(AQMA_SOURCE_ID, { type: 'geojson', data: geojson, generateId: true });
 
         // Fill layer
         map.addLayer({
@@ -76,9 +87,94 @@ import 'maplibre-gl/dist/maplibre-gl.css';
             'line-opacity': 0.8
           }
         });
+
+        // Highlight layer – thicker blue outline on selected polygon
+        map.addLayer({
+          id: AQMA_HIGHLIGHT_LAYER,
+          type: 'line',
+          source: AQMA_SOURCE_ID,
+          paint: {
+            'line-color': '#1d70b8',
+            'line-width': 4,
+            'line-opacity': 1
+          },
+          filter: ['==', ['id'], -1]  // nothing selected initially
+        });
+
+        // Hover cursor
+        map.on('mouseenter', AQMA_FILL_LAYER, () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', AQMA_FILL_LAYER, () => { map.getCanvas().style.cursor = ''; });
+
+        // Click handler – highlight polygon and show AQMA info panel
+        map.on('click', AQMA_FILL_LAYER, (e) => {
+          const feature = e.features && e.features[0];
+          if (!feature) return;
+          selectedFeatureId = feature.id;
+          map.setFilter(AQMA_HIGHLIGHT_LAYER, ['==', ['id'], selectedFeatureId]);
+          showAqmaInfo(feature.properties || {});
+        });
       })
       .catch(function (e) { console.warn('AQMA GeoJSON unavailable', e); });
   });
+
+  // --- AQMA info panel ---
+  const aqmaInfo        = document.getElementById('aqma-info');
+  const aqmaInfoContent = document.getElementById('aqma-info-content');
+  const closeAqmaBtn    = document.getElementById('close-aqma-info');
+
+  function showAqmaInfo(props) {
+    if (!aqmaInfo || !aqmaInfoContent) return;
+
+    const name    = props.name || 'Air Quality Management Area';
+    const docUrl  = props['documentation-url'] || '';
+    const endDate = props['end-date'] || '';
+
+    // Merge GeoJSON properties with lookup data
+    const meta = aqmaLookup[name] || {};
+    const localAuthority  = meta.localAuthority  || '';
+    const pollutants      = meta.pollutants && meta.pollutants.length ? meta.pollutants.join(', ') : '';
+    const declarationDate = meta.declarationDate || props['start-date'] || '';
+    const amendmentDate   = meta.amendmentDate   || '';
+    const isRevoked       = endDate && endDate !== '';
+    const statusTag       = isRevoked
+      ? '<strong class="govuk-tag govuk-tag--red">Revoked</strong>'
+      : '<strong class="govuk-tag govuk-tag--green">Active</strong>';
+
+    aqmaInfoContent.innerHTML = `
+      <div class="station-header">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">${name}</h2>
+        <span class="govuk-!-margin-top-1" style="display:block">${statusTag}</span>
+      </div>
+      <dl class="govuk-body-s station-info-list">
+        ${localAuthority ? `<div class="station-info-row"><dt>Local authority:</dt><dd>${localAuthority}</dd></div>` : ''}
+        ${pollutants ? `<div class="station-info-row"><dt>Pollutant${meta.pollutants && meta.pollutants.length > 1 ? 's' : ''}:</dt><dd>${pollutants}</dd></div>` : ''}
+        ${declarationDate ? `<div class="station-info-row"><dt>Start date:</dt><dd>${declarationDate}</dd></div>` : ''}
+        ${amendmentDate ? `<div class="station-info-row"><dt>Last amended:</dt><dd>${amendmentDate}</dd></div>` : ''}
+        ${isRevoked ? `<div class="station-info-row"><dt>Date revoked:</dt><dd>${endDate}</dd></div>` : ''}
+      </dl>
+      <p class="govuk-!-margin-top-3 govuk-!-margin-bottom-0">
+        <a href="/version-16/station/aqmas/birmingham-city-centre.html" class="govuk-link">More information about this AQMA</a>
+      </p>
+    `;
+
+    aqmaInfo.classList.add('visible');
+    aqmaInfo.setAttribute('aria-label', `Information for ${name}`);
+    aqmaInfo.focus();
+  }
+
+  function closeAqmaInfo() {
+    if (!aqmaInfo) return;
+    aqmaInfo.classList.remove('visible');
+    // Clear highlight
+    selectedFeatureId = null;
+    if (window.AQMap && window.AQMap.getLayer(AQMA_HIGHLIGHT_LAYER)) {
+      window.AQMap.setFilter(AQMA_HIGHLIGHT_LAYER, ['==', ['id'], -1]);
+    }
+  }
+
+  if (closeAqmaBtn) {
+    closeAqmaBtn.addEventListener('click', () => closeAqmaInfo());
+  }
 
   // --- Controls ---
   const zoomInBtn  = document.getElementById('zoomIn');
