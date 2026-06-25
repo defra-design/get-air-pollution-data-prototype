@@ -7,10 +7,17 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 (function () {
   const AQMA_GEOJSON_URL = '/version-16/data/air-quality-management-areas.geojson';
   const AQMA_LOOKUP_URL  = '/version-16/data/aqma-lookup.json';
+  const SCA_GEOJSON_URL  = '/version-16/data/smoke-control-areas.geojson';
   const AQMA_SOURCE_ID   = 'aqma-polygons';
+  const SCA_SOURCE_ID    = 'sca-polygons';
   const AQMA_FILL_LAYER      = 'aqma-fill';
   const AQMA_LINE_LAYER      = 'aqma-line';
   const AQMA_HIGHLIGHT_LAYER = 'aqma-highlight';
+  const SCA_FILL_LAYER       = 'sca-fill';
+  const SCA_LINE_LAYER       = 'sca-line';
+  const SCA_HIGHLIGHT_LAYER  = 'sca-highlight';
+
+  let selectedScaFeatureId = null;
 
   let selectedFeatureId = null;
   let aqmaLookup = {};
@@ -115,6 +122,72 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         });
       })
       .catch(function (e) { console.warn('AQMA GeoJSON unavailable', e); });
+
+    // Load and display SCA polygons (hidden initially)
+    fetch(SCA_GEOJSON_URL, { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (geojson) {
+        map.addSource(SCA_SOURCE_ID, { type: 'geojson', data: geojson, generateId: true });
+
+        map.addLayer({
+          id: SCA_FILL_LAYER,
+          type: 'fill',
+          source: SCA_SOURCE_ID,
+          layout: { visibility: 'none' },
+          paint: { 'fill-color': '#00703c', 'fill-opacity': 0.2 }
+        });
+
+        map.addLayer({
+          id: SCA_LINE_LAYER,
+          type: 'line',
+          source: SCA_SOURCE_ID,
+          layout: { visibility: 'none' },
+          paint: { 'line-color': '#0b0c0c', 'line-width': 1.5, 'line-opacity': 0.8 }
+        });
+
+        // SCA highlight layer
+        map.addLayer({
+          id: SCA_HIGHLIGHT_LAYER,
+          type: 'line',
+          source: SCA_SOURCE_ID,
+          layout: { visibility: 'none' },
+          paint: { 'line-color': '#00703c', 'line-width': 4, 'line-opacity': 1 },
+          filter: ['==', ['id'], -1]
+        });
+
+        // Hover cursor for SCA
+        map.on('mouseenter', SCA_FILL_LAYER, () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', SCA_FILL_LAYER, () => { map.getCanvas().style.cursor = ''; });
+
+        // Click handler for SCA
+        map.on('click', SCA_FILL_LAYER, (e) => {
+          const feature = e.features && e.features[0];
+          if (!feature) return;
+          selectedScaFeatureId = feature.id;
+          map.setFilter(SCA_HIGHLIGHT_LAYER, ['==', ['id'], selectedScaFeatureId]);
+          showScaInfo(feature.properties || {});
+        });
+      })
+      .catch(function (e) { console.warn('SCA GeoJSON unavailable', e); });
+  });
+
+  // --- Layer switcher (radio buttons) ---
+  document.querySelectorAll('input[name="map-layer"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      const isAqma = this.value === 'aqma';
+      closeAqmaInfo();
+      closeScaInfo();
+      if (map.getLayer(AQMA_FILL_LAYER)) {
+        map.setLayoutProperty(AQMA_FILL_LAYER,      'visibility', isAqma ? 'visible' : 'none');
+        map.setLayoutProperty(AQMA_LINE_LAYER,      'visibility', isAqma ? 'visible' : 'none');
+        map.setLayoutProperty(AQMA_HIGHLIGHT_LAYER, 'visibility', isAqma ? 'visible' : 'none');
+      }
+      if (map.getLayer(SCA_FILL_LAYER)) {
+        map.setLayoutProperty(SCA_FILL_LAYER,      'visibility', isAqma ? 'none' : 'visible');
+        map.setLayoutProperty(SCA_LINE_LAYER,      'visibility', isAqma ? 'none' : 'visible');
+        map.setLayoutProperty(SCA_HIGHLIGHT_LAYER, 'visibility', isAqma ? 'none' : 'visible');
+      }
+    });
   });
 
   // --- AQMA info panel ---
@@ -172,8 +245,43 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     }
   }
 
+  function closeScaInfo() {
+    if (!aqmaInfo) return;
+    aqmaInfo.classList.remove('visible');
+    selectedScaFeatureId = null;
+    if (window.AQMap && window.AQMap.getLayer(SCA_HIGHLIGHT_LAYER)) {
+      window.AQMap.setFilter(SCA_HIGHLIGHT_LAYER, ['==', ['id'], -1]);
+    }
+  }
+
+  function showScaInfo(props) {
+    if (!aqmaInfo || !aqmaInfoContent) return;
+    const name = props.LAD23NM || 'Smoke Control Area';
+    aqmaInfoContent.innerHTML = `
+      <div class="station-header">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">${name}</h2>
+        <span class="govuk-!-margin-top-1" style="display:block"><strong class="govuk-tag govuk-tag--green">Active</strong></span>
+      </div>
+      <dl class="govuk-body-s station-info-list">
+        <div class="station-info-row">
+          <dt>Type:</dt>
+          <dd>Smoke Control Area</dd>
+        </div>
+      </dl>
+      <p class="govuk-!-margin-top-3 govuk-!-margin-bottom-0">
+        <a href="/version-16/station/scas/birmingham-city-centre.html" class="govuk-link">More information about this SCA</a>
+      </p>
+    `;
+    aqmaInfo.classList.add('visible');
+    aqmaInfo.setAttribute('aria-label', `Information for ${name}`);
+    aqmaInfo.focus();
+  }
+
   if (closeAqmaBtn) {
-    closeAqmaBtn.addEventListener('click', () => closeAqmaInfo());
+    closeAqmaBtn.addEventListener('click', () => {
+      closeAqmaInfo();
+      closeScaInfo();
+    });
   }
 
   // --- Controls ---

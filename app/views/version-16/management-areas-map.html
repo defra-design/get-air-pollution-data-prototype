@@ -34,10 +34,28 @@
         </button>
 
         <div class="btn-container measurement-container" id="measurement-container">
-          <strong><span style="font-size: 19px;">Air Quality Management Areas</span></strong>
-          <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0" style="color: #505a5f;">
-            Showing all AQMAs across the UK.
+          <strong><span style="font-size: 19px;">Management areas</span></strong>
+          <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-2" style="color: #505a5f;">
+            Select a layer to display on the map.
           </p>
+          <div class="govuk-form-group govuk-!-margin-bottom-0">
+            <fieldset class="govuk-fieldset">
+              <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="layer-aqma" name="map-layer" type="radio" value="aqma" checked>
+                  <label class="govuk-label govuk-radios__label" for="layer-aqma">
+                    Air Quality Management Areas (AQMAs)
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="layer-sca" name="map-layer" type="radio" value="sca">
+                  <label class="govuk-label govuk-radios__label" for="layer-sca">
+                    Smoke Control Areas (SCAs)
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
         </div>
       </div>
     </div>
