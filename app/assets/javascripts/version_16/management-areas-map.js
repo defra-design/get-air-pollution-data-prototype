@@ -66,6 +66,14 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       sessionStorage.removeItem('mapFlyTo');
     }
 
+    // Restore active layer from sessionStorage
+    const savedLayer = sessionStorage.getItem('mapLayer');
+    if (savedLayer === 'sca') {
+      const radio = document.getElementById('layer-sca');
+      if (radio) radio.checked = true;
+    }
+    sessionStorage.removeItem('mapLayer');
+
     // Load and display AQMA polygons
     fetch(AQMA_GEOJSON_URL, { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
@@ -167,6 +175,17 @@ import 'maplibre-gl/dist/maplibre-gl.css';
           map.setFilter(SCA_HIGHLIGHT_LAYER, ['==', ['id'], selectedScaFeatureId]);
           showScaInfo(feature.properties || {});
         });
+        // Apply initial visibility based on saved/default layer choice
+        const activeLayer = (document.getElementById('layer-sca') && document.getElementById('layer-sca').checked) ? 'sca' : 'aqma';
+        const scaVisible = activeLayer === 'sca' ? 'visible' : 'none';
+        map.setLayoutProperty(SCA_FILL_LAYER,      'visibility', scaVisible);
+        map.setLayoutProperty(SCA_LINE_LAYER,      'visibility', scaVisible);
+        map.setLayoutProperty(SCA_HIGHLIGHT_LAYER, 'visibility', scaVisible);
+        if (activeLayer === 'sca') {
+          map.setLayoutProperty(AQMA_FILL_LAYER,      'visibility', 'none');
+          map.setLayoutProperty(AQMA_LINE_LAYER,      'visibility', 'none');
+          map.setLayoutProperty(AQMA_HIGHLIGHT_LAYER, 'visibility', 'none');
+        }
       })
       .catch(function (e) { console.warn('SCA GeoJSON unavailable', e); });
   });
