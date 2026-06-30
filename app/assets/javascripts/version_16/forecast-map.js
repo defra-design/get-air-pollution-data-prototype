@@ -557,7 +557,7 @@ function hideKeyOverlay({ byUser = false } = {}) {
 let map;
 let currentDateIndex = 0;
 const FORECAST_DAYS = 5;
-const FORECAST_POINT_ZOOM_THRESHOLD = 7;
+const FORECAST_POINT_ZOOM_THRESHOLD = 11;
 const FORECAST_POLYGONS_SOURCE_ID = 'forecast-polygons';
 const FORECAST_POLYGONS_FILL_LAYER_ID = 'forecast-polygons-fill';
 const FORECAST_POLYGONS_OUTLINE_LAYER_ID = 'forecast-polygons-outline';
@@ -676,7 +676,7 @@ function initMap() {
     center: [-3.5, 54],
     zoom: 5,
     minZoom: 4,
-    maxZoom: 10,
+    maxZoom: 16,
     pitchWithRotate: false,
     dragRotate: false
   });
