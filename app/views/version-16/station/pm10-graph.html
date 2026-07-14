@@ -139,7 +139,7 @@
 
         <p class="govuk-hint govuk-!-margin-top-2 govuk-!-margin-bottom-0" id="js-legal-hint">
           The pollution levels shown are measured against
-          <a href="https://draft-origin.publishing.service.gov.uk/guidance/air-pollution-uk-legal-limits?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMjc3ZmU0My03OGIyLTRjYTAtOTFhMy0xODU5OTI0OWQzZGQiLCJjb250ZW50X2lkIjoiMjMyYzJiZTgtMzkxNi00Mjg0LTk4MjItMThkYzExZmQyNDdhIiwiaWF0IjoxNzcwNjM5MzY3LCJleHAiOjE3NzMwNTg1Njd9.AFLKLYAaERy3yJCUFI5RTolAxkiCeQqDH0tgH8AxQno&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
+          <a href="https://draft-origin.publishing.service.gov.uk/guidance/air-pollution-uk-legal-limits?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMjc3ZmU0My03OGIyLTRjYTAtOTFhMy0xODU5OTI0OWQzZGQiLCJjb250ZW50X2lkIjoiMjMyYzJiZTgtMzkxNi00Mjg0LTk4MjItMThkYzExZmQyNDdhIiwiaWF0IjoxNzg0MDQyNDk4LCJleHAiOjE3ODY3MjA4OTh9.C-ZSqWMjRJSkDpE_y_CIBu8SOTzJptHchqAoUQnR8EU&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
              class="govuk-link">
             UK legal limits</a>.
         </p>
@@ -635,7 +635,7 @@ function renderGraphBlock() {
   const btnClass = 'aq-button-secondary aq-button-secondary--icon govuk-!-margin-bottom-1';
   const legalLimitsUrl = (legalHint && legalHint.querySelector('a'))
     ? legalHint.querySelector('a').getAttribute('href')
-    : 'https://www.gov.uk/guidance/air-pollution-uk-legal-limits';
+    : 'https://draft-origin.publishing.service.gov.uk/guidance/air-pollution-uk-legal-limits?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmMjc3ZmU0My03OGIyLTRjYTAtOTFhMy0xODU5OTI0OWQzZGQiLCJjb250ZW50X2lkIjoiMjMyYzJiZTgtMzkxNi00Mjg0LTk4MjItMThkYzExZmQyNDdhIiwiaWF0IjoxNzg0MDQyNDk4LCJleHAiOjE3ODY3MjA4OTh9.C-ZSqWMjRJSkDpE_y_CIBu8SOTzJptHchqAoUQnR8EU&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share';
 
   const is24h = mode === 'rolling' && rollingPeriod === '24h';
 
