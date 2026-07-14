@@ -31,12 +31,20 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const LIMIT_O3 = 50; // μg/m3
   const LIMIT_NO2 = 200; // μg/m3
 
-  // GOV.UK accessible colours per pollutant (no reds/oranges - those are reserved for exceedance)
+  const CHART_COLOURS = {
+    darkBlue: "#12436D",
+    turquoise: "#28A197",
+    darkPink: "#801650",
+    orange: "#F46A25",
+    darkGrey: "#3D3D3D",
+    lightPurple: "#A285D1"
+  };
+
   const POLLUTANT_COLOURS = {
-    "PM2.5": "#1d70b8",  // GOV.UK blue
-    "PM10":  "#00703c",  // GOV.UK green
-    "O3":    "#4c2c92",  // GOV.UK purple
-    "NO2":   "#28a197"   // GOV.UK turquoise
+    "PM2.5": CHART_COLOURS.darkBlue,
+    "PM10":  CHART_COLOURS.turquoise,
+    "O3":    CHART_COLOURS.lightPurple,
+    "NO2":   CHART_COLOURS.darkPink
   };
 
   let focusPointsCreated = false;
@@ -390,9 +398,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
         .style("opacity", 0);
 
      
-      // Draw segmented lines for all four pollutants
-      // - red when exceedance=Y
-      // - pollutant-specific colour otherwise
+      // Draw segmented lines for all four pollutants using pollutant-specific colours.
       const segmentsPM25 = splitByStatusAndExceedance(dataPM25);
       const segmentsPM10 = splitByStatusAndExceedance(dataPM10);
       const segmentsO3 = splitByStatusAndExceedance(dataO3);
@@ -403,9 +409,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
           if (!seg.data || seg.data.length < 2) return;
 
           const isVerified = seg.status === "V";
-          const isExceedance = seg.exceedance === "Y";
-          const baseColor = POLLUTANT_COLOURS[seg.data[0].pollutant] || "#1d70b8";
-          const color = isExceedance ? "#d4351c" : baseColor;
+          const baseColor = POLLUTANT_COLOURS[seg.data[0].pollutant] || CHART_COLOURS.darkBlue;
+          const color = baseColor;
 
           if (isVerified) {
             svg
@@ -520,13 +525,27 @@ window.GOVUKPrototypeKit.documentReady(() => {
           const excTag = row.d.exceedance === "Y"
             ? ' <strong class="govuk-tag govuk-tag--red govuk-!-font-size-14">Above limit</strong>'
             : '';
-          const dotColour = row.d.exceedance === "Y" ? "#d4351c" : POLLUTANT_COLOURS[row.key];
+          const dotColour = POLLUTANT_COLOURS[row.key];
           const dot = `<svg width="18" height="18" viewBox="-1 -1 18 18" style="flex-shrink:0; margin-right:6px;" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="${dotColour}" stroke="none"/></svg>`;
           html += `<div style="font-size:19px; margin-bottom:4px; display:flex; align-items:center;">${dot}<span><strong>${label}</strong> | ${val}${excTag}</span></div>`;
         });
         const anyUnverified = rows.some(function (r) { return r.d.status !== "V"; });
         html += `<div style="margin-top:8px; font-size:19px;">${formatDateTime(datePoint)}</div>`;
         html += `<div style="margin-top:4px; font-size:19px; color:#505a5f;">${anyUnverified ? "Unverified" : "Verified"}</div>`;
+        return html;
+      }
+
+      function tooltipHtmlSingle(d) {
+        const label = POLLUTANT_FULL_NAMES[d.pollutant] || d.pollutant;
+        const val = d.population === 0 ? "No data" : `${d.population.toFixed(0)} μg/m³`;
+        const excTag = d.exceedance === "Y"
+          ? ' <strong class="govuk-tag govuk-tag--red govuk-!-font-size-14">Above limit</strong>'
+          : '';
+        const dotColour = POLLUTANT_COLOURS[d.pollutant] || CHART_COLOURS.darkBlue;
+        const dot = `<svg width="18" height="18" viewBox="-1 -1 18 18" style="flex-shrink:0; margin-right:6px;" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="${dotColour}" stroke="none"/></svg>`;
+        let html = `<div style="font-size:19px; margin-bottom:4px; display:flex; align-items:center;">${dot}<span><strong>${label}</strong> | ${val}${excTag}</span></div>`;
+        html += `<div style="margin-top:8px; font-size:19px;">${formatDateTime(d.date)}</div>`;
+        html += `<div style="margin-top:4px; font-size:19px; color:#505a5f;">${d.status === "V" ? "Verified" : "Unverified"}</div>`;
         return html;
       }
 
@@ -573,7 +592,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
           const d = dataMap[key];
           const xPos = x(d.date);
           const yPos = y(d.population);
-          const color = d.exceedance === "Y" ? "#d4351c" : POLLUTANT_COLOURS[key];
+          const color = POLLUTANT_COLOURS[key];
           hoverCircles[key]
             .attr("cx", xPos)
             .attr("cy", yPos)
@@ -605,42 +624,31 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
       // Keyboard focus mode
       function handleFocus(event, d) {
-        // d is the active pollutant's data point; show all circles at current x
-        const bisectDate = d3.bisector((pt) => pt.date).left;
-        const allData = {
-          "PM2.5": dataPM25,
-          "PM10":  dataPM10,
-          "O3":    dataO3,
-          "NO2":   dataNo2
-        };
-
-        POLLUTANT_KEYS.forEach(function (key) {
-          const data = allData[key];
-          const i = bisectDate(data, d.date, 1);
-          const d0 = data[i - 1];
-          const d1 = data[i];
-          const pt = !d1 ? d0 : Math.abs(d.date - d0.date) <= Math.abs(d.date - d1.date) ? d0 : d1;
-          if (!pt) return;
-          const xPos = x(pt.date);
-          const yPos = y(pt.population);
-          const color = pt.exceedance === "Y" ? "#d4351c" : POLLUTANT_COLOURS[key];
-          hoverCircles[key]
-            .attr("cx", xPos)
-            .attr("cy", yPos)
-            .attr("fill", color)
-            .attr("r", 6)
-            .style("opacity", 1);
-        });
-
         const xPos = x(d.date);
         const yPos = y(d.population);
         const activePollutant = kbPollutants[kbPollutantIdx].name;
+
+        svg.selectAll("path[data-pollutant]").style("opacity", function () {
+          const pollutant = d3.select(this).attr("data-pollutant");
+          return pollutant === activePollutant ? 1 : 0.2;
+        });
+
+        POLLUTANT_KEYS.forEach(function (key) {
+          hoverCircles[key].attr("r", 0).style("opacity", 0);
+        });
+
+        hoverCircles[activePollutant]
+          .attr("cx", xPos)
+          .attr("cy", yPos)
+          .attr("fill", POLLUTANT_COLOURS[activePollutant] || CHART_COLOURS.darkBlue)
+          .attr("r", 6)
+          .style("opacity", 1);
 
         focusRing.attr("cx", xPos).attr("cy", yPos).style("opacity", 1);
         focusInnerCircle
           .attr("cx", xPos)
           .attr("cy", yPos)
-          .attr("fill", d.exceedance === "Y" ? "#7d1a1a" : POLLUTANT_COLOURS[activePollutant] || "#144e8c")
+          .attr("fill", POLLUTANT_COLOURS[activePollutant] || CHART_COLOURS.darkBlue)
           .style("opacity", 1);
 
         verticalLine
@@ -650,17 +658,12 @@ window.GOVUKPrototypeKit.documentReady(() => {
           .attr("y2", height)
           .style("opacity", 1);
 
-        // Build dataMap for all-pollutant tooltip
-        const dataMap = {};
-        POLLUTANT_KEYS.forEach(function (key) {
-          const data = allData[key];
-          const i = bisectDate(data, d.date, 1);
-          const d0 = data[i - 1];
-          const d1 = data[i];
-          dataMap[key] = !d1 ? d0 : Math.abs(d.date - d0.date) <= Math.abs(d.date - d1.date) ? d0 : d1;
-        });
+        hoverCircles[activePollutant].raise();
+        focusRing.raise();
+        focusInnerCircle.raise();
+        verticalLine.raise();
 
-        tooltip.style("display", "block").html(tooltipHtml(dataMap, d.date));
+        tooltip.style("display", "block").html(tooltipHtmlSingle(d));
         positionTooltip(xPos);
 
         d3.select("#chart-aria-live").text(
@@ -676,6 +679,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
         focusRing.style("opacity", 0);
         focusInnerCircle.style("opacity", 0);
         d3.select("#chart-aria-live").text("");
+        svg.selectAll("path[data-pollutant]").style("opacity", 1);
         // Remove data point dots
         svg.select(".kb-data-points").selectAll("circle").remove();
       }
@@ -703,7 +707,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
             .attr("cx", x(pt.date))
             .attr("cy", y(pt.population))
             .attr("r", 6)
-            .attr("fill", pt.exceedance === "Y" ? "#d4351c" : "#1d70b8")
+            .attr("fill", POLLUTANT_COLOURS[activePoll.name] || CHART_COLOURS.darkBlue)
             .attr("stroke", "#ffffff")
             .attr("stroke-width", 1)
             .style("pointer-events", "none");
@@ -711,8 +715,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
         handleFocus(null, d);
         // Ensure focus indicators sit above the data point dots
-        outerCircle.raise();
-        innerCircle.raise();
+        hoverCircles[activePoll.name].raise();
         focusRing.raise();
         focusInnerCircle.raise();
         verticalLine.raise();

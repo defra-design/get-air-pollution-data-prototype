@@ -609,27 +609,24 @@ function renderGraphBlock() {
   const id = getGraphIdForSelection();
 
   const isWeek = mode === 'rolling' && rollingPeriod === '7d';
-  const keyHtml = isWeek ? `
+  const isRolling = mode === 'rolling';
+  const keyHtml = isRolling ? `
     <ul class="aq-chart-key" role="list" aria-label="Chart colour key">
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#1d70b8"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#12436D"/></svg>
         <span class="govuk-body govuk-!-margin-bottom-0">PM2.5</span>
       </li>
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#00703c"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#28A197"/></svg>
         <span class="govuk-body govuk-!-margin-bottom-0">PM10</span>
       </li>
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#28a197"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#801650"/></svg>
         <span class="govuk-body govuk-!-margin-bottom-0">Nitrogen dioxide</span>
       </li>
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#4c2c92"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#A285D1"/></svg>
         <span class="govuk-body govuk-!-margin-bottom-0">Ozone</span>
-      </li>
-      <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#d4351c"/></svg>
-        <span class="govuk-body govuk-!-margin-bottom-0">Above legal limit</span>
       </li>
     </ul>
   ` : '';
@@ -791,24 +788,20 @@ function swapChartHtml() {
   const keyHtml = isRolling ? `
     <ul class="aq-chart-key" role="list" aria-label="Chart colour key">
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#1d70b8"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#12436D"/></svg>
         <span>PM2.5</span>
       </li>
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#00703c"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#28A197"/></svg>
         <span>PM10</span>
       </li>
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#28a197"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#801650"/></svg>
         <span>Nitrogen dioxide</span>
       </li>
       <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#4c2c92"/></svg>
+        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#A285D1"/></svg>
         <span>Ozone</span>
-      </li>
-      <li class="aq-chart-key__item">
-        <svg width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="#d4351c"/></svg>
-        <span>Above legal limit</span>
       </li>
     </ul>
   ` : '';
