@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block content %}
+<style>
+  .govuk-hint-text-black {
+    color: #0b0c0c;
+  }
+</style>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -132,9 +137,10 @@
         <!-- Heavy metals -->
         <div class="govuk-radios__item">
           <input class="govuk-radios__input" id="pg-heavy-metals" name="pollutant-group" type="radio" value="heavy-metals" aria-describedby="pg-heavy-metals-hint">
-          <label class="govuk-label govuk-radios__label" for="pg-heavy-metals">Heavy metals in air</label>
+          <label class="govuk-label govuk-radios__label" for="pg-heavy-metals">Heavy metals</label>
           <div id="pg-heavy-metals-hint" class="govuk-hint govuk-radios__hint">
-  arsenic (As), cadmium (Cd), chromium (Cr), cobalt (Co), copper (Cu), iron (Fe), lead (Pb), manganese (Mn), nickel (Ni), selenium (Se), vanadium (V), zinc (Zn)
+  arsenic (As), cadmium (Cd), chromium (Cr), cobalt (Co), copper (Cu), iron (Fe), lead (Pb), manganese (Mn), nickel (Ni), selenium (Se), vanadium (V), zinc (Zn)<br><br>
+  <div class="govuk-hint-text-black">Currently these pollutants are only available by downloading all years and stations, you cannot select a time period or location.</div>
 </div>
         </div>
 
@@ -163,14 +169,14 @@
           <div id="pg-aganet-hint" class="govuk-hint govuk-radios__hint">
   particulate nitrate (NO3), particulate nitrite (NO2), particulate sulphate (SO4), particulate chloride (Cl), particulate ammonium (NH4), particulate sodium (Na), particulate potassium (K), particulate calcium (Ca), particulate magnesium (Mg), gaseous nitric acid (HNO3), gaseous nitrous acid (HNO2), gaseous hydrochloric acid (HCl)
 </div>
-        </div>
+</div>
 
         <!-- PrecipNet -->
         <div class="govuk-radios__item">
           <input class="govuk-radios__input" id="pg-precipnet" name="pollutant-group" type="radio" value="precipnet" aria-describedby="pg-precipnet-hint">
-          <label class="govuk-label govuk-radios__label" for="pg-precipnet">Precipitation chemistry</label>
+          <label class="govuk-label govuk-radios__label" for="pg-precipnet">Pollutants in rainwater</label>
           <div id="pg-precipnet-hint" class="govuk-hint govuk-radios__hint">
-  aluminium (Al), antinomy (Sb), arsenic (As), barium (Ba), beryllium (Be), cadmium (Cd), caesium (Cs), chromium (Cr), cobalt (Co), copper (Cu), iron (Fe), lead (Pb), lithium (Li), manganese (Mn), mercury (Hg), molybdenum (Mo), nickel (Ni), rubidium (Rb), selenium (Se), strontium (Sr), tin (Sn), titanium (Ti), tungsten (W), uranium (U), vanadium (V), zinc (Zn) — measured in precipitation
+  aluminium (Al), antinomy (Sb), arsenic (As), barium (Ba), beryllium (Be), cadmium (Cd), caesium (Cs), chromium (Cr), cobalt (Co), copper (Cu), iron (Fe), lead (Pb), lithium (Li), manganese (Mn), mercury (Hg), molybdenum (Mo), nickel (Ni), rubidium (Rb), selenium (Se), strontium (Sr), tin (Sn), titanium (Ti), tungsten (W), uranium (U), vanadium (V), zinc (Zn)
 </div>
         </div>
 

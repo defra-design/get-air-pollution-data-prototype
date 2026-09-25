@@ -42,6 +42,22 @@
           </strong>
         </div>
 
+        <div class="govuk-warning-text" id="zones-agglomerations-warning" hidden>
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            Only the Automatic Urban and Rural Network is available for zones and agglomerations
+          </strong>
+        </div>
+
+        <div class="govuk-warning-text" id="heavy-metals-warning" hidden>
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            Currently these pollutants are only available by downloading all years and stations, you cannot select a time period or location
+          </strong>
+        </div>
+
         <div id="station-inset-container" aria-live="polite" style="display: none;"></div>
 
 <!-- <p class="govuk-body">Choose pollutant(s)</p> -->
@@ -973,8 +989,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const last7DaysWarning = document.getElementById('last-7-days-warning');
+  const zonesAggWarning = document.getElementById('zones-agglomerations-warning');
+  const heavyMetalsWarning = document.getElementById('heavy-metals-warning');
+  const zonesAggRaw = sessionStorage.getItem('selectedZonesAgglomerations');
+  let zonesAggSelected = [];
+  try { zonesAggSelected = zonesAggRaw ? JSON.parse(zonesAggRaw) : []; } catch { zonesAggSelected = []; }
+  const hasZonesAgg = Array.isArray(zonesAggSelected) && zonesAggSelected.length > 0;
+  const hasHeavyMetals = sessionStorage.getItem('selectedPollutantGroup') === 'heavy-metals';
+
+  if (heavyMetalsWarning) {
+    heavyMetalsWarning.hidden = !hasHeavyMetals;
+  }
+  if (zonesAggWarning) {
+    // Heavy metals warning supersedes all other warnings
+    zonesAggWarning.hidden = !hasZonesAgg || hasHeavyMetals;
+  }
   if (last7DaysWarning) {
-    last7DaysWarning.hidden = !(timePeriod && timePeriod.startsWith('Last 7 days'));
+    // Zones/agglomerations and heavy metals warnings supersede the last 7 days warning
+    last7DaysWarning.hidden = !(timePeriod && timePeriod.startsWith('Last 7 days')) || hasZonesAgg || hasHeavyMetals;
   }
 
   // Site types
@@ -1012,6 +1044,14 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
   } else if (singleLocation && locationCell && locationActionCell) {
     locationCell.textContent = singleLocation;
     locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
+  }
+
+  // Heavy metals are only available network-wide, so time period and location are fixed to "Any"
+  if (hasHeavyMetals) {
+    if (timeCell) timeCell.textContent = 'Any';
+    if (timeActionCell) timeActionCell.hidden = true;
+    if (locationCell) locationCell.textContent = 'Any';
+    if (locationActionCell) locationActionCell.hidden = true;
   }
 });
 </script>
@@ -1162,11 +1202,14 @@ document.addEventListener('DOMContentLoaded', () => {
     hasPollutants = Array.isArray(arr) && arr.length > 0;
   } catch (e) { /* ignore */ }
 
+  const hasHeavyMetals = sessionStorage.getItem('selectedPollutantGroup') === 'heavy-metals';
+
   ['time-period-action', 'location-action', 'data-source-action', 'site-type-action']
     .forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
-      if (hasPollutants) {
+      // Heavy metals fixes time period and location to "Any", so their action links stay hidden
+      if (hasPollutants && !(hasHeavyMetals && (id === 'time-period-action' || id === 'location-action'))) {
         el.removeAttribute('hidden');   // unhide when pollutants exist
       } else {
         el.setAttribute('hidden', '');  // keep hidden until then
