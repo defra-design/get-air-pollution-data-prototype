@@ -54,7 +54,7 @@
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-visually-hidden">Warning</span>
-            Currently these pollutants are only available by downloading all years and stations, you cannot select a time period or location
+            You can only download heavy metal data for all years and all stations.
           </strong>
         </div>
 
@@ -1046,11 +1046,11 @@ if (siteTypes && siteTypeCell && siteTypeActionCell) {
     locationActionCell.innerHTML = '<a class="govuk-link" href="add-location.html">Change<span class="govuk-visually-hidden"> location</span></a>';
   }
 
-  // Heavy metals are only available network-wide, so time period and location are fixed to "Any"
+  // Heavy metals are only available network-wide, so time period and location are fixed to "All"
   if (hasHeavyMetals) {
-    if (timeCell) timeCell.textContent = 'Any';
+    if (timeCell) timeCell.textContent = 'All';
     if (timeActionCell) timeActionCell.hidden = true;
-    if (locationCell) locationCell.textContent = 'Any';
+    if (locationCell) locationCell.textContent = 'All';
     if (locationActionCell) locationActionCell.hidden = true;
   }
 });
