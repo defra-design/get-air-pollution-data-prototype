@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Black carbon
     'Black carbon (BC)',
+    'Black smoke',
 
     // TOMPs classes
     'PCBs',

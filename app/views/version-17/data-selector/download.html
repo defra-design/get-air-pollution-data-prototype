@@ -323,14 +323,24 @@ function buildNetworksForPollutant(rawName) {
     addNonDefra();
   }
 
+  if (isSO2 || base === 'black smoke') {
+    addMonthly('Black Smoke and Sulphur Dioxide Network');
+  }
+
+  if (['particulate sulphate', 'particulate nitrate', 'particulate ammonium'].includes(base)) {
+    addMonthly('UKEAP: Historical Aerosol Measurements');
+  }
+  if (isSO2 || isNOxAsNO2) addMonthly('WSL Network (historical AURN)');
+  if (base === 'particulate sulphate') addMonthly('Urban Sulphate');
+
   if (isNO2) {
     addHourly('Automatic Urban and Rural Network (AURN)');
     add(L);
     add('Locally managed automatic monitoring');
-    add('Automatic nitrogen dioxide data');
-    add('Nitrogen dioxide (NO2) diffusion tubes');
+    add('Local authority submitted data');
     addMonthly('UK Urban NO2 Network');
     addMonthly('UKEAP: Rural NO2 Network');
+    addMonthly('Defra NO2 Diffusion Tube Network');
   }
 
   if (vocs.has(base)) {
@@ -420,8 +430,12 @@ const NETWORK_DESCRIPTIONS = {
   'Black Carbon Network': 'Black carbon (BC) and UVPM measurements.',
   'Toxic Organic Micro-Pollutants (TOMPs)': 'Measures persistent organic pollutants (PCBs, PCDDs, PCDFs, PBDEs and decaBDE).',
   'Particle Concentrations & Numbers (PCN)': 'Particle number, size distributions, OC/EC, elemental composition.',
-  'Automatic nitrogen dioxide data': 'Local authority submitted data from automatic stations measuring nitrogen dioxide.',
-  'Nitrogen dioxide (NO2) diffusion tubes': 'Local authority submitted diffusion tube data providing monthly measurements of nitrogen dioxide, presented as annual averages.'
+  'Local authority submitted data': 'Nitrogen dioxide data submitted by local authorities, from automatic stations and diffusion tubes. Diffusion tube data is monthly, presented as annual averages.',
+  'Black Smoke and Sulphur Dioxide Network': 'Closed network. Historic daily measurements of black smoke and sulphur dioxide, growing out of the UK National Survey that began in 1961.',
+  'Defra NO2 Diffusion Tube Network': 'Closed network. Nitrogen dioxide measured using diffusion tubes between 1993 and 2005.',
+  'UKEAP: Historical Aerosol Measurements': 'Closed network. Rural measurements of particulate sulphate, nitrate and ammonium from 1973 to 1999, before the network was integrated into AGANet.',
+  'WSL Network (historical AURN)': 'Closed network. Early automatic urban monitoring of sulphur dioxide and nitrogen oxides run by Warren Spring Laboratory, which became the foundation of the AURN.',
+  'Urban Sulphate': 'Closed network. Non-automatic measurements of particulate sulphate in urban air across major UK cities between 1976 and 1979.'
 };
 
 // Network start years (default to 1980 if unknown)
@@ -444,9 +458,24 @@ const NETWORK_START_YEARS = {
   'Heavy Metals Network': 1980,
   'Particle Concentrations & Numbers (PCN)': 2001,
   'UK Urban NO2 Network': 2020,
-  'Automatic nitrogen dioxide data': 2024,
-  'Nitrogen dioxide (NO2) diffusion tubes': 2024,
+  'Local authority submitted data': 2024,
+  'Black Smoke and Sulphur Dioxide Network': 1961,
+  'Defra NO2 Diffusion Tube Network': 1993,
+  'UKEAP: Historical Aerosol Measurements': 1973,
+  'WSL Network (historical AURN)': 1972,
+  'Urban Sulphate': 1976,
 };
+// Closed networks only; others run to the current year
+const NETWORK_END_YEARS = {
+  'Black Smoke and Sulphur Dioxide Network': 2005,
+  'Defra NO2 Diffusion Tube Network': 2005,
+  'UKEAP: Historical Aerosol Measurements': 1999,
+  'WSL Network (historical AURN)': 1995,
+  'Urban Sulphate': 1979,
+};
+function getNetworkEndYear(name) {
+  return NETWORK_END_YEARS[name] || CURRENT_YEAR;
+}
 function getNetworkStartYear(name) {
   if (NETWORK_START_YEARS[name]) return NETWORK_START_YEARS[name];
   const normalized = name.replace(/\s*—\s*/g, ': ').replace(/\s+/g, ' ').trim();
@@ -558,8 +587,12 @@ document.addEventListener('DOMContentLoaded', function () {
     'UK Urban NO2 Network': 60,
     'UKEAP: Rural NO2 Network': 20,
     'Locally managed automatic monitoring': 300,
-    'Automatic nitrogen dioxide data': 300,
-    'Nitrogen dioxide (NO2) diffusion tubes': 4725
+    'Local authority submitted data': 5025,
+    'Black Smoke and Sulphur Dioxide Network': 1200,
+    'Defra NO2 Diffusion Tube Network': 1213,
+    'UKEAP: Historical Aerosol Measurements': 153,
+    'WSL Network (historical AURN)': 12,
+    'Urban Sulphate': 20
   };
   const runtimeCounts = getJSON('networkStationCounts', {});
   const COUNTS = new Proxy(DEFAULT_COUNTS, { get: (obj, k) => (k in runtimeCounts ? runtimeCounts[k] : obj[k]) });
@@ -582,8 +615,12 @@ document.addEventListener('DOMContentLoaded', function () {
     'UK Urban NO2 Network': { 'Urban traffic':1.00 },
     'UKEAP: Rural NO2 Network': { 'Rural background':1.00 },
     'Locally managed automatic monitoring': { 'Urban background':0.25,'Urban traffic':0.65,'Suburban background':0.05,'Urban industrial':0.05 },
-    'Automatic nitrogen dioxide data': { 'Urban background':0.30,'Urban traffic':0.60,'Suburban background':0.05,'Rural background':0.05 },
-    'Nitrogen dioxide (NO2) diffusion tubes': { 'Urban background':0.35,'Urban traffic':0.50,'Suburban background':0.10,'Rural background':0.05 }
+    'UKEAP: Historical Aerosol Measurements': { 'Rural background':1.00 },
+    'WSL Network (historical AURN)': { 'Urban background':0.75,'Urban traffic':0.25 },
+    'Urban Sulphate': { 'Urban background':0.80,'Urban industrial':0.20 },
+    'Black Smoke and Sulphur Dioxide Network': { 'Urban background':0.55,'Urban traffic':0.15,'Suburban background':0.15,'Urban industrial':0.10,'Rural background':0.05 },
+    'Defra NO2 Diffusion Tube Network': { 'Urban background':0.35,'Urban traffic':0.35,'Suburban background':0.15,'Rural background':0.15 },
+    'Local authority submitted data': { 'Urban background':0.35,'Urban traffic':0.50,'Suburban background':0.10,'Rural background':0.05 }
   };
 
   function apportionCounts(total, shares) {
@@ -627,8 +664,12 @@ document.addEventListener('DOMContentLoaded', function () {
     'UK Urban NO2 Network':'core',
     'UKEAP: Rural NO2 Network':'core',
     'Locally managed automatic monitoring':'core',
-    'Automatic nitrogen dioxide data':'core',
-    'Nitrogen dioxide (NO2) diffusion tubes':'core'
+    'Local authority submitted data':'core',
+    'Black Smoke and Sulphur Dioxide Network':'core',
+    'Defra NO2 Diffusion Tube Network':'core',
+    'UKEAP: Historical Aerosol Measurements':'aganet',
+    'WSL Network (historical AURN)':'core',
+    'Urban Sulphate':'core'
   };
   const LA_SHARE_BY_TAG = { 'core':0.012,'hydrocarbon':0.006,'tomps':0.006,'aganet':0.006,'heavy-metals':0.004,'pah':0.004,'namn':0.008,'precipnet':0.003,'ruralmercury':0.002 };
   const DEFAULT_LA_SHARE = 0.006;
@@ -694,9 +735,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function networkHasTimeData(networkName, tm) {
     const start = getNetworkStartYear(networkName);
-    if (tm.mode === 'single') return !isNaN(start) ? (tm.year >= start) : true;
-    if (tm.mode === 'range')  return Math.max(start, tm.startYear) <= tm.endYear;
+    const end   = getNetworkEndYear(networkName);
+    if (tm.mode === 'single') return tm.year >= start && tm.year <= end;
+    if (tm.mode === 'range')  return Math.max(start, tm.startYear) <= Math.min(end, tm.endYear);
     return true;
+  }
+  function tmForNetwork(networkName, tm) {
+    return tm.mode === 'range' ? { ...tm, endYear: Math.min(tm.endYear, getNetworkEndYear(networkName)) } : tm;
   }
 
   // Counts and insets
@@ -716,16 +761,30 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>`;
   }
   const ALWAYS_DOWNLOAD_NETWORKS = new Set([
-    'Automatic nitrogen dioxide data',
-    'Nitrogen dioxide (NO2) diffusion tubes'
+    'Local authority submitted data'
   ]);
+
+  // Selected pollutants that each network provides
+  const NETWORK_POLLUTANTS = {};
+  pollutants.forEach(p => {
+    (buildNetworksForPollutant(p) || []).forEach(n => {
+      if (n === HOUR_HDR || n === MONTH_HDR || n === NONDEF_HDR) return;
+      (NETWORK_POLLUTANTS[n] = NETWORK_POLLUTANTS[n] || []).push(p);
+    });
+  });
+  function networkHeadingHtml(networkName) {
+    const desc = NETWORK_DESCRIPTIONS[networkName] || '';
+    const included = (NETWORK_POLLUTANTS[networkName] || []).join(', ');
+    return `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`
+      + (included ? `<p class="govuk-body">Pollutants included: ${included}</p>` : '');
+  }
 
   function allYearsActionText(networkName, count, startYear, endYear) {
     if (ALWAYS_DOWNLOAD_NETWORKS.has(networkName)) return 'Download data';
     const yearSpan = (endYear - startYear + 1);
     return (count < 50 && yearSpan <= 5) ? 'Download data' : 'Request data';
   }
-  const NO_STATIONS_MSG = '<p class="govuk-body">No stations available for your current filters (time period and/or location). Adjust your filters to enable downloads.</p>';
+  const NO_STATIONS_MSG = '<p class="govuk-body">No stations available for your current selection. Change <a href="add-time.html" class="govuk-link">time period</a> or <a href="add-location.html" class="govuk-link">location</a>.</p>';
 
   // NEW: inline CTA helper — visible only for LA selection AND when count > 0
   function monitoringCtaHtml(count) {
@@ -738,12 +797,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Renderers (description immediately under heading; CTA under inset; hide downloads when count=0)
-function renderMonthlyBlock(networkName, tm) {
-  const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
+function renderMonthlyBlock(networkName, rangeTm) {
+  const tm    = tmForNetwork(networkName, rangeTm);
   const count = stationCountFor(networkName, tm);
   const inset = insetHtmlForCount(count);
   const cta   = monitoringCtaHtml(count);
-  const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
+  const headingAndDesc = networkHeadingHtml(networkName);
 
   if (tm.mode === 'range') {
     const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
@@ -803,11 +862,10 @@ function renderMonthlyBlock(networkName, tm) {
 
 
 function renderHourlyBlock(networkName, tm) {
-  const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
   const count = stationCountFor(networkName, tm);
   const inset = insetHtmlForCount(count);
   const cta   = monitoringCtaHtml(count);
-  const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
+  const headingAndDesc = networkHeadingHtml(networkName);
 
   if (tm.mode === 'range') {
     
@@ -927,11 +985,10 @@ const headSimple3 = `
 
 
 function renderNonDefraBlock(networkName, tm) {
-  const desc  = NETWORK_DESCRIPTIONS[networkName] || '';
   const count = stationCountFor(networkName, tm);
   const inset = insetHtmlForCount(count);
   const cta   = monitoringCtaHtml(count);
-  const headingAndDesc = `<h3 class="govuk-heading-s">${networkName}</h3><p class="govuk-body">${desc}</p>`;
+  const headingAndDesc = networkHeadingHtml(networkName);
 
   if (tm.mode === 'range') {
     const start = Math.max(getNetworkStartYear(networkName), tm.startYear);
@@ -1165,8 +1222,7 @@ const ANNUAL_AVG_NETWORKS = new Set([
 ]);
 
 const ANNUAL_ONLY_NETWORKS = new Set([
-  'Automatic nitrogen dioxide data',
-  'Nitrogen dioxide (NO2) diffusion tubes'
+  'Local authority submitted data'
 ]);
 
 </script>

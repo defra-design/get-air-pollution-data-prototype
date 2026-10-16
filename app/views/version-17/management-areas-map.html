@@ -34,7 +34,45 @@
         </button>
 
         <div class="btn-container measurement-container" id="measurement-container">
-          <strong><span style="font-size: 19px;">Management areas</span></strong>
+          <div class="accordion-toggle-row">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Map type</h3>
+            <p class="govuk-body-s govuk-!-margin-bottom-1 govuk-!-margin-top-1 map-type-selection-summary"></p>
+            <button type="button" class="accordion-toggle-btn" id="map-type-toggle" aria-expanded="false" aria-controls="map-type-panel-content">
+              <span class="govuk-accordion__section-toggle" data-nosnippet>
+                <span class="govuk-accordion__section-toggle-focus">
+                  <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
+                  <span class="govuk-accordion__section-toggle-text">Show</span>
+                </span>
+              </span>
+            </button>
+          </div>
+
+          <div id="map-type-panel-content" hidden>
+            <div class="govuk-!-margin-bottom-3">
+            <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input map-type-btn" id="map-type-stations" name="map-type" type="radio" value="stations" data-map-href="map.html">
+                <label class="govuk-label govuk-radios__label" for="map-type-stations">Monitoring stations</label>
+              </div>
+              <div class="govuk-radios__item" style="display:none">
+                <input class="govuk-radios__input map-type-btn" id="map-type-alerts" name="map-type" type="radio" value="alerts" data-map-href="alerts-map.html">
+                <label class="govuk-label govuk-radios__label" for="map-type-alerts">Alerts</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input map-type-btn" id="map-type-forecast" name="map-type" type="radio" value="forecast" data-map-href="forecast-map.html">
+                <label class="govuk-label govuk-radios__label" for="map-type-forecast">Forecast</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input map-type-btn" id="map-type-management-areas" name="map-type" type="radio" value="management-areas" data-map-href="" checked>
+                <label class="govuk-label govuk-radios__label" for="map-type-management-areas">Management areas</label>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          <hr class="govuk-section-break govuk-section-break--visible accordion-section-break">
+
+          <h3 class="govuk-heading-s" style="margin-bottom: 5px;">Management areas</h3>
           <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-2" style="color: #505a5f;">
             Select a layer to display on the map.
           </p>
@@ -109,5 +147,92 @@
   </div>
 
 </div>
+
+<script>
+  document.querySelectorAll('.map-type-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var href = this.getAttribute('data-map-href');
+      if (href) {
+        try {
+          var centre = window.AQMap ? window.AQMap.getCenter() : null;
+          var zoom   = window.AQMap ? window.AQMap.getZoom()   : null;
+          if (centre && zoom != null) {
+            sessionStorage.setItem('mapFlyTo', JSON.stringify({ lat: centre.lat, lng: centre.lng, zoom: zoom }));
+          }
+        } catch (e) {}
+        window.location.replace(href);
+      }
+    });
+  });
+
+  document.querySelectorAll('.map-type-btn:checked').forEach(function (input) {
+    var label = document.querySelector('label[for="' + input.id + '"]');
+    document.querySelectorAll('.map-type-selection-summary').forEach(function (el) {
+      el.textContent = label ? label.textContent.trim() : '';
+    });
+  });
+
+  document.querySelectorAll('.accordion-toggle-row').forEach(function (row) {
+    row.addEventListener('click', function () {
+      var btn = row.querySelector('.accordion-toggle-btn');
+      if (!btn) return;
+
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var content = document.getElementById(btn.getAttribute('aria-controls'));
+      var chevron = btn.querySelector('.govuk-accordion-nav__chevron');
+      var text = btn.querySelector('.govuk-accordion__section-toggle-text');
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (content) content.hidden = expanded;
+      if (chevron) chevron.classList.toggle('govuk-accordion-nav__chevron--down', expanded);
+      if (text) text.textContent = expanded ? 'Show' : 'Hide';
+    });
+  });
+</script>
+
+<style>
+  .accordion-section-break {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .accordion-toggle-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+
+  .accordion-toggle-row .govuk-heading-s {
+    margin-bottom: 2px;
+  }
+
+  .accordion-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .accordion-toggle-btn .govuk-accordion__section-toggle-text {
+    margin-left: 0;
+  }
+
+  .accordion-toggle-row:hover .govuk-accordion__section-toggle-text {
+    color: #0b0c0c;
+  }
+
+  .accordion-toggle-row:hover .govuk-accordion-nav__chevron {
+    color: #0b0c0c;
+    background: #0b0c0c;
+  }
+
+  .accordion-toggle-row:hover .govuk-accordion-nav__chevron::after {
+    color: #ffffff;
+  }
+</style>
 
 {% endblock %}

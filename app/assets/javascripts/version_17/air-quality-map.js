@@ -139,7 +139,6 @@ const mockStations = [
   { id: 6009, name: "Aston Hill", lat: 52.913, lng: -3.226, authority: "Powys County Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1996-01-01" },
   { id: 6010, name: "Narberth", lat: 51.796, lng: -4.735, authority: "Pembrokeshire County Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "2005-01-01" },
   { id: 6011, name: "Hafod-yr-ynys Hill Roadside", lat: 51.649, lng: -3.374, authority: "Caerphilly County Borough Council", pollutants: ["NO2","PM10"], status: "active", daqi: 1, siteType: "Urban traffic", startDate: "2000-01-01" },
-  { id: 6012, name: "Mace Head", lat: 53.339, lng: -9.901, authority: "Connacht Regional Authority", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1990-01-01" },
 
   // --- YORKSHIRE & HUMBERSIDE (22 sites) ---
   { id: 7001, name: "Leeds Centre", lat: 53.8008, lng: -1.5491, authority: "Leeds City Council", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban centre", startDate: "1999-03-01" },
@@ -233,7 +232,6 @@ const mockStations = [
   { id: 10024, name: "Lough Navar", lat: 54.371, lng: -7.963, authority: "Fermanagh and Omagh District Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1996-01-01" },
   { id: 10025, name: "Auchencorth Moss", lat: 55.792160, lng: -3.242900, authority: "Midlothian Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1993-01-01" },
   { id: 10026, name: "Chilbolton Observatory", lat: 51.149617, lng: -1.438228, authority: "Hampshire County Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "2016-01-15" },
-  { id: 10027, name: "Mace Head", lat: 53.339, lng: -9.901, authority: "Galway County Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1990-01-01" },
 
   // --- NORTHERN IRELAND (11 sites) ---
   { id: 11001, name: "Belfast Centre", lat: 54.596, lng: -5.930, authority: "Belfast City Council", pollutants: ["NO2","PM10","PM2.5","O3","SO2"], status: "active", daqi: 2, siteType: "Urban centre", startDate: "2003-01-01" },
@@ -245,7 +243,6 @@ const mockStations = [
   { id: 11007, name: "Lisburn Lissillagh Lane", lat: 54.516, lng: -6.058, authority: "Lisburn and Castlereagh City Council", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Urban background", startDate: "2000-01-01" },
   { id: 11008, name: "Newry Ballybot", lat: 54.175, lng: -6.339, authority: "Newry, Mourne and Down District Council", pollutants: ["NO2","PM10","PM2.5"], status: "active", daqi: 2, siteType: "Urban centre", startDate: "2002-01-01" },
   { id: 11009, name: "Lough Navar", lat: 54.371, lng: -7.963, authority: "Fermanagh and Omagh District Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1996-01-01" },
-  { id: 11010, name: "Mace Head", lat: 53.339, lng: -9.901, authority: "Galway County Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1990-01-01" },
   { id: 11011, name: "Auchencorth Moss", lat: 55.792160, lng: -3.242900, authority: "Midlothian Council", pollutants: ["NO2","O3","SO2","PM10","PM2.5"], status: "active", daqi: 1, siteType: "Rural background", startDate: "1993-01-01" }
 ];
 

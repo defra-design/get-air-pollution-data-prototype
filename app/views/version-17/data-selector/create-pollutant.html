@@ -309,13 +309,22 @@ function buildNetworksForPollutant(rawName) {
     addNonDefra();
   }
 
+  if (isSO2 || baseName === 'black smoke') {
+    addMonthly('Black Smoke and Sulphur Dioxide Network');
+  }
+
+  const histAerosol = ['particulate sulphate', 'particulate nitrate', 'particulate ammonium'].includes(baseName);
+  if (histAerosol) addMonthly('UKEAP: Historical Aerosol Measurements');
+  if (isSO2 || isNOxAsNO2) addMonthly('WSL Network (historical AURN)');
+  if (baseName === 'particulate sulphate') addMonthly('Urban Sulphate');
+
   if (isNO2) {
     addMonthly('UK Urban NO2 Network');
     addMonthly('UKEAP: Rural NO2 Network');
     add(NONDEF_HDR);
     add('Locally managed automatic monitoring');
-    add('Automatic nitrogen dioxide data');
-    add('Nitrogen dioxide (NO2) diffusion tubes');
+    add('Local authority submitted data');
+    addMonthly('Defra NO2 Diffusion Tube Network');
   }
 
   if (vocs.has(baseName)) {
@@ -435,6 +444,11 @@ function buildNetworksForPollutant(rawName) {
     'UKEAP: Rural Mercury Network': 2,
     'UK Urban NO2 Network': 60,   // adjust via sessionStorage override if you have authoritative numbers
     'UKEAP: Rural NO2 Network': 20,
+    'Black Smoke and Sulphur Dioxide Network': 1200,
+    'Defra NO2 Diffusion Tube Network': 1213,
+    'UKEAP: Historical Aerosol Measurements': 153,
+    'WSL Network (historical AURN)': 12,
+    'Urban Sulphate': 20,
     'Locally managed automatic monitoring': 300
   };
 
@@ -526,6 +540,22 @@ function buildNetworksForPollutant(rawName) {
     'UKEAP: Rural NO2 Network': {
       'Rural background': 1.00
     },
+    'UKEAP: Historical Aerosol Measurements': { 'Rural background': 1.00 },
+    'WSL Network (historical AURN)': { 'Urban background': 0.75, 'Urban traffic': 0.25 },
+    'Urban Sulphate': { 'Urban background': 0.80, 'Urban industrial': 0.20 },
+    'Black Smoke and Sulphur Dioxide Network': {
+      'Urban background': 0.55,
+      'Urban traffic': 0.15,
+      'Suburban background': 0.15,
+      'Urban industrial': 0.10,
+      'Rural background': 0.05
+    },
+    'Defra NO2 Diffusion Tube Network': {
+      'Urban background': 0.35,
+      'Urban traffic': 0.35,
+      'Suburban background': 0.15,
+      'Rural background': 0.15
+    },
     'Locally managed automatic monitoring': {
       'Urban background': 0.25,
       'Urban traffic': 0.65,
@@ -571,6 +601,46 @@ function buildNetworksForPollutant(rawName) {
     return apportionCounts(total, shares);
   }
 
+  // =============== Years of operation per network (keep in step with download.html) ===============
+  const CURRENT_YEAR = new Date().getFullYear();
+  const NETWORK_YEARS = {
+    'Automatic Urban and Rural Network (AURN)': [1972],
+    'Automatic Hydrocarbon Network': [1992],
+    'Non-Automatic Hydrocarbon Network': [2001],
+    'Toxic Organic Micro-Pollutants (TOMPs)': [1991],
+    'Black Carbon Network': [2006],
+    'PAH Network': [1991],
+    'Heavy Metals Network': [1980],
+    'UKEAP: Acid Gas & Aerosol Network': [1980],
+    'UKEAP: MARGA Network': [1980],
+    'UKEAP: National Ammonia Monitoring Network (NAMN)': [1980],
+    'UKEAP: Precipitation Chemistry Network (Precip-Net)': [1986],
+    'UKEAP: Rural Mercury Network': [1980],
+    'UK Urban NO2 Network': [2020],
+    'UKEAP: Rural NO2 Network': [1980],
+    'Locally managed automatic monitoring': [1973],
+    'Black Smoke and Sulphur Dioxide Network': [1961, 2005],
+    'Defra NO2 Diffusion Tube Network': [1993, 2005],
+    'UKEAP: Historical Aerosol Measurements': [1973, 1999],
+    'WSL Network (historical AURN)': [1972, 1995],
+    'Urban Sulphate': [1976, 1979]
+  };
+
+  // [firstYear, lastYear] covered by the chosen time period; null means no restriction
+  function selectedYearWindow() {
+    if (sessionStorage.getItem('selectedPollutantGroup') === 'heavy-metals') return null;
+    const tp = sessionStorage.getItem('selectedTimePeriod') || '';
+    if (tp.startsWith('Last 7 days')) return [CURRENT_YEAR, CURRENT_YEAR];
+    const years = (tp.match(/\b(?:19|20)\d{2}\b/g) || []).map(Number);
+    return years.length ? [Math.min(...years), Math.max(...years)] : null;
+  }
+  const yearWindow = selectedYearWindow();
+  function networkActiveInWindow(n) {
+    if (!yearWindow) return true;
+    const [start = 1980, end = CURRENT_YEAR] = NETWORK_YEARS[n] || [];
+    return start <= yearWindow[1] && end >= yearWindow[0];
+  }
+
   // =============== 7) Compute totals (filtered by site types) ===============
   const uniqueDefra = new Set([...(chosen.hourly || []), ...(chosen.monthly || [])]);
 
@@ -578,7 +648,7 @@ function buildNetworksForPollutant(rawName) {
   let defraTotal = 0;
 
   uniqueDefra.forEach(n => {
-    const total = COUNTS[n] || 0;
+    const total = networkActiveInWindow(n) ? (COUNTS[n] || 0) : 0;
     const perType = siteTypeCountsFor(n, total);
 
     const typesToUse = selectedSiteTypesCanon.length ? selectedSiteTypesCanon : ALL_SITE_TYPES;
@@ -595,7 +665,7 @@ function buildNetworksForPollutant(rawName) {
   let localTotal = 0;
   if (chosen.local) {
     const net = 'Locally managed automatic monitoring';
-    const total = COUNTS[net] || 0;
+    const total = networkActiveInWindow(net) ? (COUNTS[net] || 0) : 0;
     const perType = siteTypeCountsFor(net, total);
 
     const typesToUse = selectedSiteTypesCanon.length ? selectedSiteTypesCanon : ALL_SITE_TYPES;
@@ -650,6 +720,11 @@ function buildNetworksForPollutant(rawName) {
     'UKEAP: Rural Mercury Network': 'ruralmercury',
     'UK Urban NO2 Network': 'core',
     'UKEAP: Rural NO2 Network': 'core',
+    'Black Smoke and Sulphur Dioxide Network': 'core',
+    'Defra NO2 Diffusion Tube Network': 'core',
+    'UKEAP: Historical Aerosol Measurements': 'aganet',
+    'WSL Network (historical AURN)': 'core',
+    'Urban Sulphate': 'core',
     'Locally managed automatic monitoring': 'core'
   };
   const LA_SHARE_BY_TAG = {
@@ -833,14 +908,23 @@ function buildNetworksForPollutant(rawName) {
     addNonDefra();
   }
 
+  if (isSO2 || baseName === 'black smoke') {
+    addMonthly('Black Smoke and Sulphur Dioxide Network');
+  }
+
+  const histAerosol = ['particulate sulphate', 'particulate nitrate', 'particulate ammonium'].includes(baseName);
+  if (histAerosol) addMonthly('UKEAP: Historical Aerosol Measurements');
+  if (isSO2 || isNOxAsNO2) addMonthly('WSL Network (historical AURN)');
+  if (baseName === 'particulate sulphate') addMonthly('Urban Sulphate');
+
   if (isNO2) {
     addHourly('Automatic Urban and Rural Network (AURN)');
     add(NONDEF_HDR);
     add('Locally managed automatic monitoring');
-    add('Automatic nitrogen dioxide data');
-    add('Nitrogen dioxide (NO2) diffusion tubes');
+    add('Local authority submitted data');
     addMonthly('UK Urban NO2 Network');
     addMonthly('UKEAP: Rural NO2 Network');
+    addMonthly('Defra NO2 Diffusion Tube Network');
   }
 
   if (vocs.has(baseName)) {
