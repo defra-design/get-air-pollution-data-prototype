@@ -1196,7 +1196,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function dsRowDivHtml(x) {
     const isMonthlyHdr = x === '<strong>Other data from Defra</strong>';
     const isNonDefraHdr = x === '<strong>Local authority data</strong>';
-    const mt = (isMonthlyHdr || isNonDefraHdr) ? ' style="margin-top:6px;"' : '';
+    const isNetwork = !x.startsWith('<strong>');
+    const mt = (isMonthlyHdr || isNonDefraHdr) ? ' style="margin-top:6px;"'
+             : isNetwork ? ' style="margin-top:5px;"' : '';
     return `<div${mt}>${x}</div>`;
   }
 
