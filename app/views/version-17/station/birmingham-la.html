@@ -602,10 +602,12 @@ ozone
 
   </table>
   <h3 class="govuk-heading-s govuk-!-margin-top-6">
-    Automatic nitrogen dioxide (NO2) data
+    LA submitted NO2 data
   </h3>
-  <p class="govuk-body">Local authority submitted data from automatic stations measuring nitrogen dioxide.</p>
+  <p class="govuk-body">Nitrogen dioxide data submitted by local authorities, from automatic stations and diffusion tubes. Diffusion tube data is monthly, presented as annual averages.</p>
+  <p class="govuk-body">Select to <a href="../data-selector/create-pollutant.html" class="govuk-link" onclick="sessionStorage.setItem('selectedLocations', JSON.stringify(['Birmingham City Council']))">download data from this local authority</a>.</p>
 
+  <!-- Station list hidden
   <table class="govuk-table defra-aq-daqi-stations-table govuk-!-margin-bottom-2">
     <thead class="defra-aq-daqi-stations-table__head">
       <tr class="defra-aq-daqi-stations-table__row">
@@ -618,7 +620,7 @@ ozone
       <tr class="defra-aq-daqi-stations-table__row js-pollutant-row" data-pollutant-groups="daqi">
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
           <a href="#" class="govuk-link">Ladywood Middleway</a>
-          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">Automatic nitrogen dioxide data</div>
+          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">LA submitted NO2 data</div>
           <span style="display: block;"><strong class="govuk-tag govuk-tag--blue">Active</strong></span>
         </td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">Urban traffic</td>
@@ -627,7 +629,7 @@ ozone
       <tr class="defra-aq-daqi-stations-table__row js-pollutant-row" data-pollutant-groups="daqi">
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
           <a href="#" class="govuk-link">Lee Bank Middleway</a>
-          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">Automatic nitrogen dioxide data</div>
+          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">LA submitted NO2 data</div>
           <span style="display: block;"><strong class="govuk-tag govuk-tag--blue">Active</strong></span>
         </td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">Urban traffic</td>
@@ -636,7 +638,7 @@ ozone
       <tr class="defra-aq-daqi-stations-table__row js-pollutant-row" data-pollutant-groups="daqi">
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
           <a href="#" class="govuk-link">Bristol Street</a>
-          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">Automatic nitrogen dioxide data</div>
+          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">LA submitted NO2 data</div>
           <span style="display: block;"><strong class="govuk-tag govuk-tag--blue">Active</strong></span>
         </td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">Urban traffic</td>
@@ -645,7 +647,7 @@ ozone
       <tr class="defra-aq-daqi-stations-table__row js-pollutant-row" data-pollutant-groups="daqi">
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
           <a href="#" class="govuk-link">Camp Hill</a>
-          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">Automatic nitrogen dioxide data</div>
+          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">LA submitted NO2 data</div>
           <span style="display: block;"><strong class="govuk-tag govuk-tag--blue">Active</strong></span>
         </td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">Urban traffic</td>
@@ -654,7 +656,7 @@ ozone
       <tr class="defra-aq-daqi-stations-table__row js-pollutant-row" data-pollutant-groups="daqi">
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
           <a href="#" class="govuk-link">Dartmouth Middleway</a>
-          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">Automatic nitrogen dioxide data</div>
+          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">LA submitted NO2 data</div>
           <span style="display: block;"><strong class="govuk-tag govuk-tag--blue">Active</strong></span>
         </td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">Urban traffic</td>
@@ -663,51 +665,21 @@ ozone
       <tr class="defra-aq-daqi-stations-table__row js-pollutant-row" data-pollutant-groups="daqi">
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
           <a href="#" class="govuk-link">Moor Street Queensway 2</a>
-          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">Automatic nitrogen dioxide data</div>
+          <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta" style="display: block; margin-bottom: 10px;">LA submitted NO2 data</div>
           <span style="display: block;"><strong class="govuk-tag govuk-tag--blue">Active</strong></span>
         </td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average">Urban traffic</td>
         <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--hourly">nitrogen dioxide</td>
       </tr>
     </tbody>
-  </table>
-
-
-  <h3 class="govuk-heading-s govuk-!-margin-top-6">
-    Diffusion tube nitrogen dioxide (NO2) data
-  </h3>
-  <p class="govuk-body">Local authority submitted diffusion tube data providing monthly measurements of nitrogen dioxide, presented as annual averages.</p>
-
-   <table class="govuk-table defra-aq-daqi-stations-table govuk-!-margin-bottom-2">
-    <thead class="defra-aq-daqi-stations-table__head">
-      <tr class="defra-aq-daqi-stations-table__row">
-
-        <th scope="col"
-            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant defra-aq-daqi-stations-table__cell--pollutant-title">
-          Station
-        </th>
-
-        <th scope="col"
-            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--average defra-aq-daqi-stations-table__cell--average-title">
-          Site type
-        </th>
-
-        <th scope="col"
-            class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--hourly defra-aq-daqi-stations-table__cell--hourly-title">
-          Pollutants
-        </th>
-
-      </tr>
-    </thead>
-
-   <tbody class="defra-aq-daqi-stations-table__body">
+    <tbody class="defra-aq-daqi-stations-table__body">
 
   <tr class="defra-aq-daqi-stations-table__row js-pollutant-row"
       data-pollutant-groups="daqi">
     <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
       <a href="#" class="govuk-link">Masshouse Lane Masshouse 2</a>
       <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
-        NO2 diffusion tube
+        LA submitted NO2 data
       </div>
       <span style="display: block; margin-top: 2px;">
         <strong class="govuk-tag govuk-tag--blue">Active</strong>
@@ -728,7 +700,7 @@ ozone
     <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
       <a href="#" class="govuk-link">Priory Queensway 1</a>
       <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
-        NO2 diffusion tube
+        LA submitted NO2 data
       </div>
       <span style="display: block; margin-top: 2px;">
         <strong class="govuk-tag govuk-tag--blue">Active</strong>
@@ -749,7 +721,7 @@ ozone
     <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
       <a href="#" class="govuk-link">Moor Street</a>
       <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
-        NO2 diffusion tube
+        LA submitted NO2 data
       </div>
       <span style="display: block; margin-top: 2px;">
         <strong class="govuk-tag govuk-tag--blue">Active</strong>
@@ -770,7 +742,7 @@ ozone
     <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
       <a href="#" class="govuk-link">Lawrence Street 2</a>
       <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
-        NO2 diffusion tube
+        LA submitted NO2 data
       </div>
       <span style="display: block; margin-top: 2px;">
         <strong class="govuk-tag govuk-tag--blue">Active</strong>
@@ -792,7 +764,7 @@ ozone
     <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
       <a href="#" class="govuk-link">Priory Road Selly Oak 1</a>
       <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
-        NO2 diffusion tube
+        LA submitted NO2 data
       </div>
       <span style="display: block; margin-top: 2px;">
         <strong class="govuk-tag govuk-tag--blue">Active</strong>
@@ -813,7 +785,7 @@ ozone
     <td class="defra-aq-daqi-stations-table__cell defra-aq-daqi-stations-table__cell--pollutant">
       <a href="#" class="govuk-link">Monument Road Ladywood</a>
       <div class="govuk-hint defra-aq-daqi-stations-table__cell--data aq-network-meta">
-        NO2 diffusion tube
+        LA submitted NO2 data
       </div>
       <span style="display: block; margin-top: 2px;">
         <strong class="govuk-tag govuk-tag--blue">Active</strong>
@@ -834,6 +806,7 @@ ozone
 </tbody>
 
   </table>
+  -->
 
   </div>
 </div>
