@@ -432,3 +432,34 @@
   @import "phase1-map/components/autocomplete";
 
 }
+
+.decom-proto {
+    // map
+  @import "decom-proto/map";
+  @import "decom-proto/forecast-map";
+
+    // Tools
+  @import "decom-proto/tools/mixins";
+
+  // Components
+  @import "decom-proto/components/aq-buttons";
+  @import "decom-proto/components/aq-charts";
+  @import "decom-proto/components/aq-features";
+  @import "decom-proto/components/aq-levels-list";
+  @import "decom-proto/components/status";
+  @import "decom-proto/components/aq-levels-table";
+  @import "decom-proto/components/aq-stations-table";
+  @import "decom-proto/components/aq-daqi-stations-table";
+  @import "decom-proto/components/govuk-cards";
+
+
+  
+  // Other
+  @import "decom-proto/other/fixes";
+
+  // Settings
+  @import "decom-proto/settings";
+
+  @import "decom-proto/components/autocomplete";
+
+}

@@ -109,7 +109,20 @@ module.exports = {
       AQ_map_phase1_map : './app/assets/javascripts/phase1_map/air-quality-map.js',
 
       // Forecast Map Phase 1 Map
-      forecast_map_phase1_map : './app/assets/javascripts/phase1_map/forecast-map.js'
+      forecast_map_phase1_map : './app/assets/javascripts/phase1_map/forecast-map.js',
+
+      // Decommissioning prototype (March 2027)
+      autocomplete_p_decom_proto :   './app/assets/javascripts/decom_proto/components/accessible-autocomplete-p-v8.js',
+      autocomplete_la_decom_proto :   './app/assets/javascripts/decom_proto/components/accessible-autocomplete.js',
+
+      // Air Quality Map Decom Proto
+      AQ_map_decom_proto : './app/assets/javascripts/decom_proto/air-quality-map.js',
+
+      // Forecast Map Decom Proto
+      forecast_map_decom_proto : './app/assets/javascripts/decom_proto/forecast-map.js',
+
+      // Management Areas Map Decom Proto
+      management_areas_map_decom_proto : './app/assets/javascripts/decom_proto/management-areas-map.js'
    },
     // Adjust if your entry file has a different path
   output: {
